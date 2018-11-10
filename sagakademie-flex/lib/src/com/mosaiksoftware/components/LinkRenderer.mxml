@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				verticalScrollPolicy="off"
+				horizontalScrollPolicy="off"
+				implements="mx.managers.IFocusManagerComponent, mx.controls.listClasses.IDropInListItemRenderer"
+				mouseChildren="true"
+				useHandCursor="true" 
+				clipContent="true">
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
+			import mx.controls.listClasses.BaseListData;
+			
+			private var _listData:AdvancedDataGridListData;
+
+			[Bindable("dataChange")]
+			public function get listData():BaseListData {
+				return _listData;
+			}
+			
+			public function set listData(value:BaseListData):void {
+				_listData = AdvancedDataGridListData(value);
+				
+				dispatchEvent(new Event("dataChange"));
+				callLater(updateLabel);
+			}
+			
+			override protected function commitProperties():void {
+				super.commitProperties();
+				dispatchEvent(new Event("dataChange"));
+				callLater(updateLabel);
+			}
+			
+			public function set text(t:String):void {
+				callLater(updateLabel);
+			}
+			
+			public function updateLabel():void {
+				if ( data ) { 
+					_text = data[_listData.dataField];
+					target = data[_listData.dataField + "Target"];
+				}
+			}
+			
+			[Bindable]
+			public var _text:String = "";
+			
+			[Bindable]
+			public var target:String ="";
+			
+			public function followLink(): void {
+				TableParameters.openLink(target);
+			}
+		]]>
+	</fx:Script>
+	
+	<s:Label text="{_text}" textDecoration="underline" 
+			 verticalAlign="middle"
+			 height="10"
+			 color="{TableParameters.linkColor}"
+			 y="0"
+			 x="3"
+			 click="followLink()"
+			 buttonMode="true"
+			 useHandCursor="true"
+			 mouseChildren="true"
+			 />
+	
+</mx:Canvas>

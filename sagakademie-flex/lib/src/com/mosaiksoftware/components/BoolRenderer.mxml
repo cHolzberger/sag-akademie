@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+								  xmlns:s="library://ns.adobe.com/flex/spark"
+								  xmlns:mx="library://ns.adobe.com/flex/mx"
+								  cacheAsBitmap="true" fontSize="6" mouseChildren="true"
+								  useHandCursor="true">
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.controls.Alert;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
+			import mx.controls.listClasses.BaseListData;
+			import mx.managers.IFocusManagerComponent;
+			
+			[Bindable]
+			private var _selected:Boolean=false;
+			
+			[Bindable]
+			private var _backgroundColor:uint = 0x8e8e8e;
+			[Bindable]
+			private var _backgroundAlpha:Number=0.3;
+			
+			//		[Bindable("dataChange")]
+			//	public function get listData():BaseListData {
+			//	return _listData;
+			//}
+			
+			//public function set listData(value:BaseListData):void {
+			//	_listData = AdvancedDataGridListData(value);
+			
+			//	dispatchEvent(new Event("dataChange"));
+			//	callLater(updateLabel);
+			//}
+			public function get _listData():AdvancedDataGridListData {
+				return advancedDataGridListData;
+			}
+			
+			override protected function commitProperties():void {
+				callLater(updateLabel);
+
+				super.commitProperties();
+				dispatchEvent(new Event("dataChange"));
+			}
+			
+			public function set text(t:String):void {
+				callLater(updateLabel);
+			}
+			
+			//		public function get text():String {
+			//			return data[_listData.dataField].toString();
+			//		}
+			
+			public function updateLabel():void {
+				if ( data ) {
+					if ( data[_listData.dataField] == 1 ) {
+						_selected=true;
+					} else { 
+						_selected=false;
+					}
+					
+					if (_listData !== null && ! TableParameters.isEditable(_listData.dataField) ) {
+						_backgroundColor = 0x8e8e8e;
+						_backgroundAlpha = 0.3;
+					} else {
+						_backgroundColor = 0xffffff;
+						_backgroundAlpha = 0;
+					}
+				}
+			}
+			
+			protected function cb_changeHandler(event:Event):void {
+				if ( cb.selected ) {
+					if ( data ) {
+						data[listData.columnIndex] = 1;	
+						_selected = true;
+					} 	
+				} else {
+					data[listData.columnIndex] = 0;
+					_selected = false;
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<s:SkinnableContainer backgroundColor="0x8e8e8e" 
+						  backgroundAlpha="{_backgroundAlpha}" 
+						  top="0" left="0"
+						  bottom="0" right="0">
+	<s:CheckBox id="cb" enabled="false" fontSize="9" horizontalCenter="0" selected="{_selected}"
+				useHandCursor="true" verticalCenter="0"/>
+	</s:SkinnableContainer>
+</s:MXAdvancedDataGridItemRenderer>

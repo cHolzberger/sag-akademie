@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<s:Group 
+xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+autoLayout="false"
+creationComplete="componentInit();"
+opaqueBackground="{termin.color}"
+visible="{standort.enabled}" 
+explicitWidth="{standort.enabled ? 120 : 0}"
+cacheAsBitmap="false"
+toolTip="Termin"
+mouseEnabled="true"
+clipAndEnableScrolling="true"
+
+>
+			<fx:Script><![CDATA[
+			import flash.display.DisplayObject;
+			import mx.controls.ToolTip;
+				import mx.core.DragSource;
+				import mx.managers.DragManager;
+				import mx.events.*;
+				import com.sag.models.*;
+				import mx.binding.utils.ChangeWatcher;
+		import mx.managers.PopUpManager;
+		import mx.core.FlexGlobals;
+
+				[Bindable]
+				public var showReferent:Boolean = false;
+				
+				[Bindable]
+				public var showTeilnehmer:Boolean = false;
+				
+				[Bindable]
+				public var showSperrung:Boolean = false;
+				
+				[Bindable]
+				public var tag:String = null;
+				
+				[Bindable]
+				public var standort:Standort;
+				
+				[Bindable]
+				public var termine:SPlanungMonat = null;
+				
+				[Bindable]
+				public var termin:Termin = null;
+				
+				public var onDragStartCb:Function = null;
+				
+				public function dragOverHandler(event:DragEvent):void {
+					DragManager.showFeedback(DragManager.NONE);
+			}
+		
+				public function dragEnterHandler(event:DragEvent):void {
+					DragManager.showFeedback(DragManager.NONE);
+
+				}
+
+				public function mouseMoveHandler(event:MouseEvent):void {
+					//fixme: info object kann ruhig vorinitialisiert werden, muss nur auf
+					// den change watcher reagieren
+					if ( termin.freigegeben ) return;
+					
+					var dragInitator:Label = Label(event.currentTarget);
+					var ds:DragSource = new DragSource();
+					var info:Object = new Object;
+					var lbl:Label = new Label();
+					
+					lbl.text = termin.name;
+					lbl.opaqueBackground = termin.color;
+					
+					info.tag = tag;
+					info.monat = termine.monat;
+					info.id = termin.id;
+					info.standort_id = standort.id;
+					info.seminar_id = termin.id;
+					info.dauer = termin.dauer;
+					info.seminar_art_id = termin.seminar_art_id;
+					info.farbe = termin.color;
+					info.textfarbe = termin.fontColor;
+					
+					
+					ds.addData(info, "moveSeminar");
+					
+					DragManager.doDrag(this, ds, event, lbl);
+					if ( onDragStartCb != null ) 
+						callLater(onDragStartCb);
+				}
+				
+				
+				private function componentInit():void {
+					ToolTip.maxWidth = 200;
+				
+					ChangeWatcher.watch(this, "termin", terminChanged);
+					this.terminChanged();
+					
+					if ( this.termin.inhouse == "1" ) {
+						this.toolTip = "Kursnr: " + this.termin.kursnr + " \n"
+						+ "Firma: " + this.termin.inhouse_firma + "\n"
+						+ "Ort: " + this.termin.inhouse_plz +" " + this.termin.inhouse_ort + "\n"
+						+ "Referenten: " + termin.referenten + "\n"
+						+ "Status: " + termin.status;
+					} else {
+						this.toolTip = "Kursnr: " + this.termin.kursnr + " \n"
+						+ "Tag: " + this.tag.toString() + " \n"
+						+ "Referenten: " + termin.referenten + "\n"
+
+						+ "Status: " + termin.status;
+					}
+		
+					var menu:Array = [];
+					var self = this;
+					addEventListener("gotit", function (e:FlexEvent) {
+						self.parent.dispatchEvent(e);
+					});
+			
+
+				}
+				
+				private function terminChanged (event:*=0):void {
+					status.text = termin.status;
+					if ( termin.freigabeFarbe == 0x000000 || termin.freigabeFarbe == 0x0000ff ) {
+						status.setStyle("color",0xffffff);
+					} else {
+						status.setStyle ( "color",0x000000);
+					}
+					statusContainer.opaqueBackground = termin.freigabeFarbe;
+					
+					lbl.text = termin.name;
+					lbl.setStyle("color", termin.fontColor);
+					
+					ref.setStyle("color",termin.fontColor);
+					ref.text = termin.referenten;
+
+					
+					teilnehmer.setStyle("color", termin.fontColor);
+					teilnehmer.text = termin.teilnehmer;
+					
+					sperrung.setStyle("color", termin.fontColor);
+					sperrung.text = "-";
+					if (termin.aktualisierung_gesperrt  ) {
+						sperrung.text = "Termin gesperrt";
+					} else if (termin.seminar_art_gesperrt ) {
+						sperrung.text = "Seminar gesperrt";
+					} 
+					invalidateDisplayList();
+					validateNow();
+				}
+
+				/** external interface **/
+				public function updateStatus(nstatus:String):void {
+					termine.updateStatus(termin.id, standort.id, nstatus);
+					//termin = termine.getTermin(tag, standort.id);
+
+				}
+				
+				private function onTerminStatusChange():void {
+					
+				//if ( event.target.parent.id != "status" ) return;
+				if ( ExternalInterface.available ) {
+					ExternalInterface.call("$.mosaikRuntime.setChanged");
+				}
+
+			var statusChange:DialogTerminStatus = DialogTerminStatus(PopUpManager.createPopUp( FlexGlobals.topLevelApplication as DisplayObject, DialogTerminStatus , true));
+			statusChange.tag = this;
+			PopUpManager.centerPopUp(statusChange);
+		}
+			]]></fx:Script>
+			<s:Group x="0" y="0" width="10" height="{height}" id="statusContainer">
+				<s:Label verticalAlign="middle" textAlign="center" x="0" y="0" text="x" id="status" width="10" lineHeight="15" height="15" color="0x000000"  fontSize="8" mouseDown="onTerminStatusChange()" />
+			</s:Group>
+			<s:Group x="20" y="-2" width="{width-10}" height="100%" opaqueBackground="{termin.color}">
+				<s:Label x="5" y="5"  text="x" id="lbl" width="100%" lineHeight="15" height="15" mouseDown="mouseMoveHandler(event);"   fontSize="8" />
+			</s:Group>
+			<s:Group x="{width-30}" y="-2" height="100%" opaqueBackground="{termin.color}" visible="{showReferent || showTeilnehmer || showSperrung}" >
+				<s:Label x="5" y="5"  id="ref" width="30" height="15" paddingTop="1" lineHeight="15"  fontSize="8" visible="{showReferent}" />
+				<s:Label x="5" y="5"  id="teilnehmer" width="30" height="15" paddingTop="1" lineHeight="15" visible="{showTeilnehmer}" fontSize="8" />
+				<s:Label x="5" y="5"  id="sperrung" width="30" height="15" paddingTop="1" lineHeight="15" visible="{showSperrung}" fontSize="8" />
+
+			</s:Group>
+</s:Group>

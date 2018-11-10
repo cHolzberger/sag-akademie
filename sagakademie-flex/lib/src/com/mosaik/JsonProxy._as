@@ -1,0 +1,106 @@
+﻿package com.mosaik
+{
+	import com.brokenfunction.json.decodeJson;
+	import com.brokenfunction.json.encodeJson;
+	
+	import flash.events.HTTPStatusEvent;
+	
+	import mx.controls.Alert;
+	import mx.rpc.events.FaultEvent;
+	import mx.rpc.events.ResultEvent;
+	import mx.rpc.http.mxml.HTTPService;
+	import com.mosaiksoftware.GMBus;
+		
+	/**
+	 * ...
+	 * @author Christian Holzberger // MOSAIK Software
+	 * this class uses datahost setting from MosaikConfig
+	 */
+	public class JsonProxy
+	{
+		protected var defaultOptions:Object = null;
+		private var httpService:HTTPService = new HTTPService();
+		private var resultCallback:Function = null;
+		private var saveCallback:Function = null;
+		
+		public function JsonProxy(url:String = "", defOpt:Object = null ) {
+			httpService.showBusyCursor = false;
+			httpService.makeObjectsBindable = true;
+			httpService.useProxy = false;
+			httpService.url = "";
+			defaultOptions = defOpt;
+			httpService.method = "POST";
+			httpService.resultFormat = "text";
+			this.
+			
+			httpService.addEventListener(ResultEvent.RESULT, this.onResult);
+			httpService.addEventListener(FaultEvent.FAULT, this.onFault);
+			
+			setUrl(url);
+		}
+		
+		public function setUrl(url:String):void {
+			httpService.method = "POST";
+			var urlBase:String = MosaikConfig.getVar ("datahost");
+			httpService.url = urlBase + url;
+			GMBus.log("JsonProxy set url: " + url);
+		}
+		
+		public function request(cb:Function, obj:Object=null, method:String="POST"):void {
+			httpService.method = method;
+			resultCallback = cb;
+			
+			if ( obj != null ) {
+				for ( var opt in defaultOptions ) {
+					obj[opt] = defaultOptions[opt];
+				}
+				httpService.send(obj);
+			} else {
+				httpService.send(defaultOptions);
+			}
+		}
+		
+		public function get url():String {
+			return httpService.url;
+		}
+		
+		public function save(data:Object, method:String = "POST", cb:Function=null):void {
+			httpService.method = method;
+			var response:Object = new Object();
+			response.type = "json";
+			response.data = encodeJson(data);
+			
+			for ( var opt in defaultOptions ) {
+				response[opt] = defaultOptions[opt];
+			}
+			//Alert.show("Sende daten...");
+			resultCallback = onSaveResult;
+			saveCallback = cb;
+			httpService.send(response);
+		}
+		
+		private function onSaveResult(data:Object): void {
+			//Alert.show("Daten gespeichert. Bitte die Seite erneut Laden - F5");
+			if ( saveCallback != null ) {
+				saveCallback ( data );
+			}
+		}
+		
+		private function onResult(event:ResultEvent):void {
+			var jsonData:Object;
+			jsonData = decodeJson(event.result as String);
+		
+			if ( resultCallback != null ) {
+				resultCallback(jsonData);
+				//resultCallback ( jsonData );
+			} else {
+				Alert.show(event.result as String);
+			}
+		}
+		
+		private function onFault(event:FaultEvent):void {
+			Alert.show("Fehler beim Laden der Daten! \n" + httpService.url);
+		}
+	}
+	
+}

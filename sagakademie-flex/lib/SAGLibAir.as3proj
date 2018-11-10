@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project version="2">
+  <!-- Output SWF options -->
+  <output>
+    <movie outputType="Application" />
+    <movie input="" />
+    <movie path="bin\AIRLib.swf" />
+    <movie fps="30" />
+    <movie width="800" />
+    <movie height="600" />
+    <movie version="2" />
+    <movie minorVersion="7" />
+    <movie platform="AIR" />
+    <movie background="#FFFFFF" />
+  </output>
+  <!-- Other classes to be compiled into your SWF -->
+  <classpaths>
+    <class path="src" />
+    <class path="assets" />
+    <class path="..\..\_shared\sdk\Air-3.0-Flex-4.5.1\frameworks\locale\de_DE" />
+    <class path="test" />
+  </classpaths>
+  <!-- Build options -->
+  <build>
+    <option accessible="False" />
+    <option advancedTelemetry="False" />
+    <option allowSourcePathOverlap="False" />
+    <option benchmark="False" />
+    <option es="False" />
+    <option inline="False" />
+    <option locale="" />
+    <option loadConfig="" />
+    <option optimize="True" />
+    <option omitTraces="False" />
+    <option showActionScriptWarnings="True" />
+    <option showBindingWarnings="True" />
+    <option showInvalidCSS="True" />
+    <option showDeprecationWarnings="True" />
+    <option showUnusedTypeSelectorWarnings="True" />
+    <option strict="True" />
+    <option useNetwork="True" />
+    <option useResourceBundleMetadata="True" />
+    <option warnings="False" />
+    <option verboseStackTraces="False" />
+    <option linkReport="" />
+    <option loadExterns="" />
+    <option staticLinkRSL="True" />
+    <option additional="+configname=air  &#xA;-theme ${flexlib}\themes\Halo\halo.swc&#xA;-locale de_DE&#xA;&#xA;&#xA;" />
+    <option compilerConstants="" />
+    <option minorVersion="" />
+  </build>
+  <!-- SWC Include Libraries -->
+  <includeLibraries>
+    <element path="swc\actionjson.swc" />
+  </includeLibraries>
+  <!-- SWC Libraries -->
+  <libraryPaths>
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\mx\mx.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\advancedgrids.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\core.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\framework.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\osmf.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\flash-integration.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\rpc.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\spark.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\themes\Halo" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\air\airframework.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\air\aircore.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\mx\mx.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\framework.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\spark.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\core.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\air\airglobal.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\textLayout.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\flash-integration.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\sparkskins.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\spark_dmv.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\osmf.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\air\airspark.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\advancedgrids.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\player\10.2\playerglobal.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\rpc.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\advancedgrids_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\airframework_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\airspark_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\automation_agent_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\automation_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\charts_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\flash-integration_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\framework_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\mobilecomponents_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\mx_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\osmf_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\playerglobal_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\qtp_air_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\rpc_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\spark_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\textLayout_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\automation\automation_air.swc" />
+  </libraryPaths>
+  <!-- External Libraries -->
+  <externalLibraryPaths>
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\rsls" />
+  </externalLibraryPaths>
+  <!-- Runtime Shared Libraries -->
+  <rslPaths>
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\mx\mx.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\advancedgrids.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\core.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\framework.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\osmf.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\flash-integration.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\rpc.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\spark.swc" />
+    <element path="C:\sdk\Air-2.7-Flex-4.5.1\frameworks\themes\Halo" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\air\airframework.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\air\aircore.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\mx\mx.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\framework.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\spark.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\core.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\air\airglobal.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\textLayout.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\flash-integration.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\sparkskins.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\spark_dmv.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\osmf.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\air\airspark.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\advancedgrids.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\player\10.2\playerglobal.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\rpc.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\advancedgrids_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\airframework_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\airspark_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\automation_agent_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\automation_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\charts_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\flash-integration_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\framework_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\mobilecomponents_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\mx_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\osmf_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\playerglobal_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\qtp_air_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\rpc_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\spark_rb.swc" />
+    <element path="..\..\..\sdk\Air-2.7-Flex-4.5.1\frameworks\locale\de_DE\textLayout_rb.swc" />
+  </rslPaths>
+  <!-- Intrinsic Libraries -->
+  <intrinsics>
+    <element path="Library\AS3\frameworks\Flex3" />
+    <element path="Library\AS3\instrinc" />
+    <element path="Library\AS3\" />
+    <element path="Library\AS3\frameworks\Flex4" />
+  </intrinsics>
+  <!-- Assets to embed into the output SWF -->
+  <library>
+    <!-- example: <asset path="..." id="..." update="..." glyphs="..." mode="..." place="..." sharepoint="..." /> -->
+  </library>
+  <!-- Class files to compile (other referenced classes will automatically be included) -->
+  <compileTargets>
+    <compile path="src\com\sag\Kalender.mxml" />
+  </compileTargets>
+  <!-- Paths to exclude from the Project Explorer tree -->
+  <hiddenPaths>
+    <hidden path="obj" />
+  </hiddenPaths>
+  <!-- Executed before build -->
+  <preBuildCommand />
+  <!-- Executed after build -->
+  <postBuildCommand alwaysRun="False" />
+  <!-- Other project options -->
+  <options>
+    <option showHiddenPaths="False" />
+    <option testMovie="Custom" />
+    <option testMovieCommand="Run.bat" />
+  </options>
+  <!-- Plugin storage -->
+  <storage />
+</project>

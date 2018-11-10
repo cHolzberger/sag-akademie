@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<s:Group  
+xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:mx="library://ns.adobe.com/flex/mx" 
+    xmlns:s="library://ns.adobe.com/flex/spark"
+	xmlns:SAG="com.sag.view.*"
+	creationComplete="componentInit();"
+mouseEnabled="true"
+mouseEnabledWhereTransparent="true"
+	width="10"
+	height="10"
+> 	
+	<fx:Script><![CDATA[
+		import com.mosaiksoftware.GMBus;
+		import com.sag.models.CanvasSizeCache;
+		import com.sag.models.SPlanungMonat;
+		import com.sag.models.SPlanungTag;
+		import com.sag.models.Termin;
+		import com.sag.models.Standort;
+		import com.sag.view.VMonatCanvas;
+		
+		import flash.events.Event;
+		
+		import mx.binding.utils.BindingUtils;
+		import mx.binding.utils.ChangeWatcher;
+		import mx.collections.ArrayCollection;
+		import mx.controls.Alert;
+		import mx.controls.dataGridClasses.DataGridColumn;
+		import mx.events.*;
+		import mx.core.UIComponent;
+	
+	[Bindable]
+	public var termine:SPlanungMonat = null;
+	
+	[Bindable]
+	public var showReferent:Boolean = false;
+	
+	[Bindable]
+	public var showSperrung:Boolean = false;
+	
+	[Bindable]
+	public var showTeilnehmer:Boolean = false;
+	
+	[Bindable]
+	private var tage:ArrayCollection = new ArrayCollection();
+	
+	[Bindable]
+	public var modus:String = "";
+	private var _vstandorte:Vector.<VMonatCanvas> = new Vector.<VMonatCanvas>;
+	import com.sag.models.SPlanungTag;
+	import com.mosaiksoftware.MosaikConfig;
+	var vtage:VMonatTageCanvas;
+
+			
+	public function componentInit():void {
+		// see: https://bugs.adobe.com/jira/browse/SDK-26182
+		mouseEnabled = true;
+		//skin.mouseEnabled = true;
+		//ChangeWatcher.watch(this, "termine", termineChanged);
+					
+		vtage = new VMonatTageCanvas();
+		vtage.termine= termine;
+		monatGroup.addElement(vtage);
+		var _w = vtage.width;
+
+		BindingUtils.bindSetter( termineChanged, vtage, "height");
+
+		for each ( var standort:Standort in termine._standorte) {
+			var vstandort:VMonatCanvas = new VMonatCanvas();
+			vstandort.standort = standort;
+			vstandort.termine = termine;
+
+			BindingUtils.bindProperty( vstandort, "modus", this, "modus");
+			BindingUtils.bindProperty( vstandort, "showReferent", this, "showReferent");
+			BindingUtils.bindProperty( vstandort, "showSperrung", this, "showSperrung");
+			BindingUtils.bindProperty( vstandort, "showTeilnehmer", this, "showTeilnehmer");
+			
+			BindingUtils.bindSetter( termineChanged, standort, "enabled");
+			BindingUtils.bindSetter( termineChanged, vstandort, "visible");
+
+			vstandort.addEventListener("dayHeightChanged", termineChanged);
+			BindingUtils.bindSetter( termineChanged, vstandort, "width");
+			BindingUtils.bindSetter( termineChanged, vstandort, "height");
+			monatGroup.addElement(vstandort);
+			_vstandorte.push(vstandort);
+
+		}
+		this.invalidateDisplayList()
+	}
+	
+	private function termineChanged (evt=null):void { 
+		GMBus.log("termine changed");
+		
+		//vtage.termine= termine;
+		var _w = vtage.width;
+		var _h = vtage.height;
+		vtage.left = 0;
+		for each (var vstandort:VMonatCanvas in _vstandorte ) {
+			
+			// flex is weird sometimes?!
+			// how to bind? this... missing references
+			//vtage.termine = m.termine;
+			if ( vstandort.visible ) {
+				//vstandort.termine = termine;
+							vstandort.left = _w;
+
+				_w += vstandort.width;
+				GMBus.log(_w + " X " + _h);
+			}
+		}
+		
+		updateDim(_h, _w);
+	}
+	
+	private function updateDim( _h, _w ):void {
+		width = _w;
+		maxWidth = _w;
+		minWidth = _w;
+		explicitWidth = _w;
+		explicitHeight = minHeight = height = _h ;
+		sepline.yTo = _w;
+		monatGroup.width = _w;
+		monatGroup.width = _h;
+
+	}
+	
+	]]></fx:Script>
+	<s:layout>
+		<s:BasicLayout></s:BasicLayout>
+	</s:layout>
+	<s:Group top="0" left="0" right="0" height="25"> 
+		<s:Label fontSize="16" horizontalCenter="0" verticalCenter="0" text="{termine.label}"></s:Label >
+	</s:Group>
+
+	<s:Group top="25"  id="monatGroup"
+		mouseEnabled="true"
+
+		>
+		<s:layout>
+			<s:BasicLayout  ></s:BasicLayout>
+		</s:layout>
+		
+	</s:Group>
+		<s:Line xFrom="0" xTo="0" yFrom="0" yTo="1" id="sepline">
+                 <s:stroke>
+                      <s:SolidColorStroke color="0x000000" weight="2" caps="square"/>
+                 </s:stroke>
+            </s:Line>
+		<!-- ein standort zu einem termin -->
+	<!--<SAG:VMonatTageCanvas termine="{termine}" id="vtage" />-->
+</s:Group>

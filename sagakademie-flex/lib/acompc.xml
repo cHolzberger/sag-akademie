@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<flex-config>
+ <target-player>10.1</target-player>
+  <benchmark>false</benchmark>
+  <static-link-runtime-shared-libraries>true</static-link-runtime-shared-libraries>
+  <compiler>
+<source-path>
+			<path-element>src</path-element>
+		</source-path>
+    <define append="true">
+      <name>CONFIG::debug</name>
+      <value>true</value>
+    </define>
+    <define append="true">
+      <name>CONFIG::release</name>
+      <value>false</value>
+    </define>
+    <define append="true">
+      <name>CONFIG::timeStamp</name>
+      <value>'27.09.2011'</value>
+    </define>
+    <verbose-stacktraces>true</verbose-stacktraces>
+    <source-path append="true">
+      <path-element>C:\Projekte\sag_akademie-flex_lib\trunk\src</path-element>
+    </source-path>
+    <library-path append="true">
+      <path-element>C:\Projekte\sag_akademie-flex_lib\trunk\swc\actionjson.swc</path-element>
+      <path-element>C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\mx\mx.swc</path-element>
+      <path-element>C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\advancedgrids.swc</path-element>
+      <path-element>C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\core.swc</path-element>
+      <path-element>C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\framework.swc</path-element>
+      <path-element>C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\osmf.swc</path-element>
+      <path-element>C:\sdk\Air-2.7-Flex-4.5.1\frameworks\libs\flash-integration.swc</path-element>
+    </library-path>
+  </compiler>
+ 
+  <default-background-color>#FFFFFF</default-background-color>
+  <default-frame-rate>35</default-frame-rate>
+  <default-size>
+    <width>800</width>
+    <height>600</height>
+  </default-size>
+
+	
+	<include-classes>
+		<class>com.sag.canvas.Planung</class>
+	</include-classes>
+</flex-config>

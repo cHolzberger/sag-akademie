@@ -1,0 +1,1132 @@
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   minWidth="50" 
+			   minHeight="50" 
+			   width="100%" 
+			   height="100%"
+			   applicationComplete="init()" xmlns:local="*">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Style>
+		.head {
+			color: #ffffff;
+		}	
+	</fx:Style>
+	
+	<fx:Script><![CDATA[
+		import com.mosaiksoftware.*;
+		import com.mosaiksoftware.XSettings;
+		import com.mosaiksoftware.components.LabelFunctions;
+		import com.mosaiksoftware.components.TableParameters;
+		
+		import flash.system.Capabilities;
+		import flash.utils.flash_proxy;
+		
+		import flashx.textLayout.tlf_internal;
+		
+		import mx.collections.ArrayCollection;
+		import mx.collections.ArrayList;
+		import mx.collections.Sort;
+		import mx.collections.SortField;
+		import mx.controls.Alert;
+		import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+		import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
+		import mx.controls.dataGridClasses.DataGridColumn;
+		import mx.core.FlexGlobals;
+		import mx.events.AdvancedDataGridEvent;
+		import mx.events.CollectionEvent;
+		import mx.events.DataGridEvent;
+		import mx.events.ListEvent;
+		import mx.rpc.events.FaultEvent;
+		import mx.rpc.events.HeaderEvent;
+		import mx.utils.ArrayUtil;
+		import mx.utils.ObjectUtil;
+		
+		import spark.utils.TextFlowUtil;
+			[Bindable]
+			public var ds:ArrayCollection = new ArrayCollection(new Array());
+			
+			[Bindable]
+			private var ldrInfoText:String = "Initialisierung...";
+		
+			private var _ctxLabelToSignal:Object = {};
+		private var _defaultColWidth:int = 100;
+			public var _verbose:Boolean=false;
+			[Bindable]
+			public var _tableVisible:Boolean = true;
+		
+			/** roll over item zwischenspeichern **/
+			private var _currentIndex:int = 0;
+
+			private var _loader:DataLoader = null;
+			
+			/** paged loading **/
+			private var _pagedLoader:DataLoader = null;
+			private var _page:Number = 0;
+			private var _pages:Number = 0;
+			private var _loadedUrl:String = "";
+			/** table locking **/
+		[Bindable]
+			private var _locked:Boolean = true;
+			private var _ready:Boolean = false;
+			
+			private var _changeArray:Array = [];
+			
+			private var _forceReload:Boolean = false;
+			private var _loadingDone:Boolean = false;
+			
+			private var _gridMenu:ContextMenu = null;
+			
+			[Bindable]
+			private var _insetTop:int = 28;
+			[Bindable]
+			private var _insetBottom:int=28;
+			
+			private var validFlashPlayer:Array = ["WIN 11,1,102,55",
+			"WIN 11.1.102.63",
+			"WIN 11,2,202,223"];
+			
+
+			/** initialisation **/
+			public function init():void {
+				// Summary:
+				// Initialize the External Interface set debug parameters 
+				// do the init
+				
+				//if ( validFlashPlayer.indexOf(flash.system.Capabilities.version) == -1) {
+				//	currentState = "flashPlayerInvalid";
+				//	fpDownload.textFlow = TextFlowUtil.importFromString( "Ihr Flashplayer ("+flash.system.Capabilities.version+") ist veraltet.<br> Bitte Installieren Sie eine neue Version von: <a href='http://get.adobe.com/de/flashplayer'>http://get.adobe.com/de/flashplayer</a>");
+					
+				//	return;
+				//}
+				_initContextMenu();
+				
+				if ( ExternalInterface.available ) { 
+					ExternalInterface.marshallExceptions = false;
+					ExternalInterface.addCallback( "setParameter", this.setParameter);
+					ExternalInterface.addCallback( "resetParameters", this.resetParameters);
+
+					ExternalInterface.addCallback( "reload", this.reload);
+					ExternalInterface.addCallback( "loadUrl", this.loadUrl);
+					ExternalInterface.addCallback( "getCurrentId", this.getCurrentId);
+					ExternalInterface.addCallback( "getCurrent", this.getCurrent);
+					ExternalInterface.addCallback( "getCurrentRow", this.getCurrentRow);
+					ExternalInterface.addCallback( "getDatasource", this.getDatasource);
+					ExternalInterface.addCallback( "toggleColumnChooser", this.toggleColumnChooser);
+					ExternalInterface.addCallback( "lock", this.lockTable);
+					ExternalInterface.addCallback( "unlock", this.unlockTable);
+					ExternalInterface.addCallback( "toggleEdit", this.toggleEdit );
+					ExternalInterface.addCallback( "isLocked", this.isLocked );
+					ExternalInterface.addCallback( "getCol", this.getCol);
+					ExternalInterface.addCallback( "getAllRows", this.getAllRows);	
+					ExternalInterface.addCallback( "getAllRowsWithKeys", this.getAllRowsWithKeys);				 
+
+					ExternalInterface.addCallback( "exportCsv", this.exportCsv);
+					ExternalInterface.addCallback( "hasChanged", this.hasChanged);
+					ExternalInterface.addCallback( "save", this.doSave);
+					ExternalInterface.addCallback( "isReady", this.isReady);
+					ExternalInterface.addCallback( "setInteractive", MosaikConfig.setInteractive);
+					ExternalInterface.addCallback( "setContextMenu", this.setContextMenu);				
+					ExternalInterface.addCallback( "addContextMenuItem", this.addContextMenuItem);				
+					ExternalInterface.addCallback( "clearContextMenu", this._initContextMenu );
+					
+					GMBus.log("FlexTable ready sending signal");
+					GMBus.publish("flexTable/init");
+						
+				} else {
+					this._loadUrl(TableParameters.dsUrl,true);	
+					this.addContextMenuItem ("test", "testsignal",["id"]);	
+				}
+				
+				if (FlexGlobals.topLevelApplication.parameters.datasource){
+					TableParameters.dsUrl = FlexGlobals.topLevelApplication.parameters.datasource;
+				}
+				
+				if (FlexGlobals.topLevelApplication.parameters.showHeader == "false"){
+					TableParameters.showHeader = false;
+				}
+				
+				if (FlexGlobals.topLevelApplication.parameters.showFooter == "false"){
+					TableParameters.showFooter = false;
+				} 
+				/** externes javascript initalisieren **/
+				if ( !TableParameters.showHeader ) {
+					this._insetTop = 0;
+				}
+				
+				if ( !TableParameters.showFooter ) {
+					this._insetBottom = 28;
+				}
+				
+				
+				
+				MosaikConfig.setInteractive(false);
+				_tableVisible = false;
+				_ready = true;
+			}
+			
+			private function _initContextMenu ():void {
+				// Summary:
+				// initalizes the context menu;
+				this._gridMenu = new ContextMenu();
+				
+				this._gridMenu.hideBuiltInItems();
+				setContextMenu(this._gridMenu);
+			}
+			
+			public function setContextMenu(menu:ContextMenu):void {
+				grid.contextMenu = menu;
+			}
+			
+		public var colItems:Array = [];
+			private function addContextMenuItem( label:String , signal:String, columns:Array):void {
+			
+				var item:ContextMenuItem = new ContextMenuItem( label );
+				var items:Array = this._gridMenu.customItems;
+				this.colItems = columns;
+				items.push(item);
+				item.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, this.onMenuItemClick);
+				_ctxLabelToSignal[label] = signal;
+ 				this._gridMenu.customItems = items;
+			}
+			
+			private function onMenuItemClick(evt:ContextMenuEvent):void {
+				var menuItem:ContextMenuItem = evt.target as ContextMenuItem;
+				
+				_log("menu item click: " + menuItem.caption);
+				
+					_log("sending singal: " + _ctxLabelToSignal[menuItem.caption] );
+					//GMBus.publish(_ctxLabelToSignal[menuItem.caption],this.getCurrentRow() );
+					var obj:Array = [this.getCurrentRow( this.colItems )];
+					callLater( GMBus.publish, [_ctxLabelToSignal[menuItem.caption], obj ]);
+				evt.stopImmediatePropagation();
+			}
+			
+			/**
+			 * adds a group to the table 
+			 */
+			public function addGroup (groupName:String):void {
+				if ( groupName == "" ) return;
+				ldrInfoText = "Erstelle Gruppe: " + groupName + "...";
+
+				for ( var i:int=0, max:int = TableParameters.columns.length; i<max; i++ ) {
+					if ( TableParameters.columns[i].headerText == groupName ) {
+						return;		
+					}
+				}
+				// if the group does not exist create it
+				var group:AdvancedDataGridColumnGroup = new AdvancedDataGridColumnGroup();
+				group.headerText = groupName;
+				group.children = [];
+				
+				if ( XSettings.getBool( TableParameters.nspace,  "gr_" + group.headerText ) == false ) 
+					group.visible =false;
+				//group.dataField = "id";
+				TableParameters.columns.push(group);
+			}
+		
+			private var _sortByField:String = "";
+			private var _sortDesc:Boolean = true;
+			/**
+			 * add a new row
+			 **/
+			public function addColumn(name:String, groupName:String, dataField:String, type:String, editable:Boolean=false, values:Array = null, initialSort:Boolean = false):void {
+				//if ( dataField == "id" )
+				//	return;
+				if ( initialSort ) {
+					_sortByField = dataField;
+					_sortDesc = false;
+				}
+				
+				if ( ! groupName ) {
+					groupName = "_";
+				}
+					
+				addGroup(groupName);
+				ldrInfoText = "Erstelle Spalte: " + name + "...";
+
+				var col:AdvancedDataGridColumn = new AdvancedDataGridColumn(name);
+			
+				col.dataField = dataField;
+				col.editable = editable && !this._locked;
+				// laden der spaltenbreite
+									
+				if ( LabelFunctions.getItemRenderer(type ) != null) {
+					col.itemRenderer = LabelFunctions.getItemRenderer( type, values );
+					
+					
+				}
+				
+				if ( LabelFunctions.getItemEditor(type ) != null) {
+					col.itemEditor = LabelFunctions.getItemEditor( type, values );
+				}
+				
+				/** set the correct date label functions, item editors or item renderers **/
+				if ( LabelFunctions.getLabelFunction(type) != null) {
+					col.labelFunction = LabelFunctions.getLabelFunction(type, dataField, values);
+				}
+				
+				col.draggable = false;
+				col.sortable = true;
+				col.width= _defaultColWidth;
+				
+				if ( XSettings.getBool( TableParameters.nspace,  "col_" + col.headerText , true) == false) 
+					col.visible = false;
+				else 
+					col.visible = true;
+				/** append the new column **/
+				var group:AdvancedDataGridColumnGroup;
+				
+				var hit:Boolean = false;
+				for ( var i:int=0, max:int = TableParameters.columns.length; i<max; i++ ) {
+					if ( TableParameters.columns[i].headerText == groupName ) {
+						///TableParameters.columns.push(col);
+						TableParameters.columns[i].children.push(col);
+						if (	TableParameters.columns[i].visible == false ) {
+							col.visible=false;
+						} 
+						hit = true ;
+						break;
+					}  
+				}
+				
+				
+			}
+			
+			public function isReady():Boolean {
+				return _ready;
+			}
+			
+			/**
+			 * columns are set up
+			 * now fetch the sizes 
+			 * and hide the loading screen 
+			 */
+			public function columnSetupDone():void {
+				grid.groupedColumns = TableParameters.columns;
+				// columns added - set column size
+				callLater(setSavedColumnSize);
+				callLater(grid_restoreSortOrder);
+				callLater(hideLoadingScreen);
+			}
+			
+			/**
+			 * set data to be displayed
+			 **/
+			public function setData(_newDs:Array):void {
+				grid_saveSortOrder();
+				//_newDs.sort();
+				
+				ds = new ArrayCollection(_newDs);
+
+				
+				grid.dataProvider = null;
+				grid.dataProvider = ds;
+				
+				
+				
+				// erst daten im grid setzen, danach die header 
+				// sonst wirds buggy
+				callLater(columnSetupDone);
+			}
+			
+			/** 
+			 * clear the table and headers 
+			 **/
+			public function clear():void {
+				TableParameters.columns = new Array();
+				grid.groupedColumns = TableParameters.columns;
+				ds.removeAll();
+			}
+			
+			/** toggle table edit **/
+			public function toggleEdit():void {
+				if ( isLocked() ) unlockTable();
+				else lockTable();
+			}
+			
+			public function isLocked ():Boolean {
+				return _locked == true;
+			}
+			/**
+			 * lock the table, no edit mode 
+			 **/
+			public function lockTable():void {
+				_locked =true;
+				//tbLock.label = "Bearbeiten";
+				var i:int = 0, j:int = 0;
+				var count:int = TableParameters.columns.length;
+				for ( i=0;  i< count ; i++ ) {		
+					var gr:AdvancedDataGridColumnGroup = AdvancedDataGridColumnGroup (TableParameters.columns[i]);
+					for ( j=0; j < gr.children.length; j++) {
+						gr.children[j].editable = false;
+						gr.children[j].rendererIsEditor = false;
+					}
+				}
+			}
+			
+			/**
+			 * allow editing of cells
+			 **/
+			public function unlockTable():void {
+				_locked = false;
+				//tbLock.label = "Sperren";
+				if (this._verbose)
+					GMBus.log("unlock table");
+				var i:int = 0, j:int = 0;
+				var count:int = TableParameters.columns.length;
+				var editable:Boolean = false;
+				for ( i=0;  i< count ; i++ ) {	
+					var gr:AdvancedDataGridColumnGroup = AdvancedDataGridColumnGroup (TableParameters.columns[i]);
+					
+					for ( j=0; j < gr.children.length; j++) {
+						editable = TableParameters.isEditable(gr.children[j].dataField);
+						if ( _verbose ) {
+							if ( editable ) {
+								GMBus.log( gr.children[j].dataField + " is editable");
+							} else {
+								GMBus.log( gr.children[j].dataField + " is not editable");
+							}
+						}
+						if ( TableParameters.getType(gr.children[j].dataField ) == "bool") {
+							gr.children[j].editable = editable;
+								
+						} else {
+							gr.children[j].editable = editable;
+						}
+						TableParameters.columns[i]=gr;
+					}
+				}
+				
+			}
+			
+			/** 
+			 * show column cooser
+			 * EXPORTED
+			 **/
+			public function toggleColumnChooser():void {
+				viewStack.selectedChild == viewChooser ? viewStack.selectedChild = viewGrid : viewStack.selectedChild = viewChooser;
+			}
+			
+			/** shows the loading screen **/
+			public function showLoadingScreen():void {
+				ds.disableAutoUpdate();
+				viewStack.selectedChild = loadingScreen;
+				trace(grid.getStyle("useRollOver"));
+			}
+			
+			/** hides the loading screen **/
+			public function hideLoadingScreen():void {
+				viewStack.selectedChild = viewGrid;
+				ds.enableAutoUpdate();
+				callLater(loadingDone);
+
+			}
+			
+			/** resets the parameters passed to the datasource **/
+			public function resetParameters():void {
+				TableParameters.dsParams = {};
+				_forceReload = true;
+			}
+			
+			/** sets a parameter passed to the datasource **/
+			public function setParameter(name:String,value:String):void {
+				TableParameters.dsParams[name] = value;
+				_forceReload = true;
+			}
+			
+			/** reloads the data **/
+			public function reload():void {
+				this._loadUrl(this._loadedUrl, true);
+			}
+			
+			/** dispatches the load of a new url **/
+			public function loadUrl ( url:String ):void {
+				this._loadUrl(url, _forceReload);
+				_forceReload=false;
+			}
+			
+		[Bindable]
+		private var _urlInfo:String = ""; 
+		[Bindable]
+		private var _urlParameter:String = "";
+			/** loads url and cheks if it is the same url that is loaded **/
+			public function _loadUrl(url:String, reload:Boolean):void {
+				_log("loadUrl");
+				// ignore if the url hasn't changed
+				if ( url == TableParameters.dsUrl && !reload) {
+					return;
+				}
+				_sortByField = "";
+				GMBus.log("Loading URL: " + url);
+				_urlInfo = "Lade URL: " + url;
+				showLoadingScreen();
+				ldrInfoText = "Sende Abfrage...";			
+				clear();
+				TableParameters.dsUrl = url;
+				_urlParameter = "";
+				for ( var name:String in TableParameters.dsParams ) {
+					if ( name == "password" ) continue;
+					if ( name == "username" ) continue;
+					if ( name == "token" ) continue;
+
+					_urlParameter += " " + name + ": " + TableParameters.dsParams[name]; 
+				}
+								
+				_loader = new DataLoader(url);
+				_loader.onResult = this.parseData;
+				_loader.onFault = this.onHTTPFault;
+				_loader.update(TableParameters.dsParams);
+				
+				this._loadedUrl = url;
+				lockTable();
+				
+
+			}
+			
+			public function onHTTPFault(f:FaultEvent):void {
+				ldrInfoText = "Sende Anfrage erneut...\n";
+			}
+			
+			/**
+			 * single object response 
+			 * just set the data 
+			 **/
+			private function parseObjectData (data:Object):void {
+				var dsData:Array = ArrayUtil.toArray(data);
+				callLater(setData, [dsData]);
+
+				//callLater(columnSetupDone);
+				//callLater(hideLoadingScreen);
+				if ( _verbose ) {
+					GMBus.log("parseObjectData");
+				}
+
+			}
+			
+			/**
+			 * paged response load data and add it page by page 
+			 */
+			private function parsePagedData ( data:Object ):void {
+				//Alert.show("recived paged data");
+				// insert the data
+				var _da:Array = ArrayUtil.toArray ( data.data );
+				var i:Number = 0;
+				
+				for ( i=0; i< _da.length; i++ ) {
+					ds.addItem( _da[i] );
+				}
+				
+				//grid.dataProvider = null;
+				//grid.dataProvider = ds;
+				
+				// go to next step 
+				if ( this._page < this._pages ) {
+					ldrInfoText = "Lade Seite "+(this._page+1)+ " von "+this._pages+" ...";
+					_log(ldrInfoText);
+
+					callLater(this.fetchPagedData, [data]);
+				} else {
+					// nach dem die (verteilten) daten geladen sind
+					// erst die spalen aufsetzen, sonst wirds zu buggy
+					callLater(columnSetupDone);
+					
+					this._pagedLoader = null;
+				}
+				
+					_log("parsePagedData");
+				
+
+			}
+			
+			/** loads paged data step by step **/
+			private function fetchPagedData ( data:Object ):void {
+				this._page = this._page + 1;
+				ldrInfoText = "Lade Seite: " + this._page + "..."
+
+				var requestData:Object = ObjectUtil.copy(TableParameters.dsParams);
+				requestData.page = this._page;
+				
+				if ( this._pagedLoader == null ) {
+					this._pagedLoader = new DataLoader ( TableParameters.dsUrl );
+				}
+				
+				this._pagedLoader.onResult = this.parsePagedData;
+				this._pagedLoader.update ( requestData );
+				_log("fetchPagedData");
+
+
+			}
+			
+			/**
+			 * parses the head data and decides which method to call to interpret the data 
+			 */
+			private function parseData (data:Object):void {
+				ldrInfoText = "Spalten-Info erhalten...";			
+
+				var i:int=0, count:int=0;
+				TableParameters.availableColumns = ArrayUtil.toArray( data.headers );
+				TableParameters.columns =[];
+				_tableVisible = true;
+				var mode:String = data.mode as String;
+				//Alert.show(data.headers);
+				var groups:Array = loadOrder();
+				if ( groups) for ( i=0, count = groups.length; i<count;i++) {
+					addGroup ( groups[i] ); 
+				} 
+				
+				for ( i=0, count = TableParameters.availableColumns.length; i < count; i++ ) {
+					if ( TableParameters.availableColumns[i].hide == true || TableParameters.availableColumns[i].hide == "true") {
+						continue;
+					}
+					 
+					addColumn( TableParameters.availableColumns[i].label,
+						TableParameters.availableColumns[i].group,
+						TableParameters.availableColumns[i].field,
+						TableParameters.availableColumns[i].format,
+						TableParameters.availableColumns[i].editable == "true",
+						TableParameters.availableColumns[i].values,
+						TableParameters.availableColumns[i].initialSort == "true"
+					); 	
+				}
+				
+				
+				if ( mode == "paged" ) {
+					if ( _verbose ) {
+						GMBus.log("Found paged data");
+					}
+
+					//Alert.show("found paged data");
+					
+					this._pages = data.pages;
+					this._page = 0;
+						
+					callLater ( this.fetchPagedData, [data]);
+				} else {
+					if ( _verbose) 
+						GMBus.log("Found single data");
+
+					callLater ( this.parseObjectData, [data.data]);
+				}
+
+				TableParameters.showSave = false;	
+			}
+			
+			
+			/** Called when grid data changes **/
+			public function saveData(event:AdvancedDataGridEvent):void {		
+				var row:Number = Number(event.rowIndex);
+				var obj:Object = grid.dataProvider.getItemAt(row);
+				var id:String = obj.id;
+				var fieldName:String = grid.columns[event.columnIndex].dataField;
+				ldrInfoText = "Speichere Datensätze [id:"+obj.id+"] ["+fieldName+"]...";	
+				trace(ldrInfoText);
+				
+				var value:String = event.currentTarget.itemEditorInstance.text;
+				trace("new Value: " + value);
+				
+				// handle date changes...
+				var type:String = TableParameters.getType ( fieldName );
+				if ( type ) {
+					var converter:Function = LabelFunctions.getChangedHandler(type);
+					if ( converter != null ) {
+						event.currentTarget.itemEditorInstance.text = converter( event.currentTarget.itemEditorInstance.text );
+					}
+				}
+				
+			//	Alert.show ( event.currentTarget.itemEditorInstance.text);
+				callLater(storeInformation, [id,fieldName,value]);
+			}
+			
+			/**
+			 * selection event handler, currentItem zwischenspeichern fuer rechtsclick
+			 **/
+			public function onRollOver(event:ListEvent):void {
+				//_log ( this.getCol("id"));
+				//_log("rolll over: " + event.rowIndex);
+				_currentIndex = event.rowIndex;
+			}
+			
+			/**
+			 * forward right click to javascript 
+			 **/
+			public function rightClick():void {
+				if ( ExternalInterface.available ) {
+					//ExternalInterface.call("$.mosaikRuntime.replace", "#ID#", currentItem.id);
+					//ExternalInterface.call("showPopup");
+				}
+			}
+			
+			/**
+			 * speichern von einzelnen änderungen
+			 * 
+			 * speichert die aktuellle änderung und gibt ein singal flexTable/dataChange mit 
+			 * den gemachten änderungen als parameter aus
+			 **/
+			private function storeInformation(id:String, fieldName:String, value:String):void {
+				var save:Object = new Object();
+				save['saveRow'] = {id: id};
+				save['saveRow'][fieldName] = value;				
+				save['noRefresh'] = true;
+				_changeArray.unshift( save );
+				
+				if ( ! TableParameters.showSave ) {
+					this._insetBottom = 28;	
+				}
+				
+				TableParameters.showSave = true;
+				GMBus.publish("flextable/dataChange", [{"id": id, "fieldName": fieldName, "value": value}] );
+			}
+			
+		/**
+		 * startet das speichern von gemachten änderungen
+		 * gibt pro speichervorgang das signal flextable/doSave aus
+		 */
+			private function doSave():void {
+					showLoadingScreen();			
+					GMBus.publish("flextable/doSave");
+
+					var changeObj:Object = _changeArray.pop();
+					this._log("Save: " + changeObj.id);
+					ldrInfoText = "Speichere änderung: " + _changeArray.length+1;
+					_loader.save(changeObj, "POST", saveDone);			 
+			}
+			
+		/**
+		 * wird nach jedem speichervorgang aufgerufen
+		 * speichert so lange bis keine änderungen 
+		 * mehr vorhanden sind
+		 * 
+		 * gibt danach das signal flextable/saveDone aus
+		 */
+			private function saveDone(data:*):void {
+				ldrInfoText = "Speichern erfolgreich...";
+				if (_changeArray.length != 0 ) {
+					this.doSave();
+				} else {
+					if ( TableParameters.showSave ) {
+						this._insetBottom = 28;
+					} 
+					TableParameters.showSave = false;
+					
+					callLater(reload);
+					GMBus.publish("flextable/saveDone");
+
+					
+				}
+			}
+			
+			/**
+			 * mouse wheel handling 
+			 **/
+			public function handleWheel(event:Object):void {
+				
+			}
+			
+			/** save column sizes **/
+			private function afterColumnResize():void {
+				if ( _loadingDone ) {
+					for ( var i:int=0, max:int = grid.groupedColumns.length; i<max; i++ ) {
+						var group:AdvancedDataGridColumnGroup =  grid.groupedColumns[i];
+						for ( var j:int=0, maxj:int = group.children.length; j<maxj; j++ ) {
+							var _col:AdvancedDataGridColumn = grid.groupedColumns[i].children[j];
+							if ( _col.width != _defaultColWidth ) 
+								XSettings.setVar( TableParameters.nspace, _col.headerText, _col.width.toString() );	
+						}
+					}
+				}
+			}
+			
+			private function setSavedColumnSize():void {	
+				grid.invalidateDisplayList();
+				
+				for ( var i:int=0, max:int = grid.groupedColumns.length; i<max; i++ ) {
+					var group:AdvancedDataGridColumnGroup =  grid.groupedColumns[i];
+					var grWidth:int = 0;
+					
+					for ( var j:int=0, maxj:int = group.children.length; j<maxj; j++ ) {
+						var _col:AdvancedDataGridColumn = grid.groupedColumns[i].children[j];
+						var width:int = XSettings.getInt(TableParameters.nspace, _col.headerText, 0);
+						if  (width != 0 ) {
+							_col.width = width;
+						} else {
+							_col.width = _defaultColWidth;
+						}  
+						grWidth += _col.width;
+					} 
+					
+					group.width = grWidth;
+				}
+				
+						
+			}
+			
+			private function saveOrder ():void {
+				var _savedGroup:Array =[];
+		
+				for ( var i:int=0, max:int = grid.groupedColumns.length; i<max; i++ ) {
+					var group:AdvancedDataGridColumnGroup =  grid.groupedColumns[i];
+					_savedGroup.push(  group.headerText );
+				}
+				XSettings.setVar(TableParameters.nspace, "groups", _savedGroup.join(";"));
+			}
+			
+			private function loadOrder():Array {
+				var _setting:Object = XSettings.getVar(TableParameters.nspace, "groups","");
+				if ( _setting ) 
+					return (XSettings.getVar(TableParameters.nspace, "groups","").value as String).split(";");
+				else 
+					return null;
+			}
+			
+			/** zwischen spaltenauswahl und tabelle wechseln **/
+			private function changeView():void {
+				for ( var i:int=0, max:int = grid.groupedColumns.length; i<max; i++ ) {
+					var group:AdvancedDataGridColumnGroup =  grid.groupedColumns[i];
+					if ( !group.visible )
+						XSettings.setVar( TableParameters.nspace,  "gr_" + group.headerText, group.visible.toString() );
+					else
+						XSettings.setVar( TableParameters.nspace,  "gr_" + group.headerText, group.visible.toString() );
+					
+					for ( var j:int=0, maxj:int = group.children.length; j<maxj; j++ ) {
+						var _col:AdvancedDataGridColumn = grid.groupedColumns[i].children[j];
+						if (! _col.visible) {
+							XSettings.setVar( TableParameters.nspace,  "col_" + _col.headerText, _col.visible.toString() );
+						} else {
+							XSettings.setVar( TableParameters.nspace,  "col_" + _col.headerText, _col.visible.toString() );
+						}
+
+						
+					}
+				}
+				if ( viewStack.selectedChild == viewGrid ) {
+					//spAuswahl.label = "Spaltenauswahl";
+				} else {
+					//spAuswahl.label = "Tabelle";
+				}
+			}
+			
+			private function loadingDone():void {
+				MosaikConfig.setInteractive(true);
+				_loadingDone = true;
+				if (columnChooser) {
+					columnChooser.update();
+				}
+			}
+			
+			
+			
+			public function get currentItem ():Object {
+				return ds[this._currentIndex] as Object;
+			}
+			/************************ EXTERNAL INTERFACE ********************/
+			public function getCurrentId():String {
+				return currentItem.id.toString();
+			} 
+			public function getCurrent(field:String):String {
+				return currentItem[field];
+			} 
+			
+			public function getCurrentRow( columns:Array ):String {
+				_log("Stringify Item: ");
+				if ( currentItem ) {
+					var obj:Object = new Object();
+
+					for ( var j:int=0;j<columns.length; j++) {
+						if ( currentItem[columns[j]] ) {
+							_log("Exporting currentItem[" + columns[j] + "]");
+							obj[columns[j]] = currentItem[columns[j]];
+						}
+					}
+					
+					return JSON.stringify( currentItem );
+				} else {
+					_log("no active item!");
+					return "{}";
+				}
+			}
+			
+			public function getAllRowsWithKeys(rows:Array):Object {
+				var ret:Object = new Object();
+				
+				for ( var i:int =0; i < ds.length; i++ ) {
+						_log("Row: "+i);
+					
+						var obj:Object = new Object();
+						var itm:Object = ds.getItemAt(i);
+						//trace(rows);
+						for ( var j:int=0;j<rows.length; j++) {
+							obj[rows[j]] = itm[rows[j]];
+						}
+						ret[i] = JSON.stringify(obj);
+				}
+				
+				return ret;
+			}
+		
+			public function getAllRows():Array {
+				var ret:Array = new Array;
+				
+				for ( var i:int =0; i< ds.length; i++ ) {
+					if ( _verbose ) 
+						_log("Row: "+i);
+					 ret[i] = JSON.stringify( ds.getItemAt(i) );
+						
+				}
+				
+				return ret;
+			}
+			
+			public function getCol(colName:String):String {
+				var ret:Array = [];
+				
+				for ( var i:int =0; i< ds.length; i++ ) {
+					ret.push ( ds.getItemAt(i)[colName] );
+				}
+				
+				return JSON.stringify(ret);
+			}
+			
+			public function getDatasource():String {
+				return TableParameters.dsUrl;
+			}
+			
+			public function exportCsv():String {
+				// Summary:
+				// exports displayed data as CSV
+				
+				return TableParameters.exportCsv(new ArrayCollection(this.ds.source));
+			}
+			
+			public function hasChanged ():Boolean {
+				return TableParameters.showSave;
+			}
+			
+			/************************ INTERNAL WRAPPER ********************/
+			private function _log (msg:String):void {
+					GMBus.log ( msg );
+
+			}
+
+		// Event handler to recognize when Ctrl-C is pressed,
+		// and copy the selected cells to the system clipboard. 
+		private function myKeyUpHandler(event:KeyboardEvent):void
+		{
+			_log("key up");
+			
+						
+			var keycode_c:uint = 67;
+			var pg_up:uint = 33;
+			var pg_down:uint = 34;
+			
+			if (event.ctrlKey && event.keyCode == keycode_c)
+			{
+				// Separator used between Strings sent to clipboard
+				// to separate selected cells.
+				var separator:String = ",";
+				// The String sent to the clipboard
+				var dataString:String = "";
+				
+				// Loop over the selectedCells property.
+				// Data in selectedCells is ordered so that 
+				// the last selected cell is at the head of the list.
+				// Process the data in reverse so
+				// that it appears in the correct order in the clipboard.
+				var n:int = event.currentTarget.selectedCells.length;
+				for (var key:String in currentItem)
+				{
+					//_log(key);
+					// Get the cell data using the field name.
+					if ( TableParameters.getVisible( key ) == true) { 
+						dataString = currentItem[key] + separator + dataString;
+					}
+				}
+				
+				// Remove trailing separator.
+				dataString = 
+					dataString.substr(0, dataString.length - separator.length);
+				
+				// Write dataString to the clipboard.
+				System.setClipboard(dataString);
+			} else if ( event.keyCode == pg_up) {
+				
+				var offset:Number = grid.verticalScrollPosition-grid.height/grid.rowHeight-1;
+				grid.verticalScrollPosition = offset > 0 ? offset : 0;
+			} else if ( event.keyCode == pg_down ) {
+				
+				grid.verticalScrollPosition = grid.verticalScrollPosition+grid.height/grid.rowHeight-1;
+			}
+		}
+
+		protected function grid_itemDoubleClickHandler(event:ListEvent):void
+		{
+			_log("sending singal: flex/doubleClick" );
+			//GMBus.publish(_ctxLabelToSignal[menuItem.caption],this.getCurrentRow() );
+			var obj:Array = [this.getCurrentRow( this.colItems )];
+			GMBus.publish("flextable/doubleClick", obj );
+			
+		}
+	
+		
+		protected function grid_restoreSortOrder():void {
+			if ( _sortByField == "" ) return;
+			
+			_sortByField = XSettings.getVar(TableParameters.nspace,"sortBy",{value: null}).value;
+			_sortDesc = XSettings.getBool(TableParameters.nspace, "sortDesc",null);
+
+			if ( _sortByField != null && _sortByField != "" ) {
+				var _s:Sort=new Sort();
+				_s.fields = [new SortField(_sortByField,false,_sortDesc)];
+				//Alert.show(field);
+				grid.dataProvider.sort = _s;
+				grid.dataProvider.refresh();
+			}
+		}
+		
+		protected function grid_saveSortOrder(e:AdvancedDataGridEvent=null):void
+		{
+			if ( _sortByField == "" ) return;
+			
+			if (e.dataField == _sortByField ) {				
+				_sortDesc = !_sortDesc;
+			} else if ( e!=null ) {
+				_sortDesc = false;
+				_sortByField = e.dataField;
+			} 
+			
+			XSettings.setVar( TableParameters.nspace, "sortBy", _sortByField );
+			XSettings.setVar( TableParameters.nspace, "sortDesc", _sortDesc.toString() );
+			
+			var _s:Sort=new Sort();
+			_s.fields = [new SortField(_sortByField,false,_sortDesc)];
+			//Alert.show(field);
+			grid.dataProvider.sort = _s;
+			grid.dataProvider.refresh();
+			e.preventDefault();
+		}
+		
+		protected function application1_rollOverHandler(event:MouseEvent):void
+		{
+			trace ('roll');
+			
+		}
+		
+	]]>
+	</fx:Script>
+	<fx:Style source="FlexTable2.css"/>
+	<s:states>
+		<s:State name="State1"/>
+		<s:State name="flashPlayerInvalid"/>
+	</s:states>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<s:Sequence id="fadeIn">
+			<s:Move3D xTo="0" xFrom="{width}"/>
+		</s:Sequence>
+		<s:Sequence id="fadeOut">
+			<s:Move3D xTo="{- width}" />
+		</s:Sequence>
+	</fx:Declarations>
+	<fx:Style source="FlexTable2.css" />
+	<s:BorderContainer id="topContainer" includeIn="State1" visible="{TableParameters.showHeader}"
+					   width="{this.width}" height="28" borderWeight="0"
+					   mouseChildren="true"
+					   rollOver="application1_rollOverHandler(event)"
+					   includeInLayout="{TableParameters.showHeader}">
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="2" paddingRight="5" paddingBottom="2" paddingTop="2" verticalAlign="middle"/>
+		</s:layout>
+		<s:Label x="-1" y="23" text="Label" width="100%" height="24" verticalAlign="middle" paddingLeft="5"/>
+		<mx:Spacer/>
+		<s:Button label="Reload" click="reload()"/>
+		<s:Button label="Bearbeiten" click="toggleEdit()"/>
+		<s:Button label="Spalten" click="toggleColumnChooser()"/>
+		<s:Button label="Export" click="getAllRowsWithKeys(['id'])"/>
+
+
+	</s:BorderContainer>
+		<mx:ViewStack id="viewStack" includeIn="State1" width="{this.width}" height="100%"
+					  change="changeView()">
+			<s:NavigatorContent id="viewGrid">
+				
+	
+			<mx:AdvancedDataGrid id="grid"
+								 height="{viewStack.height}"
+								 width="{viewStack.width}"
+								 selectionMode="singleRow" 
+								 editable="true" 
+								 horizontalScrollPolicy="on" 
+								 verticalScrollPolicy="on" 
+								 sortableColumns="true"
+								 sortExpertMode="true"
+								 rowHeight="25"
+								 sort="grid_saveSortOrder(event)"
+								 alternatingItemColors="[0xffffff, 0xe8e8e8]"
+								 dataProvider="{ds}"
+								 visible="{_tableVisible}"
+								 headerShift="saveOrder()"
+								 itemDoubleClick="grid_itemDoubleClickHandler(event)"
+								 itemEditEnd="saveData(event);"
+								 itemRollOver="onRollOver(event);"
+								 columnStretch="afterColumnResize()"
+								 keyUp="myKeyUpHandler(event);"
+								 doubleClickEnabled="true"
+								 paddingTop="0"
+								 paddingBottom="0"
+								
+								 >
+				<mx:groupedColumns>
+					<mx:AdvancedDataGridColumnGroup headerText="x" >
+						<mx:AdvancedDataGridColumn headerText="2" />
+					</mx:AdvancedDataGridColumnGroup>
+				</mx:groupedColumns>
+				</mx:AdvancedDataGrid>
+			</s:NavigatorContent>
+			
+			<s:NavigatorContent id="viewChooser" width="100%" height="100%">
+				<local:ColumnChooser width="100%" height="100%" id="columnChooser"/>	
+			</s:NavigatorContent>
+			<s:NavigatorContent id="loadingScreen" width="100%" height="100%" >
+				<s:layout>
+					<s:VerticalLayout/>
+				</s:layout>
+				<s:Spacer height="50%" />
+					<s:Image smoothingQuality="high" source="{com.mosaiksoftware.AssetCollection.loading}" horizontalAlign="center" horizontalCenter="0" width="100%"/>
+					<s:Label text="{ldrInfoText}" height="24" fontSize="12" fontWeight="bold" width="100%" textAlign="center" id="ldrInfo"/>
+					
+				<s:Spacer height="50%" />
+				<s:Label text="{_urlInfo}" height="12" fontSize="8" color="#8e8e8e" width="100%" textAlign="right"/>
+				<s:Label text="{_urlParameter}" height="12" fontSize="8" color="#8e8e8e" width="100%" textAlign="right"/>
+
+			</s:NavigatorContent>
+		
+
+		</mx:ViewStack>
+		
+	<s:BorderContainer includeIn="State1" width="100%" height="28" backgroundColor="#E2D9D9"
+					   borderWeight="0" verticalCenter="0">
+		<s:layout>
+			<s:BasicLayout />
+		</s:layout>
+		<s:Label x="10" y="10" text="(B)" visible="{!_locked}"/>
+		<s:Label x="35" y="10" text="!!! Sie haben Änderungen an den Daten vorgenommen.  Bitte bestätigen Sie die Speicherung !!!" fontWeight="bold" visible="{TableParameters.showSave}" />
+		<s:Button y="2" right="5" label="Speichern" click="doSave()" visible="{TableParameters.showSave}" />
+					   
+	</s:BorderContainer>
+	
+	<s:BorderContainer id="bottomContainer" includeIn="State1" visible="{TableParameters.showFooter}"
+					   width="{this.width}" height="28" borderWeight="0"
+					   includeInLayout="{TableParameters.showFooter}" verticalCenter="0"
+					   >
+		<s:layout>
+			<s:HorizontalLayout verticalAlign="middle" paddingLeft="5" paddingRight="2" paddingTop="2" paddingBottom="2"/>
+		</s:layout>
+		<s:ComboBox width="207"/>
+		<s:TextInput width="203"/>
+		<mx:Spacer width="100%"/>
+		<mx:ProgressBar labelPlacement="left" paddingRight="5"/>
+	</s:BorderContainer>
+	<s:RichText includeIn="flashPlayerInvalid" id="fpDownload"/>
+</s:Application>

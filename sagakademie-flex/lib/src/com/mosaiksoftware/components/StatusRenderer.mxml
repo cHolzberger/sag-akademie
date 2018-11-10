@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				verticalScrollPolicy="off"
+				horizontalScrollPolicy="off"
+				implements="mx.managers.IFocusManagerComponent, mx.controls.listClasses.IDropInListItemRenderer"
+				mouseChildren="true"
+				useHandCursor="false" 
+				cacheAsBitmap="true"
+				clipContent="true"
+				verticalGap="0"
+				paddingTop="0"
+				paddingBottom="0"
+				 horizontalGap="0" verticalAlign="top" horizontalAlign="left" paddingLeft="2" paddingRight="0"
+				 backgroundColor="{_backgroundColor}"
+				 backgroundAlpha="0.2"
+				 >
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.formats.BackgroundColor;
+			
+			import mx.controls.Alert;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
+			import mx.controls.listClasses.BaseListData;
+			private var _listData:AdvancedDataGridListData;
+			
+			[Bindable]
+			private var _backgroundColor:Number;
+			
+			[Bindable("dataChange")]
+			public function get listData():BaseListData {
+				return _listData;
+			}
+			
+			public function set listData(value:BaseListData):void {
+				_listData = AdvancedDataGridListData(value);
+				callLater(updateLabel);
+				dispatchEvent(new Event("dataChange"));
+			}
+			
+			override protected function commitProperties():void {
+				callLater(updateLabel);
+				super.commitProperties();
+				dispatchEvent(new Event("dataChange"));
+			}
+			
+			public function set text(t:String):void {
+				callLater(updateLabel);
+			}
+			
+			public function updateLabel():void {
+				if ( data ) { 
+					_text = LabelFunctions.statusLabelFunction (data[_listData.dataField]);
+					updateColor();
+				}
+			}
+			
+			[Bindable]
+			public var _text:String = "";
+			
+			[Bindable]
+			public var target:String ="";
+			
+			public function updateColor():void {
+				var val:String = data[_listData.dataField];
+				
+				if (val == "0")
+					// gebucht
+					_backgroundColor = TableParameters.statusGreen; 
+				if (val == "1")
+					//gebucht
+					_backgroundColor = TableParameters.statusGreen;
+				if (val == "2")
+					// storno
+					_backgroundColor = TableParameters.statusRed
+				if (val == "3")
+					// umgebucht
+					_backgroundColor = TableParameters.statusYellow;
+				if (val == "4")
+					// abgesagt
+					//_backgroundColor = TableParameters.statusRed;
+					_backgroundColor = TableParameters.statusGreen;
+				if (val == "5")
+					// nicht teilgenommen
+					_backgroundColor = TableParameters.statusOrange;
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:Text text="{_text}" paddingLeft="0" paddingTop="0" paddingRight="0" paddingBottom="0"/>
+	<mx:Spacer width="{width}" />
+</mx:HBox>

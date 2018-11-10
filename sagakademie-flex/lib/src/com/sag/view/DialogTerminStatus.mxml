@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" title="Neuen Status setzen" layout="vertical" color="0x000000" borderAlpha="0.55" horizontalAlign="center" status="" showCloseButton="true" close="PopUpManager.removePopUp(this);">
+	 <mx:Script>
+        <![CDATA[       
+            import mx.managers.PopUpManager;
+            import mx.controls.Text;
+			import mx.controls.Alert;
+			import com.sag.view.PlanungTag;
+           	import com.mosaiksoftware.GMBus;
+				
+	import flash.external.ExternalInterface;
+            // A reference to the TextInput control in which to put the result.
+			[Bindable]
+            public var tag:PlanungTag;
+           
+            // Event handler for the OK button.
+            private function returnStatus(nstatus:String):void {
+				//Alert.show(nstatus);
+				if ( ExternalInterface.available ) {
+					GMBus.publish("kalender/change",[]);
+				}
+				tag.updateStatus(nstatus);
+                //statusStr.text=nstatus; 
+                PopUpManager.removePopUp(this);
+            }
+        ]]>
+    </mx:Script>
+
+	<mx:HBox>
+		<mx:Button label="Planung" click="returnStatus('P');"  chromeColor="0xFF0000" color="white" />
+		<mx:Button label="Bestätigen" click="returnStatus('B');" chromeColor="0xFFFF33" />
+		<mx:Button label="Freigegeben" click="returnStatus('F');" chromeColor="0x00FF00"/>
+		<mx:Button label="Ausgebucht" click="returnStatus('A');" chromeColor="0x0000FF" color="white"/>
+		<mx:Spacer width="20"/>
+		
+
+		<mx:Button label="Abgesagt" click="returnStatus('X');" chromeColor="0x000000" color="white" />
+
+		<mx:Button label="Abbrechen" click="PopUpManager.removePopUp(this);"/>
+	</mx:HBox>
+	
+</mx:TitleWindow>

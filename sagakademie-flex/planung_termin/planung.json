@@ -1,0 +1,36 @@
+{
+	"standort": {
+		"name": "Luenen"
+	},
+
+	"tage": {
+		"5": {
+			"tag": "1",
+			"code": "1-KI-G",
+			"info": "",
+			"color": "0xff0000"
+		},
+			"6": {
+			"tag": "1",
+			"code": "1-KI-G",
+			"info": "",
+			"color": "0xff0000"
+		},
+			"7": {
+			"tag": "1",
+			"code": "1-KI-G",
+			"info": "",
+			"color": "0xff0000"
+		},
+			"8": {
+			"tag": "1",
+			"code": "1-KI-G",
+			"info": "",
+			"color": "0xff0000"
+		},
+		"3": {
+			"tag": "2",
+			"color": "0xefefef"
+		}
+	}
+}

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Script><![CDATA[
+
+	import mx.controls.Alert;
+	import com.mosaik.MosaikConfig;
+	
+	[Bindable]
+	public var tage:Array = [];
+	
+	]]></mx:Script>
+	
+	<mx:Component className="ArtCellRenderer" >
+		<mx:VBox verticalGap="1">
+			<mx:CheckBox label="Theorie" selected="{data.theorie==1}" change="theorie.selected ? data.theorie = 1 : data.theorie = 0" id="theorie" />
+			<mx:CheckBox label="Praxis" selected="{data.praxis==1}"  change="praxis.selected ? data.praxis = 1 : data.praxis = 0" id="praxis"/>
+		</mx:VBox>
+	</mx:Component>
+	<mx:Component className="ReferentCellRenderer" >
+		<mx:VBox verticalGap="1" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<mx:Label text="{data.name}" />
+			<mx:Label text="{data.vorname}" />
+		</mx:VBox>
+	</mx:Component>
+	<mx:Repeater dataProvider="{tage}" id="rep">
+		<mx:VBox height="100%"  width="220">
+			<mx:Label opaqueBackground="0xffffff" width="100%" textAlign="center" text="Tag {rep.currentIndex+1}" />
+
+			<mx:DataGrid dataProvider="{rep.currentItem.data}" id="tag" horizontalScrollPolicy="off" x="0" y="0" width="220" height="100%" editable="true" variableRowHeight="true"
+			minColumnWidth="10"  sortableColumns="false" dropEnabled="true" dragEnabled="true" dragMoveEnabled="true" showHeaders="false"
+			
+			>
+				<mx:columns>
+					<mx:DataGridColumn dataField="image" editable="false" resizable="false" width="60" itemRenderer="com.sag.view.ImageCellRenderer" />
+					<mx:DataGridColumn dataField="name" editable="false" resizable="false" width="80" itemRenderer="com.sag.view.ReferentCellRenderer" />
+					<mx:DataGridColumn dataField="name" editable="false" resizable="false" width="80" itemRenderer="com.sag.view.ArtCellRenderer" />
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:VBox>
+	</mx:Repeater>
+</mx:HBox>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>flextable</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.adobe.flexbuilder.project.flexbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.adobe.flexbuilder.project.flexnature</nature>
+		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>[source path] assets</name>
+			<type>2</type>
+			<location>C:/Projekte/sagakademie-flex/lib/assets</location>
+		</link>
+		<link>
+			<name>[source path] src</name>
+			<type>2</type>
+			<location>C:/Projekte/sagakademie-flex/lib/src</location>
+		</link>
+		<link>
+			<name>bin-debug</name>
+			<type>2</type>
+			<location>C:/Projekte/SAG-Akademie-Gmbh/SAG-Adm-UI/Resources/widgets/flexTable</location>
+		</link>
+		<link>
+			<name>bin-release1</name>
+			<type>2</type>
+			<location>W:/Projekte/SAG-Akademie-GmbH/SAG-Adm-UI/Resources/widgets/flexTable</location>
+		</link>
+	</linkedResources>
+</projectDescription>

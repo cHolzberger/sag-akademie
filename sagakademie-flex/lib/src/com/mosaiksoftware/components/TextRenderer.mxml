@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				mouseChildren="true"
+				useHandCursor="true"
+				mouseEnabled="true"
+				cacheAsBitmap="true"
+				
+				 >
+	<s:layout>
+		<s:BasicLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import flash.net.navigateToURL;
+			
+			import flashx.textLayout.formats.BackgroundColor;
+			
+			import mx.controls.Alert;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
+			import mx.controls.listClasses.BaseListData;
+			
+			import spark.utils.TextFlowUtil;
+			
+			[Bindable]
+			private var _backgroundColor:uint = 0x8e8e8e;
+			[Bindable]
+			private var _backgroundAlpha:uint=0;
+			
+			public var type:String = null;
+			
+			public function get _listData():AdvancedDataGridListData {
+				return advancedDataGridListData;
+			}
+					
+			override protected function commitProperties():void {
+				callLater(updateLabel);
+				super.commitProperties();
+				dispatchEvent(new Event("dataChange"));
+			}
+			
+			public function set text(t:String):void {
+				callLater(updateLabel);
+			}
+			
+			public function updateLabel():void {
+				if ( data ) { 
+								
+					var _fn:Function = LabelFunctions.getLabelFunction( this.type );
+					if ( _fn != null) {
+						_text = _fn ( data[_listData.dataField], null, _listData.dataField);
+					} else {
+						_text = data[_listData.dataField];
+					}
+				}
+				
+				if ( ! TableParameters.isEditable(_listData.dataField) ) {
+					_backgroundColor = 0x8e8e8e;
+					_backgroundAlpha = 0.3;
+				} else {
+					_backgroundColor = 0xffffff;
+					_backgroundAlpha = 0;
+				}
+			}
+			
+			[Bindable]
+			public var _text:String = "";
+			
+			[Bindable]
+			public var target:String ="";
+
+			
+
+		]]>
+	</fx:Script>
+	
+	<s:RichText verticalCenter="0"
+				horizontalCenter="0"
+				width="{width-2}" maxDisplayedLines="1" textFlow="{spark.utils.TextFlowUtil.importFromString(_text)}" paddingLeft="2" paddingTop="2" paddingRight="0" paddingBottom="0"
+				height="{height-2}"
+				backgroundColor="{_backgroundColor}"
+				backgroundAlpha="{_backgroundAlpha}"
+				/>
+	
+</s:MXAdvancedDataGridItemRenderer>

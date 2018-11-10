@@ -1,0 +1,502 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<s:BorderContainer
+xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+ xmlns:Mosaik="*" xmlns:SAG="com.sag.view.*"
+	width="100%" height="100%"
+	creationComplete="componentInit();">
+	<fx:Script><![CDATA[
+		import com.mosaiksoftware.components.TableParameters;
+		import com.mosaiksoftware.GMBus;
+		import com.mosaiksoftware.JsonProxy;
+		import com.mosaiksoftware.MosaikConfig;
+		import com.sag.models.SPlanungMonat;
+		import com.sag.models.Standort;
+		import com.sag.view.DialogTerminStatus;
+		import flash.display.DisplayObject;
+		import flash.display.StageDisplayState;
+		import flash.events.Event;
+		import flash.external.ExternalInterface;
+		import mx.collections.ArrayCollection;
+		import mx.controls.Alert;
+		import mx.controls.CheckBox;
+		import mx.core.FlexGlobals;
+		import mx.events.CollectionEvent;
+		import mx.events.DragEvent;
+		import mx.events.DragManager;
+		import mx.managers.PopUpManager;
+				import mx.binding.utils.*;
+			import mx.core.UIComponent;
+
+		private var loader:JsonProxy;
+		private var ldrWidth:Number = 0;
+		
+		public static var calUrl:String = "http://ch-mp:8085/admin/json;json/jahresplanung";
+		public static var dsParams:Object = {q: 'a', mode: "all","year": 2013, token: "28df385b4dbee98030daeb64b327811e"};
+
+		[Bindable]
+		private var showReferent:Boolean = false;
+		
+		[Bindable]
+		private var showTeilnehmer:Boolean = false;
+		
+		[Bindable]
+		private var showSperrung:Boolean = false;
+		
+		[Bindable]
+		private var showInhouse:Boolean = false;
+
+		[Bindable]
+		public var currentYear:int;
+		
+		[Bindable]
+		public var termine:ArrayCollection = new ArrayCollection();
+		
+		[Bindable]
+		public var delTermine:ArrayCollection = new ArrayCollection();
+		
+		[Bindable]
+		public var notizenAnzeigen:Boolean = true;
+		
+		[Bindable]
+		public var lStandorte:ArrayCollection = new ArrayCollection();
+		
+		[Bindable]
+		private var currentModus:String = "Standard";
+		
+		public var dataStoreURL:String = "invalid";
+		
+		private var _ready:Boolean = false;
+		
+		[Bindable]
+		public var modi:ArrayCollection = new ArrayCollection([
+		{ label: "Standard", data: 1 },
+		{ label: "Inhouse", data: 2}
+		]);
+		
+		
+		private function componentInit():void {
+			var i:int;
+			setYear("2011");
+mouseEnabled = true;
+		skin.mouseEnabled = true;
+
+			this._initExternalInterface();
+
+			//currentYear = parseInt(Application.application.parameters.year);
+			//dataStoreURL = Application.application.parameters.dataStoreURL;
+			
+			//this.setURL (dataStoreURL);
+
+			showReferent = false;
+			_ready = true;
+			
+			if ( !ExternalInterface.available ) {
+				
+				setURL(calUrl);
+				trace( calUrl );
+				//MosaikConfig.setInteractive(false);
+
+			}
+			
+			Alert.yesLabel = "ja";
+			Alert.noLabel = "nein";
+			ChangeWatcher.watch( scroller.viewport, "contentWidth", restoreScrollPosition);
+			//GMBus.calWindow = cal;
+		}
+		
+		
+		/*** EXTERNAL INTERFACE **/
+		private function _initExternalInterface():void {
+			// Summary:
+			// initalizes the external interface if its available
+			if ( ExternalInterface.available ) {
+				ExternalInterface.addCallback("setYear", this.setYear);
+				ExternalInterface.addCallback("setURL", this.setURL);
+				ExternalInterface.addCallback("setAuthToken", this.setAuthToken);
+				ExternalInterface.addCallback("save", this.save);
+				ExternalInterface.addCallback("isReady", this.isReady);
+				ExternalInterface.addCallback("toggleFullscreen", this.toggleFullScreen);
+				ExternalInterface.addCallback("gotoToday", this.gotoToday);
+				ExternalInterface.addCallback("reload", this.reload);
+
+			}
+		}
+		
+		private function isReady ():Boolean {
+			// Summary:
+			// returns the ready status of this calendar
+			
+			
+			return this._ready;
+		}
+		
+		public function validateAndLoad(): void {
+			
+			if ( this.dataStoreURL != "invalid" && this.currentYear != -1 ) { 
+				ldr.visible = true;
+				content.visible = false;
+
+				if ( loader ) {
+					loader.setUrl ( dataStoreURL + "/" + currentYear );
+					callLater(loader.request, [onData, dsParams]);
+
+				} else {
+					loader = new JsonProxy (dataStoreURL +"/" +currentYear, dsParams );
+					callLater(loader.request, [onData, dsParams]);
+				}
+			}
+		}
+		 import mx.utils.StringUtil;
+		public function setAuthToken(token:String):void {
+			dsParams.token = token;
+		}
+		
+		public function setYear ( year:String ):void {
+			// summary:
+			// Loads table data from url url
+			// appends the current year!
+			yearLabel.text = year;
+			
+			this.currentYear = int(StringUtil.trim(year));
+			trace(this.currentYear);
+			this.validateAndLoad();
+		}
+		
+		public function setURL ( url:String ):void {
+			// summary:
+			// Loads table data from url url
+			// appends the current year!
+			if ( this.dataStoreURL == url ) {
+				return;
+			}
+
+			this.dataStoreURL = url;
+			this.validateAndLoad();
+		}
+		/*** END EXTERNAL INTERFACE **/
+		public function mouseLeave(evt:Event):void {
+			if ( evt.currentTarget != FlexGlobals.topLevelApplication) return;
+			//Alert.show("left");
+			var evtx:MouseEvent = new MouseEvent(MouseEvent.MOUSE_UP);
+			content.dispatchEvent(evtx);
+		}
+		
+		public function toggleFullScreen():void {
+                try {
+                    switch ( FlexGlobals.topLevelApplication.stage.displayState) {
+                        case StageDisplayState.FULL_SCREEN:
+                            /* If already in full screen mode, switch to normal mode. */
+                             FlexGlobals.topLevelApplication.stage.displayState = StageDisplayState.NORMAL;
+                            break;
+                        default:
+                            /* If not in full screen mode, switch to full screen mode. */
+                             FlexGlobals.topLevelApplication.stage.displayState = StageDisplayState.FULL_SCREEN;
+                            break;
+                    }
+                } catch (err:SecurityError) {
+                    // ignore
+                }
+        }
+		
+		public function fullscreen():void {
+			callLater(toggleFullScreen);
+		}
+		
+		private function onData(data:Object):void {
+			//currentYear = parseInt( FlexGlobals.topLevelApplication.parameters.year);
+			/* call chain seminar -> standorte -> termine */
+			
+			ldrText.text = "Lade Seminare...";
+			callLater(this.onSeminar,[data]);
+			GMBus.log ("Loading Done");
+			delTermine = new ArrayCollection();
+		}
+		
+		private var _standorteSet:Boolean = false;
+		private function onStandort(xdata:Object):void {
+			if ( !_standorteSet ) {
+			var data:Array = xdata.standorte;
+			GMBus.log ("Standorte Laden");
+			var i:String = "";
+			var standorte:Array = new Array();
+			
+			for (i in data) {
+				var st:Standort = new Standort(data[i]);
+				standorte.push(st);
+			}
+	
+			standort.dataProvider = new ArrayCollection(standorte);
+			_standorteSet = true;
+			} 
+			
+			ldrText.text = "Lade Termine...";
+			syncInhouse();
+			callLater(this.onTermine, [xdata]);
+		}
+		
+		private function onSeminar(xdata:Object):void {
+			var data:Array = xdata.seminar_arten;
+			GMBus.log ("Seminare laden");
+			seminar.dataProvider = new ArrayCollection(data);
+			changeModus();
+			
+			ldrText.text = "Lade Standorte...";
+			callLater(this.onStandort, [xdata]);
+		}
+		
+		private function onTermine (data:Object):void {
+			var monat:String;
+			var iMonat:int = parseInt(data.month);
+			var nt:Array = new Array(); // termine
+			var nn:Array = new Array(); // notizen
+			var sMonat:String = "";
+			var tag:String;
+			
+			GMBus.log ("Termine Laden");
+			
+			for (iMonat = 0; iMonat < 12; iMonat ++) {
+				sMonat = (iMonat + 1).toString();
+				var termine:* = data.termine[sMonat];
+				var notizen:* = data.notizen[sMonat];
+				var feiertage:* = data.feiertage[sMonat];
+				trace("Create Termine for Year: " + this.currentYear);
+				nt.push (new SPlanungMonat(this.currentYear, iMonat,  standort.dataProvider, termine, notizen, feiertage)) ;
+			}
+			
+			ldrText.text = "Erstelle Kalender...";
+			callLater(this.onTermineFinish, [nt]);
+		}
+		
+		private function onTermineFinish(nt:Array):void {
+			GMBus.log("Termine Finish");
+			termine = new ArrayCollection (nt);
+			MosaikConfig.setObj("termine", termine);
+			createMonth(termine);
+			callLater(this.removeLdr);
+		}
+		
+		private function removeLdr():void {
+			ldr.visible = false;
+			content.visible = true;
+			MosaikConfig.setInteractive(true);
+			_restorePos = true;
+		}
+		
+		public function restoreScrollPosition(event:Event=null) {
+			scroller.viewport.horizontalScrollPosition = prevHorizontalScrollPosition;	
+			_restorePos = false;
+		}
+			
+		var prevHorizontalScrollPosition:Number = 0;
+		private function onSave():void {
+			prevHorizontalScrollPosition = scroller.viewport.horizontalScrollPosition;
+			
+			ldr.visible = true;
+			content.visible = false;
+			ldrText.text = "Speichere Daten";
+			callLater(this.sendData);
+		}
+		
+		public function save():void {
+			this.onSave();
+		}
+		
+		private function sendData():void {
+			//Alert.show("speichern:" + termine.toString());
+			var jsonObj:Object = new Object();
+			
+			jsonObj.format = "year";
+			jsonObj.year = 	yearLabel.text ;
+			jsonObj.data = new Array();
+			jsonObj.notizen = new Array();
+			jsonObj.del = new Array();
+			
+			var i:uint;
+			
+			for ( i = 0; i < termine.length; i++) {
+				jsonObj.data.push(termine[i]._termine);
+			}
+			
+			for ( i = 0; i < termine.length; i++) {
+				jsonObj.notizen.push(termine[i]._notizen);
+			}
+			
+			jsonObj.del = delTermine.toArray();
+			
+			loader.save(jsonObj,"POST", saveDone);
+		}
+		private var _restorePos = false;
+		private function saveDone(data:Object):void {
+			
+			ldrText.text = "Speichern abgeschlossen";
+			reload();
+			
+		}
+		
+		public function reload():void {
+			prevHorizontalScrollPosition = scroller.viewport.horizontalScrollPosition;
+			scroller.viewport.horizontalScrollPosition = 0;
+			_restorePos = true;
+			ldr.visible = true;
+			content.visible = false;
+			ldrText.text = 'Lade '+this.currentYear.toString()+' vom Server...';
+			callLater(loader.request, [onData]);
+		}
+		
+		
+		
+		public function toggleReferenten():void {
+			if ( showReferent == false ) {
+				showReferent = true;
+				showTeilnehmer = false;
+				showSperrung = false;
+			} else {
+				showReferent = false; 
+			}
+		}
+		
+		public function toggleTeilnehmer():void {
+			if ( showTeilnehmer == false ) {
+				showTeilnehmer = true; 
+				showReferent = false;
+				showSperrung = false;
+			} else {
+				showTeilnehmer = false;
+			}
+		}
+		
+		public function toggleSperrung():void {
+			if ( showSperrung == false ) {
+				showTeilnehmer = false; 
+				showReferent = false;
+				showSperrung = true;
+			} else {
+				showSperrung = false;
+			}
+		}
+		
+		
+		public function toggleInhouse():void {
+			if ( showInhouse == false ) {
+				showInhouse = true; 
+				
+			} else {
+				showInhouse = false;
+			}
+			
+			syncInhouse();
+		}
+		
+		public function syncInhouse ():void {
+			for ( var i:int = 0; i < standort.dataProvider.length; i++ ) {
+				var item:Object = standort.dataProvider.getItemAt(i);
+				
+				if ( item.id == -1 ) {
+					item.enabled = showInhouse;
+					standort.dataProvider.setItemAt(item, i);
+					break;
+				}
+			}
+		}
+		
+		public function setModus(modus:String):void {
+			//GMBus.log("mod:" + modus.selectedIndex.toString());
+			currentModus = modus
+			seminar.modus = modus;
+			
+			if ( currentModus == "Inhouse" && showInhouse == false ) {
+				toggleInhouse();
+			}
+		}
+		
+		public function changeModus():void {
+			this.setModus(modi[modus.selectedIndex].label);
+		}
+		
+		public function gotoToday():void {
+			var now:Date = new Date();
+			var center:int = 0;
+			var width:int = pgm[0].width;
+			trace ( width);
+			
+			center = now.month * width;
+			if ( center < 0 ) center = 1;
+			
+			
+			
+			scroller.viewport.horizontalScrollPosition =  center ;
+
+		}
+		
+		function createMonth(termine : ArrayCollection ) {
+			for ( var i in termine ) {
+				var termin = termine[i];
+			var t:com.sag.view.PlanungGruppeMonat = new com.sag.view.PlanungGruppeMonat();
+			//t.title = termin.label;
+			t.termine = termin;
+			t.showReferent = showReferent;
+			t.showTeilnehmer = showTeilnehmer;
+			t.modus = currentModus;
+			cal.addElement(t);	
+			}
+		}
+	]]></fx:Script>
+	<s:layout><s:BasicLayout /></s:layout>
+	<mx:HBox id="ldr" left="0" right="0" top="0" bottom="0" verticalAlign="middle" minHeight="50">
+				<mx:Spacer width="50%" />
+				<mx:Text id="ldrText" text="{'Lade '+this.currentYear.toString()+' vom Server...'}" fontSize="18"/>
+				<mx:Spacer width="50%" />
+	</mx:HBox>
+			
+	<mx:HDividedBox  left="0" right="0" top="0" bottom="0"  visible="false" id="content" minHeight="50" >
+
+			<mx:Canvas width="100%" height="100%" >
+			<s:Scroller  id="scroller" width="100%"  height="100%" x="0" y="0" >
+
+			<s:Group id="cal" width="100%"  height="100%" autoLayout="true">
+				<s:layout>
+					<s:HorizontalLayout variableColumnWidth="true" columnWidth="75" gap="0" verticalAlign="top"  />
+			</s:layout>
+			
+				</s:Group>
+				</s:Scroller>
+							</mx:Canvas>
+
+		<mx:VBox explicitWidth="215" height="100%">
+			<mx:ApplicationControlBar width="100%">
+				<mx:Label id="yearLabel" width="100%" textAlign="center" fontSize="24" color="0x000000" />
+			</mx:ApplicationControlBar>
+			<mx:VBox>
+				<mx:HBox>
+					<mx:Label text="Modus" />
+				<mx:ComboBox id="modus" dataProvider="{modi}" width="100%" change="changeModus()" />
+				</mx:HBox>
+				<mx:Button label="Vollbild" click="toggleFullScreen();" />
+				<mx:Button label="Neu Laden" click="reload()" />
+			</mx:VBox>
+			<mx:VBox visible="{!(ExternalInterface.available)}">
+				<mx:Button click="save()" label="Speichern" />
+				<mx:Button click="gotoToday()" label="Heute" />
+				
+			</mx:VBox>
+			<mx:VBox verticalGap="1" width="100%">
+				<SAG:TagesPlanungTrashcan id="trash" termine="{termine}" trash="{delTermine}" />
+				<mx:CheckBox id="showInhouseCb" label="Inhouse anzeigen" selected="{showInhouse}" click="toggleInhouse()" />
+				<mx:CheckBox id="showReferenten" label="Referenten anzeigen" selected="{showReferent}" click="toggleReferenten()" />
+				<mx:CheckBox id="showTeilnehmerCb" label="Teilnehmer anzeigen" selected="{showTeilnehmer}" click="toggleTeilnehmer()" />
+				<mx:CheckBox id="showSperrungCb" label="Sperrung anzeigen" selected="{showSperrung}" click="toggleSperrung()" />
+
+			</mx:VBox>
+
+			<!--<mx:HBox>
+				<mx:Button label="Speichern" click="onSave();" />
+			</mx:HBox>-->
+			
+			
+			<SAG:Seminare id="seminar" height="66%" width="100%" />
+			<SAG:Standorte id="standort" height="33%" width="100%" />
+		</mx:VBox>
+	</mx:HDividedBox>
+</s:BorderContainer>

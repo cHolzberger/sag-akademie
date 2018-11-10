@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="105" height="25" backgroundColor="0xefefef" verticalScrollPolicy="off" horizontalScrollPolicy="off" creationComplete="init();" borderSides="tl" borderThickness="1" borderColor="0x000000" horizontalGap="1" paddingRight="2">
+	<mx:Script>
+		<![CDATA[
+		import flash.filters.DropShadowFilter;
+		
+		public var callback:Function = null;
+		public var standort:String = "";
+		public var tag:String = "";
+		[Bindable]
+		public var text:String = "";
+		
+		private function init():void {
+			filters = [new DropShadowFilter(8, 90, 0, 1, 6, 6, 1 ,2)];
+		}
+		
+		private function onOk ():void {
+			if ( callback != null ) {
+				callback(tag, standort,input.text);
+			}
+			visible=false;
+		}
+			
+		]]>
+	</mx:Script>
+	<mx:Text text="Info:" />
+	<mx:TextInput width="45" fontSize="9" id="input" text="{text}" />
+	<mx:Spacer width="100%" />
+	<mx:Button label="OK" paddingTop="2" paddingLeft="2" paddingBottom="2" paddingRight="2" width="20" fontSize="6" click="onOk()" />
+</mx:HBox>

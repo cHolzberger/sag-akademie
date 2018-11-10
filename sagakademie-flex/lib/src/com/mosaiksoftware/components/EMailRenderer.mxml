@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				verticalScrollPolicy="off"
+				horizontalScrollPolicy="off"
+				implements="mx.managers.IFocusManagerComponent, mx.controls.listClasses.IDropInListItemRenderer"
+				mouseChildren="true"
+				useHandCursor="true"
+				mouseEnabled="true"
+				cacheAsBitmap="true"
+				clipContent="true"
+				 >
+	<fx:Script>
+		<![CDATA[
+			import flash.net.navigateToURL;
+			
+			import flashx.textLayout.formats.BackgroundColor;
+			
+			import mx.controls.Alert;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
+			import mx.controls.listClasses.BaseListData;
+			private var _listData:AdvancedDataGridListData;
+			
+			
+			
+			[Bindable("dataChange")]
+			public function get listData():BaseListData {
+				return _listData;
+			}
+			
+			public function set listData(value:BaseListData):void {
+				_listData = AdvancedDataGridListData(value);
+				callLater(updateLabel);
+				dispatchEvent(new Event("dataChange"));
+			}
+			
+			override protected function commitProperties():void {
+				callLater(updateLabel);
+				super.commitProperties();
+				dispatchEvent(new Event("dataChange"));
+			}
+			
+			public function set text(t:String):void {
+				callLater(updateLabel);
+			}
+			
+			public function updateLabel():void {
+				if ( data ) { 
+					_text = data[_listData.dataField];
+				}
+			}
+			
+			[Bindable]
+			public var _text:String = "";
+			
+			[Bindable]
+			public var target:String ="";
+
+			protected function text1_clickHandler(event:MouseEvent):void
+			{
+				var url:URLRequest = new URLRequest( "mailto:" + this._text);
+				navigateToURL(url);
+			}
+
+		]]>
+	</fx:Script>
+	
+	<s:Label left="2" top="2" textDecoration="underline" text="{_text}" paddingLeft="0" paddingTop="0" paddingRight="0" paddingBottom="0" click="text1_clickHandler(event)" color="#222EA5"/>
+</mx:Canvas>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300" contentBackgroundColor="#FFFFFF" 
+		 creationComplete="init()"
+		 >
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import com.mosaiksoftware.components.TableParameters;
+			
+			import mx.binding.utils.BindingUtils;
+			import mx.binding.utils.ChangeWatcher;
+			
+			private var _watchers:Vector.<ChangeWatcher>  = new Vector.<ChangeWatcher>();
+			
+			public function update():void {
+				var _w:ChangeWatcher;
+				while ( _w = _watchers.pop() ) {
+					_w.unwatch();
+					_w = null;
+				}
+				
+				viewColumns.removeAllElements();
+				init();		
+			}
+		
+			
+			public function init():void {
+				var i:int =0, j:int = 0, countj:int;
+				var count:int = TableParameters.columns.length;
+				for ( i=0; i< count; i++ ) {
+					var l:ColumnChooserItem = new ColumnChooserItem();
+					l.label = TableParameters.columns[i].headerText;
+					l.showSubmenu = true;
+					l.showField = TableParameters.columns[i].visible;
+					BindingUtils.bindProperty( TableParameters.columns[i], "visible", l, "showField" );
+					
+					for ( j=0, countj = TableParameters.columns[i].children.length; j<countj; j++ ) {
+						var lb:ColumnChooserItem = new ColumnChooserItem();
+						lb.label = TableParameters.columns[i].children[j].headerText;
+						lb.showField = TableParameters.columns[i].children[j].visible;
+						_watchers.push( BindingUtils.bindProperty( TableParameters.columns[i].children[j], "visible", lb, "showField" ));
+						_watchers.push( BindingUtils.bindProperty( lb, "showField" , TableParameters.columns[i].children[j], "visible"));
+
+						l.submenu.addElement(lb);
+					}
+					viewColumns.addElement(l);
+				}
+			}
+		]]>
+	</fx:Script>
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<s:Label text="Spaltenauswahl" width="100%" height="24" fontSize="16" fontWeight="bold"/>
+	<s:Scroller width="100%" height="100%">
+		<s:TileGroup  id="viewColumns" requestedColumnCount="4" />
+	</s:Scroller>
+	
+</s:Group>

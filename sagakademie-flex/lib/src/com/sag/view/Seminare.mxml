@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		  xmlns:s="library://ns.adobe.com/flex/spark" 
+		  xmlns:mx="library://ns.adobe.com/flex/mx"
+		  title="Seminare" width="202" >
+	<fx:Script><![CDATA[
+	import flash.ui.ContextMenu;
+	import mx.rpc.events.ResultEvent;
+	import mx.rpc.events.FaultEvent;
+	import mx.collections.ArrayCollection;
+	import mx.controls.Alert;
+	import mx.controls.dataGridClasses.DataGridColumn;
+	import com.mosaiksoftware.GMBus;
+	      import mx.collections.ArrayCollection;
+        import mx.events.DragEvent;
+        import mx.managers.DragManager;
+			import spark.components.Image;
+				import mx.core.DragSource;
+	private var _modus:String = "";
+	[Bindable]
+		public var _dataProvider:ArrayCollection = new ArrayCollection();
+		
+		public function set dataProvider(dg:ArrayCollection):void {
+			_dataProvider = dg;
+			_dataProvider.filterFunction = this.filterData;
+			_dataProvider.refresh();
+		}
+		
+		public function get dataProvider():ArrayCollection {
+			return _dataProvider;
+		}
+		
+		private function dauerLabel (item:Object, column:DataGridColumn):String {
+			return item.toString + " Tag(e)";
+		}
+		
+		private function filterData (item:Object):Boolean {
+			GMBus.log("Seminar Inhouse: " + item.inhouse);
+			
+			if ( _modus == "Standard" ) {
+				if ( item.inhouse == 0 ) return true;
+				return false;
+			} else if ( _modus == "Inhouse" ) {
+				if ( item.inhouse == 1 ) return true;
+				else return false;
+			}
+			
+			return true;
+		}
+		
+		public function set modus ( mod:String):void {
+			GMBus.log("Modus: " + mod);
+			_modus = mod;
+			this._dataProvider.refresh();
+			///GMBus.("modus:" + mod);
+		}
+		
+		public function get modus ():String {
+			return _modus;
+		}
+
+		 protected function doStartDrag(event:MouseEvent) {
+			// Get the drag initiator component from the event object.
+				var dragInitiator:Image = event.currentTarget as Image;
+				// Create a DragSource object.
+				var dragSource:DragSource = new DragSource();
+				dragSource.addData(new Array(dg.selectedItem), "items");
+				
+				DragManager.doDrag(event.currentTarget, dragSource, event, null);
+		}
+]]></fx:Script>
+
+	<s:DataGrid id="dg" dragEnabled="true" x="0" y="0" width="100%" height="100%" dragStart="doStartDrag(event)" selectionMode="singleRow" dataProvider="{_dataProvider}"  >
+		
+		<s:columns>
+			<s:ArrayList>
+			<s:GridColumn editable="false" resizable="false" width="15" >
+				                        <s:itemRenderer>
+											<fx:Component>
+											<s:GridItemRenderer>
+												
+												<s:CheckBox />
+												
+											</s:GridItemRenderer>
+											</fx:Component>
+				</s:itemRenderer>
+			</s:GridColumn>
+			<s:GridColumn dataField="dauer" editable="false" resizable="false" width="15" />
+			<s:GridColumn dataField="id" editable="false" resizable="false" width="55" />
+			<s:GridColumn dataField="bezeichnung" editable="false" resizable="true"  width="100" />
+		</s:ArrayList>
+					</s:columns>
+
+	</s:DataGrid>
+</s:Panel>

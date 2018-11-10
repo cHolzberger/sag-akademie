@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:MXAdvancedDataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				mouseChildren="true"
+				useHandCursor="true" 
+				top="0"
+				bottom="0"
+				clipAndEnableScrolling="true"
+				 >
+	<s:layout>
+		<s:BasicLayout />
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.formats.BackgroundColor;
+			
+			import mx.collections.ArrayCollection;
+			import mx.controls.Alert;
+			import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
+			import mx.controls.listClasses.BaseListData;
+			import mx.events.ListEvent;
+			public function get _listData():AdvancedDataGridListData {
+				return advancedDataGridListData;
+			}			
+			[Bindable]
+			private var _backgroundColor:Number;
+			
+			[Bindable]
+			public var values:Array = [];
+			
+			[Bindable]
+			public var type:String = "";
+			/**
+			[Bindable("dataChange")]
+			public function get listData():BaseListData {
+				return _listData;
+			}
+			
+			public function set listData(value:BaseListData):void {
+				_listData = AdvancedDataGridListData(value);
+				callLater(updateLabel);
+				dispatchEvent(new Event("dataChange"));
+			}
+			 */
+			
+			override protected function commitProperties():void {
+				callLater(updateLabel);
+				super.commitProperties();
+				dispatchEvent(new Event("dataChange"));
+			}
+			
+			public function set text(t:String):void {
+				callLater(updateLabel);
+			}
+		
+			override public function get text():String { 
+				return data[_listData.dataField];
+			}
+			
+			public function updateLabel():void {
+				if ( data ) { 
+					_text = this.getLabelForId (data[_listData.dataField]);
+				}
+				
+				var i:int=0;
+				for ( i; i<this.values.length; i++ ) {
+					if ( this.values.id == data[_listData.dataField] ) {
+						chooser.selectedIndex = i;
+						break;
+					}
+				}
+			}
+			
+			public function getLabelForId ( id:String ):String {
+				var i:int =0;
+				for ( i=0; i < this.values.length; i++ ) {
+					if ( this.values[i].id.toString() == id ) {
+						return this.values[i].name.toString();
+					}
+ 				} 
+				
+				return "";
+			}
+			
+			[Bindable]
+			public var _text:String = "";
+			
+			
+			
+
+			protected function chooser_changeHandler(event:ListEvent):void
+			{
+				_text = chooser.selectedItem.id.toString();
+				data[_listData.dataField] = chooser.selectedItem.id.toString();	
+				this.updateLabel();
+			}
+
+		]]>
+	</fx:Script>
+	
+	<mx:ComboBox id="chooser" 
+				 
+				 dataProvider="{new ArrayCollection(this.values)}" labelField="name" width="{width}" height="{height}" change="chooser_changeHandler(event)"/>
+	
+	<!--<mx:Text text="{_text}" paddingLeft="0" paddingTop="0" paddingRight="0" paddingBottom="0"/>-->
+</s:MXAdvancedDataGridItemRenderer>

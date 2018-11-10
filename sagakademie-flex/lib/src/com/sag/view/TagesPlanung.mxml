@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:HBox xmlns:mx="http://www.adobe.com/2006/mxml" width="100%" height="100%">
+	<mx:Script><![CDATA[
+	import flash.display.InteractiveObject;
+	import mx.controls.Alert;
+	import com.mosaiksoftware.MosaikConfig;
+	
+	[Bindable]
+	public var tage:Array = [];
+	]]></mx:Script>
+	
+	<mx:Component className="ArtCellRenderer" >
+		<mx:VBox verticalGap="1" paddingLeft="1">
+			<mx:CheckBox label="Theorie" selected="{data.theorie==1}" change="theorie.selected ? data.theorie = 1 : data.theorie = 0" id="theorie" />
+			<mx:CheckBox label="Praxis" selected="{data.praxis==1}"  change="praxis.selected ? data.praxis = 1 : data.praxis = 0" id="praxis"/>
+			<mx:Spacer height="3" />
+			<mx:CheckBox label="Optional" selected="{data.optional==1}"  change="data.optional = (opt.selected ? 1 : 0);" id="opt"/>
+		</mx:VBox>
+	</mx:Component>
+	<mx:Component className="ReferentCellRenderer" >
+		<mx:VBox verticalGap="1" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+			<mx:Label text="{data.name}" />
+			<mx:Label text="{data.vorname}" />
+		</mx:VBox>
+	</mx:Component>
+	
+	<mx:Component className="DauerCellRenderer" >
+
+		<mx:VBox verticalGap="1" horizontalScrollPolicy="off" verticalScrollPolicy="off" width="120">
+					<mx:Script><![CDATA[
+						import mx.controls.Alert;
+
+			public function displayHours(h:String, m:String):String {
+		var hi:int = parseInt(h);
+		var mi:int = parseInt(m);
+		var ret:String = "";
+		if ( hi < 10 ) {
+			ret = "0" + hi.toString();
+		} else {
+			ret = hi.toString();
+		}
+		
+		ret = ret + ":";
+		
+		if ( mi < 10 ) {
+			ret = ret + "0" + mi.toString();
+		} else {
+			ret = ret  + mi.toString();
+		}
+		
+		return ret;
+	}
+	private function _updateStart():void {
+		//Alert.show("updateStart");
+		var _d:Array = theorie_start.text.split(":"); 
+		data.start_stunde = _d[0];
+		data.start_minute = _d[1];
+		
+		_d = praxis_start.text.split(":");
+		data.start_praxis_stunde = _d[0];
+		data.start_praxis_minute = _d[1];
+		
+		theorie_start.text = displayHours  ( data.start_stunde , data.start_minute);
+		praxis_start.text = displayHours ( data.start_praxis_stunde , data.start_praxis_minute);
+	}
+	
+	private function _updateEnde():void {
+		var _d:Array = theorie_ende.text.split(":"); 
+		data.ende_stunde = _d[0];
+		data.ende_minute = _d[1];
+		
+		_d = praxis_ende.text.split(":");
+		data.ende_praxis_stunde = _d[0];
+		data.ende_praxis_minute = _d[1];
+		
+		theorie_ende.text = displayHours  ( data.ende_stunde , data.ende_minute );
+		praxis_ende.text = displayHours ( data.ende_praxis_stunde , data.ende_praxis_minute );
+	}
+			]]></mx:Script>
+			<mx:HBox width="120" horizontalScrollPolicy="off" verticalScrollPolicy="off" paddingLeft="1" paddingRight="1" horizontalGap="0">
+				<mx:TextInput text="{displayHours ( data.start_stunde , data.start_minute)}" width="47" focusOut="_updateStart();" id="theorie_start" restrict="0-9\\:"  paddingLeft="0" paddingRight="0" />
+				<mx:Label text="-"  paddingLeft="0" paddingRight="0" />
+				<mx:TextInput text="{displayHours (data.ende_stunde , data.ende_minute)}" width="47" focusOut="_updateEnde();" id="theorie_ende"  restrict="0-9\\:"   paddingLeft="0" paddingRight="0" />
+			</mx:HBox>
+			<mx:HBox width="120" horizontalScrollPolicy="off" verticalScrollPolicy="off" paddingLeft="1" paddingRight="1" horizontalGap="0">
+				<mx:TextInput text="{displayHours ( data.start_praxis_stunde , data.start_praxis_minute)}" width="47" focusOut="_updateStart()" id="praxis_start" restrict="0-9\\:"  paddingLeft="0" paddingRight="0" />
+				<mx:Label text="-"  paddingLeft="0" paddingRight="0" />
+				<mx:TextInput text="{displayHours (data.ende_praxis_stunde , data.ende_praxis_minute)}" width="47" focusOut="_updateEnde()" id="praxis_ende"  restrict="0-9\\:"   paddingLeft="0" paddingRight="0" />
+			</mx:HBox>
+		</mx:VBox>
+	</mx:Component>
+	
+	<mx:Repeater dataProvider="{tage}" id="rep">
+					<mx:VBox height="100%"  width="320">
+
+			<mx:Label opaqueBackground="0xffffff" width="100%" textAlign="center" text="Tag {rep.currentIndex+1}" />
+
+			<mx:DataGrid dataProvider="{rep.currentItem.data}" id="tag" horizontalScrollPolicy="off" x="0" y="0" width="320" height="100%" editable="true" variableRowHeight="true"
+			minColumnWidth="10"  sortableColumns="false" dropEnabled="true" dragEnabled="true" dragMoveEnabled="true" showHeaders="false"
+			
+			>
+				<mx:columns>
+					<mx:DataGridColumn dataField="image" editable="false" resizable="false" width="60" itemRenderer="com.sag.view.ImageCellRenderer" />
+					<mx:DataGridColumn dataField="name" editable="false" resizable="false" width="80" itemRenderer="com.sag.view.ReferentCellRenderer" />
+					<mx:DataGridColumn dataField="name" editable="false" resizable="false" width="80" itemRenderer="com.sag.view.ArtCellRenderer" />
+					<mx:DataGridColumn dataField="name" editable="false" resizable="false" width="120" itemRenderer="com.sag.view.DauerCellRenderer" />
+
+				</mx:columns>
+			</mx:DataGrid>
+		</mx:VBox>
+	</mx:Repeater>
+</mx:HBox>
