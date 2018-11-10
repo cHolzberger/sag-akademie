@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<pmd version="4.2.1" timestamp="Tue Aug 02 19:25:12 CEST 2011">
-   <file name="C:/projekte/sag_akademie-kalender/trunk/planung.mxml">
-      <violation beginline="2" endline="2" begincolumn="0" endcolumn="285" rule="adobe.ac.pmd.rules.style.OverLongLine" ruleset="All Flex Rules" package="" class="planung.mxml" externalInfoUrl="http://opensource.adobe.com/svn/opensource/flexpmd/bin/flex-pmd-ruleset-creator.html?rule=" priority="3">Too long line (200 maximum, but 285 actually). </violation>
-      <violation beginline="3" endline="302" begincolumn="0" endcolumn="0" rule="adobe.ac.pmd.rules.mxml.TooLongScriptBlock" ruleset="All Flex Rules" package="" class="planung.mxml" externalInfoUrl="http://opensource.adobe.com/svn/opensource/flexpmd/bin/flex-pmd-ruleset-creator.html?rule=" priority="3">This script block is too long (50 maximum, but 299 actually). </violation>
-   </file>
-</pmd>

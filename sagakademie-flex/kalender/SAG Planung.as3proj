@@ -4,7 +4,7 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="obj\Kal.swf" />
+    <movie path="obj\Kalender.swf" />
     <movie fps="45" />
     <movie width="800" />
     <movie height="600" />
@@ -12,24 +12,23 @@
     <movie minorVersion="0" />
     <movie platform="Flash Player" />
     <movie background="#FFFFFF" />
-    <movie preferredSDK="Apache Flex 4.16.1 FP31.0 AIR31.0 en_US;4.16.1;" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
-    <class path="." />
     <class path="..\lib\src" />
+    <class path="src" />
   </classpaths>
   <!-- Build options -->
   <build>
     <option accessible="False" />
     <option advancedTelemetry="False" />
-    <option allowSourcePathOverlap="True" />
+    <option allowSourcePathOverlap="False" />
     <option benchmark="False" />
     <option es="False" />
     <option inline="False" />
     <option locale="" />
     <option loadConfig="" />
-    <option optimize="True" />
+    <option optimize="False" />
     <option omitTraces="True" />
     <option showActionScriptWarnings="False" />
     <option showBindingWarnings="False" />
@@ -39,12 +38,12 @@
     <option strict="False" />
     <option useNetwork="True" />
     <option useResourceBundleMetadata="True" />
-    <option warnings="False" />
+    <option warnings="True" />
     <option verboseStackTraces="True" />
     <option linkReport="" />
     <option loadExterns="" />
     <option staticLinkRSL="True" />
-    <option additional="" />
+    <option additional="--conservative=true&#xA;-locale en_US" />
     <option compilerConstants="" />
     <option minorVersion="" />
   </build>
@@ -54,15 +53,7 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <element path="..\lib\JSwoof.swc" />
-    <element path="..\..\sag_akademie-flex_lib\trunk\JSwoof.swc" />
-    <element path="..\..\sag_akademie-flex_lib\trunk\src\actionjson.swc" />
-    <element path="C:\sdk\Flex-4.5.1\frameworks\libs\mx\mx.swc" />
-    <element path="C:\sdk\Flex-4.5.1\frameworks\libs\advancedgrids.swc" />
-    <element path="C:\sdk\Flex-4.5.1\frameworks\libs\core.swc" />
-    <element path="C:\sdk\Flex-4.5.1\frameworks\libs\framework.swc" />
-    <element path="C:\sdk\Flex-4.5.1\frameworks\libs\osmf.swc" />
-    <element path="C:\sdk\Flex-4.5.1\frameworks\libs\flash-integration.swc" />
+    <!-- example: <element path="..." /> -->
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -84,7 +75,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="planung.mxml" />
+    <compile path="src\PlanungMain.mxml" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>
@@ -93,11 +84,11 @@
   <!-- Executed before build -->
   <preBuildCommand />
   <!-- Executed after build -->
-  <postBuildCommand alwaysRun="True" />
+  <postBuildCommand alwaysRun="False" />
   <!-- Other project options -->
   <options>
     <option showHiddenPaths="False" />
-    <option testMovie="Default" />
+    <option testMovie="ExternalPlayer" />
     <option testMovieCommand="" />
   </options>
   <!-- Plugin storage -->

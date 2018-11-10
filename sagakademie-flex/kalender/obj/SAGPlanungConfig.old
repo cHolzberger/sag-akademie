@@ -5,7 +5,6 @@
   <target-player>28.0</target-player>
   <benchmark>false</benchmark>
   <static-link-runtime-shared-libraries>true</static-link-runtime-shared-libraries>
-  <warnings>false</warnings>
   <compiler>
     <define append="true">
       <name>CONFIG::debug</name>
@@ -31,7 +30,6 @@
       <name>CONFIG::desktop</name>
       <value>false</value>
     </define>
-    <allow-source-path-overlap>true</allow-source-path-overlap>
     <strict>false</strict>
     <show-actionscript-warnings>false</show-actionscript-warnings>
     <show-binding-warnings>false</show-binding-warnings>
@@ -39,14 +37,13 @@
     <show-unused-type-selector-warnings>false</show-unused-type-selector-warnings>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>C:\Projekte\sagakademie-flex\kalender</path-element>
-      <path-element>C:\Projekte\sagakademie-flex\lib\src</path-element>
+      <path-element>H:\Projekte\SAG-Akademie-GmbH\SAG\sagakademie-flex\lib\src</path-element>
+      <path-element>H:\Projekte\SAG-Akademie-GmbH\SAG\sagakademie-flex\kalender\src</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
-    <library-path append="true" />
   </compiler>
   <file-specs>
-    <path-element>C:\Projekte\sagakademie-flex\kalender\planung.mxml</path-element>
+    <path-element>H:\Projekte\SAG-Akademie-GmbH\SAG\sagakademie-flex\kalender\src\PlanungMain.mxml</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>45</default-frame-rate>

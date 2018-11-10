@@ -382,9 +382,9 @@
 						return _terminMenu;
 		}
 		
-		var _terminPool:Array = [];
+		var _terminPool:Array = null;
 		private function createTermin() {
-				if ( _terminPool.length == 0 ) {
+				if ( _terminPool.length > 0 ) {
 					return new new PlanungTag;
 				}
 				return _terminPool.pop();

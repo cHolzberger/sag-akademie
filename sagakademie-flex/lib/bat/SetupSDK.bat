@@ -1,7 +1,7 @@
 :user_configuration
 
 :: Path to Flex SDK
-set FLEX_SDK=C:\sdk\Air-2.7-Flex-4.5.1
+set FLEX_SDK=H:\Projekte\_shared\sdk\air-31-flex-4.16.1x2
 
 :validation
 if not exist "%FLEX_SDK%" goto flexsdk

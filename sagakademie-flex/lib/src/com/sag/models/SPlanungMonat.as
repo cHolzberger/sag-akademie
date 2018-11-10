@@ -68,7 +68,7 @@
 			if ( _terminOffset ) return _terminOffset;
 			
 			
-			currentHeight = 0;
+			var currentHeight = 0;
 			var _date = getDate();
 			var maxDays:Number = new Date (_date.fullYear, _date.month+1, 0).getDate()+1;
 

@@ -17,7 +17,7 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'04.11.2018'</value>
+      <value>'10.11.2018'</value>
     </define>
     <define append="true">
       <name>CONFIG::air</name>
@@ -33,19 +33,18 @@
     </define>
     <verbose-stacktraces>true</verbose-stacktraces>
     <source-path append="true">
-      <path-element>C:\Projekte\sagakademie-flex\lib\src</path-element>
-      <path-element>C:\Projekte\sagakademie-flex\lib\assets</path-element>
-      <path-element>C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.6\sdks</path-element>
+      <path-element>H:\Projekte\SAG-Akademie-GmbH\SAG\sagakademie-flex\lib\src</path-element>
+      <path-element>H:\Projekte\SAG-Akademie-GmbH\SAG\sagakademie-flex\lib\assets</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <include-libraries>
-      <library>C:\Projekte\sagakademie-flex\lib\swc\actionjson.swc</library>
+      <library>H:\Projekte\SAG-Akademie-GmbH\SAG\sagakademie-flex\lib\swc\actionjson.swc</library>
     </include-libraries>
     <external-library-path append="true" />
     <library-path append="true" />
   </compiler>
   <file-specs>
-    <path-element>C:\Projekte\sagakademie-flex\lib\src\com\sag\Kalender.mxml</path-element>
+    <path-element>H:\Projekte\SAG-Akademie-GmbH\SAG\sagakademie-flex\lib\src\com\sag\Kalender.mxml</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
   <default-frame-rate>30</default-frame-rate>

@@ -2,14 +2,14 @@
 <project version="2">
   <!-- Output SWF options -->
   <output>
-    <movie outputType="Application" />
+    <movie outputType="CustomBuild" />
     <movie input="" />
     <movie path="bin\AIRLib.swf" />
     <movie fps="30" />
     <movie width="800" />
     <movie height="600" />
-    <movie version="2" />
-    <movie minorVersion="7" />
+    <movie version="28" />
+    <movie minorVersion="0" />
     <movie platform="AIR" />
     <movie background="#FFFFFF" />
   </output>
