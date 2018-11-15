@@ -24,7 +24,8 @@
     import   mx.managers.DragManager;
 	import mx.events.*;
 	import mx.events.DragEvent;
-		import mx.events.DragManager;	import mx.core.UIComponent;
+		import mx.events.DragManager;	
+		import mx.core.UIComponent;
 	import spark.primitives.Line;
 	import spark.components.Group;
 		import spark.components.VGroup;
@@ -34,15 +35,20 @@
 			import spark.layouts.BasicLayout;
 	import mx.containers.Canvas;
 				import spark.layouts.ConstraintLayout;
-	import spark.components.BorderContainer;
-
+	import spark.components.SkinnableContainer;
+	import spark.core.SpriteVisualElement;
+	import mx.binding.utils.BindingUtils;
+	import flash.display.Sprite;
+	import flash.display.DisplayObject;
+	import flash.geom.Rectangle;
+	import spark.components.supportClasses.GroupBase;
 	/**
 	 * ...
 	 * @author MOSAIK Software // Christian Holzberger <ch@mosaik-softaware.de>
 	 */
 	[Bindable]
 	[Event(name = "dayHeightChanged", type = "flash.events.Event")]
-	public class VMonatCanvas extends Group  {
+	public class VMonatCanvas extends Group {
 		public var redraw:Function = null;
 		
 		private var _date:Date = null;
@@ -61,7 +67,7 @@
 		private var _standortChanged:Boolean = false;
 		private var _label:Text = null;
 		private var _dayHeight:int = 15;
-		private var _dayWidth:int = 120;
+		public  var _dayWidth:Number = 120;
 		
 		private var _separatorColor:Number = 0x000000;
 		private var _lineColor:Number = 0xafafaf;
@@ -80,24 +86,28 @@
 		private var _dragOpRunning = false;
 
 		private static var count:Number = 0;// fuer neue seminare
-
+		private var s:SpriteVisualElement;
 		public var modus:String;
 
 			/* Main functionality */
 		public function VMonatCanvas() {
 			super();
-			
-			minWidth=width = explicitWidth = _dayWidth;
-			maxHeight = minHeight = height = 500;
-			//this.layout = new  ConstraintLayout();
-			
-			visible = true;
-			includeInLayout = true;
-			
-			
-			
+			addEventListener(Event.ADDED_TO_STAGE, init);
+			height = 500;
+
 		}
 		
+		private function init(e:Event):void {
+			createChildren();
+			_terminOffset = _termine.calculateOffsets(6, _dayHeight);
+			_termine.maskAllDirty();
+
+			redrawAll();
+			drawAll();
+		}
+		
+		
+
 		public function set showReferent(val:Boolean):void {
 			_showReferent = val;
 			
@@ -199,20 +209,18 @@
 		private var currentHeight:Number = 0;
 		private var _height:Number = 0;
 		private var _heightSet:Boolean = false;
+
+		private var _dayDirty:Array = [];
 		public function drawGrid ():void {
 			if ( ! _termine ) return;
-			if ( ! _drawGrid ) return;
+
 			trace("Draw Grid Month: " + _date.fullYear +"."+ _date.month);
 
-			currentHeight = 0;
-			
+			_terminOffset = _termine.calculateOffsets(6, _dayHeight);
 			var maxDays:Number = new Date (_date.fullYear, _date.month+1, 0).getDate()+1;
-
+			
 			var i:int;
 			var feiertag:String;
-			
-			
-			
 			
 			// offsets etc.
 			var countTermine:int;
@@ -220,68 +228,57 @@
 			var ft:Text;
 			
 			for each (ft in _feiertagLabels ) {
-				removeElement(ft);
+				removeChild(ft);
 				ft = null;
 			}
 			_feiertagLabels = [];
 			
-			 _terminOffset = _termine.calculateOffsets(6, _dayHeight);
 			for ( i = 1; i <= maxDays ; i++) { // 1 to maxdays
-			
+				//if ( ! _termine.hasChangedStandort[standort.id] && ! _termine.hasChangedDay[i] ) continue; 
+				_dayDirty.push(i);
+							trace("Dirth:" + i);
+
 				var currentHeight: int = _terminOffset[i][0];
 				var yOffset: int = _terminOffset[i][1];
-
+			
 				this.graphics.lineStyle(1, _lineColor, 1, false, LineScaleMode.VERTICAL, CapsStyle.NONE, JointStyle.MITER, 10);
 				
 				// feiertag
 				if (  _standort.name == "Allgemein" && (feiertag = _termine.getFeiertag(i))!= null ) {
 					
-					drawFeiertag(yOffset, _dayWidth, currentHeight,feiertag);
+					drawFeiertag(this,yOffset, _dayWidth, currentHeight,feiertag);
 				} else if (_termine.getDate(i).day == 0 || _termine.getDate(i).day == 6) {
-					drawWeekend(yOffset, _dayWidth, currentHeight);
+					drawWeekend(this,yOffset, _dayWidth, currentHeight);
 				} else {
-					drawWeekday(yOffset, _dayWidth, currentHeight );
+					drawWeekday(this,yOffset, _dayWidth, currentHeight );
 				}
 			}
-			
-			
-			
 			_height =  _terminOffset[maxDays+1][1];
-			callLater(updateHeight);
+			_drawGrid = false;
+			
 		}
 		
 		public var _notizMap:Object = new Object();
-		public function updateHeight():void {
-			if ( _height != height) {
-				_heightSet = true;
-				height =	minHeight = _height ;
-				width = minWidth = _dayWidth;
-				if ( _dragOpRunning ) {
-					_dragOpRunning = false;
-					dispatchEvent(new Event("dayHeightChanged"));
-				}
-			}
-		}
 		
-		function drawWeekend(yOffset, width, height) {
+		function drawWeekend(s,yOffset, width, height) {
 				//Logger.info("Weekend");
-					this.graphics.beginFill(_weekendColor);
-					this.graphics.drawRoundRect(0, yOffset, width , height, 3);
-					this.graphics.endFill();
+					s.graphics.beginFill(_weekendColor);
+					s.graphics.drawRoundRect(0, yOffset, width , height, 3);
+					s.graphics.endFill();
 		}
 		
-		function drawWeekday(yOffset, width, height) { 
-			this.graphics.beginFill(0xffffff);
-			this.graphics.drawRoundRect(0, yOffset, width , height, 3);
-			this.graphics.endFill();
+		function drawWeekday(s, yOffset, width, height) { 
+			s.graphics.beginFill(0xffffff);
+			s.graphics.drawRoundRect(0, yOffset, width , height, 3);
+			s.graphics.endFill();
 		}
 		
-		function drawFeiertag(yOffset, width, height, feiertag) {
+		function drawFeiertag(s, yOffset, width, height, feiertag) {
 			
 			
-					this.graphics.beginFill(_feiertagColor);
-					this.graphics.drawRoundRect(0, yOffset, width , height, 3);
-					this.graphics.endFill();
+					s.graphics.beginFill(_feiertagColor);
+					s.graphics.drawRoundRect(0, yOffset, width , height, 3);
+					s.graphics.endFill();
 			
 				var tmpLabel:Text = new Text();
 					tmpLabel.text = feiertag;
@@ -293,7 +290,7 @@
 					tmpLabel.setStyle("textColor", "0xefefef");
 					
 					_feiertagLabels.push(tmpLabel);
-					addElement(tmpLabel);
+					addChild(tmpLabel);
 
 				
 					
@@ -382,20 +379,27 @@
 						return _terminMenu;
 		}
 		
-		var _terminPool:Array = null;
+		static var _terminPool:Array = [];
 		private function createTermin() {
-				if ( _terminPool.length > 0 ) {
-					return new new PlanungTag;
+		
+				if ( _terminPool.length == 0 ) {
+					return new PlanungTag;
 				}
-				return _terminPool.pop();
+				var t:PlanungTag = _terminPool.pop();
+				t.visible = true;
+				return t;
 		}
 		
-		function _recycle(_terminObj) {
+		function _recycle(_terminObj:PlanungTag) {
+			if ( _termineObj == null ) return;
+					removeElement(_terminObj);
+
 			_terminObj.visible = false;
-			_terminObj.x = -100;
-			_terminObj.y = -100;
-			_terminPool.push(_terminObk);
-			//	removeElement (_termineObj[i]);
+			_terminObj.includeInLayout=false;
+			_terminObj.x = 0;
+			_terminObj.y = 0;
+			_terminPool.push(_terminObj);
+
 
 		}
 		
@@ -404,33 +408,37 @@
 			updateLabel(_standort.name);
 			var maxDays:Number = new Date (_date.fullYear, _date.month+1, 0).getDate();
 			var i:Number;
-			for ( i = 0; i < _termineObj.length ; i++ ) {
-				_recycle (_termineObj[i]);
-				_termineObj[i] = null;
-			}
 			
 			for ( i = 0; i < _notizenObj.length; i++ ) {
 				removeChild(_notizenObj[i]);
 				_notizenObj[i] = null;
 			}
 			
-			_termineObj = [];
+		
 			_notizenObj = [];
-				
 			var textColor:Number = 0;
-			var j:int = 0;
 			for ( i = 1; i <= maxDays; i++) {
 				var termin:Termin;
 				var terminList:Array;
-				textColor = 0;
 				
+				if (!_termineObj[i]) _termineObj[i] = [];
+				textColor = 0;
+				//if ( !_dayDirty[i] ) continue;
+					for ( var j:int =0; j < _termineObj [i].length; j++) {
+						_recycle(_termineObj[i][j]);
+					}
+					_termineObj[i] = [];
+					_dayDirty[i]=false;
+				
+
 				if ( (terminList = _termine.getTermin(i.toString(), _standort.id)) != null ) {
-					for ( j = 0; j < terminList.length; j++ ) {
+					for ( var j:int = 0; j < terminList.length; j++ ) {
+			
 						termin = terminList[j];
 						if ( termin == null ) continue;
 						BindingUtils.bindSetter(termineChanged, termin, "status" );
-
-						var tmp:PlanungTag = new PlanungTag;
+						
+						var tmp:PlanungTag = createTermin();
 						tmp.x = 0;
 						tmp.y = getDayOffsetHeight(i, j)+1;
 						tmp.showReferent = showReferent;
@@ -450,13 +458,12 @@
 						tmp.addEventListener(MouseEvent.MOUSE_DOWN, dragStartHandler);
 						tmp.addEventListener( ContextMenuEvent.MENU_SELECT, updateContextMenu);
 
-						_termineObj.push(tmp);
+						_termineObj[i].push(tmp);
 						addElement(tmp);
 						tmp.contextMenu = getTerminMenu();
-					}
+					} 
+					
 				}
-				
-				
 			}
 			/*
 			var notiz:Object = null;
@@ -533,25 +540,73 @@
 			
 			removeChild(ib);
 			ib = null;
-			
-			callLater(redraw);
+				
 		}
 		
-		protected override function createChildren():void {
-			super.createChildren();
+		override protected function measure():void {
+			super.measure();
+				_terminOffset = _termine.calculateOffsets(6, _dayHeight);
+				measuredHeight = _terminOffset[_terminOffset.length-1][1];
+				measuredWidth = _dayWidth;
+
+		}
+	
+		
+		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
+			_width = unscaledWidth;
+			_height = unscaledHeight;
+			s.height = _height;
+			s.width = _width;
+			//trace(_width, _height);
+
+			drawAll();
+
+		}
+		var _x:Number;
+		var _y:Number;
+		var _width:Number;
+		override protected function commitProperties ():void {
+			super.commitProperties();
+			if (_x != x)
+				x = _x;
+				
+			if (_y != y)
+				y = _y;
+						
+			if ( width != _width ) 
+				width = _width;
+				
+			if ( height != _height) 
+				height = _height;
+			
+			
+				
+				trace("commit");
+		}
+		
+		protected  override function createChildren():void {
+			super.createChildren();
+			measure();
+			GMBus.log("createChildren");
+			s = new SpriteVisualElement();
+			s.x = 0;
+			s.y = 0;
+			s.width = width;
+			s.height = height;
+			addElement(s);
 			addEventListener(DragEvent.DRAG_ENTER, dragEnterHandler);
 			addEventListener(DragEvent.DRAG_OVER, dragOverHandler);
 			//addEventListener(MouseEvent.MOUSE_UP, onClick);
 
 			addEventListener(DragEvent.DRAG_DROP, dragDropHandler);
 			//_dayWidth = getExplicitOrMeasuredWidth();
-			addEventListener("gotit", function (event:FlexEvent):void {
-				GMBus.log("Scheduling redraw");
-				redrawAll();
-				invalidateProperties();
-				invalidateDisplayList();
+			addEventListener("gotitx", function (event:FlexEvent):void {
+				
+				
 			} );
+			
 			/*
 			_highlight = new Box();
 			_highlight.visible = false;
@@ -570,53 +625,42 @@
 			_standortChanged = true;
 		}
 		
-		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
-			super.updateDisplayList(unscaledWidth, unscaledHeight);
-
+		protected function drawAll():void {
+			
+			if (!_termine) {
+				trace("Termine fehlen");
+			}
+ 
 			if ( _drawGrid && _termine) {
 				drawGrid();
 				_drawGrid = false;
 			}
 			
-			if (_termineChanged) {
+			if (_termineChanged && _termine) {
 				//Logger.info("invalidate");
-				callLater(drawTermine);
+				 drawTermine();
 				_termineChanged = false;
 			}
 			
-			if ( _standortChanged ) {
+			if ( _standortChanged  ) {
 				
 				updateLabel( _standort.name);
 				_standortChanged = false;
 			}
-			
-			invalidateDisplayList();
-		}
-		
-		override public function setVisible(value:Boolean, noEvent:Boolean = false):void {
-			super.setVisible(value, noEvent);
-			if ( value == true ) {
-				includeInLayout = true;
-				redrawAll();
-				}
-			
-			if ( noEvent == false ) {
-				dispatchEvent(new FlexEvent(FlexEvent.SHOW));
+		   
+			if ( !_drawGrid && !_termineChanged && !_standortChanged ) {
+				_termine.markAllClean();
 			}
 		}
-		
-		public override function invalidateProperties():void {
-			super.invalidateProperties();
-			redrawAll();
-		}
-		
+	
 		private function updateLabel(text:String) {
 			if ( _label == null ) {
 				_label = new Text();
-				_label.x = 0;
-				_label.y = 2
+				_label.left = 2;
+				_label.top = 0;
+				_label.right = 0;
+				
 				_label.height = _dayHeight;
-				_label.width = _dayWidth;
 				addElement(_label);
 			}
 			_label.text = text;
@@ -636,7 +680,6 @@
 		
 		private function setEnabled( b: Boolean ):void {
 			GMBus.log("Standort enabled: " + b );
-			includeInLayout = b;
 			visible = b;
 		}
 
@@ -645,12 +688,10 @@
 			if ( _watcher ) _watcher.unwatch();
 			_termine = termine;
 			_date = termine.getDate();
-	redrawAll();
-							invalidateDisplayList();		}
+		}
 		
 		public function termineChanged(d):void {
-			invalidateDisplayList();
-			//	redrawAll();
+			redrawAll();
 		}
 		
 		public function showHighlight(topOffset:Number, dauer:Number):void {
@@ -672,7 +713,6 @@
 			DragManager.showFeedback(DragManager.LINK);
 		}
 		
-		import mx.core.IUIComponent;
 		/* drag and drop */
 		public function dragEnterHandler(event:DragEvent):void {
 		// Logger.info(getDayForOffset(event.localY).toString());
@@ -724,9 +764,7 @@ DragManager.showFeedback(DragManager.LINK);
 		
 		 public function beginDrag(event:MouseEvent)   : void
 		{
-						redrawAll();
-						invalidateDisplayList();						
-
+			
 		}
  
 		public function dragStartHandler(event:MouseEvent):void {
@@ -737,8 +775,8 @@ DragManager.showFeedback(DragManager.LINK);
 			DragManager.doDrag(this, ds, event, null, 16 - mouseX, -mouseY, 0.5,   false);
 			
 			event.preventDefault();*/
-			redrawAll();
-			invalidateDisplayList();
+			//redrawAll();
+			//invalidateDisplayList();
 		}
 		
 		public function dragDropHandler(event:DragEvent):void {
@@ -760,6 +798,9 @@ DragManager.showFeedback(DragManager.LINK);
 					_termine.setTermin(nTag, standort.id, move[i]);
 				}
 									event.dragInitiator.dispatchEvent(new FlexEvent("gotit"));
+						redrawAll();
+						invalidateProperties()
+					invalidateDisplayList();
 
 					GMBus.publish("kalender/change",[]);
 			} else if ( event.dragSource.hasFormat("moveSeminar") && (event.shiftKey || event.ctrlKey )) {
@@ -781,8 +822,12 @@ DragManager.showFeedback(DragManager.LINK);
 					tmp.verschoben = (tagNull + i).toString(); // termin im php server beruecksichtigen
 					var nTermin:Termin = new Termin(tmp);
 					nTag = tmp.verschoben;
-
+					redrawAll();
 					_termine.setTermin(nTag, standort.id, nTermin);
+					invalidateProperties()
+					invalidateDisplayList();
+
+
 				}
 				
 					GMBus.publish("kalender/change",[]);
@@ -812,6 +857,10 @@ DragManager.showFeedback(DragManager.LINK);
 					nTag = tmp.verschoben;
 
 					_termine.setTermin(nTag, standort.id, nTermin);
+						redrawAll();
+					invalidateProperties()
+					invalidateDisplayList();
+
 				}
 					
 					GMBus.publish("kalender/change",[]);
@@ -823,6 +872,7 @@ DragManager.showFeedback(DragManager.LINK);
 					redrawAll();
 					//event.dragInitiator.invalidateNow();
 					invalidateDisplayList();
+					callLater(validateNow);
 			
 		}
 		var _contextTermin:Termin = null;

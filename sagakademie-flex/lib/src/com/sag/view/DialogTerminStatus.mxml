@@ -9,17 +9,32 @@
            	import com.mosaiksoftware.GMBus;
 				
 	import flash.external.ExternalInterface;
+	import mx.events.FlexEvent;
+	import mx.events.DynamicEvent;
+	import com.sag.models.SPlanungTag;
+	import com.sag.models.Termin;
             // A reference to the TextInput control in which to put the result.
-			[Bindable]
-            public var tag:PlanungTag;
-           
+			private var _termin:Termin = null;
+
+			public function get termin():Termin
+			{
+				return _termin;
+			}
+
+			public function set termin(value:Termin):void
+			{
+				_termin = value;
+			}
             // Event handler for the OK button.
             private function returnStatus(nstatus:String):void {
 				//Alert.show(nstatus);
-				if ( ExternalInterface.available ) {
-					GMBus.publish("kalender/change",[]);
+				if ( termin ) {
+					_termin.status = nstatus;
 				}
-				tag.updateStatus(nstatus);
+				var e = new DynamicEvent("statusChanged");
+				e.status = nstatus;
+				e.termin = termin;
+				dispatchEvent(e);
                 //statusStr.text=nstatus; 
                 PopUpManager.removePopUp(this);
             }

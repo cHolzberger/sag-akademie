@@ -4,7 +4,6 @@ xmlns:fx="http://ns.adobe.com/mxml/2009"
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
  xmlns:Mosaik="*" xmlns:SAG="com.sag.view.*"
-	width="100%" height="100%"
 	creationComplete="componentInit();">
 	<fx:Script><![CDATA[
 		import com.mosaiksoftware.components.TableParameters;
@@ -18,6 +17,7 @@ xmlns:fx="http://ns.adobe.com/mxml/2009"
 		import flash.display.StageDisplayState;
 		import flash.events.Event;
 		import flash.external.ExternalInterface;
+		import flash.net.GroupSpecifier;
 		import mx.collections.ArrayCollection;
 		import mx.controls.Alert;
 		import mx.controls.CheckBox;
@@ -149,6 +149,8 @@ mouseEnabled = true;
 			}
 		}
 		 import mx.utils.StringUtil;
+		 import spark.components.Group;
+		 import spark.layouts.HorizontalLayout;
 		public function setAuthToken(token:String):void {
 			dsParams.token = token;
 		}
@@ -431,16 +433,31 @@ mouseEnabled = true;
 		}
 		
 		function createMonth(termine : ArrayCollection ) {
+			var cal = new Group();
+			cal.percentWidth = 100;
+			cal.percentHeight = 100;
+			var l = new HorizontalLayout();
+			l.padding = 0;
+			l.variableColumnWidth = false;
+			l.clipAndEnableScrolling = true;
+			l.verticalAlign = "top";
+			cal.autoLayout = true;
+			l.gap = 0;
+			cal.layout = l;
+			
+			scroller.viewport = cal;
 			for ( var i in termine ) {
 				var termin = termine[i];
-			var t:com.sag.view.PlanungGruppeMonat = new com.sag.view.PlanungGruppeMonat();
-			//t.title = termin.label;
-			t.termine = termin;
-			t.showReferent = showReferent;
-			t.showTeilnehmer = showTeilnehmer;
-			t.modus = currentModus;
-			cal.addElement(t);	
+				var t:com.sag.view.PlanungGruppeMonat = new com.sag.view.PlanungGruppeMonat();
+				//t.title = termin.label;
+				t.termine = termin;
+				t.showReferent = showReferent;
+				t.showTeilnehmer = showTeilnehmer;
+				t.modus = currentModus;
+				cal.addElement(t);
 			}
+			
+			
 		}
 	]]></fx:Script>
 	<s:layout><s:BasicLayout /></s:layout>
@@ -454,14 +471,7 @@ mouseEnabled = true;
 
 			<mx:Canvas width="100%" height="100%" >
 			<s:Scroller  id="scroller" width="100%"  height="100%" x="0" y="0" >
-
-			<s:Group id="cal" width="100%"  height="100%" autoLayout="true">
-				<s:layout>
-					<s:HorizontalLayout variableColumnWidth="true" columnWidth="75" gap="0" verticalAlign="top"  />
-			</s:layout>
-			
-				</s:Group>
-				</s:Scroller>
+			</s:Scroller>
 							</mx:Canvas>
 
 		<mx:VBox explicitWidth="215" height="100%">

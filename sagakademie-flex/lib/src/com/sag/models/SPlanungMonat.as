@@ -38,6 +38,9 @@
 		
 		public var planungJahr:ArrayCollection=null;
 
+		public var needsCount:Boolean = true;
+		public var hasChangedDay:Array = [];
+		public var hasChangedStandort:Array = [];
 		public function SPlanungMonat( cyear: int,  imonat:int, nstandorte: ArrayCollection, termine:Object, notizen:Object, feiertage:Object) {
 			
 			_maxTage = new Date ( cyear, imonat+1, 0).getDate();
@@ -54,6 +57,8 @@
 			
 			if ( !feiertage ) _feiertage = new Object();
 			else _feiertage = feiertage;
+			
+			maskAllDirty();
 		}
 		
 		public function getDate (d:int = 1):Date {
@@ -61,11 +66,31 @@
 			return new Date( this.year, monat, d );
 		}
 		
+		public function markClean(standort, tag) {
+			hasChangedDay[tag] = false;
+			hasChangedStandort[standort] = false;
+		}
 		
-	private var _terminOffset:Array = null;
+		public function markAllClean() {
+			hasChangedDay = [];
+			hasChangedStandort = [];
+		}
+		
+		public function maskAllDirty() {
+			for ( var i:int = 0; i <= 31; i++ ) {
+				hasChangedDay[i] = true;
+			}
+			
+			for each(var standort:Object in _standorte)
+			{
+			
+				hasChangedStandort[standort.id] = true;
+			}
+		}
+	private var _terminOffset:Array = [];
 
 	public function calculateOffsets(startOffset:int, height:int):Array {
-			if ( _terminOffset ) return _terminOffset;
+			if ( _terminOffset && !needsCount ) return _terminOffset;
 			
 			
 			var currentHeight = 0;
@@ -75,13 +100,13 @@
 			var i:int;
 			var month = parseInt(_date.month);
 			
-			_terminOffset = [];
+			var to:Array = [];
 			
 			// offsets etc.
 			var countTermine:int;
 
 			var yOffset:Number = height+startOffset;
-			_terminOffset[0] = [0,0];
+			to[0] = [0,0];
 			
 			for ( i = 1; i <= maxDays ; i++) { // 1 to maxdays
 			
@@ -91,15 +116,22 @@
 				} else {
 					currentHeight = height;
 				}
-				_terminOffset[i] = [currentHeight, yOffset];
+				to[i] = [currentHeight, yOffset];
+				if ( _terminOffset && _terminOffset[i] && to[i] != _terminOffset[i] ) {
+					hasChangedDay[i] = true;
+					for each (var s:Standort in _standorte ) {
+						hasChangedStandort[s.id] = true;
+					}
+				}
 				
 				yOffset = yOffset + currentHeight;
 			}
 			
 			
-			_terminOffset[maxDays + 1] = [0, yOffset];
-			
-			return _terminOffset;
+			to[maxDays + 1] = [0, yOffset];
+			needsCount = false;
+			_terminOffset = to;
+			return to;
 	}
 		
 		public function hasTermin(tag:int, dauer:int, standort:String):Boolean {
@@ -179,7 +211,6 @@
 		
 		public function setNotiz (tag:String, standort:String, text:String):void {
 			if (!_termine) return;
-			
 			if ( _notizen[tag] == null ) {
 				_notizen[tag] = new Object();
 				_notizen[tag][standort] = new Object();
@@ -217,20 +248,29 @@
 		
 		private var _terminCount:Object = { };
 		
-		public function setTermin(tag:String, standort:String, t:Termin):void {
+		public function setTermin(tag:String, standortId:String, t:Termin):void {
 			GMBus.log("Setting Termin... tag: " + tag + " max: " + _maxTage.toString() + "termin: " + t.id);
 			_terminOffset = null;
+			
 			// termine an den naechsten monat weitergeben wenn sie laenger dauern als
 			// einen monat
 			if (parseInt(tag) > _maxTage) {
 				GMBus.log("nicht in diesem monat");
-				MosaikConfig.getAC("termine").getItemAt(monat +1).setTermin( (parseInt(tag) - _maxTage ).toString(), standort, t);
+				MosaikConfig.getAC("termine").getItemAt(monat +1).setTermin( (parseInt(tag) - _maxTage ).toString(), standortId, t);
 				return;
 			} else if ( ! _termine[tag] ) {
 				GMBus.log("erstelle tag");
 				_termine[tag] = new Object();
+
+				
 			}
-			
+			for (  var i:int = tag; i < 31;i++) {
+								hasChangedDay[i] = true;
+				}
+				
+				for each ( var s:Standort in _standorte ) {
+					hasChangedStandort[standortId] = true; 
+				}
 			// find out the count for the current termin
 			/*
 			Logger.info("count ermitteln");
@@ -249,20 +289,20 @@
 			}
 			
 			*/
-			if (_termine[tag][standort] == null ) {
-				_termine[tag][standort] = [];
+			if (_termine[tag][standortId] == null ) {
+				_termine[tag][standortId] = [];
 			}
 			
-			var count:int = _termine[tag][standort].length;
+			var count:int = _termine[tag][standortId].length;
 			
 			if (t == null ) {
-				_termine[tag][standort].push({});
-				_cache[tag + "_" + standort + "_" + count.toString()] = null;
+				_termine[tag][standortId].push({});
+				_cache[tag + "_" + standortId + "_" + count.toString()] = null;
 			} else {
-				_termine[tag][standort].push(t._details);
-				_cache[tag + "_" + standort + "_" + count.toString()] = t;
+				_termine[tag][standortId].push(t._details);
+				_cache[tag + "_" + standortId + "_" + count.toString()] = t;
 			}
-			change = standort;
+			change = standortId;
 			change = "";
 			//_terminCount[tag][standort] = count + 1;
 			GMBus.log("Termin done..");
@@ -273,7 +313,7 @@
 			var suff:Array = new Array();
 			var post:Array = new Array();
 			GMBus.log("Remove.. Recurse:" + recurse.toString());
-			
+			needsCount = true;
 			if ( monat != 0 && recurse ) suff = MosaikConfig.getAC("termine").getItemAt(monat - 1).removeSeminar(id, standort, false);
 			
 			for ( var i:String in _termine) {
@@ -283,6 +323,9 @@
 						deleted.push(_cache[ i + "_" + standort + "_" + j.toString()]);
 						_termine[i][standort][j] = null;
 						_cache[ i + "_" + standort + "_" + j.toString()] = null;
+						hasChangedDay[i] = true;
+						hasChangedStandort[standort] = true;
+
 					}
 				}
 			}
@@ -297,14 +340,14 @@
 		
 		public function updateStatus (terminId:String, standort:String, status:String ):void {
 			if ( !_termine ) return;
-			
 			for ( var i:String in _termine) {
 				for (var j:String in _termine[i][standort]) {
 					if (_termine[i] && _termine[i][standort] && _termine[i][standort][j] && _termine[i][standort][j].id == terminId) {
 						//Logger.info("Status aenderung: " + i );
 						_termine[i][standort][j].freigabe_flag = status;
 						_termine[i][standort][j].verschoben = i;
-					
+						hasChangedDay[i] = true;
+						hasChangedStandort[standort] = true;
 						// FIXME: muss aus der datenbank ausgelesen werden
 						if (status == "F") {
 							_termine[i][standort][j].freigabe_veroeffentlichen = "1";

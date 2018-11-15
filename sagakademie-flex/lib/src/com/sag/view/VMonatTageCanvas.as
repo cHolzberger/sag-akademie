@@ -17,6 +17,7 @@ import spark.components.VGroup;
 	import com.sag.models.SPlanungMonat;
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;;
+	import mx.messaging.channels.AMFChannel;
 
 		/**
 	 * ...
@@ -29,10 +30,10 @@ import spark.components.VGroup;
 		private var _termineChanged:Boolean = false;
 		private var _redraw:Boolean = false;
 		private var _feiertagLabels:Array = [];
-private var _feiertagColor:Number = 0xffffcc;
+		private var _feiertagColor:Number = 0xffffcc;
 		private var _label:Array = [];
 		private var _dayHeight:int = 15;
-		private var _dayWidth:int = 35;
+		public  var _dayWidth:Number = 35;
 		private var _lineColor:Number = 0xafafaf;
 		private var _weekendColor:Number = 0xefefef;
 		[Embed(source = "/assets/feiertag.png")]
@@ -42,14 +43,23 @@ private var _feiertagColor:Number = 0xffffcc;
 		public function VMonatTageCanvas() {
 			super();
 			this.layout = new BasicLayout();
-			width = _dayWidth;
-			height = 31 * _dayHeight;
 			
-			_redraw = false;
+			_redraw = true;
+			addEventListener(FlexEvent.CREATION_COMPLETE, init);
+		}
+		
+		private function init(e:FlexEvent):void {
+			this.measure();
+		}
+		
+		override protected function commitProperties():void {
+			trace("commit");
 		}
 		
 		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			width = unscaledWidth;
+			height = unscaledHeight;
 			drawGrid();
 			
 		}
@@ -67,6 +77,8 @@ private var _feiertagColor:Number = 0xffffcc;
 			var maxDays:Number = new Date (_date.fullYear, _date.month + 1, 0).getDate();
 			//Logger.info (_date.fullYear.toString());
 			//Logger.info (_date.month.toString());
+			var _no:Array = _termine.calculateOffsets(6, _dayHeight);
+			if ( _terminOffset == _no ) return;
 			this.graphics.clear();
 		
 			var i:int;
@@ -161,7 +173,7 @@ private var _feiertagColor:Number = 0xffffcc;
 			}
 		}
 		
-		function drawFeiertag(yOffset, width, height, feiertag) {
+		private function drawFeiertag(yOffset, width, height, feiertag) {
 			//Logger.info("Feiertag");
 					//Logger.info(feiertag);
 					var tmpImage:Image = new Image();
@@ -182,13 +194,13 @@ private var _feiertagColor:Number = 0xffffcc;
 					this.graphics.endFill();
 		}
 		
-		function drawWeekday(yOffset, width, height) { 
+		private function drawWeekday(yOffset, width, height) { 
 			this.graphics.beginFill(0xffffff);
 					this.graphics.drawRoundRect(0, yOffset, width , height, 3);
 					this.graphics.endFill();
 		}
 		
-		function drawWeekend(yOffset, width, height) {
+		private function drawWeekend(yOffset, width, height) {
 				//Logger.info("Weekend");
 					this.graphics.beginFill(_weekendColor);
 					this.graphics.drawRoundRect(0, yOffset, width , height, 3);
@@ -204,7 +216,6 @@ private var _feiertagColor:Number = 0xffffcc;
 			_redraw = true;
 			_termineChanged = true;
 		}
-		
 		
 		/* setter and getter */
 		public function set standort (label:String):void {

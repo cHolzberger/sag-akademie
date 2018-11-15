@@ -3,20 +3,18 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx"
 			   xmlns:SAG="com.sag.canvas.*"
-
 			   width="100%" 
 			   height="100%"
 			   applicationComplete="init()"
 			    backgroundColor="0xefefef" >
 	<fx:Script><![CDATA[
 import flash.ui.ContextMenu;
+import com.mosaiksoftware.SpriteGenerator;
+import spark.components.Image;
+import flash.display.Bitmap;
 	public function init() {
-		var custom_menu:ContextMenu = new ContextMenu();
-						custom_menu.hideBuiltInItems();
-		this.contextMenu = custom_menu;
 		
 	}
 	]]></fx:Script>
-	<s:layout><s:HorizontalLayout></s:HorizontalLayout></s:layout>
-	<SAG:Planung />
+	<SAG:Planung left="0" right="0" top="0" bottom="0" />
 </s:Application>

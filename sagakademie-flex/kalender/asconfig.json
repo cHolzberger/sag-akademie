@@ -1,0 +1,15 @@
+{
+    "config": "flex",
+	"compilerOptions": {
+        "output": "obj/Main.swf",
+        "source-path": [
+            "src",
+            "../lib/src"
+        ]
+    },
+    "application": "src/PlanungMain.mxml",
+    "files":
+    [
+        "src/PlanungMain.mxml"
+    ]
+}
