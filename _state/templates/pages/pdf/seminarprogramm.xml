@@ -1,0 +1,301 @@
+﻿<pdf:content>
+
+   <set name="margin-top" value="5" /> 
+	<set name="margin-bottom" value="5" />
+	<set name="margin-left" value="5" />
+	<set name="margin-right" value="5" />
+
+    <style type="text/css">
+
+        @font-face {
+        font-family: Jolly;
+        src: url('/resources/font/Constantia.ttf');
+        font-weight: normal;
+        font-style:normal;
+        }
+        @font-face {
+        font-family: Jolly;
+        src: url('/resources/font/Constantia_Bold.ttf');
+        font-weight: 100;
+        font-style:normal;
+
+        }
+
+        @font-face {
+        font-family: Jolly;
+        src: url('/resources/font/Constantia_Italic.ttf');
+        font-style: italic,oblique;
+
+        }
+		
+		@font-face {
+            font-family: Polly;
+            src: url('/resources/font/calibri.ttf');
+        font-weight: normal;
+        font-style:normal;
+        }
+
+        * {
+        font-family: Jolly;
+        line-height: 140%;
+        letter-spacing: 120%;
+        }
+
+        div {
+        font-family: Jolly;
+        }
+
+
+    </style>
+
+   
+	
+	 <div style="position:relative; width:200mm;height:90mm;">   
+   
+    <img src="http://www.sag-akademie.de/files/top2_standorte.jpg" border="0" alt="" style="position:absolute;left:2mm;top:0mm;width:200mm; height:12mm;z-index:2;"/>   
+    <img src="http://www.sag-akademie.de/files/top2_zukunft2.jpg" border="0" alt="" style="position:absolute;left:0mm;top:9mm;width:60mm; height:28mm;"/>   
+    <img src="http://www.sag-akademie.de/files/top2_sag.jpg" border="0" alt="" style="position:absolute;right:0mm;top:13mm;width:60mm; height:28mm;"/>
+	
+	<div style="position:absolute;left:2mm;top:40mm;width:200mm;font-size:8pt;">
+	<img src="http://www.sag-akademie.de/files/top2_line.jpg" border="0" alt="" style="width:195mm; height:1px;"/>
+	<p style="margin-bottom:1mm;"><span style="color:blue;font-size:13pt;font-family:Polly;">SEMINARPROGRAMM</span></p>
+	
+<p style="margin-bottom:1mm;">Bitte nutzen Sie unsere kompetente Beratung, telefonisch oder persönlich - am besten vor der Buchung!</p>
+<p style="margin-bottom:2mm;">Unsere Mitarbeiter in Darmstadt (0 61 51 . 101 55 111) und Lünen (02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.</p><br/>
+
+</div>
+	
+	 <div style="position:relative;width:198mm;font-size:8pt; padding-top:70mm; padding-left:2mm;">
+		
+	 <p style="margin-bottom:5mm;">
+            <span style="color:#7f7f7f;font-size:11pt;"><b>Arbeitssicherheit</b></span><br/>
+            <foreach fromArray="Arbeitssicherheit:SeminarArten" >
+                <!--<mdb:var mpath="count"/>-->
+
+                <div style="margin-bottom:5mm;page-break-inside:avoid;">
+				
+				
+                    <span style="font-size:10pt;"><mdb:var mpath="bezeichnung" /></span><br/>
+					<mdb:var mpath="id"/> &nbsp;&nbsp;|&nbsp;<mdb:var mpath="dauer"/>&nbsp; <switch key="dauer"><case value="1">Tag</case><case value="*">Tage</case></switch>&nbsp;&nbsp;|&nbsp; <mdb:var mpath="kursgebuehr" converter="euroPreis"/>&nbsp;&euro; zzgl. MwSt.
+                    
+			<span style="color:#999999;">
+                    <foreach fromArray="Seminare" onEmpty="&nbsp;|&nbsp;Termine auf Anfrage">
+                        <!--<mdb:var mpath="count"/>-->
+                        &nbsp;|&nbsp;<mdb:var mpath="datum_begin" converter="mysqlDateToLocal"/> &nbsp;in <mdb:var mpath="Standort:Ort:ort"/>
+                                              
+                    </foreach>	
+</span>					
+						<br/>
+				
+                </div>
+
+            </foreach>
+        </p>
+		
+		 <p style="margin-bottom:5mm;">
+            <span style="color:#071ac8;font-size:11pt;"><br/><b>Kanalreinigung</b></span><br/>
+            <foreach fromArray="Kanalreinigung:SeminarArten" >
+                <!--<mdb:var mpath="count"/>-->
+
+                <div style="margin-bottom:5mm;page-break-inside:avoid;">
+				
+				
+                    <span style="font-size:10pt;"><mdb:var mpath="bezeichnung" /></span><br/>
+					<mdb:var mpath="id"/> &nbsp;&nbsp;|&nbsp;<mdb:var mpath="dauer"/>&nbsp; <switch key="dauer"><case value="1">Tag</case><case value="*">Tage</case></switch>&nbsp;&nbsp;|&nbsp; <mdb:var mpath="kursgebuehr" converter="euroPreis"/>&nbsp;&euro; zzgl. MwSt.
+                    
+			<span style="color:#999999;">
+                    <foreach fromArray="Seminare" onEmpty="&nbsp;|&nbsp;Termine auf Anfrage">
+                        <!--<mdb:var mpath="count"/>-->
+                        &nbsp;|&nbsp;<mdb:var mpath="datum_begin" converter="mysqlDateToLocal"/> &nbsp;in <mdb:var mpath="Standort:Ort:ort"/>
+                                              
+                    </foreach>	
+</span>					
+						<br/>
+				
+                </div>
+
+            </foreach>
+        </p>
+		
+		<p style="margin-bottom:5mm;">
+            <span style="color:#fc0d1b;font-size:11pt;"><br/><b>Kanalinspektion</b></span><br/>
+            <foreach fromArray="Kanalinspektion:SeminarArten" >
+                <!--<mdb:var mpath="count"/>-->
+
+                <div style="margin-bottom:5mm;page-break-inside:avoid;">
+				
+				
+                    <span style="font-size:10pt;"><mdb:var mpath="bezeichnung" /></span><br/>
+					<mdb:var mpath="id"/> &nbsp;&nbsp;|&nbsp;<mdb:var mpath="dauer"/>&nbsp; <switch key="dauer"><case value="1">Tag</case><case value="*">Tage</case></switch>&nbsp;&nbsp;|&nbsp; <mdb:var mpath="kursgebuehr" converter="euroPreis"/>&nbsp;&euro; zzgl. MwSt.
+                    
+			<span style="color:#999999;">
+                    <foreach fromArray="Seminare" onEmpty="&nbsp;|&nbsp;Termine auf Anfrage">
+                        <!--<mdb:var mpath="count"/>-->
+                        &nbsp;|&nbsp;<mdb:var mpath="datum_begin" converter="mysqlDateToLocal"/> &nbsp;in <mdb:var mpath="Standort:Ort:ort"/>
+                                              
+                    </foreach>	
+</span>					
+						<br/>
+				
+                </div>
+
+            </foreach>
+        </p>
+		
+			<p style="margin-bottom:5mm;">
+            <span style="color:#fdbf2d;font-size:11pt;"><br/><b>Dichtheitsprüfung</b></span><br/>
+            <foreach fromArray="Dichtheitsprüfung:SeminarArten" >
+                <!--<mdb:var mpath="count"/>-->
+
+                <div style="margin-bottom:5mm;page-break-inside:avoid;">
+				
+				
+                    <span style="font-size:10pt;"><mdb:var mpath="bezeichnung" /></span><br/>
+					<mdb:var mpath="id"/> &nbsp;&nbsp;|&nbsp;<mdb:var mpath="dauer"/>&nbsp; <switch key="dauer"><case value="1">Tag</case><case value="*">Tage</case></switch>&nbsp;&nbsp;|&nbsp; <mdb:var mpath="kursgebuehr" converter="euroPreis"/>&nbsp;&euro; zzgl. MwSt.
+                    
+			<span style="color:#999999;">
+                    <foreach fromArray="Seminare" onEmpty="&nbsp;|&nbsp;Termine auf Anfrage">
+                        <!--<mdb:var mpath="count"/>-->
+                        &nbsp;|&nbsp;<mdb:var mpath="datum_begin" converter="mysqlDateToLocal"/> &nbsp;in <mdb:var mpath="Standort:Ort:ort"/>
+                                              
+                    </foreach>	
+</span>					
+						<br/>
+				
+                </div>
+
+            </foreach>
+        </p>
+      
+      
+			<p style="margin-bottom:5mm;">
+            <span style="font-size:11pt;"><br/><b>Kanalbau</b></span><br/>
+            <foreach fromArray="Kanalbau:SeminarArten" >
+                <!--<mdb:var mpath="count"/>-->
+
+                <div style="margin-bottom:5mm;page-break-inside:avoid;">
+				
+				
+                    <span style="font-size:10pt;"><mdb:var mpath="bezeichnung" /></span><br/>
+					<mdb:var mpath="id"/> &nbsp;&nbsp;|&nbsp;<mdb:var mpath="dauer"/>&nbsp; <switch key="dauer"><case value="1">Tag</case><case value="*">Tage</case></switch>&nbsp;&nbsp;|&nbsp; <mdb:var mpath="kursgebuehr" converter="euroPreis"/>&nbsp;&euro; zzgl. MwSt.
+                    
+			<span style="color:#999999;">
+                    <foreach fromArray="Seminare" onEmpty="&nbsp;|&nbsp;Termine auf Anfrage">
+                        <!--<mdb:var mpath="count"/>-->
+                        &nbsp;|&nbsp;<mdb:var mpath="datum_begin" converter="mysqlDateToLocal"/> &nbsp;in <mdb:var mpath="Standort:Ort:ort"/>
+                                              
+                    </foreach>	
+</span>					
+						<br/>
+				
+                </div>
+
+            </foreach>
+        </p>
+		
+				<p style="margin-bottom:5mm;">
+            <span style="color:#1aaf54;font-size:11pt;"><br/><b>Kanalsanierung</b></span><br/>
+            <foreach fromArray="Kanalsanierung:SeminarArten" >
+                <!--<mdb:var mpath="count"/>-->
+
+                <div style="margin-bottom:5mm;page-break-inside:avoid;">
+				
+				
+                    <span style="font-size:10pt;"><mdb:var mpath="bezeichnung" /></span><br/>
+					<mdb:var mpath="id"/> &nbsp;&nbsp;|&nbsp;<mdb:var mpath="dauer"/>&nbsp; <switch key="dauer"><case value="1">Tag</case><case value="*">Tage</case></switch>&nbsp;&nbsp;|&nbsp; <mdb:var mpath="kursgebuehr" converter="euroPreis"/>&nbsp;&euro; zzgl. MwSt.
+                    
+			<span style="color:#999999;">
+                    <foreach fromArray="Seminare" onEmpty="&nbsp;|&nbsp;Termine auf Anfrage">
+                        <!--<mdb:var mpath="count"/>-->
+                        &nbsp;|&nbsp;<mdb:var mpath="datum_begin" converter="mysqlDateToLocal"/> &nbsp;in <mdb:var mpath="Standort:Ort:ort"/>
+                                              
+                    </foreach>	
+</span>					
+						<br/>
+				
+                </div>
+
+            </foreach>
+        </p>
+		
+			<p style="margin-bottom:5mm;">
+            <span style="color:#653308;font-size:11pt;"><br/><b>Abscheidetechnik</b></span><br/>
+            <foreach fromArray="Abscheidetechnik:SeminarArten" >
+                <!--<mdb:var mpath="count"/>-->
+
+                <div style="margin-bottom:5mm;page-break-inside:avoid;">
+				
+				
+                    <span style="font-size:10pt;"><mdb:var mpath="bezeichnung" /></span><br/>
+					<mdb:var mpath="id"/> &nbsp;&nbsp;|&nbsp;<mdb:var mpath="dauer"/>&nbsp; <switch key="dauer"><case value="1">Tag</case><case value="*">Tage</case></switch>&nbsp;&nbsp;|&nbsp; <mdb:var mpath="kursgebuehr" converter="euroPreis"/>&nbsp;&euro; zzgl. MwSt.
+                    
+			<span style="color:#999999;">
+                    <foreach fromArray="Seminare" onEmpty="&nbsp;|&nbsp;Termine auf Anfrage">
+                        <!--<mdb:var mpath="count"/>-->
+                        &nbsp;|&nbsp;<mdb:var mpath="datum_begin" converter="mysqlDateToLocal"/> &nbsp;in <mdb:var mpath="Standort:Ort:ort"/>
+                                              
+                    </foreach>	
+</span>					
+						<br/>
+				
+                </div>
+
+            </foreach>
+        </p>
+	
+     
+		<p style="margin-bottom:5mm;">
+            <span style="color:#fd9827;font-size:11pt;"><br/><b>Grundstücksentwässerung</b></span><br/>
+            <foreach fromArray="Grundstücksentwässerung:SeminarArten" >
+                <!--<mdb:var mpath="count"/>-->
+
+                <div style="margin-bottom:5mm;page-break-inside:avoid;">
+				
+				
+                    <span style="font-size:10pt;"><mdb:var mpath="bezeichnung" /></span><br/>
+					<mdb:var mpath="id"/> &nbsp;&nbsp;|&nbsp;<mdb:var mpath="dauer"/>&nbsp; <switch key="dauer"><case value="1">Tag</case><case value="*">Tage</case></switch>&nbsp;&nbsp;|&nbsp; <mdb:var mpath="kursgebuehr" converter="euroPreis"/>&nbsp;&euro; zzgl. MwSt.
+                    
+			<span style="color:#999999;">
+                    <foreach fromArray="Seminare" onEmpty="&nbsp;|&nbsp;Termine auf Anfrage">
+                        <!--<mdb:var mpath="count"/>-->
+                        &nbsp;|&nbsp;<mdb:var mpath="datum_begin" converter="mysqlDateToLocal"/> &nbsp;in <mdb:var mpath="Standort:Ort:ort"/>
+                                              
+                    </foreach>	
+</span>					
+						<br/>
+				
+                </div>
+
+            </foreach>
+        </p>
+		
+		<p style="margin-bottom:5mm;">
+            <span style="font-size:11pt;"><br/><b>Pädagogik</b></span><br/>
+            <foreach fromArray="Pädagogik:SeminarArten" >
+                <!--<mdb:var mpath="count"/>-->
+
+                <div style="margin-bottom:5mm;page-break-inside:avoid;">
+				
+				
+                    <span style="font-size:10pt;"><mdb:var mpath="bezeichnung" /></span><br/>
+					<mdb:var mpath="id"/> &nbsp;&nbsp;|&nbsp;<mdb:var mpath="dauer"/>&nbsp; <switch key="dauer"><case value="1">Tag</case><case value="*">Tage</case></switch>&nbsp;&nbsp;|&nbsp; <mdb:var mpath="kursgebuehr" converter="euroPreis"/>&nbsp;&euro; zzgl. MwSt.
+                    
+			<span style="color:#999999;">
+                    <foreach fromArray="Seminare" onEmpty="&nbsp;|&nbsp;Termine auf Anfrage">
+                        <!--<mdb:var mpath="count"/>-->
+                        &nbsp;|&nbsp;<mdb:var mpath="datum_begin" converter="mysqlDateToLocal"/> &nbsp;in <mdb:var mpath="Standort:Ort:ort"/>
+                                              
+                    </foreach>	
+</span>					
+						<br/>
+				
+                </div>
+
+            </foreach>
+        </p>
+
+       
+    </div>
+
+
+</pdf:content>

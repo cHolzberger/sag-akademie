@@ -1,0 +1,17 @@
+﻿<content>
+	<set name="page_background" value="/img/admin/header_bg.jpg"/>
+	
+	<h1>
+		Wählen Sie das Seminar für das Sie einen neuen Termin anlegen wollen
+	</h1>
+	
+	<foreach fromArray="SeminarArtRubrik">
+	<div style="width: 200px; height: 200px; overflow: auto; float: left; margin-right: 20px;">
+		<h2><mdb:value mpath="name" /></h2>
+		
+			<foreach fromArray="SeminarArten">
+				<mdb:link href="/admin/termine/new?seminarArt=#DATA#" mpath="id"><mdb:value mpath="id" /></mdb:link><br/>
+			</foreach>
+		</div>
+	</foreach>		
+</content>

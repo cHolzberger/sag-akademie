@@ -1,0 +1,331 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>
+			SAG Schulungsakademie GmbH - <config:var name="debugConfig"/> - AV: <config:var name="version" />
+		</title>
+		
+		<!-- load css first -->
+		<sitecss src="/css/table.css" media="screen"/>
+		<sitecss src="/css/Standard.css" media="screen"/>
+		<sitecss src="/css/common.css" media="screen"/>
+
+		<!--<sitecss src="/css/style.css" media="screen"/>-->
+		<sitecss src="/css/admin.css" media="screen"/>
+		<sitecss src="/css/jquery.tooltip.css" media="screen"/>
+		<sitecss src="/css/table/jquery.tablesorter.css" media="screen"/>
+		<sitecss src="/css/table/jquery.tablescroller.css" media="screen"/>
+		<sitecss src="/css/theme/ui.all.css" media="screen"/>
+		<sitecss src="/css/theme/ui.theme.css" media="screen"/>
+		<sitecss src="/css/ui-ribbon.css" media="screen"/>
+		<sitecss src="/css/table/table.css" media="screen"/>
+		<sitecss src="/css/widget/widget.css" media="screen"/>
+		<sitecss src="/css/table/jquery.kiketable.colsizable.css" media="screen"/>
+		
+
+		<sitecss src="/css/mdb/quicklist.css" media="screen"/>
+		<sitecss src="/css/widget/mautocomplete.css" media="screen"/>
+        <sitecss src="/css/colorPicker.css"/>
+
+		<!-- CSS DIRS LADEN -->
+        <sitecss dir="/css/mdb/" media="screen"/>
+		 <sitecss dir="/css/forms/" media="screen"/>
+		<sitecss dir="/css/mform/" media="screen"/>
+
+		<sitecss loadnow="true" key="admin"/>
+		<!-- externe js immer nach css laden -->
+		<google:gears />
+		<google:script/>
+		
+		<!-- everything in sitescript tags will get loaded at the bottom -->
+		<sitescript dir="/resources/scripts/settings/"/>
+		<sitescript src="/resources/scripts/jquery/jquery.selectboxes.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.metadata.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.htmlClean.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.htmlInput.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.validate.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.dimensions.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.tooltip.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.clickmenu.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.form.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.mosaik.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.ribbon.js"/>
+        <sitescript src="/resources/scripts/jquery/jquery.colorPicker.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.mousewheel.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.rightClick.js"/>
+		<script type="text/javascript" src="/resources/scripts/jquery/jquery.wymeditor.js"></script>
+		<script type="text/javascript"  src="/resources/scripts/jquery/plugins/hovertools/jquery.wymeditor.hovertools.js"></script>
+		<script type="text/javascript"  src="/resources/scripts/jquery/plugins/fullscreen/jquery.wymeditor.fullscreen.js"></script>
+
+
+		<!-- mtable -->
+		<!--
+		<sitescript src="/resources/scripts/tinytable.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.event.drag.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.mtable.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.mtable.tablescroller.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.mtable.colsizeable.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.mtable.uitablefilter.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.mtable.columnmanager.js"/>-->
+
+		<!-- mform -->
+		<sitescript src="/resources/scripts/jquery/jquery.mform.js"/>
+
+
+
+		<!-- i18n -->
+		<sitescript dir="/resources/scripts/i18n/de/"/>
+		<!-- mosaik scripts -->
+		<sitescript dir="/resources/scripts/mosaik/"/>
+
+		<!-- site and admin scripts -->
+		<sitescript src="/resources/scripts/site.js"/>
+		<sitescript src="/resources/scripts/admin.js"/>
+
+		<!-- flash right click -->
+		<sitescript src="/resources/scripts/rightClick/rightClick.js" />
+
+		<link rel="stylesheet" href="/css/print.css" type="text/css" media="print" />
+	</head>
+	<!-- keine gueltigen xhtml angaben!!!! text="#000000" bgcolor="#FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000" topmargin="0" marginheight="0" * -->
+	<body>
+           
+		<div style="position: fixed; bottom:0px; left:0px; width: 50px; height: 20px;" id="ajaxStatus">&nbsp;</div>
+		<div style="top:0px; margin-left:auto; margin-right:auto; width:98%">
+			<div style="position: fixed; height:auto; top:0px; left:0px; right:0px;" id="navigation">
+				<ribbon:back/>
+				<ribbon>
+					<ribbonTabLabels>
+						<ribbonTabLabel forId="verwaltungTab">Verwaltung</ribbonTabLabel>
+						<ribbonTabLabel forId="planungTab">Planung</ribbonTabLabel>
+						<ribbonTabLabel forId="administrationTab">Administration</ribbonTabLabel>
+						<ribbonTabLabel forId="statistikTab">Statistik</ribbonTabLabel>
+						<ribbonTabLabel forId="sucheTab">Suche</ribbonTabLabel>
+
+						<ribbonTabLabel forId="erweiterteSucheTab">Erweiterte Suche</ribbonTabLabel>
+						
+						<ribbonTabLabel forId="entwicklerTab">Entwickler</ribbonTabLabel>
+						<ribbonTabLabel forId="hiddenTab"><span class="ui-icon ui-icon-arrowreturnthick-1-n"/></ribbonTabLabel>
+					</ribbonTabLabels>
+					
+					<ribbonTab id="verwaltungTab">
+						<ribbonGroup>
+							<ribbonButton icon="icon_startseite" href="/admin">
+								Startseite
+							</ribbonButton>
+						</ribbonGroup>
+						
+						<ribbonGroup>
+							<ribbonButton icon="icon_termine" href="/admin/termine">
+								Termine
+							</ribbonButton>
+							
+							<ribbonButton icon="icon_seminare" href="/admin/seminare">
+								Seminare
+							</ribbonButton>
+							<ribbonButton icon="icon_kontakte" href="/admin/kontakte">
+								Kunden
+							</ribbonButton>
+							<ribbonButton icon="icon_buchungen" href="/admin/buchungen">
+								Buchungen
+							</ribbonButton>
+							<ribbonButton icon="icon_buchungen" href="/admin/neuigkeiten">
+								Neuigkeiten
+							</ribbonButton>
+							<ribbonButton icon="icon_akquise" href="/admin/umkreissuche">
+								Umkreissuche
+							</ribbonButton>
+						</ribbonGroup>
+						
+						<ribbonGroup>
+							<ribbonButton icon="icon_akquise" href="/admin/referenten">
+								Referenten
+							</ribbonButton>
+							<ribbonButton icon="icon_standorte" href="/admin/standorte">
+								Standorte
+							</ribbonButton>
+							<ribbonButton icon="icon_hotels" href="/admin/hotels">
+								Hotels
+							</ribbonButton>
+						</ribbonGroup>
+						<ribbonGroup>
+							<ribbonButton icon="icon_rechnungen" href="/admin/rechnungen">
+								Rechnungen
+							</ribbonButton>
+						</ribbonGroup>
+					</ribbonTab>
+					<ribbonTab id="planungTab">
+						<ribbonGroup>
+							<ribbonButton icon="icon_planung" href="/admin/planung"> 
+								Kalender
+							</ribbonButton>
+							<ribbonButton icon="icon_user" href="/admin/todo">
+								Aufgaben
+							</ribbonButton>
+							
+						</ribbonGroup>
+					</ribbonTab>
+					<ribbonTab id="administrationTab">
+						<ribbonGroup>
+							<ribbonButton icon="icon_db" href="/admin/db"> 
+								Wartung
+							</ribbonButton>
+							<ribbonButton icon="icon_user" href="/admin/user"> 
+								Benutzer
+							</ribbonButton>
+						</ribbonGroup>
+						<ribbonGroup>
+							<ribbonButton icon="icon_db" href="/admin/db/export"> 
+								Export
+							</ribbonButton>
+							
+							<ribbonButton icon="icon_db" href="/admin/db/import">
+								Import
+							</ribbonButton>
+						</ribbonGroup>
+						<ribbonGroup>
+							<ribbonButton icon="icon_user" href="/admin/dokumente">
+								Vorlagen
+							</ribbonButton>
+						</ribbonGroup>
+					</ribbonTab>
+					
+					<ribbonTab id="statistikTab">
+						<ribbonGroup>
+							<ribbonButton icon="icon_stats" href="/admin/stats/web">
+								Web-Zugriffe
+							</ribbonButton>
+						</ribbonGroup>
+						<ribbonGroup>
+							<ribbonButton icon="icon_stats" href="/admin/stats/sag">
+								SAG Statistiken
+							</ribbonButton>
+						</ribbonGroup>
+					</ribbonTab>
+					
+					<ribbonTab id="sucheTab">
+						<ribbonGroup>
+							<ribbonButton icon="icon_widget_b_search" href="/admin/kontakte">
+								Suche
+							</ribbonButton>
+							<ribbon:searchbox label="Person:" href="/admin/personen/"/><br/>
+							<ribbon:searchbox label="Termin:" href="/admin/termine/"/>
+							
+
+						</ribbonGroup>
+						
+						<ribbonGroup>
+							<ribbonButton icon="icon_kontakte" href="/admin/termine">
+								Kontakte
+							</ribbonButton>
+							<ribbon:searchboxkontakt label="Kontakt:" href="/admin/akquise/"/>
+						</ribbonGroup>
+						
+					</ribbonTab>
+
+					<ribbonTab id="erweiterteSucheTab">
+						<ribbonGroup style="width: 90px; height: 67px;" >
+
+							<select style="width: 85px;" onchange="$('.advSearch').hide();   $( '#' + $(this).val() ).show();">
+								<option value="asViewPerson" >
+									Personen
+								</option>
+								<option value="asViewKontakt" >
+									Kunden
+								</option>
+								<option value="asViewAkquise">
+									Akquise Kontakte
+								</option >
+								<option value="asViewAkquiseKontaktR">
+									Akquise Kontakte & Kunden
+								</option>
+								<option value="asViewSeminarPreis">
+									Termine
+								</option>
+								<option value="asViewBuchungPreis">
+									Buchungen
+								</option>
+								
+							</select>
+						</ribbonGroup>
+
+						<ribbonGroup style="min-width: 75%; max-width: 75%;">
+								<widget:advancedSearch table="ViewPerson" formaction="/admin/personen/advancedSearch" label="Personen" />
+								<widget:advancedSearch table="ViewKontakt" formaction="/admin/akquise/advancedSearch?art=2" label="Kontakte" style="width: 100%; height: auto; position: relative; display: none;"/>
+								<widget:advancedSearch table="ViewAkquise" formaction="/admin/akquise/advancedSearch?art=1" label="AkquiseKontakte" style="width: 100%; height: auto; position: relative; display: none;"/>
+								<widget:advancedSearch table="ViewAkquiseKontaktR" formaction="/admin/akquise/advancedSearch?art=3" label="Akquise Kontakte & Kunden"  style="width: 100%; height: auto; position: relative; display: none;"/>
+								<widget:advancedSearch table="ViewSeminarPreis" formaction="/admin/termine/advancedSearch" label="Termine" style="width: 100%; height: auto; position: relative; display: none;" />
+								<widget:advancedSearch table="ViewBuchungPreis" formaction="/admin/buchungen/advancedSearch" label="Buchungen" style="width: 100%; height: auto; position: relative; display: none;" />
+						</ribbonGroup>
+
+					</ribbonTab>
+					
+					<ribbonTab id="entwicklerTab">
+						<ribbonGroup>
+							<ribbonButton icon="icon_db" href="/admin/dbsetup"> 
+								DBSetup
+							</ribbonButton>
+							<ribbonButton icon="icon_db" href="/admin/phpdoc_read">
+								Dokumentation
+							</ribbonButton>
+
+							<ribbonButton icon="icon_db" href="/admin/emaillog">
+								EMail log
+							</ribbonButton>
+							
+							<ribbonButton icon="icon_user" href="/admin/db/sql"> 
+								SQL Buddy
+							</ribbonButton>
+							<ribbonButton icon="icon_user" href="/admin/db/phpinfo">
+								PhpInfo
+							</ribbonButton>
+							<ribbonButton icon="icon_user" href="/admin/db/apcinfo">
+								ApcInfo
+							</ribbonButton>
+							
+							
+						</ribbonGroup>
+						<ribbonGroup>
+							<ribbonButton icon="icon_db" href="/admin/db/objectstore"> 
+								ObjectStore
+							</ribbonButton>
+
+							<ribbonButton icon="icon_db" href="/admin/db/labels">
+								Labels
+							</ribbonButton>
+						</ribbonGroup>
+					</ribbonTab>
+					
+					<ribbonTab id="hiddenTab">
+					</ribbonTab>
+				</ribbon>
+				<breadcrumbs/>
+				<userinfo/>			
+				<div style="z-index:9999; right: 10px; top: 10px; position: fixed;">
+				    <a href="javascript:window.open('/admin/\#/admin','_blank','status=0,toolbar=0,location=0,menubar=0,direcotries=0');" >+</a>
+				</div>
+			</div>
+			
+			<iframeContent >
+				<div id="imain" class="ui-corner-all"></div>
+			</iframeContent>
+			<savescreen />
+			<loadscreen message="Daten werden geladen..." />
+			<pageFooter/>
+		</div>
+		<sitescript loadnow="true" key="admin"/>
+		
+	<div id="sizeTester" style="position: absolute; width: auto; height: auto; display: none;">
+	</div>
+	<config:onDebug><div style="position:fixed;right:20px;bottom:20px;background-color:#dddddd;padding:20px;font-family:Verdana;font-size:20px !important;color:red;">
+			<div id="lastUpdate" style="position: fixed; right: 5px; top: 130px; width: 150px;">&nbsp;</div>
+
+<b style="font-size:20px;">Testumgebung</b></div></config:onDebug>
+	<preload:images />
+ <dialog type="closesite" title="Änderung speichern?">
+                    Wollen Sie die Änderungen speichern?
+            </dialog>
+	    <iframe style="width: 1px; height: 1px; position: fixed; bottom: 0px; left:0px;" name="download" id="_iframe"></iframe>
+	    <js:flexWheel />
+	</body>
+</html>

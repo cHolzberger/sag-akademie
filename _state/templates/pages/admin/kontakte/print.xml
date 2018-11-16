@@ -1,0 +1,199 @@
+﻿<content>
+<table border="0" cellspacing="0" cellpadding="5" style="font-family:Arial;font-size:10px !important;">
+<tr><td valign="top" width="50%">
+
+<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+<tr><td colspan="2" bgcolor="#eeeeee"><b>Unternehmen</b></td></tr>
+<tr>
+<td >
+Firma
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:firma" />
+</td>
+</tr>
+<tr>
+<td >
+Zusatz
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:zusatz" />
+</td>
+</tr>
+<tr>
+<td >
+Branche
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:branche"/>
+</td>
+</tr>
+<tr>
+<td >
+Niederlassung
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:hauptverwaltung" converter="jaNeinToStr"/>
+</td>
+</tr>
+<tr>
+<td >
+VDRK Mitglied
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:vdrk_mitglied" converter="jaNeinToStr"/>
+</td>
+</tr>
+<tr>
+<td >
+VDRK Mitglied Nr.
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:vdrk_mitglied_nr"/>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#eeeeee"><b>Sonstige Informationen</b></td></tr>
+<tr>
+<td >
+Alias
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:alias" />
+</td>
+</tr>
+<tr>
+<td >
+Kunden-Nr.
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:kundennr" />
+</td>
+</tr>
+<tr>
+<td >
+Kundenstatus
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:kundenstatus" />
+</td>
+</tr>
+<tr>
+<td >
+Kontakt-Quelle
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:kontaktQuelle" />
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#eeeeee"><b>Bankverbindung</b></td></tr>
+<tr>
+<td >
+Konto
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:kto" />
+</td>
+</tr>
+<tr>
+<td >
+BLZ
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:blz" />
+</td>
+</tr>
+<tr>
+<td >
+Bank
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:bank" />
+</td>
+</tr>
+</table>
+
+</td><td valign="top" width="50%">
+
+
+
+<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+<tr><td colspan="2" bgcolor="#eeeeee"><b>Adressinformationen</b></td></tr>
+<tr>
+<td >
+Straße, Nr
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:strasse" /> <mdb:value mpath="Kontakt:nr" />
+</td>
+</tr>
+<tr>
+<td >
+PLZ, Ort
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:plz" /> <mdb:value mpath="Kontakt:ort" />
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#eeeeee"><b>Kontaktinformationen</b></td></tr>
+<tr>
+<td >
+Telefon
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:tel" />
+</td>
+</tr>
+<tr>
+<td >
+Fax
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:fax" />
+</td>
+</tr>
+<tr>
+<td >
+Mobil
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:mobil"/>
+</td>
+</tr>
+<tr>
+<td >
+Email
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:email"/>
+</td>
+</tr>
+<tr>
+<td >
+Website
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:url"/>
+</td>
+</tr>
+<tr>
+<td >
+Newsletter
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:newsletter" converter="jaNeinToStr"/>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#eeeeee"><b>Notizen</b></td></tr>
+<tr>
+<td >
+Notiz
+</td>
+<td align="left">
+<mdb:value mpath="Kontakt:notiz" />
+</td>
+</tr>
+</table>
+
+</td></tr></table>	
+<script type="text/javascript">window.print();window.close();</script>
+</content>

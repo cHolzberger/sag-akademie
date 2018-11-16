@@ -1,0 +1,370 @@
+<set name="page_background" value="/img/blue_box_klein.jpg"/>
+<js:import src="/resources/scripts/forms/kunde_kontakt_edit.js"/>
+<infoboxSmall>
+	<img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167" style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons"/>
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/>
+	</map>
+	
+<switch key="Person:kontakt_id">
+<case value="1">
+<img src="/img/image_ihredaten.png" alt="" border="0" style="position: absolute; left:90px; top:45px;" />
+</case>
+<case value="*">
+<img src="/img/image_uebersicht.png" alt="" border="0" style="position: absolute; left:90px; top:45px;" />
+</case>
+</switch>
+	
+</infoboxSmall>
+
+<style>
+		.breadcrumb-container {
+			border:  1px solid black;
+			color: white;
+			margin-bottom: 20px;
+			float: left;
+		}
+
+		.breadcrumb-item {
+			float: left;
+			border-right: 1px solid black;
+			background-color: blue;
+			padding-left: 6px;
+			padding-right: 7px;
+			padding-top: 1px;
+			padding-bottom: 6px;
+			font-family: Arial,Helvetica,Sans;
+			font-size: 1.2em;
+			font-weight:bold;
+			cursor: pointer;
+		}
+
+		.breadcrumb-item-active {
+			background-color: white !important;
+			color: black !important;
+			font-weight: bold;
+		}
+
+		breadcrumb-item:hover {
+		font-decoration: underline;
+		}
+
+		.steps {
+			clear: both;
+		}
+
+		.step {
+			display: block;
+		}
+
+		.step input {
+			font-size: 1.2em;
+			width: 250px !important;
+			display: block;
+			float: left;
+		}
+
+		.step label {
+			font-size: 1.2em;
+			 width: 250px !important;
+			 float: left;
+		}
+
+		div.dbselect,
+		.dbinput {
+			clear: both;
+			padding-top: 10px;
+		}
+
+		.minput {
+			clear: both;
+		}
+
+		.first {
+			display: block;
+		}
+
+		.breadcrumb-navigation {
+			position: relative;
+			left:0px;
+			width:425px;
+			text-align:right;
+			padding-right:30;
+			padding-top:10px;
+		}
+		#zurueck {
+			position: absolute;
+			left: 0;
+		}
+
+		#weiter {
+			position: absolute;
+			right: 0;
+		}
+
+		#sendenButton {
+			position: absolute;
+			right: 0;
+			display: none;
+		}
+		
+		#privat {
+			width: 1px !important;
+		}
+		
+		#AGBakzeptiert {
+			width: 1px !important;
+		}
+
+		/* hack */
+		.step .minputRadio .text {
+			width: 30px !important;
+			float: left;
+		}
+
+		.step .minputRadio .label {
+			width: 40px !important;
+			float: left;
+		}
+
+		#control {
+			clear: both;
+		}
+
+		/* Strasse und Nr input felder auf die richtige groesse bringen */
+		.nrInput,
+		.strasseInput {
+
+			clear: none !important;
+		}
+
+		.strasseInput input{
+			width: 250px !important;
+		}
+		.nrInput input{
+			width: 40px !important;
+		}
+		
+		.plzInput,
+		.ortInput {
+			float: left;
+			clear: none !important;
+		}
+
+		.plzInput input{
+			width: 173px !important;
+		}
+		.ortInput input{
+			width: 173px !important;
+		}
+		.bundeslandLandInput select{
+			width: 244px !important;
+		}
+
+		#hiddenForm {
+		display: None;
+		}
+
+
+	</style>
+
+<content>
+	
+
+	
+	<div style="position: absolute; left:0px; top:0px;">
+		
+		<dbform class="no-reload form">
+			<div style="width:835px;position:relative;top:-20px;left:0px;text-align:right;">
+				<span id="speichern" style="display:none;">
+					<b>
+						Die Änderungen werden gespeichert
+					</b>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/img/loading.gif" border="0" style="position:absolute; top:-5px;left:305px;"/>
+				</span>
+				<mdb:link href="/kunde/startseite/" type="button" mpath="id">
+					Zurück zur Übersicht
+				</mdb:link>
+				<input type="submit" value="Änderungen speichern" onClick="$('#speichern').show();"/>
+			</div>
+			
+			
+			<div class="step">	
+			
+			<dbselect fromTable="ViewKontaktKategorieAnmeldung" label="Kategorie *" name="kontaktkategorie" fromTableDisplay="name" fromTableKey="id"/>
+					<mdb:input label="Name der Firma oder Kommune *" mpath="Kontakt:firma" value="" type="text" nospan="true" validate="required"/>
+
+			<dbselect name="kontaktkategorie" label="Kontaktkategorie" fromTable="KontaktKategorie" fromTableKey="id" fromTableDisplay="name"/>
+			<dbselect name="branche_id" label="Branche" fromTable="XBranche" fromTableKey="id" fromTableDisplay="name"/>
+			<dbselect name="taetigkeitsbereich_id" label="T&auml;tigkeitsbereich" fromTable="XTaetigkeitsbereich" fromTableKey="id" fromTableDisplay="name"/>
+							<mdb:input mpath="Kontakt:strasse" value="" label="Stra&szlig;e, Nr. *" type="text" nospan="true" validate="required"/>
+				
+<mdb:input mpath="Kontakt:plz" value="" label="PLZ *" type="text" nospan="true" validate="required digits"/>
+<mdb:input mpath="Kontakt:ort" value="" label="Ort *" type="text" nospan="true" validate="required"/>
+
+					<dbselect name="bundesland_id" label="Bundesland *" fromTable="XBundesland" fromTableKey="id" fromTableDisplay="name" class="bundeslandLandInput"/>
+					<dbselect name="land_id" label="Land *" fromTable="XLand" fromTableKey="id" fromTableDisplay="name" class="bundeslandLandInput"/>
+				
+				<mdb:input mpath="Kontakt:tel" value="" type="text" nospan="true" validate="required" label="Telefon (Zentrale) *" />
+				<mdb:input mpath="Kontakt:fax" value="" type="text" nospan="true" label="Fax (Zentrale)" />
+				<mdb:input mpath="Kontakt:email" value="" type="text" nospan="true" validate="required email" label="E-Mail (Zentrale) *" />
+				<div  class="dbinput ">
+					<label class="label">
+				Newsletter abonnieren *
+					</label>
+					<mdb:input mpath="Kontakt:newsletter" value="1" type="radio" label="ja" nospan="true" class="minputRadio" inputstyle="width:auto !important;"/>
+					<mdb:input mpath="Kontakt:newsletter" value="0" type="radio" label="nein" nospan="true" class="minputRadio" inputstyle="width:auto !important;"/>
+					
+				</div>
+			
+				<mdb:input mpath="Kontakt:url" value="" type="text" nospan="true" label="Webseite"/>
+				
+				
+				<br/>&nbsp;
+				<br/>
+					<div  class="dbinput ">
+					<label for="input_kontakt[vdrk_mitglied]" class="label">
+				DWA Mitglied
+					</label>
+					<mdb:input mpath="Kontakt:dwa_mitglied" value="1" type="radio" label="ja" nospan="true" id="dawYes"/>
+					<mdb:input mpath="Kontakt:dwa_mitglied" value="0" type="radio" label="nein" nospan="true" id="dawNo"/>
+					<div style="clear: both; height: 1px; ">&nbsp;</div>
+				</div>
+				<mdb:input mpath="Kontakt:dwa_mitglied_nr" value="" type="text" nospan="true"  label="DWA Mitglieds-Nummer" id="dawNr" class="re dawNr" />
+				
+				
+
+				<div  class="dbinput ">
+					<label for="input_kontakt[vdrk_mitglied]" class="label" >
+				RSV Mitglied
+					</label>
+					<mdb:input mpath="Kontakt:rsv_mitglied" value="1" type="radio" label="ja" nospan="true" id="rsvYes"/>
+					<mdb:input mpath="Kontakt:rsv_mitglied" value="0" type="radio" label="nein" nospan="true" id="rsvNo"/>
+					<div style="clear: both; height: 1px; ">&nbsp;</div>
+				</div>
+				<mdb:input mpath="Kontakt:rsv_mitglied_nr" value="" type="text" nospan="true"   label="RSV Mitglieds-Nummer" id="rsvNr" class="rsvNr"/>
+				
+				<div  class="dbinput ">
+					<label for="input_kontakt[vdrk_mitglied]" class="label">
+				VDRK Mitglied
+					</label>
+					<mdb:input mpath="Kontakt:vdrk_mitglied" value="1" type="radio" label="ja" nospan="true" id="vdrkYes"/>
+					<mdb:input mpath="Kontakt:vdrk_mitglied" value="0" type="radio" label="nein" nospan="true" id="vdrkNo"/>
+					<div style="clear: both; height: 1px; ">&nbsp;</div>
+				</div>
+				<mdb:input mpath="Kontakt:vdrk_mitglied_nr" value="" type="text" nospan="true"  label="VDRK Mitglieds-Nummer" id="vdrkNr" class="vdrkNr"/>
+				
+				
+				
+			
+			</div>
+			
+			<div style="width:835px;position:relative;top:30px;left:0px;text-align:right;">
+				<span id="speichern" style="display:none;">
+					<b>
+						Die Änderungen werden gespeichert
+					</b>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/img/loading.gif" border="0" style="position:absolute; top:-5px;left:305px;"/>
+				</span>
+				<mdb:link href="/kunde/startseite/" type="button" mpath="id">
+					Zurück zur Übersicht
+				</mdb:link>
+				<input type="submit" value="Änderungen speichern" onClick="$('#speichern').show();"/>
+			</div>
+	
+
+<!--	
+			<div style="width: 260px; float:left;">
+				<div style="position:relative;width:250px;" class="headerLabel">
+					<b>
+						Angaben zum Unternehmen
+					</b>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="firma" label="Firma *" validate="required"/>
+				</div>
+			<div style="position:relative;width:250px;" class="labelInput">
+				<dbinput name="hauptverwaltung" value="1" type="checkbox" label="Niederlassung"/>
+			</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="vdrk_mitglied" value="1" type="checkbox" label="VDRK Mitglied"/>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="vdrk_mitglied_nr" label="VDRK Mitglied-Nr."/>
+				</div>
+					<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="dwa_mitglied" value="1" type="checkbox" label="DWA Mitglied"/>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="dwa_mitglied_nr" label="DWA Mitglied-Nr."/>
+				</div>
+					<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="rsv_mitglied" value="1" type="checkbox" label="RSV Mitglied"/>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="rsv_mitglied_nr" label="RSV Mitglied-Nr."/>
+				</div>
+				
+				<br/>
+				
+			</div>
+			
+			
+			
+			<div style="width: 260px; float:left;margin-left:28px;">
+				
+				<div style="position:relative;width:250px;" class="headerLabel">
+					<b>
+						Adressinformationen
+					</b>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					Straße, Nr. *<mdb:input mpath="Kontakt:strasse" inputstyle="display: inline; width: 100px;position:absolute;right:35px;top:4px;" validate="required"/><mdb:input mpath="Kontakt:nr" inputstyle="display: inline; width: 18px;position:absolute;right:10px;top:4px;" validate="required"/>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="plz" label="PLZ *" converter="plz" validate="required digits"/>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="ort" label="Ort *" validate="required"/>
+				</div>
+			<div style="position:relative;width:250px;" class="labelInput">
+				<dbselect name="bundesland_id" label="Bundesland" fromTable="XBundesland" fromTableKey="id" fromTableDisplay="name" style="width:130px;"/>
+			</div>
+			<div style="position:relative;width:250px;" class="labelInput">
+				<dbselect name="land_id" label="Land" fromTable="XLand" fromTableKey="id" fromTableDisplay="name" style="width:130px;"/>
+			</div>		
+				
+			</div>
+			
+			<div style="width: 260px; float:left;margin-left:28px;">
+				
+				<div style="position:relative;width:250px;" class="headerLabel">
+					<b>
+						Kontaktinformationen
+					</b>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="tel" label="Telefon *" validate="required"/>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="fax" label="Fax"/>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="email" label="EMail *" validate="required email"/>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="newsletter" value="1" type="checkbox" label="Newsletter"/>
+				</div>
+				<div style="position:relative;width:250px;" class="labelInput">
+					<dbinput name="url" label="Website"/>
+				</div>
+			</div>
+			
+			-->
+			
+			
+		</dbform>
+		
+	</div>
+	<div id="validatorErrorMessages" style="display: none;"><ul></ul>&nbsp;</div>
+</content>

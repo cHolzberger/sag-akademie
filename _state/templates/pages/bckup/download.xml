@@ -1,0 +1,327 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+
+<img src="/img/image_download.png" alt="" border="0" width="211" height="128" style="position: absolute; left:90px; top:25px;"/>
+<img src="/img/direkt_buttons_download.png" alt="" border="0" width="361" height="122" style="position: absolute; left:555px; top:25px;" usemap="#download" /><map name="download"><area shape="RECT" coords="1,1,165,110" href="/pdf/schulungsprogramm_2009.pdf" target="_blank"/><area shape="RECT" coords="185,1,360,110" href="/pdf/agb.pdf" target="_blank"/></map>
+</infoboxSmall>
+
+<content>
+<img src="/img/title_download.png" alt="" border="0" width="185" height="22" style="position: absolute; left:0px; top:0px;"/>
+
+<div style="position: absolute; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+
+<table border="0" cellspacing="0" cellpadding="0" width="400" style="position: absolute; left:0px; top:0px;">
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_uvv.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_uvv.pdf" target="_blank" class="blau"><b>Kursinformation UVV</b></a><br/>
+Sicherheitsunterweisung für Arbeiten in und an umschlossenen
+Räumen von abwassertechnischen Anlagen gemäß Unfallverhütungsvorschriften
+(UVV) in Theorie und Praxis
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_uvv_eh.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_uvv_eh.pdf" target="_blank" class="blau"><b>Kursinformation UVV-EH</b></a><br/>
+Erste Hilfe-Kurs und UVV-Sicherheitsunterweisung in Theorie und Praxis
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_krg.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_krg.pdf" target="_blank" class="blau"><b>Kursinformation KR-G</b></a><br/>
+Kanalreinigung Grundkurs - Grundlagen der Kanalreinigung in Theorie und Praxis
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_krak1.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_krak1.pdf" target="_blank" class="blau"><b>Kursinformation KR-AK1</b></a><br/>
+Kanalreinigung Aufbaukurs - Geräte- und Fahrzeugtechnik
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_krak1.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_krak1.pdf" target="_blank" class="blau"><b>Kursinformation KR-AK2 -pdf?-</b></a><br/>
+Kanalreinigung Aufbaukurs - Sonderreinigung/ Reinigung von Grundstücksentwässerungsleitungen - Sachkundelehrgang
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_kig.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_kig.pdf" target="_blank" class="blau"><b>Kursinformation KI-G</b></a><br/>
+Kanalinspektion Grundkurs - Grundlagen der Kanalinspektion für Grundstücksentwässerung und öffentliche Kanalisation - Sachkundelehrgang
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_kiak1.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_kiak1.pdf" target="_blank" class="blau"><b>Kursinformation KI-AK1</b></a><br/>
+Kanalinspektion Aufbaukurs - Kanalinspektion als Sachverständigenleistung
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_kiak2.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_kiak2.pdf" target="_blank" class="blau"><b>Kursinformation KI-AK2</b></a><br/>
+Kanalinspektion Aufbaukurs - Inspektion zur Abnahme von Bauleistungen und sanierten Kanälen
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_kiak3.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_kiak3.pdf" target="_blank" class="blau"><b>Kursinformation KI-AK3</b></a><br/>
+Kanalinspektion Aufbaukurs - Aufbau und Anwendung des Kodiersystems DIN EN 13508-2/ DWA-M 149-2 in der Praxis - Sachkundelehrgang
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_kiak4.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_kiak4.pdf" target="_blank" class="blau"><b>Kursinformation KI-AK4</b></a><br/>
+Kanalinspektion Aufbaukurs - Kalkulation, Angebote, Ausschreibung
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_zfkd_ki.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_zfkd_ki.pdf" target="_blank" class="blau"><b>Kursinformation ZFKD-KI</b></a><br/>
+Zertifizierte Fachkraft für Kanaldienstleistungen Fachrichtung Kanalinspektion - Fachkundelehrgang zur Kanalinspektion von Kanälen, Leitungen und Schachtbauwerken
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_dig.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_dig.pdf" target="_blank" class="blau"><b>Kursinformation DI-G</b></a><br/>
+Grundkurs Dichtheitsprüfung - Grundlagen der Dichtheitsprüfung
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_diak.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_diak.pdf" target="_blank" class="blau"><b>Kursinformation DI-AK</b></a><br/>
+Aufbaukurs Dichtheitsprüfung - Dichtheitsprüfung zur Abnahme von Bauleistungen und sanierten Kanälen - Sachkundelehrgang
+</span>
+</td>
+</tr>
+
+
+
+
+</table>
+
+
+<table border="0" cellspacing="0" cellpadding="0" width="400" style="position: absolute; left:450px; top:0px;">
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_zfkd_di.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_zfkd_di.pdf" target="_blank" class="blau"><b>Kursinformation ZFKD-DI</b></a><br/>
+Zertifizierte Fachkraft für Kanaldienstleistungen Fachrichtung Dichtheitsprüfung - Fachkundelehrgang zur Dichtheitsprüfung von Schächten, Kanälen und Leitungen
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_klg.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_klg.pdf" target="_blank" class="blau"><b>Kursinformation KL-G</b></a><br/>
+Grundkurs Kurzlinersanierung - Grundlagen der Kurzlinersanierung
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_klak.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_klak.pdf" target="_blank" class="blau"><b>Kursinformation KL-AK</b></a><br/>
+Aufbaukurs Kurzlinersanierung - Vertiefung und Spezialanwendung der Kurzlinertechnik (u.a. Grundstücksentwässerung) - Sachkundelehrgang
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_slg.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_slg.pdf" target="_blank" class="blau"><b>Kursinformation SL-G</b></a><br/>
+Grundkurs Schlauchlinersanierung - Grundlagen der Kurzlinersanierung
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_slak.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_slak.pdf" target="_blank" class="blau"><b>Kursinformation SL-AK</b></a><br/>
+Aufbaukurs Schlauchlinersanierung - Vertiefung und Spezialanwendung der Kurzlinertechnik  (u.a. Grundstücksentwässerung) - Sachkundelehrgang
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_frt.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_frt.pdf" target="_blank" class="blau"><b>Kursinformation FRT</b></a><br/>
+Fräs- und Robotertechnik im Bereich Grundstücksentwässerung und öffentliche Kanalisation - Sachkundelehrgang
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_sbk.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_sbk.pdf" target="_blank" class="blau"><b>Kursinformation SBK</b></a><br/>
+Sanierung von begehbaren Kanälen, Schächten und Bauwerken - Sachkundelehrgang
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_sbk.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_sbk.pdf" target="_blank" class="blau"><b>Kursinformation ZFKD-KS -pdf?-</b></a><br/>
+Zertifizierte Fachkraft für Kanaldienstleistungen Fachrichtung Kanalsanierung - Fachkundelehrgang zur Kanalsanierung
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_atsk.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_atsk.pdf" target="_blank" class="blau"><b>Kursinformation AT-SK</b></a><br/>
+Betrieb und Wartung von Leichtflüssigkeits- und Fettabscheideranlagen - Sachkundelehrgang: Betrieb und Wartung von Leichtflüssigkeitsabscheideranlagen gemäß DIN 1999, Teil 100 und Fettabscheideranlagen nach DIN 4040, Teil 100
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_lafk.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_lafk.pdf" target="_blank" class="blau"><b>Kursinformation LA-FK</b></a><br/>
+Generalinspektion von Leichtflüssigkeitsabscheider - Fachkundelehrgang Leichtflüssigkeitsabscheideranlagen gemäß DIN EN 1999, Teil 100
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_fafk.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_fafk.pdf" target="_blank" class="blau"><b>Kursinformation FA-FK</b></a><br/>
+Generalinspektion von Fettabscheideranlagen - Fachkundelehrgang Fettabscheideranlagen gemäß DIN EN 1825 sowie DIN 4040, Teil 100
+</span>
+</td>
+</tr>
+
+<tr>
+<td valign="middle">
+<nobr/><a href="/pdf/seminar_info_ats.pdf" target="_blank"><img src="/img/pdf.png" alt="" border="0" width="53" height="53"/></a>&nbsp;&nbsp;
+</td>
+<td valign="top">
+<span style="font-size:11px;">
+<a href="/pdf/seminar_info_ats.pdf" target="_blank" class="blau"><b>Kursinformation AT-S</b></a><br/>
+Sanierung von Abscheideranlagen - Manuelle Sanierung von Abscheideranlagen- Sachkundelehrgang
+</span>
+</td>
+</tr>
+
+</table>
+
+</div>
+</content>

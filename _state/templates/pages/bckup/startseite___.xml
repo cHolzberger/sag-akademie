@@ -1,0 +1,30 @@
+
+
+<infobox>
+        <img src="/img/image_startseite.png" alt="" border="0" width="369" height="182" style="position: absolute; left:90px; top:25px;" />
+        <img src="/img/direkt_zu_seminaren.png" alt="" border="0" width="228" height="173" style="position: absolute; left:477px; top:42px;" usemap="#seminaredirekt" /><map name="seminaredirekt"><area shape="RECT" coords="40,80,210,130" href="/seminare/arbeitssicherheit" /></map>
+        <img src="/img/kontaktformular_hotline.png" alt="" border="0" width="215" height="178" style="position: absolute; left:731px; top:36px;" usemap="#formulare" /><map name="formulare"><area shape="RECT" coords="75,30,210,53" href="kontakt/kontaktformular" /><area shape="RECT" coords="75,140,210,170" href="kontakt/callbackformular" /></map>
+
+</infobox>
+
+<content>
+  <img src="img/title_willkommen.png" alt="" border="0" width="204" height="17" style="position: absolute; left:0px; top:0px;" />
+        <img src="img/title_news.png" alt="" border="0" width="51" height="16" style="position: absolute; left:650px; top:0px;" />
+        <div style="position: absolute; left:0px; top:35px; width:550px; font-family:Arial,Helvetica;font-size:11px;">Sehr geehrte Kunden, Kollegen und Besucher,<br>
+        wir freuen uns, Sie auf der Homepage der SAG-Akademie GmbH f&uuml;r berufliche Weiterbildung
+        begr&uuml;&szlig;en zu d&uuml;rfen!<br>&nbsp;<br>
+        Auf diesen Seiten m&ouml;chten wir Ihnen die Gelegenheit geben, sich &uuml;ber unsere Veranstaltungen
+        und Leistungen<br>
+        zu informieren und die SAG-Akademie GmbH n&auml;her kennen zu lernen.<br>&nbsp;<br>
+        Wir freuen uns auf Ihren Besuch in Darmstadt (Hessen) und L&uuml;nen (NRW).<br>&nbsp;<br>
+        <i>Ihr Team der SAG-Akademie</i></div>
+        <div style="position: absolute; left:650px; top:0px; width:180px; font-family:Arial,Helvetica;font-size:11px;font-color:#000000;">
+        <span style="font-weight:bold;">Event-Seminar 2009:</span><br>&nbsp;<br>
+        <span style="color:#0a079c;font-weight:bold;"><b>Arbeitssicherheitpaket in der <br>Steiermark in &Ouml;sterreich</span>
+        <span style="color:#000000;font-weight:normal;">
+        <br>&nbsp;<br>
+        UVV-Sicherheitsunterweisung,<br>
+        Erste Hilfe Kurs, Fahrsicherheits-<br>
+        training, Vollpension in Schlo&szlig; ...</span><br>&nbsp;<br>
+        <a href="#"><img src="img/weitere_informationen.png" alt="" border="0" width="133" height="36" style="position: absolute; left:48px;"></a>
+</content>

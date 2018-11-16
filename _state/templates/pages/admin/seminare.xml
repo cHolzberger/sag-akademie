@@ -1,0 +1,13 @@
+<content>
+	<set name="page_background" value="/img/admin/header_bg.jpg" />
+	<dbpager />
+	<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_seminare_neu" href="/admin/seminare/new">
+			Neues Seminar
+		</ribbonButton>
+	</ribbonDynamicGroup>
+
+<dbbuttons basehref="/admin/seminare/" buttons="edit" tooltipEdit="Bearbeiten" noheader="true"/>
+<widget:itable mpath="/seminar" />
+
+</content>

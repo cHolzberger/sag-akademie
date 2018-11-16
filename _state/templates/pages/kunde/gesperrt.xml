@@ -1,0 +1,33 @@
+﻿<infoboxSmall>
+<set name="page_background" value="/img/blue_box_klein.jpg"/>
+
+	<img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167" style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons"/>
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/>
+	</map>
+	
+	<img src="/img/image_kundenbereich.png" alt="" border="0" style="position: absolute; left:90px; top:45px;"/>
+	
+</infoboxSmall>
+
+<content>
+	
+	<img src="/img/title_login.png" alt="" border="0" style="position: absolute; left:0px; top:0px;"/>
+	<div style="padding-top: 25px;">
+	Ihr Konto wurde aus folgendem Grund gesperrt:<br/><br/>
+	<div style="border: 1px solid black; background-color: #efefef; min-height: 20px; padding: 10px;">
+	
+		<mdb:value mpath="Info" />
+	</div>
+	<br/>	
+	 Bitte setzen Sie sich mit uns in Verbindung.
+	 <p>
+	<a href="/kontakt/kontaktformular">Kontakt-Formular</a><br/>
+	Hotline: 06151 . 101 55-0
+	</p>
+	
+	</div> 
+	
+	 
+	
+</content>

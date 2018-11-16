@@ -1,0 +1,68 @@
+<content width="98%;" top="30px" left="30px;" >
+
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+<dbpager />
+	<h1>Buchungen f&uuml;r&nbsp;<dbfield name="Seminar:SeminarArt:bezeichnung" label="Bezeichnung" />:</h1>
+	<div class="c33">
+		<div style="display:none;"><dbfield name="Seminar:id" label=""/><br/></div>
+		<div style="float: left; width: 90px;">Zeitraum:</div><dbfield name="Seminar:datum_begin"  converter="mysqlDateToLocal" />&nbsp;-&nbsp;<dbfield name="Seminar:datum_ende"  converter="mysqlDateToLocal" /><br/>
+		<div style="float: left; width: 90px;">Standort:</div><dbfield name="Seminar:Standort:name" label="Standort" /><br/>
+		<div style="float: left; width: 90px;">Preis:</div> <dbfield name="Seminar:SeminarArt:nettoep" converter="euroPreis" label="Preis" /> €<br/>
+	</div>
+	<div class="c33">
+			<div style="float: left; width: 90px;">Buchungen:</div><dbfield name="BuchungenGesamt" /><br/>
+			<div style="float: left; width: 90px;">Best&auml;tigt:</div><dbfield name="BuchungenBestaetigt" /><br/>
+	</div>
+	<div class="c33">
+	
+	<h1>Buchungen:</h1>
+	<mdb:quicklistContainer>
+				<foreach fromArray="Seminar:Buchungen" >
+					<mdb:quicklistItem
+					 mpathField1="datum"
+					 mpathField2="status"
+					 offsetField3="95"
+					 mpathField3="Person:name"
+					 mpathField4="Person:vorname"
+					 mpathField5="Person:Kontakt:firma"
+					 converterField1="mysqlDateToLocal"
+					 converterField2="statusToStr" >
+						<mdb:link href="/admin/buchungen/#DATA#?edit" mpath="id">
+							<img src="/img/admin/icon_quicklist_edit.png" border="0" alt="Buchung bearbeiten"/>
+						</mdb:link>
+					</mdb:quicklistItem>
+				</foreach>
+			</mdb:quicklistContainer>
+			<!--
+	<dbtable fromArray="Seminar:Buchungen" style="width:95%;height:80%;">
+	    <dbfield name="datum" converter="mysqlDatetimeToLocal" label="Buchungsdatum" />
+		<dbfield name="status" label="Status" converter="statusToStr"/>
+		<dbfield name="stornoStatus" label="Storno Status"/>
+		<dbfield name="storno_datum" converter="mysqlDateToLocal" label="Storno Datum" />
+		<dbfield name="Person:Kontakt:firma" label="Firma" />
+		<dbfield name="Person:Kontakt:vdrk_mitglied" label="VDRK Mitglied" />
+		<dbfield name="Person:Kontakt:vdrk_mitgliedNr" label="VDRK Mitglied Nr." />
+		<dbfield name="vdrk_referrer" label="VDRK Referrer" />	
+		<dbfield name="Person:name" label="Name"/>
+		<dbfield name="Person:vorname" label="Vorname"/>
+		<dbfield name="arbeitsagentur" label="Arbeitsagentur"/>
+		<dbfield name="zustaendige_arbeitsagentur" label="zust. Arbeitsagentur"/>
+		<dbfield name="bildungscheck" label="Bildungscheck"/>
+		<dbfield name="bildungscheck_ausstellung_ort" label="Ausstellungsort"/>
+		<dbfield name="bildungscheck_ausstellung_datum" label="Ausstellungsdatum"/>
+		<dbfield name="bildungscheck_ausstellung_bundesland" label="Ausstellungsbundesland"/>
+		<dbfield name="HotelBuchung:Hotel:name" label="Hotel"/>
+		<dbfield name="HotelBuchung:anreise_datum" label="Anreisedatum"/>
+		<dbfield name="HotelBuchung:uebernachtungen" label="Übernachtungen"/>
+		<dbfield name="rabatt" label="Rabatt"/>
+		<dbfield name="rechnungGestellt" converter="mysqlDateToLocal" label="Rechnung gestellt" />
+		<dbfield name="bezahlt" converter="mysqlDateToLocal" label="Bezahlt" />
+		<dbfield name="bemerkung" label="Notiz Kunde"/>
+		<dbfield name="notiz" label="Notiz SAG"/>
+		<dbfield name="uuid" label="Best. Code"/>
+		<dbbuttons basehref="/admin/buchungen/" buttons="edit" tooltipEdit="bearbeiten" label="Aktionen" noheader="true"/>
+	</dbtable>-->
+	
+	
+</content>

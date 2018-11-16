@@ -1,0 +1,28 @@
+<content>
+	<h1 style="position: fixed; top: 135px; z-index: 9999;">
+			Duplikate in den Buchungen finden (<mdb:value mpath="BuchungCurrent" /> von <mdb:value mpath="BuchungCount" />) <mdb:link href="#DATA#" mpath="nextLink">&Uuml;berspringen &gt;&gt;</mdb:link>  
+	</h1>
+	<br/>&nbsp;<br/>
+	
+	
+	<mform:form class="no-reload">
+		<foreach fromArray="BuchungDuplikate">
+			<div style="width: 95%; height: 140px;" />
+			<h2><dbfield name="Seminar:kursnr" label="KursNr"/></h2>
+		
+					<foreach fromArray="duplicates">
+						<merger/>
+					</foreach>
+
+		</foreach><br/>&nbsp;
+		<ribbon:dynamicGroupRight forId="administrationTab">
+			<ribbonButton icon="icon_reset" href="javascript:$.mosaikRuntime.resetForm();">
+				Reset
+			</ribbonButton>
+			
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+	</mfrom:form>
+</content>

@@ -1,0 +1,5 @@
+<engine>
+	<breadcrumbs id="newBreadcrumbs" style="visibility: hidden;"/>
+	<container datasource="content"/>
+	<sitescript loadnow="true" key="admin_iframe" inline="true" />
+</engine>

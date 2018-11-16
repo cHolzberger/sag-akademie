@@ -1,0 +1,187 @@
+﻿<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+	 <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167"
+                style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+
+	<img src="/img/image_schulungszentrum.png" alt="" border="0" width="590"
+		height="131" style="position: absolute; left:90px; top:25px;" />
+
+</infoboxSmall>
+
+<content>
+
+	<img src="/img/title_anschrift.png" alt="" border="0" width="204"
+		height="17" style="position: absolute; left:0px; top:0px;" />
+
+	<div
+		style="position: relative; left:0px; top:35px; font-family:Arial,Helvetica;font-size:11px;width:850px;">
+
+		<table border="0" cellspacing="0" cellpadding="0" width="880" style="position: relative; left:0px; top:0px;">
+			<tr>
+				<td valign="top" width="240" style="width:240px;">
+					<span style="font-size:14px;">
+						<b>Darmstadt</b>
+					</span>
+					<br />&nbsp;<br>
+					<span style="font-size:11px;">
+						(Schulungszentrum und Verwaltung)
+						<br /><br />
+&nbsp;
+						<br>
+							SAG-Akademie GmbH
+							<br />
+							<i>für berufliche Weiterbildung</i>
+							<br />
+							Otto-Hesse-Str. 19/T9
+							<br />
+							64293 Darmstadt
+							<br />
+&nbsp;
+							<br />
+							Telefon: +49 [0] 61 51.101 55-0
+							<br />
+							Fax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+49
+							[0] 61 51.101 55-155
+							<br />
+&nbsp;
+							<br />
+							<a href="/pdf/anfahrt_darmstadt.pdf" target="_blank">
+								<img src="/img/button_anfahrtsbeschreibung.png" alt=""
+									border="0" width="191" height="53">
+							</a>
+					</span>
+					
+					<br/>
+
+
+					
+					
+				</td>
+				<td valign="top" width="240">
+					<span style="font-size:14px;">
+						<b>Lünen</b>
+					</span>
+					<br />&nbsp;<br>
+					<span style="font-size:11px;">
+						(Schulungszentrum im LÜNTEC)
+						<br /><br />
+&nbsp;
+						<br>
+							SAG-Akademie GmbH
+							<br />
+							<i>für berufliche Weiterbildung</i>
+							<br />
+							Am Brambusch 24
+							<br />
+							44536 Lünen
+							<br />
+&nbsp;
+							<br />
+							Telefon: +49 [0] 2 31.225 11 11
+							<br />
+							Fax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+49
+							[0] 2 31.225 11 25
+							<br />
+&nbsp;
+							<br />
+							<a href="/pdf/anfahrt_luenen.pdf" target="_blank">
+								<img src="/img/button_anfahrtsbeschreibung.png" alt=""
+									border="0" width="191" height="53">
+							</a>
+					</span>
+					
+					<br/><br/>
+
+
+
+				</td>
+				
+								<td valign="top" width="250">
+					<span style="font-size:14px;">
+						<b>Lauingen (Donau)</b>
+					</span>
+					<br />&nbsp;<br>
+					<span style="font-size:11px;">
+						(in der staatlichen<br>Berufsschule Lauingen)
+						<br />
+&nbsp;
+						<br>
+
+							Friedrich-Ebert-Straße 14
+							<br />
+							89415 Lauingen
+							<br />
+&nbsp;
+						
+					</span>
+					
+					<br/><br/>
+
+
+
+				</td>
+
+
+	<td valign="top" width="240">
+					<span style="font-size:14px;">
+						<b>Kiel</b>
+					</span>
+					<br />&nbsp;<br>
+					<span style="font-size:11px;">
+						(in den Räumen von IBAK)
+						<br /><br />
+&nbsp;
+						<br>
+							Wehdenweg 122
+							<br />
+							24123 Kiel
+							<br />
+&nbsp;
+							
+					</span>
+					
+							</td>				
+			
+			</tr>
+			
+			<tr>
+			
+			<td valign="top"><span style="font-size:11px;">&nbsp;<br>Nutzen Sie den folgenden Link<br>für eine Routenplanung:</span><br><br><!-- START klicktel.de Routenplaner-Code -->
+<a href="http://www.klicktel.de/routenplaner/#DCSext.rwfn=1&DCSext.rwcall=1&cclick=1&lng=8.6033339940217&lat=49.867278769578&s0=&s4=Otto-Hesse-Str.  %2064293 Darmstadt" target="_blank" style="text-decoration:none;border:none;padding:0;margin:0;float:none;">
+	<img src="http://mapwidget.klicktel.de/img/route_planen_button.gif" alt="Route planen" border="0" width="137" height="37" style="border:none;padding:0;margin:0;float:none;" />
+</a>
+
+<!-- ENDE klicktel.de Routenplaner-Code -->
+<br><br><span style="font-size:11px;">Das Ziel ist bereits vorausgewählt.</span>
+<br/>&nbsp;</td>
+			<td valign="top"><span style="font-size:11px;">&nbsp;<br>Nutzen Sie den folgenden Link<br>für eine Routenplanung:</span></span><br><br><!-- START klicktel.de Routenplaner-Code -->
+<a href="http://www.klicktel.de/routenplaner/#DCSext.rwfn=1&DCSext.rwcall=1&cclick=1&lng=7.4650121465093&lat=51.607046372849&s0=&s4=Pierbusch  %2044536 Lünen" target="_blank" style="text-decoration:none;border:none;padding:0;margin:0;float:none;">
+	<img src="http://mapwidget.klicktel.de/img/route_planen_button.gif" alt="Route planen" border="0" width="137" height="37" style="border:none;padding:0;margin:0;float:none;" />
+</a>
+
+<!-- ENDE klicktel.de Routenplaner-Code --><br><br><span style="font-size:11px;">Das Ziel ist bereits vorausgewählt.</span><br/>&nbsp;</td>
+			<td valign="top"><span style="font-size:11px;">&nbsp;<br>Nutzen Sie den folgenden Link<br>für eine Routenplanung:</span><br><br><!-- START klicktel.de Routenplaner-Code -->
+<a href="http://www.klicktel.de/routenplaner/#DCSext.rwfn=1&DCSext.rwcall=1&cclick=1&lng=10.420350614756&lat=48.561705462431&s0=&s4=Friedrich-Ebert-Str. 14 %2089415 Lauingen (Donau)" target="_blank" style="text-decoration:none;border:none;padding:0;margin:0;float:none;">
+	<img src="http://mapwidget.klicktel.de/img/route_planen_button.gif" alt="Route planen" border="0" width="137" height="37" style="border:none;padding:0;margin:0;float:none;" />
+</a>
+
+<!-- ENDE klicktel.de Routenplaner-Code --><br><br><span style="font-size:11px;">Das Ziel ist bereits vorausgewählt.</span><br/>&nbsp;</td>
+			<td valign="top"><span style="font-size:11px;">&nbsp;<br>Nutzen Sie den folgenden Link<br>für eine Routenplanung:</span><br><br><!-- START klicktel.de Routenplaner-Code -->
+<a href="http://www.klicktel.de/routenplaner/#DCSext.rwfn=1&DCSext.rwcall=1&cclick=1&lng=10.201885102295&lat=54.32030890634&s0=&s4=Wehdenweg 122 %2024148 Kiel" target="_blank" style="text-decoration:none;border:none;padding:0;margin:0;float:none;">
+	<img src="http://mapwidget.klicktel.de/img/route_planen_button.gif" alt="Route planen" border="0" width="137" height="37" style="border:none;padding:0;margin:0;float:none;" />
+</a>
+
+<!-- ENDE klicktel.de Routenplaner-Code --><br><br><span style="font-size:11px;">Das Ziel ist bereits vorausgewählt.</span><br/>&nbsp;</td>
+			
+			</tr>
+					
+			
+		</table>
+
+	</div>
+		<div style="clear: both;">
+		&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
+	</div>
+</content>

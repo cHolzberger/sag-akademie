@@ -1,0 +1,83 @@
+<set name="subject" value="Zertifikat wurde angefordert" />
+<!-- diese mail geht an SAG -->
+<content>
+ <div style="font-family:Arial,Helvetica; font-size:12px;">
+ Das folgende Zertifikat wurde soeben über den Kundenbereich erneut angefordert:
+		<br/>&nbsp;
+		<br/>		
+	<table border="1" cellspacing="0" cellpadding="3" style="border-style:solid;border-width:1px;border-color:#dddddd;font-family:Arial,Helvetica; font-size:11px;">
+	
+	              
+				
+		 <foreach fromArray="Buchungen">
+                  
+					
+                   <tr>
+                        <td>
+                            Teilnehmer
+                        </td>
+                        <td>
+                            <dbfield name="Person:name" notable="true"/>,&nbsp;<dbfield name="Person:vorname" notable="true"/>
+                        </td>
+                    </tr>
+                    
+                   
+                    
+                    <switch key="Person:teilnehmer">
+                        <case value="0">
+                            
+                        </case>
+                        <case value="*">
+                            
+                            <tr>
+                                <td>
+                                    Seminar
+                                </td>
+                                <td>
+                                    <dbfield name="Seminar:SeminarArt:bezeichnung" notable="1"/>
+                                </td>
+                            </tr>
+								 <tr>
+                                <td>
+                                    Kurs-Nr.
+                                </td>
+                                <td>
+                                    <dbfield name="Seminar:kursnr" notable="1"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Zeitraum
+                                </td>
+                                <td>
+                                    <dbfield name="Seminar:datum_begin" converter="mysqlDateToLocal" notable="1"/>-<dbfield name="Seminar:datum_ende" converter="mysqlDateToLocal" notable="1"/>
+                                </td>
+                            </tr>
+							<tr>
+                                <td>
+                                    Ort
+                                </td>
+                                <td>
+                                    <dbfield name="Seminar:Standort:Ort:ort" notable="1"/>
+                                </td>
+                            </tr>								
+													
+                                                  
+                      
+                            
+                            
+                        </case>
+                    </switch>
+                    
+                    <tr>
+                        <td colspan="2">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    
+                </foreach>
+				
+	</table>
+	
+	</div>
+</content>

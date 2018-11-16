@@ -1,0 +1,33 @@
+<content>
+	<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_kontakte_neu_kontakt" href="/admin/kontakte/new">
+			Neuer Kunde
+		</ribbonButton>
+
+		<ribbonButton icon="icon_kontakte_neu_person" href="/admin/personen/new?kontakt_id=#kontaktId#">
+			Neue Person
+		</ribbonButton>
+
+		<ribbonButton icon="icon_kontakte_neu_kontakt" href="/admin/akquise/new">
+			Neuer Akq. Kontakt
+		</ribbonButton>
+	</ribbonDynamicGroup>
+		<h1>Firmen und Personen</h1>
+	<div style="padding-top:15px;" class="c100">
+	
+	<widget:searchboxkontakt label="Firmensuche" icon="/img/admin/icon_widget_k_search.png" href="/admin/akquise/"/>
+	<widget:alphabetkontakt label="Firma" icon="/img/admin/icon_widget_kontakte.png" href="/admin/akquise/"/>
+	
+	
+	<widget:searchbox label="Personensuche" icon="/img/admin/icon_widget_p_search.png" href="/admin/personen/"/>
+	<widget:alphabet label="Person"  icon="/img/admin/icon_widget_personen.png" href="/admin/personen/" />
+	</div>
+
+	<!--
+	<div class="c66" style="padding-top:15px;">
+	    <widget:advancedSearch table="ViewPerson" formaction="/admin/personen/advancedSearch" label="Personen" />
+	    <widget:advancedSearch table="ViewKontakt" formaction="/admin/akquise/advancedSearch?art=2" label="Kunden" />
+	</div>
+	-->
+
+</content>

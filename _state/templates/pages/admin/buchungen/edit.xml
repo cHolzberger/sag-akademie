@@ -1,0 +1,205 @@
+<content>
+	<js:import src="/resources/scripts/forms/admin_umbuchen.js" />
+	
+
+	<dbform class="no-reload">
+		<h1>
+			Buchung:<mdb:value mpath="Buchung:Seminar:kursnr"/>(<mdb:value mpath="Buchung:Seminar:datum_begin" converter="mysqlDateToLocal"/>&nbsp;-&nbsp;<mdb:value mpath="Buchung:Seminar:datum_ende" converter="mysqlDateToLocal"/>)
+		</h1>
+		<js:replaceUrl mpath="Buchung:id" base="/admin/buchungen/" suffix="?edit"/>
+		<div class="c33">
+				<h2>
+					Informationen zur Buchung
+				</h2>
+				<dbinput label="Buchungsdatum" name="datum" converter="mysqlDatetimeToLocal" class="datepicker"/>
+				<!-- angelegt von -->
+				<mform:label label="Angelegt von:">
+				<switch key="Buchung:angelegt_user_id">
+					<case value="#empty">
+						System / Online - Buchung
+					</case>
+					<case value="*">
+						<mdb:value mpath="Buchung:AngelegtVon:name" />
+					</case>
+				</switch>
+			</mform:label><br/>
+			<!-- teilgenommen -->
+				<mdb:input mpath="buchung:teilgenommen" type="checkbox" value="1" label="Nicht Teilgenommen" />
+
+				<!-- vdrk mitglied -->
+				<dbinput name="vdrk_referrer" label="VDRK-Buchung"/>
+				
+				<mform:label label="Info-Mail">
+					<mdb:link mpath="Buchung:id" href="/admin/buchungen/#DATA#?sendInfo" value="Info-Mail an Ansprechpartner senden"/>
+				</mform:label>
+				<h2>
+					Rechnung
+				</h2>
+				<dbinput label="Rechnungsnummer" name="rechnungsnummer" />
+				<dbinput label="Rechnung gestellt am" name="rechnunggestellt" converter="mysqlDateToLocal" class="datepicker"/>
+				<!--<dbinput label="Rechnungsbetrag" name="rechnungsbetrag" converter="euroPreis"/>-->
+				<dbinput label="Gutschrift" name="gutschrift" converter="euroPreis"/>
+
+				<dbinput label="Rechnungsnummer 2" name="rechnungsnummer1" />
+
+				<dbinput label="Rechnungsnummer 3" name="rechnungsnummer2" />
+
+				<!--<dbinput label="Zahlungseingang" name="zahlungseingang_datum" converter="mysqlDateToLocal" class="datepicker"/>
+				<dbinput label="Zahlungbetrag" name="zahlungseingang_betrag" converter="euroPreis"/>-->
+				
+				<h2>
+					Informationen zur Hotelbuchung
+				</h2>
+				<mform:label label="Hotel buchen">
+					<select name="hotelbuchen" id="hotelbuchen">
+						<option value="0">Nein</option>
+						<option value="1">Ja</option>
+					</select>
+				</mform:label>
+				<!-- das hidden input wird zum speichern der daten genutzt -->
+				<js:conditionalbox mpath="HotelGebucht" watchId="hotelbuchen">
+
+					<mform:combobox target="input_HotelBuchung_hotel_id" displayTarget="input_HotelBuchung_Hotel_name" template="hotelTemplate" json="/admin/json/autocomplete/hotel;json" filter="Hotel">
+						<mdb:input mpath="HotelBuchung:Hotel:name" label="Hotel" />
+					
+						<div class="mCompleteElement" style="display: none;" id="hotelTemplate">
+						<span class="label" style="font-size: small; width: 250px !important;"><b>{name}</b><br/>{ort}</span>
+						<div style="clear: both; height: 1px; width: 1px;">&nbsp;</div>
+					</div>
+					</mform:combobox>	
+						<mdb:input mpath="HotelBuchung:hotel_id" type="hidden" />
+
+					<mdb:input mpath="HotelBuchung:anreise_datum" label="Anreisedatum" />
+					<mdb:input mpath="HotelBuchung:uebernachtungen" label="Anzahl Übernachtungen" />
+					<mdb:input mpath="HotelBuchung:zimmerpreis_ez" label="Zimmerpreis Ez." converter="euroPreis" />
+					<mdb:input mpath="HotelBuchung:zimmerpreis_dz" label="Zimmerpreis Dz." converter="euroPreis" />
+					<mdb:input mpath="HotelBuchung:fruehstuecks_preis" label="Frühstückspreis" converter="euroPreis" />
+					<mdb:input mpath="HotelBuchung:marge" label="Marge" converter="euroPreis" />
+					<mdb:input mpath="HotelBuchung:storno_datum" label="Storno Datum" converter="mysqlDateToLocal" class="datepicker"/>
+
+					<mdb:input mpath="HotelBuchung:id" type="hidden" />
+				</js:conditionalbox>
+			</div>
+			
+			<div class="c33">
+				<h2>
+					Preise
+				</h2>
+				<dbinput label="Kursgeb&uuml;hr" name="kursgebuehr" converter="euroPreis" />
+				<dbinput label="Unterlagen" name="kosten_unterlagen" converter="euroPreis" />
+				<dbinput label="Verpflegung" name="kosten_verpflegung" converter="euroPreis" />
+								
+
+				<h2>Rabatt</h2>
+					<dbinput label="Rabatt" name="rabatt"/>
+					<dbinput type="checkbox" value="1" name="fruehbucherrabatt" label="Fr&uuml;hbucherrabatt"/>
+				<h2>Förderung</h2>
+					
+				<dbinput type="checkbox" value="1" name="arbeitsagentur" label="Arbeitsagentur"/>
+				<dbinput label="zust. Arbeitsagentur" name="zustaendige_arbeitsagentur"/>
+				<dbinput label="Anteil Arbeitsagentur" name="arbeitsagenturanteil" converter="euroPreis"/>
+				<dbinput label="Anteil Versorgungsamt" name="versorgungsamtanteil" converter="euroPreis"/>
+				<dbinput label="Anteil VDRK" name="anteilvdrk" converter="euroPreis"/>
+				<dbinput type="checkbox" value="1" name="investitionsbank" label="Investitionsbank"/>
+				<dbinput type="checkbox" value="1" name="bildungscheck" label="ESF Förderung"/>
+				<dbinput label="Förderung Art" name="bildungscheck_ausstellung_art"/>
+				<dbinput label="Ausstellungsort" name="bildungscheck_ausstellung_ort"/>
+				<dbinput label="Ausstellungsdatum" name="bildungscheck_ausstellung_datum" converter="mysqlDateToLocal" class="datepicker"/>
+				
+				<h2>
+					Stornierung / Umbuchung
+				</h2>
+				<dbinput label="Storno Status" name="storno_status"/>
+				<dbinput label="Storniert am" name="storno_datum" converter="mysqlDateToLocal" class="datepicker" tooltip="Storno Datum eintragen oder über Kalender auswählen (dafür das Symbol rechts anklicken)"/>
+				<dbinput label="Umgebucht am" name="umbuchungs_datum" converter="mysqlDateToLocal" class="datepicker" tooltip="Umbuchungs_datum eintragen oder über Kalender auswählen (dafür das Symbol rechts anklicken)"/>
+				
+				<!--<dbinput label="Umgebucht auf" name="umgebucht_auf" converter="mysqlDateToLocal" class="datepicker" tooltip="Datum eintragen oder über Kalender auswählen (dafür das Symbol rechts anklicken)"/>-->
+			</div>
+		
+		<div class="c33">	
+			<h2>
+				Person:
+			</h2>
+			<mform:label label="Name:">
+				<mdb:value mpath="Buchung:Person:name"/>,<mdb:value mpath="Buchung:Person:vorname"/>
+			</mform:label>
+			<mform:label label="Firma:">
+				<mdb:value mpath="Buchung:Person:Kontakt:firma"/>
+			</mform:label>
+			<div class="cclear" style="text-align: right; height: 25px;">
+				<mdb:link mpath="Buchung:Person:id" href="/admin/personen/#DATA#?edit" value="Person aufrufen"/><br/>
+				<mdb:link mpath="Buchung:Person:Kontakt:id" href="/admin/kontakte/#DATA#?edit" value="Kontakt aufrufen"/>
+			</div>
+			<div class="cclear" style="text-align: right;">&nbsp;</div>
+			<h2>
+				Seminar
+			</h2>
+			
+			<mform:label label="Seminar:">
+				<mdb:value mpath="Buchung:Seminar:SeminarArt:id"/>
+			</mform:label>
+			<mform:label label="Kurs:">
+				<mdb:value mpath="Buchung:Seminar:kursnr"/>
+			</mform:label>
+			<mform:label label="Von:">
+				<mdb:value mpath="Buchung:Seminar:datum_begin" converter="mysqlDateToLocal"/>
+			</mform:label>
+			<mform:label label="Bis:">
+				<mdb:value mpath="Buchung:Seminar:datum_ende" converter="mysqlDateToLocal"/>
+			</mform:label>
+			<switch key="Buchung:umgebucht_id">
+				<case value="0">
+					<mform:label label="Umbuchen auf:">
+						<xdbselect id="seminarUmbuchenId" name="ignore" preselect="SeminarTerminID" fromArray="SeminarTermine" fromTableKey="id" fromTableDisplay="datum_begin,kursnr" fromTableDisplaySpacer="-"/>
+					</mform:label>
+					<mdb:textarea mpath="umbuchenHinweis"   label="Hinweis an den Kunden:" style="margin-bottom: 10px;  width: 200px; height: 100px;" />
+					
+
+					<mform:label label="Umbuchen:">
+						<button type="button" id="umbuchenButton" >Umbuchen</button>
+					</mform:label>
+					
+
+				</case>
+				<case value="*"><br/>
+					<mform:label label="Umgebucht:">
+						<mdb:link mpath="Buchung:umgebucht_id" href="/admin/buchungen/#DATA#?edit" value="Buchung aufrufen" />
+					</mform:label>
+				</case>
+			</switch>
+			<div class="cclear" style="text-align: right; height: 25px;">
+				<mdb:link mpath="Buchung:Seminar:SeminarArt:id" href="/admin/seminare/#DATA#?edit" value="Seminar aufrufen"/><br/>
+				<mdb:link mpath="Buchung:Seminar:id" href="/admin/termine/#DATA#?edit" value="Termin aufrufen"/>
+			</div>
+			<h2>
+				Weitere Informationen
+			</h2>
+                        <dbinput readonly="readonly" name="GeaendertVon:name" label="Geändert von"/>
+                        <dbinput readonly="readonly" name="geaendert" label="Geändert" converter="mysqlDateTimeToLocal" />
+			
+			<br/>
+			<mform:label label="Link ID:">
+				<mdb:link mpath="Buchung:uuid" href="/kunde/buchung/#DATA#" target="_blank"><mdb:value mpath="Buchung:uuid" /></mdb:link>
+			</mform:label>
+			<br/>
+			
+			
+			<dbtextarea label="Notiz" name="notiz" style="width: 200px; height: 100px;">
+			</dbtextarea>
+			<dbtextarea label="Bemerkung (des Kunden)" name="bemerkung" style="width: 200px; height: 100px;">
+			</dbtextarea>
+			<dbtextarea label="Informationen (f&uuml;r den Kunden)" name="info_kunde" style="width: 200px; height: 100px;">
+			</dbtextarea>
+		</div>
+		
+		<ribbon:dynamicGroupRight forId="verwaltungTab">
+		<ribbonButton icon="icon_print" href="javascript:$.mosaikRuntime.extPrint();">
+			Drucken
+		</ribbonButton>
+						
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+	</dbform>
+</content>

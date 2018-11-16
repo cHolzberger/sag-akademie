@@ -1,0 +1,70 @@
+<content width="98%;" top="30px" left="30px;" >
+	<dbbuttons buttons="edit, termin, delete" basehref="/admin/buchungen/" tooltipEdit="Buchung bearbeiten" tooltipTermin="Termin anzeigen" tooltipDelete="Buchung l&ouml;schen"/>
+	<dbpager/>
+        <h1>Buchung Suche nach: <mdb:value mpath="search" /></h1>
+<widget:itable mpath="/buchung" />
+<!--
+	<dbtable fromArray="Buchungen" style="width: 95%; height: 95%;">
+		<dbfield name="datum" label="Buchungsdatum" converter="mysqlDateTimeToLocal"  />
+		<dbfield name="status" label="Status" converter="statusToStr"/>
+		<dbfield name="Seminar:kursnr" label="Kurs Nr." />
+
+		<dbfield name="Person:Kontakt:firma" label="Firma" />
+		<dbfield name="Person:vorname" label="Vorname" />
+		<dbfield name="Person:name" label="Name" />
+
+		<dbfield name="Person:Kontakt:strasse" label="Straße" />
+		<dbfield name="Person:Kontakt:nr" label="Nr." />
+		<dbfield name="Person:Kontakt:plz" label="PLZ" />
+		<dbfield name="Person:Kontakt:ort" label="Ort" />
+		<dbfield name="Person:Kontakt:bundesland" label="Bundesland" />
+		<dbfield name="Person:Kontakt:land" label="Land" />
+		<dbfield name="Person:ansprechpartner" label="Ansprechpartner" />
+		<dbfield name="Person:grad" label="Grad" />
+		<dbfield name="Person:funktion" label="Funktion" />
+
+		<dbfield name="Person:strasse" label="Straße" />
+		<dbfield name="Person:nr" label="Nr." />
+		<dbfield name="Person:plz" label="PLZ" />
+		<dbfield name="Person:ort" label="Ort" />
+		<dbfield name="Person:tel" label="Telefon" />
+		<dbfield name="Person:fax" label="Fax" />
+		<dbfield name="Person:mobil" label="Mobil" />
+		<dbfield name="Person:email" label="Email privat" converter="autoLink" />
+		<dbfield name="Person:geburtstag" label="Geburtstag" converter="mysqlDateToLocal"/>
+		<dbfield name="bestaetigungsdatum" label="Bestätigungsdatum" converter="mysqlDateToLocal"/>
+		<dbfield name="storno_datum" converter="mysqlDateToLocal" label="Storno Datum" />
+		<dbfield name="umbuchungs_datum" converter="mysqlDateToLocal" label="Umbuchungsdatum" />
+		<dbfield name="Seminar:SeminarArt:id" label="Seminar" />
+		<dbfield name="Seminar:datum_begin" label="Beginn"  converter="mysqlDateToLocal"  />
+		<dbfield name="Seminar:datum_ende" label="Ende"  converter="mysqlDateToLocal"  />
+		<dbfield name="Person:Kontakt:vdrk_mitglied" label="VDRK Mitglied" />
+		<dbfield name="Person:Kontakt:vdrk_mitgliedNr" label="VDRK Mitglied Nr." />
+		<dbfield name="vdrk_referrer" label="Buchung über VDRK" />
+		<dbfield name="arbeitsagentur" label="Arbeitsagentur"/>
+		<dbfield name="zustaendige_arbeitsagentur" label="zust. Arbeitsagentur"/>
+		<dbfield name="bildungscheck" label="Bildungscheck"/>
+		<dbfield name="bildungscheck_ausstellung_ort" label="Ausstellungsort"/>
+		<dbfield name="bildungscheck_ausstellung_datum" label="Ausstellungsdatum"/>
+		<dbfield name="bildungscheck_ausstellung_bundesland" label="Ausstellungsbundesland"/>
+		<dbfield name="HotelBuchung:Hotel:name" label="Hotel"/>
+		<dbfield name="HotelBuchung:anreise_datum" label="Anreisedatum"/>
+		<dbfield name="HotelBuchung:uebernachtungen" label="Übernachtungen"/>
+		<dbfield name="rabatt" label="Rabatt"/>
+		<dbfield name="rechnungGestellt" converter="mysqlDateToLocal" label="Rechnung gestellt" />
+		<dbfield name="bezahlt" converter="mysqlDateToLocal" label="Bezahlt" />
+		<dbfield name="bemerkung" label="Notiz Kunde"/>
+		<dbfield name="notiz" label="Notiz SAG"/>
+		<dbfield name="uuid" label="Best. Code"/>
+	</dbtable>
+	-->
+	<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_seminare_neu" href="/admin/buchungen/new">
+			Neue Buchung
+		</ribbonButton>
+	</ribbonDynamicGroup>
+
+	<dialog type="confirmation" target=".dbbuttons .delete" title="Buchungen löschen?">
+		Wollen Sie die Buchung wirklich L&ouml;schen?
+	</dialog>
+</content>

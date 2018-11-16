@@ -1,0 +1,376 @@
+﻿
+<pdf:content>
+	<set name="margin-top" value="22" /> <!-- in mm -->
+	<set name="margin-bottom" value="15" /> <!-- in mm -->
+	<set name="landscape" value="true" />
+	<style>	
+		table {
+			width: 100%;
+			border-collapse:collapse;
+		}
+		
+		.headlineBlue b {
+			color:#ffffff;background-color:blue;
+		}
+		.headlineBlue {
+			color:#ffffff;
+			background-color:blue;
+			border-left:0.2mm solid windowtext;
+			border-right:0.2mm solid windowtext;
+			border-top:0.2mm solid windowtext;
+			border-bottom:medium none;
+		}
+		
+		.headlineGrey b {
+			color:#000000;background-color:silver
+		}
+		.headlineGrey {
+			color:#000000;background-color:silver;border-left:0.2mm solid windowtext;border-right:0.2mm solid windowtext;border-top:medium none;border-bottom:0.2mm solid windowtext;
+		}
+		
+		.teilnehmer td {
+			color:#000000;
+			font-size:10px;
+			font-family:Verdana;Arial;
+			border-width:0.2mm;
+			border-style:solid;
+			border-color:black;
+			border-collapse:collapse;
+			padding-left: 1mm;
+			padding-right: 1mm;
+		}
+		
+		.teilnehmer {
+			height: 8mm;
+		}
+		
+		.tnListe {
+			page-break-inside: avoid;
+		}
+	</style>
+	<pdf:header top="-2">
+	</pdf:header>
+	<div style="font-size: 18px;font-family:Verdana;Arial;">
+		<img src="/img/logo_ci.png" border="0" alt="SAG Schulungsakademie GmbH" align="right" style="width:40mm;height:13mm;"/>
+		<b>
+				Anwesenheitsliste
+		</b>
+	</div>
+<br/>	
+	<table border="0" cellspacing="0" cellpadding="0" class="tnListe">
+	<tr><td valign="top" style="font-family:Verdana;Arial;font-size:10px;color:gray;width:100px;"><b>Bezeichnung:</b></td>
+	<td valign="top" style="font-family:Verdana;Arial;font-size:10px;color:black;"><b><mdb:var mpath="SeminarArt:bezeichnung" /></b></td></tr>
+	<tr><td valign="top" style="font-family:Verdana;Arial;font-size:10px;color:gray;"><b>Kurs-Nr.:</b></td>
+	<td valign="top" style="font-family:Verdana;Arial;font-size:10px;color:black;"><b><mdb:var mpath="Seminar:kursnr" /></b></td></tr>
+	<tr><td valign="top" style="font-family:Verdana;Arial;font-size:10px;color:gray;"><b>Zeitraum:</b></td>
+	<td valign="top" style="font-family:Verdana;Arial;font-size:10px;color:black;"><b><mdb:var mpath="Seminar:datum_begin" converter="mysqlDateToLocal" /> - <mdb:var mpath="Seminar:datum_ende" converter="mysqlDateToLocal"/></b></td></tr>
+	<tr><td valign="top" style="font-family:Verdana;Arial;font-size:10px;color:gray;"><b>Ort:</b></td>
+	<td valign="top" style="font-family:Verdana;Arial;font-size:10px;color:black;"><b><mdb:var mpath="Standort:name" /></b></td></tr>
+	</table>	
+	<br/>
+	<div style="font-family:Verdana;Arial;font-size:9px;color:#999999;padding-right:10mm;">
+				<i>Wir dürfen Sie bitten, die korrekte Schreibweise zu überprüfen! Mit der Unterschrift willige ich ein, den SAG-Newsletter mit Informationen zu Seminaren zu erhalten. Dies kann jederzeit widerrufen werden. Des Weiteren wird das Einverständnis zur Weitergabe der Kontaktdaten an die Referenten erteilt. Pflichtangaben sind mit * markiert!<br/>
+Haftungsausschluss: wir weisen darauf hin, dass gemäß unserer Seminarbestätigung bei Lehrgängen mit praktischen Seminarteil (z.B. UVV, UVV-EH, KL-M-SK, SL-SK14) durch die Teilnehmer persönliche Schutzausrüstung (PSA) zu verwenden ist. Für Unfälle und Schäden aufgrund von Nichtbeachtung durch den Teilnehmer, gleich welcher Art und Weise, übernimmt die SAG-Akademie keine Haftung!
+
+		</i>
+	</div>
+	<br/>
+	<table border="0" cellspacing="0" cellpadding="2" width="99%" style="border-width:0.1mm;border-style:solid;border-color:black;font-size:9px;font-family:Verdana;Arial;">
+		<thead>
+		
+	</thead>
+	<tbody>
+	<tr >
+			<td class="headlineblue">
+				&nbsp;
+			</td>
+			<td colspan="3" class="headlineblue" align="center">
+				<b>Teilnehmer</b>
+			</td>
+			<td colspan="2" class="headlineblue" align="center">
+				<b>Kontakt Arbeitgeber</b>
+			</td>
+			<td colspan="6" class="headlinegrey" align="center">
+				<b>Kontakt privat (Bitte keine Arbeitgeber-Daten)</b>
+			</td>
+
+			<td class="headlineblue" align="center">
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td class="headlineBlue" align="right">
+				<b>lfd.<br/>
+				Nr.</b>
+			</td>
+			<td class="headlineBlue"> 
+				<b>Grad</b>
+			</td>
+			<td class="headlineBlue"> 
+				<b>Name*</b>
+			</td>
+			<td class="headlineBlue"> 
+				<b>Vorname*</b>
+			</td>
+			<td class="headlineBlue"> 
+				<b>Firma / Kommune*</b>
+			</td>
+			<td class="headlineBlue"> 
+				<b>Telefon*</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>Geb.-Datum*</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>Straße*</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>PLZ*</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>Wohnort*</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>Email</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>Telefon / Mobil</b>
+			</td>
+
+			<td class="headlineBlue"> 
+				<b>Unterschrift*</b>
+			</td>
+		</tr>
+	
+		<foreach fromArray="Teilnehmer0">
+				
+			<tr class="teilnehmer">
+				<td align="right">
+					<mdb:var mpath="count" converter="utf8Htmlentities"/>
+				</td>
+				<td >
+					<mdb:var mpath="grad" emptyValue=""/>
+				</td>
+				<td >
+					<mdb:var mpath="name" converter="utf8Htmlentities"/>
+				</td>
+				<td >
+					<mdb:var mpath="vorname" converter="utf8Htmlentities"/>
+				</td>
+			<!-- FIRMA -->
+				<td>
+					<mdb:var mpath="firma" converter="utf8Htmlspecialchars" />
+				</td>
+			<!-- TELEFON -->
+				<td>
+					<mdb:var mpath="telefon" converter="utf8Htmlspecialchars" />
+				</td>
+				<td>
+					<mdb:var mpath="geburtstag" converter="mysqlDateToLocal"/>
+				</td>
+				<td>
+					<mdb:var mpath="person_strasse" converter="utf8Htmlentities"/>
+				</td>
+				<td>
+					<switch key="person_plz" converter="utf8Htmlentities">
+						<case value="0">
+							&nbsp;
+						</case>
+						<case value="*">
+							<mdb:var mpath="person_plz" />
+						</case>
+					</switch>
+				</td>
+				<td>
+					<mdb:var mpath="person_ort" converter="utf8Htmlentities"/>
+				</td>
+				<td>
+					<mdb:var mpath="person_email"/>
+				</td>
+				<td>
+					<switch key="person_mobil">
+						<case value="">
+							<mdb:var mpath="person_telefon"/>
+						</case>
+						<case value="*">
+							<mdb:var mpath="person_mobil"/>
+						</case>
+					</switch>
+				</td>
+				<td style="border-width:0.2mm;border-style:solid;border-color:black;">
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+				</td>
+			</tr>
+
+		</foreach>
+	</tbody>
+	</table>
+	<switch key="Teilnehmer1">
+		<case value="#empty">
+		
+		</case>
+		<case value="*">
+		
+			<pagebreak/>
+		
+		
+			<table border="0" cellspacing="0" cellpadding="2" width="99%" style="border-width:0.2mm;border-style:solid;border-color:black;font-size:9px;font-family:Verdana;Arial;" class="tnListe">
+ 
+ 	<tr>
+			<td class="headlineblue">
+				&nbsp;
+			</td>
+			<td colspan="3" class="headlineblue" align="center">
+				<b>Teilnehmer</b>
+			</td>
+			<td colspan="2" class="headlineblue" align="center">
+				<b>Kontakt Arbeitgeber</b>
+			</td>
+			<td colspan="6" class="headlinegrey" align="center">
+				<b>Kontakt privat (Bitte keine Arbeitgeber-Daten)</b>
+			</td>
+
+			<td class="headlineblue" align="center">
+				&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td class="headlineBlue" align="right">
+				<b>lfd.<br/>
+				Nr.</b>
+			</td>
+			<td class="headlineBlue"> 
+				<b>Grad</b>
+			</td>
+			<td class="headlineBlue"> 
+				<b>Name*</b>
+			</td>
+			<td class="headlineBlue"> 
+				<b>Vorname*</b>
+			</td>
+			<td class="headlineBlue"> 
+				<b>Firma / Kommune*</b>
+			</td>
+			<td class="headlineBlue"> 
+				<b>Telefon*</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>Geb.-Datum*</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>Straße*</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>PLZ*</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>Wohnort*</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>Email</b>
+			</td>
+			<td class="headlineGrey"> 
+				<b>Telefon / Mobil</b>
+			</td>
+
+			<td class="headlineBlue"> 
+				<b>Unterschrift*</b>
+			</td>
+		</tr>
+
+				<foreach fromArray="Teilnehmer1">
+
+			<tr class="teilnehmer">
+				<td align="right">
+					<mdb:var mpath="count" converter="utf8Htmlentities" offset="13"/>
+				</td>
+				<td >
+					<mdb:var mpath="grad" emptyValue=""/>
+				</td>
+				<td >
+					<mdb:var mpath="name" converter="utf8Htmlentities"/>
+				</td>
+				<td >
+					<mdb:var mpath="vorname" converter="utf8Htmlentities"/>
+				</td>
+			<!-- FIRMA -->
+				<td>
+					<mdb:var mpath="firma" converter="utf8Htmlspecialchars" />
+				</td>
+			<!-- TELEFON -->
+				<td>
+					<mdb:var mpath="telefon" converter="utf8Htmlspecialchars" />
+				</td>
+				<td>
+					<mdb:var mpath="geburtstag" converter="mysqlDateToLocal"/>
+				</td>
+				<td>
+					<mdb:var mpath="person_strasse" converter="utf8Htmlentities"/>
+				</td>
+				<td>
+					<switch key="person_plz" converter="utf8Htmlentities">
+						<case value="0">
+							&nbsp;
+						</case>
+						<case value="*">
+							<mdb:var mpath="person_plz" />
+						</case>
+					</switch>
+				</td>
+				<td>
+					<mdb:var mpath="person_ort" converter="utf8Htmlentities"/>
+				</td>
+				<td>
+					<mdb:var mpath="person_email"/>
+				</td>
+				<td>
+					<switch key="person_mobil">
+						<case value="">
+							<mdb:var mpath="person_telefon"/>
+						</case>
+						<case value="*">
+							<mdb:var mpath="person_mobil"/>
+						</case>
+					</switch>
+				</td>
+				<td style="border-width:0.3mm;border-style:solid;border-color:black;">
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+				</td>
+			</tr>
+
+		<tr>
+				</foreach>
+			</table>
+
+		</case>
+	</switch>
+				
+		
+		
+		
+	<pdf:footer bottom="-5">
+		<div style="text-align:right;font-size:9px;font-family:Verdana;Arial;color:black;margin-top:10px;">
+			<mdb:var mpath="Heute"/> &nbsp;
+		</div>
+	</pdf:footer>
+</pdf:content>

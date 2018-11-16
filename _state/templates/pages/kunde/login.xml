@@ -1,0 +1,69 @@
+<set name="page_background" value="/img/blue_box_klein.jpg"/>
+<infoboxSmall>
+	<img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167" style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons"/>
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/>
+	</map>
+	
+	<img src="/img/image_kundenbereich.png" alt="" border="0" style="position: absolute; left:90px; top:45px;"/>
+	
+</infoboxSmall>
+
+<content>
+	
+	<js:import src="/resources/scripts/forms/kunde_login.js"/>
+
+	<div style="position: absolute; left:0px; top:0px; width:325px; font-family:Arial,Helvetica;font-size:11px;">
+			<sag:kundelogin />
+	<br/>
+	
+<div class="headerLabel" style="width:315px;">
+				<b>
+					Anmelden
+				</b>
+			</div>
+			
+			<div style="postion:relative;width:315px;height:35px;" class="labelInput">
+				Melden Sie sich hier an, wenn Sie noch keinen Zugang zum Kundenbereich der SAG-Akademie haben.
+			</div>
+				
+			<div style="postion:relative;width:315px;">
+			<form action="/kunde/neu" method="GET">
+				<input style="position:absolute;right:10px;margin-top:10px;" type="submit" value="Anmelden"/>
+				</form>
+			</div>
+
+	</div>
+	
+	
+		<div style="position: absolute; left:510px; top:0px; width:325px; font-family:Arial,Helvetica;font-size:11px;">
+		
+			<!-- pw vergessen form -->
+		<div class="headerLabel" style="width:315px;">
+	<b>
+					Passwort vergessen?
+	</b>
+    </div>
+		<div>
+		<form action="/kunde/pwvergessen" method="POST" id="pwvergessen">
+			<div style="position:relative;width:315px;" class="labelInput">
+			Wir senden Ihnen das Passwort per Email zu.<br/><br/>
+				<b>
+					Benutzername:
+				</b>
+				<input style="position:absolute;right:10px;" type="text" name="pw_username" id="pw_username"/>
+			</div><br/><br/>
+			
+		</form>
+
+		<input style="position:absolute;right:10px;margin-top:0px;" type="submit" value="Anfordern" id="pw_anfragen"/>
+
+		</div>
+		
+		
+			
+		</div>
+	</form>
+	
+	
+</content>

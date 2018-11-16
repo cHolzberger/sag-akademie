@@ -1,0 +1,14 @@
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+<content>
+<span class="headline" style="padding-left:0px;"><b>Kontakte per CSV importieren</b></span><br/>&nbsp;<br/>
+<dbform>
+	<text datasource="dbtable" name="text" />
+	
+	<div style="clear: left;">
+		<input type="submit" value="Speichern" style="clear: left;" />
+	</div>
+</dbform>
+
+
+</content>

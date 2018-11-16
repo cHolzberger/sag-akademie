@@ -1,0 +1,51 @@
+﻿<set name="page_background" value="img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+	 <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167"
+                style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+
+	<img src="/img/image_schulungszentrum.png" alt="" border="0" width="590"
+		height="131" style="position: absolute; left:90px; top:25px;" />
+
+</infoboxSmall>
+
+<content>
+
+		<img src="/img/anfahrt_link.png" alt="" border="0" width="262" height="117" style="position: absolute; left:600px; top:20px;" usemap="#vdrk_link"/><map name="vdrk_link"><area shape="RECT" coords="130,50,230,90" href="/kontakt/anfahrt" /></map>
+
+	<img src="/img/title_schulungszentrum.png" alt="" border="0" width="180"
+		height="22" style="position: absolute; left:0px; top:0px;" />
+
+	<div
+		style="position: relative; left:0px; top:35px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<table border="0" cellspacing="0" cellpadding="0" width="500" style="position: absolute; left:0px; top:0px;">
+			<tr>
+				<td valign="top" width="482">
+     <div id="ytapiplayer">
+   You need Flash player 8+ and JavaScript enabled to view this video.
+ </div>
+
+<script type="text/javascript">
+
+    var params = { allowScriptAccess: "sameDomain", allowFullScreen: "false" };
+    var atts = { id: "flashPlayer" };
+    swfobject.embedSWF("/flash/schulungszentrum.swf", 
+                       "ytapiplayer", "482", "300", "8", null, null, params, atts);
+
+</script>
+        
+				</td>
+				<td valign="top">
+				&nbsp;
+				</td>
+			</tr>
+			
+		</table>
+<br/>&nbsp;<br/>&nbsp;
+	</div>
+		<div style="clear: both;">
+		&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
+	</div>
+</content>

@@ -1,0 +1,10 @@
+<content>
+<dbpager />
+<ribbonDynamicRemove />
+<dbbuttons basehref="/admin/buchungen/" label="Aktionen" buttons="edit, delete" tooltipEdit="Buchung bearbeiten" tooltipDelete="Buchung stornieren" noheader="true"/>
+<widget:itable mpath="/rechnung" />
+
+</content>
+<dialog type="confirmation" target=".dbbuttons .delete" title="Buchung stornieren?">
+	Wollen Sie die Buchung wirklich stornieren?
+</dialog>

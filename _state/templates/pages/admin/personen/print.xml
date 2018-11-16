@@ -1,0 +1,149 @@
+﻿<content>
+<table border="0" cellspacing="0" cellpadding="5" style="font-family:Arial;font-size:10px !important;">
+<tr><td valign="top" width="50%">
+
+<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+<tr><td colspan="2" bgcolor="#eeeeee"><b>Person</b></td></tr>
+<tr>
+<td >
+Firma
+</td>
+<td align="left">
+<mdb:value mpath="Person:Kontakt:firma" />
+</td>
+</tr>
+<tr>
+<td >
+Grad
+</td>
+<td align="left">
+<mdb:value mpath="Person:grad" />
+</td>
+</tr>
+<tr>
+<td >
+Name, Vorname
+</td>
+<td align="left">
+<mdb:value mpath="Person:name" />, <mdb:value mpath="Person:vorname" />
+</td>
+</tr>
+<tr>
+<td >
+Funktion
+</td>
+<td align="left">
+<mdb:value mpath="Person:funktion" />
+</td>
+</tr>
+<tr>
+<td >
+Abteilung
+</td>
+<td align="left">
+<mdb:value mpath="Person:abteilung" />
+</td>
+</tr>
+<tr>
+<td >
+Geschäftsführer
+</td>
+<td align="left">
+<mdb:value mpath="Person:geschaeftsfuehrer" converter="jaNeinToStr"/>
+</td>
+</tr>
+<tr>
+<td >
+Ansprechpartner
+</td>
+<td align="left">
+<mdb:value mpath="Person:ansprechpartner" converter="jaNeinToStr"/>
+</td>
+</tr>
+<tr>
+<td >
+Geburtstag
+</td>
+<td align="left">
+<mdb:value mpath="Person:geburtstag"/>
+</td>
+</tr>
+</table>
+
+</td><td valign="top" width="50%">
+
+
+
+<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+<tr><td colspan="2" bgcolor="#eeeeee"><b>Adressinformationen</b></td></tr>
+<tr>
+<td >
+Straße, Nr
+</td>
+<td align="left">
+<mdb:value mpath="Person:strasse" />
+</td>
+</tr>
+<tr>
+<td >
+PLZ, Ort
+</td>
+<td align="left">
+<mdb:value mpath="Person:plz" /> <mdb:value mpath="Person:ort" />
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#eeeeee"><b>Kontaktinformationen</b></td></tr>
+<tr>
+<td >
+Telefon
+</td>
+<td align="left">
+<mdb:value mpath="Person:tel" />
+</td>
+</tr>
+<tr>
+<td >
+Fax
+</td>
+<td align="left">
+<mdb:value mpath="Person:fax" />
+</td>
+</tr>
+<tr>
+<td >
+Mobil
+</td>
+<td align="left">
+<mdb:value mpath="Person:mobil"/>
+</td>
+</tr>
+<tr>
+<td >
+Email
+</td>
+<td align="left">
+<mdb:value mpath="Person:email"/>
+</td>
+</tr>
+<tr>
+<td >
+Newsletter
+</td>
+<td align="left">
+<mdb:value mpath="Person:newsletter" converter="jaNeinToStr"/>
+</td>
+</tr>
+<tr><td colspan="2" bgcolor="#eeeeee"><b>Notizen</b></td></tr>
+<tr>
+<td >
+Notiz
+</td>
+<td align="left">
+<mdb:value mpath="Person:notiz" />
+</td>
+</tr>
+</table>
+
+</td></tr></table>	
+<script type="text/javascript">window.print();window.close();</script>
+</content>

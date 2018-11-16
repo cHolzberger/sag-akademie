@@ -1,0 +1,205 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<div class="noprint">
+	<infoboxSmall>
+		<img src="/img/image_seminare_overview.png" alt="" border="0" width="253" height="129" style="position: absolute; left:90px; top:25px;"/>
+		<img src="/img/nav_seminare_uebersicht.png" alt="" border="0" width="291" height="108" style="position: absolute; left:370px; top:32px;" usemap="#seminare_navigation" />
+		<map name="seminare_navigation">
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Kanalreinigung" COORDS="4,39, 101,51"/>
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Arbeitssicherheit" COORDS="5,28, 100,38"/>
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Kanalinspektion" COORDS="3,52, 102,62"/>
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Kanalbau" COORDS="4,61, 101,73"/>
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Sachkunde" COORDS="3,75, 104,85"/>
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Sonstiges" COORDS="5,87, 102,98"/>
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Dichtheitspr_ufung" COORDS="149,27, 285,39"/>
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Kanalsanierung" COORDS="149,41, 289,50"/>
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Abscheidetechnik" COORDS="150,52, 285,63"/>
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Grundst_ucksentw_asserung" COORDS="151,64, 287,74"/>
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Fachkunde" COORDS="150,75, 214,88"/>
+			<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/neue%20Seminare" COORDS="150,87, 230,98"/>
+		</map>
+		<img src="/img/direkt_buttons.png" border="0" width="189" height="125" style="position: absolute; left:755px; top:29px;" usemap="#direkt_buttons" />
+		<map name="direkt_buttons">
+			<area shape="RECT" coords="30,10,175,35" href="/kontakt/kontaktformular"/>
+			<area shape="RECT" coords="30,80,175,105" href="/kontakt/callbackformular"/>
+		</map>
+	</infoboxSmall>
+</div>
+<content>
+	<style type="text/css" media="print">
+.doprint {
+display:block !important;
+font-family:Arial, Helvetica;
+font-size:14px;
+}
+.doprint a{
+color: #000000;
+text-decoration: none;
+}
+div.doprinttext {
+width:450px;
+display:block !important;
+font-family:Arial, Helvetica;
+font-size:14px;
+}
+.doprinttext a{
+color: #000000;
+text-decoration: none;
+}
+.noprint {
+display:none;
+}
+</style>
+	<!--<image key="title" style="position: absolute; left:0px; top:0px;" />-->
+	<div style="text-align:right;padding-bottom:3px;width:840px;" class="noprint">
+		<a href="javascript:print();" class="schwarz">
+			<b>Seite drucken</b>
+		</a> &nbsp;I&nbsp; 
+		<a href="javascript:history.back();" class="schwarz">
+			<b>zurück zur Übersicht</b>
+		</a>
+	</div>
+	<div style="position: relative; width:950px; margin-top:0px;">
+		<div style="width: 500px; padding-left: 10px;" class="seminartext doprinttext">
+			<span style="color:#666666 !important;">
+				<b>
+					<mdb:value mpath="Rubrik:name" />&nbsp;&nbsp;
+					<span style="color:#000000;">&bull;</span>&nbsp;
+					<dbfield name="id" notable="1" />&nbsp;&nbsp;
+					<span style="color:#000000;">&bull;</span>&nbsp;
+					<dbfield name="bezeichnung" notable="1" />
+				</b>
+			</span>
+			<br/>
+			<b>
+				<span style="font-size:12px !important;">
+					<dbfield name="kurzbeschreibung" class="kurzbeschreibung" notable="1" />
+				</span>
+			</b>
+			<br />&nbsp;
+			<br />
+			<span style="color:#666666 !important;">
+				<b>Allgemeines</b>
+			</span>
+			<br/>
+			<img src="/img/trennerlinks.png" alt="" border="0" width="520" height="1" style="margin-bottom:4px;"/>
+			<br />
+			<dbfield name="seminar_hinweis" />
+			<br />
+			<span style="color:#666666 !important;">
+				<b>Zielgruppe</b>
+			</span>
+			<br/>
+			<img src="/img/trennerlinks.png" alt="" border="0" width="520" height="1" style="margin-bottom:4px;"/>
+			<br />
+			<dbfield name="zielgruppe" />
+			<br />
+			<span style="color:#666666 !important;">
+				<b>Teilnahme- und Zulassungsvoraussetzungen</b>
+			</span>
+			<br/>
+			<img src="/img/trennerlinks.png" alt="" border="0" width="520" height="1" style="margin-bottom:4px;"/>
+			<br />
+			<dbfield name="voraussetzungen" />
+			<br />
+			<span style="color:#666666 !important;">
+				<b>Seminarbeschreibung / Seminarinhalte</b>
+			</span>
+			<br/>
+			<img src="/img/trennerlinks.png" alt="" border="0" width="520" height="1" style="margin-bottom:4px;"/>
+			<br />
+			<dbfield name="langbeschreibung" />
+			<br />
+			<span style="color:#666666 !important;">
+				<b>Lehrgangszertifikate / Teilnahmebescheinigungen</b>
+			</span>
+			<br/>
+			<img src="/img/trennerlinks.png" alt="" border="0" width="520" height="1" style="margin-bottom:4px;"/>
+			<br />
+			<dbfield name="nachweise" />
+			<br />
+			<span style="color:#666666 !important;">
+				<b>Kooperationen</b>
+			</span>
+			<br/>
+			<img src="/img/trennerlinks.png" alt="" border="0" width="520" height="1" style="margin-bottom:4px;"/>
+			<br />
+			<foreach fromArray="Kooperationspartner">
+				<mdb:link href="#DATA#" mpath="link" urlencode="false" target="_blank">
+					<mdb:image mpath="logo" noImgLink="true" noPadding="true" />
+				</mdb:link>&nbsp;
+
+			</foreach>
+		</div>
+		<div style="position: absolute; top: 0px; left: 580px;" class="doprint">&nbsp;
+			<br />
+			<div style="padding:5px;">
+				<b>
+					<span style="color:#666666 !important;">Kosten:</span>
+				</b>&nbsp;
+				<dbfield name="preis" converter="euroPreis" notable="1" suffix="&nbsp;€&nbsp;zzgl. MwSt." />
+				<br/>
+				<b>
+					<span style="color:#666666 !important;">Dauer:</span>
+				</b>&nbsp;&nbsp;&nbsp;&nbsp;
+				<dbfield name="dauer" notable="true" />&nbsp;
+				<switch key="dauer">
+					<case value="1">Tag</case>
+					<case value="*">Tage</case>
+				</switch>
+				<br/>
+				<br/>
+				<div>
+				<mdb:link href="/pdf/top2;pdf/#DATA#" mpath="id" target="_blank">Seminar-Infos
+					<img src="https://www.sag-akademie.de/files/pdf_klein.png" border="0" alt="" style="position:relative; top:3px;"/>
+				</mdb:link>
+				</div>
+				<br/>
+				<br/>				
+				<b>
+					<span style="color:#666666 !important;">Termine und Buchung</span>
+				</b>
+				<br />
+				<span class="noprint">Klicken Sie auf einen Termin um diesen zu buchen
+					<br/>&nbsp;
+					<br />
+				</span>
+				<foreach fromArray="Seminare" basehref="/seminar/buchen/" linkId="id" onEmpty="Termine auf Anfrage">
+					<switch key="ausgebucht">
+						<case value="0">
+							<div style="float: left; width: 80px;">
+								<dbfield name="datum_begin" converter="mysqlDateToLocal"/>
+							</div>
+							<dbfield name="Standort:Ort:ort" />&nbsp;
+					(
+							<dbfield name="kursnr" />)
+					
+							<switch key="storno_datum">
+								<!--  if else abfrage -->
+								<case value="0000-00-00"></case>
+								<case value="*">
+							&nbsp;&nbsp;
+									<span style="color: red;">Abgesagt!</span>
+								</case>
+							</switch>
+							<br/>
+						</case>
+						<case value="*">
+							<div style="float: left; width: 80px;">
+								<dbfield name="datum_begin" converter="mysqlDateToLocal"/>&nbsp;&nbsp;&nbsp;
+					
+							</div>
+							<dbfield name="Standort:Ort:ort" />&nbsp;&nbsp;
+							<span style="color: red;">Ausgebucht!</span>
+							<br/>
+						</case>
+					</switch>
+				</foreach>
+			</div>
+			<br />
+			<div class="noprint">
+				<sag:tops></sag:tops>
+			</div>
+		</div>
+		<div style="clear: both;">&nbsp;</div>
+	</div>
+</content>

@@ -1,0 +1,5 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<content>
+  <text datasource="content" />
+</content>

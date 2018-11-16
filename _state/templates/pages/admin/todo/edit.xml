@@ -1,0 +1,38 @@
+<content>
+	<dbform>
+	<h1>Aufgabe:</h1>
+		<div class="c66">
+	    <h2>Betreff</h2>
+	    	<dbinput name="betreff" style="width: 97%; max-width: none;" inputStyle="width: 100%; max-width: 5000px;" labelStyle="height: 0px;" />
+	   		<h2>Notiz</h2>
+
+	    <dbtextarea name="notiz" style="width: 97%; height: 300px;"  labelStyle="height: 0px;">
+	    </dbtextarea>
+	</div>
+
+	<div class="c33">
+		<h2>Status</h2>
+			<dbselect name="status_id" label="Status" fromTable="XTodoStatus" fromTableKey="id" fromTableDisplay="name" />
+			<dbselect name="kategorie_id" label="Kategorie" fromTable="XTodoKategorie" fromTableKey="id" fromTableDisplay="name" />
+			<dbselect name="rubrik_id" label="Rubrik" fromTable="XTodoRubrik" fromTableKey="id" fromTableDisplay="name" />
+
+		<h2>Organisation</h2>
+				<dbselect name="person_id" label="Zugewiesen" fromTable="ViewXUser" fromTableKey="id" fromTableDisplay="name" />
+
+				<dbinput label="Erstellt von" name="ErstelltUser:name"  readonly="readonly"/>
+				<dbinput label="Erstellt am" name="erstellt" default="" converter="mysqlDatetimeToLocal" readonly="readonly"/>
+				<dbinput label="Erledigt am" name="erledigt" default="" converter="mysqlDateToLocal" readonly="readonly"/>
+	</div>
+		<ribbon:dynamicGroupRight forId="verwaltungTab">
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+		
+		<ribbon:dynamicGroupRight forId="verwaltungTab" offset="100px" class="ui-ribbon-group-reset">
+			<ribbonButton icon="icon_reset" href="javascript:$.mosaikRuntime.resetForm();">
+				Reset
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+	</dbform>
+</content>

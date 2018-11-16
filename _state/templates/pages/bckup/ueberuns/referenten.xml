@@ -1,0 +1,58 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+<img src="/img/hotline.png" alt="" border="0" width="239" height="161" style="position: absolute; left:705px; top:6px;" usemap="#formulare" /><map name="formulare"><area shape="RECT" coords="90,80,230,120" href="#" /></map>
+<img src="/img/image_referenten.png" alt="" border="0" width="514" height="135" style="position: absolute; left:120px; top:20px;"/>
+
+</infoboxSmall>
+
+<content>
+
+<img src="/img/title_referenten.png" alt="" border="0" width="180" height="22" style="position: absolute; left:0px; top:0px;"/>
+
+<div style="position: absolute; left:0px; top:35px; width:800px; font-family:Arial,Helvetica;font-size:11px;">
+
+<table border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td width="160">
+<img src="/img/referent_koch.jpg" alt="" border="0" width="107" height="127">
+</td>
+<td width="160">
+<img src="/img/referent_bezela.jpg" alt="" border="0" width="107" height="127">
+</td>
+<td width="160">
+<img src="/img/referent_guenzel.jpg" alt="" border="0" width="107" height="127">
+</td>
+<td width="160">
+<img src="/img/referent_keinfoto.jpg" alt="" border="0" width="107" height="127">
+</td>
+<td width="160">
+<img src="/img/referent_keinfoto.jpg" alt="" border="0" width="107" height="127">
+</td>
+</tr>
+<tr>
+<td valign="top">
+<b>Andreas Koch</b><br/>&nbsp;<br/>
+Geschäftsführer der SAG-Akademie GmbH
+</td>
+<td valign="top">
+<b>Dipl.-Ing. Werner Bezela</b><br/>&nbsp;<br/>
+Öffentlich bestellter und vereidigter Sachverständiger für Kanalnetzsanierung (IHK Nord Westfalen)
+</td>
+<td valign="top">
+<b>Dipl.-Ing. Wilfried Günzel</b><br/>&nbsp;<br/>
+Öffentlich bestellter und vereidigter Sachverständiger für Kanalinspektion und grabenlose Kanalsanierung (IHK Lippe zu Detmold)
+</td>
+<td valign="top">
+<b>Jörg Johannsen</b><br/>&nbsp;<br/>
+Fachkundiger für Leichtflüssigkeits- und Fettabscheider
+</td>
+<td valign="top">
+<b>Andreas Germann</b><br/>&nbsp;<br/>
+Geprüfter Umwelttechniker und Sachverständiger für Abscheidetechnik
+</td>
+</tr>
+</table>
+
+</div>
+</content>

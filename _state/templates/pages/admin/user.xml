@@ -1,0 +1,20 @@
+<content>
+
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+<dbpager />
+
+<ribbonDynamicGroup forId="administrationTab">
+		<ribbonButton icon="icon_user_neu" href="/admin/user/new">
+			Neuer User
+		</ribbonButton>			
+	</ribbonDynamicGroup>
+<dbbuttons basehref="/admin/user/" label="Aktionen" buttons="edit, delete" tooltipEdit="User bearbeiten" tooltipDelete="User löschen" noheader="true"/>		
+
+<widget:itable mpath="/user" />
+
+
+<dialog type="confirmation" target=".dbbuttons .delete" title="User löschen?"> 
+	Wollen Sie den Benutzer wirklich L&ouml;schen?
+</dialog>
+</content>

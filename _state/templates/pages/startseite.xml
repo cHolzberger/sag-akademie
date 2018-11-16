@@ -1,0 +1,188 @@
+﻿﻿
+<infobox>
+	<div>
+		<img src="/img/startimages1.jpg" style="position:absolute; left:94px; top:0px;" id="homeimage1"/>
+		<img src="/img/startimages2.jpg" style="position:absolute; left:94px; top:0px;" id="homeimage2"/>
+		<img src="/img/startimages3.jpg" style="position:absolute; left:94px; top:0px;" id="homeimage3"/>
+	</div>
+	
+	<img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167" usemap="#direkt_buttons2" style="position: absolute; left:750px; top:37px;"/>
+	<map name="direkt_buttons2">
+		<area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/>
+		<area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/>
+		<area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/>
+	</map>
+	
+
+	
+</infobox>
+
+<content>
+	<link rel="stylesheet" href="css/pages/startseite.css" />
+
+	<table border="0" cellspacing="0" cellpadding="0" width="830" style="width:830px;">
+		<tr>
+			<td valign="top" style="width:585px;">
+				<table border="0" cellspacing="0" cellpadding="0" width="585" style="width:585px;">				
+				<tr>
+						<td colspan="3" style="padding:4px;padding-left:8px;background:url('/img/newheadlinebg.jpg');border-style:solid;border-width:1px;border-color:darkgray;">
+							<span class="newheadline">
+								<b>Herzlich Willkommen</b>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" bgcolor="#f8f8f8" style="padding:8px;border-style:solid;border-width:1px;border-color:darkgray;border-top-style:none;">Sehr geehrte Kunden, Kollegen und Besucher,
+							<br/>
+							<br/>
+ 
+wir freuen uns, Sie auf der Homepage der SAG-Akademie GmbH für berufliche Weiterbildung
+begrüßen zu dürfen!
+							<br/>
+ 
+Mit unserem Internetauftritt möchten wir Ihnen einen Einblick in unsere Akademie und
+umfangreiche Informationen über unsere Lehrgänge bieten.
+							<br/>
+ 
+Wir freuen uns auf Ihren Besuch in den Schulungszentren Darmstadt und Lünen!
+							<br/>
+							<br/>
+ 
+							<i>Ihr Team der SAG-Akademie</i>
+							<br/>&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3">&nbsp;</td>
+					</tr>
+					<tr>
+						
+						<td style="padding:4px;padding-left:8px;background:url('/img/newheadlinebg.jpg');border-style:solid;border-width:1px;border-color:darkgray;">
+							<span class="newheadline">
+								<nobr><b>Nutzen Sie den Frühbucher-Rabatt</b></nobr>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						
+						
+					
+						<td valign="top" bgcolor="#f8f8f8" style="padding:8px;border-style:solid;border-width:1px;border-color:darkgray;border-top-style:none;">
+							<b>Bei Buchung unserer Seminare bis 12 Wochen vor Seminarbeginn erhalten Sie 5% Rabatt.</b>
+							<br/>
+							<br/>
+Bitte geben Sie bei der Buchung “Frühbucher-Rabatt” unter Bemerkungen ein.
+							<br/>&nbsp;
+						</td>
+					</tr>
+					<tr>
+						<td colspan="3" align="right" style="text-align:right !important;">
+
+<a href="http://www.facebook.com/pages/SAG-Akademie-GmbH-für-berufliche-Weiterbildung/201053613270364" target="_blank">
+								<img src="/img/facebook.jpg" alt="die SAG-Akademie bei Facebook" border="0"/>
+							</a>
+
+							<a href="/pdf/zertifikat_wb_hessen.pdf" target="_blank">
+								<img src="/img/wbhessen.jpg" alt="zertifizierte Weiterbildungseinrichtung Hessen" border="0"/>
+							</a>							
+							
+							<br/>
+
+							<!--
+							FIXME: Opt-In
+							<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FSAG-Akademie-GmbH-f%25C3%25BCr-berufliche-Weiterbildung%2F201053613270364&amp;width=585&amp;height=895&amp;show_faces=false&amp;colorscheme=light&amp;stream=true&amp;border_color&amp;header=false" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:585px; height:895px;" allowTransparency="true"/><br/><br/>-->
+
+							Presse-Mitteilungen der SAG-Akademie auch auf: <a href="http://www.presseecho.de" target="_blank">PresseEcho.de</a>
+						</td>
+					</tr>
+				</table>
+			</td>
+			<td valign="top">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			<td valign="top">
+				<table border="0" cellspacing="0" cellpadding="0" width="230" style="width:230px;">
+					<tr>
+						<td style="padding:4px;padding-left:8px;background:url('/img/newheadlinebg.jpg');border-style:solid;border-width:1px;border-color:darkgray;">
+							<span class="newheadline">
+								<b>Aktuelles</b>
+							</span>
+						</td>
+					</tr>
+					<tr>
+						<td bgcolor="#f8f8f8" style="padding:8px;border-style:solid;border-width:1px;border-color:darkgray;border-top-style:none;">
+							<!-- Neuigkeiten anzeigen -->
+						<foreach fromArray="Neuigkeiten">
+							<br/>
+							<i><mdb:value mpath="datum" converter="mysqlDateToLocal" />:</i><br/>
+							<b><mdb:value mpath="titel" /></b>
+							<br/>
+							<br/>
+							<mdb:value mpath="text" />
+								<br/>
+								
+								<switch key="pdf">	
+									<case value=""></case>
+									<case value="*">
+									<mdb:link  href="#DATA#" mpath="pdf" urlencode="false" target="_blank">
+										<img src="/img/weiter_lesen.jpg" border="0" alt="weiter lesen" align="right"/>
+									</mdb:link>
+									</case>
+								<br/>
+								<br/>
+								<hr/>
+							</foreach>
+						
+<!--
+						<br/>
+						<b>Sachkundelehrgang Dichtheitsprüfung gemäß § 61a LWG
+NRW - Überarbeitetes Seminarangebot der SAG-Akademie GmbH ab 2011</b>
+						<br/>
+						<br/>
+
+Ab Januar 2011 bietet die SAG-Akademie ein überarbeitetes Seminarkonzept für
+Sachkundelehrgänge zur Dichtheitsprüfung privater Abwasserleitungen gemäß
+§ 61a LWG NRW in Lünen an...
+						<br/>
+						<a href="/pdf/SAG_Pressemitteilung_61a.pdf" target="_blank">
+							<img src="/img/weiter_lesen.jpg" border="0" alt="weiter lesen" align="right"/>
+						</a>
+						<br/>
+						<br/>
+						<hr/>
+						<br/>
+
+						<b>Kodiersysteme zur Kanalinspektion - Die Europanorm und das „alte“ Kürzelsystem
+						</b>
+						<br/>
+						<br/>
+
+Ungeachtet der persönlichen Meinungen verschiedener Fachleute muss heute für die
+optische Inspektion das „neue“ Kodiersystem nach Europanorm...
+						<br/><br/>
+						<a href="/pdf/SAG_Pressemitteilung_Kodiersysteme.pdf" target="_blank">
+							<img src="/img/weiter_lesen.jpg" border="0" alt="weiter lesen" align="right"/>
+						</a>
+						<br/>
+						<br/>
+						<hr/>
+						<br/>
+						<b>Dienstleistungs-Management Grundstücksentwässerung
+(MA-GE) - Neues Seminar für Existenzgründer und Neueinsteiger im Bereich GE</b>
+					</a>
+					<br/>&nbsp;
+					<br/>Der Orientierungs- und Optimierungs-Lehrgang richtet sich an angehende Unternehmer
+(Existenzgründer) und Betriebe, die in den Dienstleistungsbereich
+Grundstücksentwässerung einsteigen...
+					<br/><br/>
+					<a href="/pdf/SAG_Pressemitteilung_MA-GE.pdf" target="_blank">
+						<img src="/img/weiter_lesen.jpg" border="0" alt="weiter lesen" align="right" />
+					</a>
+					<br/>&nbsp;
+						<br/>-->
+				</td>
+			</tr>
+		</table>
+	</td>
+</tr>
+</table>
+	
+</content>

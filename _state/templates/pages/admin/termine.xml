@@ -1,0 +1,33 @@
+﻿<content>
+	<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_termine_neu" href="/admin/termine/new">
+			Neuer Termin
+		</ribbonButton>
+	</ribbonDynamicGroup>
+	<h1>
+		Termine
+	</h1>
+	<div class="c66">
+		<foreach fromArray="SeminarArtRubrik">
+			<div style="width: 200px; height: 200px; overflow: auto; float: left; margin-right: 20px;">
+				<h2>
+					<mdb:link href="/admin/termine/?rubrik=#DATA#" mpath="id"><mdb:value mpath="name"/></mdb:link>
+				</h2>
+				
+				<foreach fromArray="SeminarArten">
+					<mdb:link href="/admin/termine/?seminarArt=#DATA#" mpath="id">
+						<mdb:value mpath="id"/>
+					</mdb:link><br/>
+				</foreach>
+			</div>
+		</foreach>
+	</div>
+	<div class="c33" style="padding-top: 20px;">
+		<widget:searchbox label="Suche nach Kurs-Nr." icon="/img/admin/icon_widget_t_search.png" href="/admin/termine/"/>
+	</div>
+	<div class="c33" style="padding-top: 20px;">
+		<widget:datesearchbox label="Suche nach Datum" icon="/img/admin/icon_widget_t_search.png" href="/admin/termine/"/><br/><br/><br/>
+		<widget:terminetage/>
+		
+	</div>
+</content>

@@ -1,0 +1,359 @@
+<content>
+	<ribbon:dynamicGroupRight forId="verwaltungTab">
+		<ribbonButton icon="icon_print" href="javascript:$.mosaikRuntime.print();">
+			Drucken
+		</ribbonButton>
+			
+	</ribbon:dynamicGroupRight>
+	
+	<h1>
+		Statistiken - <mdb:value mpath="Auswahljahr" />
+	</h1>
+
+		<div class="c33">
+			<h2>
+				Buchungen <mdb:value mpath="Auswahljahr" />
+			</h2>
+			
+			<table border="1" class="sag_stats">
+				<tr>
+					<th>
+					Monat
+					</th>
+					<th>
+					teilg.
+					</th>
+					<th>
+					n. teilg.
+					</th>
+					<th>
+					umgeb.
+					</th>
+					<th>
+					abgesagt
+					</th>
+					<th>
+					storn.
+					</th>
+					<th>
+					gesamt
+					</th>
+					
+				</tr>
+				<foreach fromArray="Buchungen">
+
+
+				<tr>
+					<td>
+					<mdb:value mpath="monat"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="bestaetigt"  default="-"/>
+					</td>					
+					<td>
+					<mdb:value mpath="teilgenommen"  default="-"/>
+					</td>
+					
+					<td>
+					<mdb:value mpath="umgebucht"  default="-"/>
+					</td>
+				
+					<td>
+					<mdb:value mpath="abgesagt"  default="-"/>
+					</td>
+						<td>
+					<mdb:value mpath="storno"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="gesamt"  default="-"/>
+					</td>
+				</tr>
+				</foreach>
+				<tr>
+					<td>
+					<mdb:value mpath="BuchungenJahr:jahr"  default="-"/> gesamt
+					</td>
+					<td>
+					<mdb:value mpath="BuchungenJahr:bestaetigt" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="BuchungenJahr:teilgenommen" default="-"/>
+					</td>
+					
+					<td>
+					<mdb:value mpath="BuchungenJahr:umgebucht" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="BuchungenJahr:abgesagt" default="-" />
+					</td>
+					<td>
+					<mdb:value mpath="BuchungenJahr:storno"  default="-" />
+					</td>
+					<td>
+					<mdb:value mpath="BuchungenJahr:gesamt"  default="-"/>
+					</td>
+				</tr>
+			</table>
+
+			<div class="legend" style="padding-top: 20px; font-size: 13px;">
+				<p>
+					<b >Tabelle: Buchungen</b>
+					<p style="padding-top: 10px;">
+					<b>Monat:</b><br/> Buchungen für Seminare dieses Monats.
+					</p>
+					<p>
+					<b>n. teig.:</b><br/>Anzahl der Buchungen der Teilnehmer, die nicht storniert und nicht am Seminar teilgenommen haben.
+					</p>
+					<p>
+					<b>teilg.:</b><br/> Anzahl der Buchungen der Teilnehmer, die am Seminar teilgenommen haben.</p>
+					<p>
+					<b>umgeb.:</b><br/> Anzahl der Umbuchungen.</p>
+
+					<p><b>abgesagt:</b><br/> Anzahl der Buchungen für Seminare, die durch die SAG-Akademie abgesagt wurden.</p>
+					<p><b>storn.:</b><br/>  Anzahl der stornierten Buchungen.</p>
+					<p><b>gesamt:</b><br/> Gesamtanzahl der Buchungen dieses Monats unabhängig vom Buchungsstatus.</p>
+				</p>
+				<p style="padding-top: 20px;">
+					<b>Tabelle: Anzahl Seminare pro Bereich</b>
+					<p style="padding-top: 10px;">Anzahl der Seminare eines Montas pro Fachbereich. (ohne durch die SAG-Akademie abgesagte Seminare)</p>
+				</p>
+				<p style="padding-top: 20px;">
+					<b>Tabelle: Anzahl Seminarebelegung pro Bereich</b>
+					<p style="padding-top: 10px;">Anzahl der Buchungen eines Montas pro Fachbereich. (ohne stornierte, umgebuchte Buchungen und Buchungen für durch die SAG-Akademie abgesagte Seminare)</p>
+				</p>
+			</div>
+
+		</div>
+		
+		<div class="c66">
+			<h2>
+				Anzahl Seminare pro Bereich <mdb:value mpath="Auswahljahr" />
+			</h2>
+			<table border="1" class="sag_stats">
+				<tr>
+					<th>
+					Monat
+					</th>
+					<th>
+					Abscheidetechnik
+					</th>
+					<th>
+					Arbeitssicherheit
+					</th>
+					<th>
+					Dichtheitsprüfung
+					</th>
+					<th>
+					Kanalinspektion
+					</th>
+					<th>
+					Kanalsanierung
+					</th>
+					<th>
+					Kanalreinigung
+					</th>
+					<th>
+					Verwaltung
+					</th>
+					<th>P&auml;dagogik</th>
+					<th>
+					Sonstige
+					</th>
+					<th>
+					alle
+					</th>
+				</tr>
+				<foreach fromArray="SeminareNachBereich">
+				<tr>
+					<td>
+					<mdb:value mpath="monat" />
+					</td>
+					<td>
+					<mdb:value mpath="Abscheidetechnik" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Arbeitssicherheit" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Dichtheitsprüfung"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Kanalinspektion"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Kanalsanierung"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Kanalreinigung" default="-" />
+					</td>
+					<td>
+					<mdb:value mpath="Verwaltung" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Pädagogik" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Sonstige"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="gesamt"  default="-"/>
+					</td>
+				</tr>
+				</foreach>
+				<tr>
+					<td>
+					<mdb:value mpath="Auswahljahr"  default="-" /> gesamt
+					</td>
+					<td>
+					<mdb:value mpath="SeminareNachBereichGesamt:Abscheidetechnik"  default="-" />
+					</td>
+					<td>
+					<mdb:value mpath="SeminareNachBereichGesamt:Arbeitssicherheit"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="SeminareNachBereichGesamt:Dichtheitsprüfung"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="SeminareNachBereichGesamt:Kanalinspektion"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="SeminareNachBereichGesamt:Kanalsanierung"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="SeminareNachBereichGesamt:Kanalreinigung"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="SeminareNachBereichGesamt:Verwaltung"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="SeminareNachBereichGesamt:Pädagogik"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="SeminareNachBereichGesamt:Sonstige"  default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="SeminareNachBereichGesamt:gesamt"  default="-"/>
+					</td>
+				</tr>
+				
+			</table>
+			
+			<div>
+			&nbsp;
+			</div>
+
+			<h2>
+				Seminarbelegung pro Bereich <mdb:value mpath="Auswahljahr" />
+			</h2>
+			<table border="1" class="sag_stats">
+				<tr>
+					<th>
+					Monat
+					</th>
+					<th>
+					Abscheidetechnik
+					</th>
+					<th>
+					Arbeitssicherheit
+					</th>
+					<th>
+					Dichtheitsprüfung
+					</th>
+					<th>
+					Kanalinspektion
+					</th>
+					<th>
+					Kanalsanierung
+					</th>
+					<th>
+					Kanalreinigung
+					</th>
+					<th>
+					Verwaltung
+					</th>
+					<th>P&auml;dagogik</th>
+					<th>
+					Sonstige
+					</th>
+					<th>
+					alle
+					</th>
+				</tr>
+				<foreach fromArray="Belegung">
+				<tr>
+					<td>
+					<mdb:value mpath="monat" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Abscheidetechnik" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Arbeitssicherheit" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Dichtheitsprüfung" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Kanalinspektion" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Kanalsanierung" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Kanalreinigung" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Verwaltung" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Pädagogik" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="Sonstige" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="gesamt" default="-"/>
+					</td>
+				</tr>
+				</foreach>
+				<tr>
+					<td>
+					<mdb:value mpath="Auswahljahr" default="-"/> gesamt
+					</td>
+					<td>
+					<mdb:value mpath="BelegungGesamt:Abscheidetechnik" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="BelegungGesamt:Arbeitssicherheit" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="BelegungGesamt:Dichtheitsprüfung" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="BelegungGesamt:Kanalinspektion" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="BelegungGesamt:Kanalsanierung" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="BelegungGesamt:Kanalreinigung" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="BelegungGesamt:Verwaltung" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="BelegungGesamt:Pädagogik" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="BelegungGesamt:Sonstige" default="-"/>
+					</td>
+					<td>
+					<mdb:value mpath="BelegungGesamt:gesamt" default="-"/>
+					</td>
+				</tr>
+
+			</table>
+			
+		</div>
+
+</content>

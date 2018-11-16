@@ -1,0 +1,128 @@
+<pdf:content>
+
+	<set name="margin-top" value="2" /> 
+	<set name="margin-bottom" value="10" />
+
+    <style type="text/css">
+        .rubrikName {
+            background-color:<mdb:var mpath="Farbe" />;
+            color:<mdb:var mpath="Textfarbe" />;
+        }
+    </style>
+<!-- header beginn -->
+<div style="position:absolute;top:5mm; float:none;">
+<img src="http://www.sag-akademie.de/files/top_header.jpg" border="0" alt="" style="width:168mm; height:27mm;"/>
+</div>
+<!-- header ende -->
+
+<!-- header beginn -->
+<div style="position:absolute;right:-20mm; top:5mm; padding:2mm;z-index:2;" class="rubrikName">
+<span style="font-size:10pt;"><b><mdb:var mpath="RubrikName" /></b></span>
+</div>
+<!-- header ende -->
+
+<!-- linke spalte beginn -->
+<div style="width:60mm; height:150mm; position:absolute;top:35mm;font-family:Verdana; font-size:7pt;">
+<div>
+	<img src="http://www.sag-akademie.de/files/top_zukunft.jpg" border="0" alt="" style="width:50mm; height:23mm;"/>
+	</div>
+<switch key="Seminar">
+    <case value="#empty">
+        Termine auf Anfrage
+    </case>
+    <case value="*">
+	<div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Termine</b>
+	</div>
+	<div style="padding:2mm;color:black;background-color:#e6e6e6;">
+	 <foreach fromArray="Seminar">
+                <mdb:var mpath="datum_begin" converter="mysqlDateToLocal" />&nbsp;in <mdb:var mpath="Standort:Ort:ort" /><br/>
+                
+            </foreach>
+	</div>     
+    </case>
+</switch>
+
+<div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Seminargebühr</b>
+</div>
+<div style="padding:2mm;color:black;background-color:#e6e6e6;">
+<mdb:var mpath="SeminarArt:kursgebuehr" />,00&nbsp;&euro; (zzgl. MwSt.)<br/><br/>
+<span style="font-size:7pt;">
+Incl. Hochwertige Seminarordner mit Inhaltsverzeichnis und Farbdrucken, Frühstück, Mittagessen und Snacks, Kalt- und Warmgetränke zu jeder Zeit, Schreibutensilien, Willkommensgeschenk
+</span>
+</div> 
+
+<div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Dauer</b>
+</div>
+<div style="padding:2mm;color:black;background-color:#e6e6e6;">
+<mdb:var mpath="SeminarArt:dauer" />&nbsp;Tage<br/>
+</div>   
+
+<div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Zielgruppe</b>
+</div>
+<div style="padding:2mm;color:black;background-color:#e6e6e6;">
+    <mdb:var mpath="SeminarArt:zielgruppe" />   
+
+</div> 
+
+<div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Teilnahmevoraussetzung</b>
+</div>
+<div style="padding:2mm;color:black;background-color:#e6e6e6;">
+	<mdb:var mpath="SeminarArt:voraussetzungen" />
+</div> 
+
+<div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Referenten</b>
+</div>
+<div style="padding:2mm;color:black;background-color:#e6e6e6;">
+	[welche Daten ziehen?]
+</div> 
+
+<div style="padding:2mm;color:yellow;background-color:#0b24fb;">
+	<b>Wir sind uns sicher...</b>
+</div>
+<div style="padding:2mm;color:black;background-color:#e6e6e6;">
+	Sollte dem Teilnehmer dieser Lehrgang nicht gefallen, zahlen wir die vollständigen Lehrgangsgebühren zurück!
+</div> 
+
+</div>
+<!-- linke spalte ende -->
+
+<!-- rechte spalte beginn -->
+<div style="width:120mm; height:150mm; position:absolute;top:35mm; left:70mm; font-family:Verdana; font-size:7pt;">
+
+<div style="padding:2mm;width:120mm; color:white;background-color:#0b24fb;">
+	<span style="font-size:12pt;"><b><mdb:var mpath="SeminarArt:bezeichnung" />&nbsp;(<mdb:var mpath="SeminarArt:id" />)</b></span>
+</div>
+
+
+ <div style="padding:2mm;width:120mm;">
+   <b>Kurzbeschreibung</b><br/><hr/>  
+    <mdb:var mpath="SeminarArt:kurzbeschreibung" /><br/> <br/> 	
+	<b>Seminarinhalte</b><br/><hr/>  
+    <mdb:var mpath="SeminarArt:langbeschreibung" /><br/> <br/> 
+	<b>Nachweise</b><br/><hr/>
+    <mdb:var mpath="SeminarArt:nachweise" /><br/> <br/>    
+		<b>Ihr Mehrwert</b><br/><hr/>
+    [welche Daten ziehen?]<br/> <br/> 
+			<b>Aufbauende Lehrgänge</b><br/><hr/>
+    [welche Daten ziehen?]<br/> <br/> 
+    </div>
+
+</div>
+<!-- rechte spalte ende -->
+
+
+
+
+<!-- footer beginn -->
+<div style="position:absolute;top:230mm;">
+<img src="https://www.sag-akademie.de/files/top_footer.jpg" border="0" alt="" style="width:190mm; height:64mm;"/>
+</div>
+<!-- footer ende -->
+
+</pdf:content>

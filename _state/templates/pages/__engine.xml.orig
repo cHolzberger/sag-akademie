@@ -1,0 +1,154 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="*" xml:lang="*">
+	<head>
+		<title>
+			SAG Schulungsakademie GmbH
+		</title>
+		<link rel="shortcut icon" href="/favicon.ico"/>
+		<link rel="icon" type="image/png" href="/favicon.png"/>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<meta name="DC.language" content="de" scheme="DCTERMS.RFC3066"/>
+		<meta name="DC.relation" content="http://dublincore.org/" scheme="DCTERMS.URI"/>
+		<meta name="DC.title" content="SAG Schulungsakademie GmbH"/>
+
+		<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/>
+		<link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+
+		<!--<link href="/css/site/generic.css" type="text/css" rel="stylesheet" media="all" />	-->
+
+		<!--[if lt IE 8]>
+		<style type="text/css">
+		img, div { behavior: url(/resources/scripts/iepngfix.htc) }
+		</style>
+		<![endif]-->
+
+
+	<sitecss src="/css/common.css" media="screen"/>
+
+
+	<sitecss src="/css/style.css"/>
+	<sitecss src="/css/table.css"/>
+	<sitecss src="/css/public.css"/>
+	<sitecss src="/css/kundenbereich.css"/>
+	<sitecss src="/css/slideshow.css"/>
+	<sitecss dir="/css/homepage/" media="screen"/>
+	<sitecss loadnow="true" key="public" />
+
+	<!-- externe js immer nach css laden -->
+
+	<google:script ui="false"/>
+	<sitescript src="/resources/scripts/jquery/jquery.metadata.js"/>
+	<sitescript src="/resources/scripts/jquery/jquery.validate.js"/>
+	<sitescript src="/resources/scripts/jquery/jquery.validate.de.js"/>
+	<sitescript src="/resources/scripts/jquery/jquery.aslideshow.js"/>
+	<sitescript src="/resources/scripts/jquery/jquery.cookie.js"/>
+	<sitescript src="/resources/scripts/jquery/jquery.timedredirect.js"/>
+
+	<sitescript src="/resources/scripts/jquery/jquery.form.js"/>
+
+	<sitescript src="/resources/scripts/site.js" type="text/javascript"/>
+	<sitescript src="/resources/scripts/public.js" type="text/javascript"/>
+	<!--<sitescript dir="/resources/scripts/sifr/sifr.css" type="text/javascript"/>-->
+
+
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000" scroll="auto" topmargin="0" marginheight="0" marginwidth="0" style="padding:0px; margin:0px; overflow-x: hidden;">
+
+	<div style="width: 100%; background-image: url(/img/nav_top.jpg); margin: 0px; padding:0px;">
+
+		<div style="top:0px; margin-left:auto; margin-right:auto; width:950px;" class="noprint">
+			<pageHeader />
+
+			<hmenu>
+				<menuItem href="/startseite" id="nav_startseite"/>
+				<menuItem href="#" id="nav_ueberuns"/>
+				<menuItem href="/seminar" id="nav_seminare"/>
+				<menuItem href="/schulungszentrum" id="nav_schulungszentrum"/>
+				<menuItem href="/download" id="nav_download"/>
+				<menuItem href="/stellenangebote" id="nav_stellenangebote"/>
+				<menuItem href="#" id="nav_kontakt"/>
+				<menuItem href="/impressum" id="nav_impressum"/>
+				<menuItem href="/sitemap" id="nav_sitemap"/>
+				<menuItem href="/kunde" id="nav_login"/>
+				<vmenu attach="nav_ueberuns">
+					<menuItem href="/ueberuns/philosphie" id="sub_nav_philosophie" hidden="true"/>
+					<menuItem href="/ueberuns/referenten" id="sub_nav_referenten" hidden="true"/>
+					<menuItem href="/ueberuns/partner" id="sub_nav_partner" hidden="true"/>
+				</vmenu>
+
+				<vmenu attach="nav_seminare">
+					<menuItem href="/seminar/allgemein" id="sub_nav_allgemein" hidden="true"/>
+					<menuItem href="/seminar/termin/Arbeitssicherheit" id="sub_nav_arbeitssicherheit" hidden="true"/>
+					<menuItem href="/seminar/termin/Kanalreinigung" id="sub_nav_kanalreinigung" hidden="true"/>
+					<menuItem href="/seminar/termin/Kanalinspektion" id="sub_nav_kanalinspektion" hidden="true"/>
+					<menuItem href="/seminar/termin/Dichtheitspr_ufung" id="sub_nav_dichtheit" hidden="true"/>
+					<menuItem href="/seminar/termin/Kanalbau" id="sub_nav_kanalbau" hidden="true"/>
+					<menuItem href="/seminar/termin/Kanalsanierung" id="sub_nav_kanalsanierung" hidden="true"/>
+					<menuItem href="/seminar/termin/Abscheidetechnik" id="sub_nav_abscheide" hidden="true"/>
+					<menuItem href="/seminar/termin/Sonstige" id="sub_nav_sonstiges" hidden="true"/>
+					<menuItem href="/seminar/termin/Grundst_ucksentw_asserung" id="sub_nav_gew" hidden="true"/>
+					<menuItem href="/seminar/termin/Sachkunde" id="sub_nav_sachkunde" hidden="true"/>
+					<menuItem href="/seminar/termin/Fachkunde" id="sub_nav_fachkunde" hidden="true"/>
+					<menuItem href="/seminar/termin/neue%20Seminare" id="sub_nav_neu" hidden="true"/>
+
+				</vmenu>
+
+				<vmenu attach="nav_kontakt">
+					<menuItem href="/kontakt/kontaktformular" id="sub_nav_kontaktformular" hidden="true"/>
+					<menuItem href="/kontakt/callbackformular" id="sub_nav_callbackformular" hidden="true"/>
+					<menuItem href="/kontakt/anfahrt" id="sub_nav_anfahrt" hidden="true"/>
+				</vmenu>
+			</hmenu>
+			<dbcomment name="version" label="Version"/>
+		</div>
+	</div>
+
+	
+<public_userinfo />
+
+
+<div class="contentScrolled">
+	<div style="background-image: url(%page_background%);" class="contentBackground">
+		<container datasource="content" />
+	</div>
+</div>
+
+<pageFooter />
+
+<div style="position: fixed; top: -200px; left: -200px;">
+</div>
+
+<div id="navContainer2" class="noprint">
+<a href="http://sag-akademie.de/pdf/seminarprogramm;pdf" target="_blank"><img src="/img/seminarprogramm.jpg" border="0" alt="Seminarprogramm"/></a><br/>
+		<seminar:navContainer>
+			<seminar:navItem target="neue Seminare" />
+			<div style="height:4px;width:2px;"></div>
+			<seminar:navItem target="Arbeitssicherheit" />
+			<seminar:navItem target="Kanalreinigung" />
+			<seminar:navItem target="Kanalinspektion" />
+			<seminar:navItem target="Dichtheitsprüfung" />
+			<seminar:navItem target="Kanalbau" />
+			<seminar:navItem target="Kanalsanierung" />
+			<seminar:navItem target="Abscheidetechnik" />
+			<seminar:navItem target="Sonstiges" />
+			<seminar:navItem target="Grundstücksentwässerung" />
+			<div style="height:4px;width:2px;"></div>
+			<seminar:navItem target="Sachkunde" />
+			<seminar:navItem target="Fachkunde" />
+
+		</seminar:navContainer>
+	</div>
+<sitescript loadnow="true" key="public" />
+
+
+<config:onDebug>
+	<div style="position:fixed;right:20px;bottom:20px;background-color:#dddddd;padding:20px;font-family:Verdana;font-size:20px !important;color:red;">
+		<b style="font-size:20px;">
+				Testumgebung
+		</b>
+	</div>
+</config:onDebug>
+
+
+</body>
+
+</html>

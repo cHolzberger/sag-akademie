@@ -1,0 +1,118 @@
+<content>
+		<js:import src="/resources/scripts/forms/admin_referenten.js" />
+
+	<div style="clear: right;">
+				<ribbon:dynamicGroupRight forId="verwaltungTab">
+					<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+						Speichern
+					</ribbonButton>
+				</ribbon:dynamicGroupRight>
+
+				<ribbon:dynamicGroupRight forId="verwaltungTab" offset="100px" class="ui-ribbon-group-reset">
+					<ribbonButton icon="icon_print" href="javascript:$.mosaikRuntime.print();">
+						Drucken
+					</ribbonButton>
+				</ribbon:dynamicGroupRight>
+			</div>
+
+	<h1>
+		Referent
+	</h1>
+
+	<dbform class="referent-edit">
+	    
+			<div class="csmall">
+				<mform:group label="Stammdaten">
+					<dbselect  label="Status" name="status" fromTable="XStatus" fromTableKey="id" fromTableDisplay="name" />
+					<dbselect name="anrede_id" label="Anrede" fromTable="XAnrede" fromTableKey="id" fromTableDisplay="anrede"/>
+					<mdb:input mpath="Referent:firma" label="Firma" />
+					<mdb:input mpath="Referent:grad" label="Grad" />
+					<mdb:input mpath="Referent:vorname" label="Vorname" />
+					<mdb:input mpath="Referent:name" label="Name" />
+					<mdb:input mpath="Referent:kuerzel" label="K&uuml;rzel" />
+					<mdb:input mpath="Referent:geburtstag" label="Geburtstag" class="datepicker" converter="mysqlDateToLocal" />
+					<mdb:input mpath="Referent:taetig_seit" label="Tätig seit" class="datepicker" converter="mysqlDateToLocal" />
+					<mdb:input mpath="Referent:vertragsdatum" label="Vertragsdatum" class="datepicker" converter="mysqlDateToLocal" />
+
+			    </mform:group>
+				<mform:group label="Adresse">
+					<mdb:input mpath="Referent:strasse" label="Strasse" />
+					<mdb:input mpath="Referent:plz" label="PLZ"/>
+					<mdb:input mpath="Referent:ort" label="Ort"/>
+
+				</mform:group>
+
+				<mform:group label="Adresse Privat">
+					<mdb:input mpath="Referent:privat_strasse" label="Strasse" />
+					<mdb:input mpath="Referent:privat_plz" label="PLZ"/>
+					<mdb:input mpath="Referent:privat_ort" label="Ort"/>
+
+				</mform:group>
+				<mform:group label="Kontakt">
+					<mdb:input mpath="Referent:email" label="E-Mail" />
+					<mdb:input mpath="Referent:email2" label="E-Mail 2"/>
+					<mdb:input mpath="Referent:telefon" label="Telefon"/>
+					<mdb:input mpath="Referent:privat_telefon" label="Telefon Privat"/>
+					<mdb:input mpath="Referent:mobil" label="Mobil"/>
+					<mdb:input mpath="Referent:fax" label="Fax"/>
+					<mdb:input mpath="Referent:privat_fax" label="Fax Privat"/>
+				</mform:group>
+				
+			
+			</div>
+	    	<div class="csmall">
+				<mform:group label="Information">
+					<mdb:input mpath="Referent:veroeffentlicht" type="checkbox" value="1" label="Ver&ouml;ffentlicht" />
+					<mdb:input mpath="Referent:beschreibung" label="Beschreibung" />
+				
+					<mdb:image mpath="Referent:image" label="Bild" />
+					<mform:upload name="image_upload" label="Upload:" />
+				</mform:group>
+			</div>
+			<div class="csmall">
+					<mform:group label="Kosten">
+					<mdb:input mpath="Referent:kosten_ganzertag" label="Kosten ganzer Tag" append="€" converter="euroPreis" class="currency-field"/>
+					<mdb:input mpath="Referent:kosten_halbertag" label="Kosten halber Tag" append="€" converter="euroPreis" class="currency-field"/>
+					<mdb:input mpath="Referent:kosten_uebernachtung" label="Kosten Übernachtung"  append="€" converter="euroPreis" class="currency-field"/>
+					<mdb:input mpath="Referent:kilometerpauschale" label="Kilometerpauschale" append="€" class="currency-field" converter="euroPreis"/>
+
+					<mform:label label="Kilometer (Lünen)">
+						<mdb:input mpath="Referent:kosten_anfahrt_luenen" append="km" class="kilometer-field"  nolabel="true"  style="float: left; width:  100px; min-width: 25px; clear: none;"/>
+						<div style="float: left; padding-top: 3px; padding-right: 4px; min-width: 10px; max-width: 200px; width: 93px; text-align: right;" id="kostenAnfahrtLuenen">#WERT#</div>
+						<div style="float: left; padding-top: 3px;">€</div>
+					</mform:label>
+					
+					<mform:label label="Kilometer (Darmstadt)">
+						<mdb:input mpath="Referent:kosten_anfahrt_darmstadt" nolabel="true" append="km" class="kilometer-field" style="float: left; width:  100px; min-width: 25px; clear: none;"/>
+						<div style="float: left; padding-top: 3px; padding-right: 4px; min-width: 10px; max-width: 200px; width: 93px; text-align: right;" id="kostenAnfahrtDarmstadt">#WERT#</div>
+						<div style="float: left; padding-top: 3px;">€</div>
+					</mform:label>
+						
+					<div class="cclear">&nbsp;</div>
+				</mform:group>
+					<mform:group label="Notiz">
+						<mdb:textarea mpath="Referent:notiz" style="width: 98%; height: 50px;" rte="true" />
+					</mform:group>
+
+					<mform:group label="Weitere Informationen">
+						<mform:label label="Ge&auml;ndert von">
+					<mdb:value mpath="Referent:GeaendertVon:name" /> am <mdb:value mpath="Referent:geaendert" converter="mysqlDateTimeToLocal"/>
+				</mform:label>
+					</mform:group>
+			</div>
+
+			<div class="cverysmall">
+				<mform:group label="Export">
+						<mdb:link mpath="Referent:id" href="download:/admin/csv/seminarreferent;csv?referent_id=#DATA#&year=2010"  value="&Uuml;bersicht 2010"/><br/>
+						<mdb:link mpath="Referent:id" href="download:/admin/csv/seminarreferent;csv?referent_id=#DATA#&year=2011"  value="&Uuml;bersicht 2011"/><br/>
+						<mdb:link mpath="Referent:id" href="download:/admin/csv/seminarreferent;csv?referent_id=#DATA#&year=2012"  value="&Uuml;bersicht 2012"/>
+					</mform:group>
+					<mform:group label="E-Mail">
+						<mdb:link mpath="Referent:email" href="mailto:#DATA#"  value="E-Mail senden"/>
+					</mform:group>
+			</div>
+
+	</dbform>
+
+
+</content>

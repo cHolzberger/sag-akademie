@@ -1,0 +1,16 @@
+<content>
+	<ribbonDynamicRemove />
+	<h1 style="margin-bottom: -10px;">Terminplanung
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<foreach fromArray="Year">
+		<mdb:link mpath="year" href="/admin/planung?year=#DATA#" value="label" prefix=" | "/>
+	</foreach>
+	</h1>
+	<widget:planungKalender />
+	<ribbon:dynamicGroupRight forId="verwaltungTab">
+		<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+			Speichern
+		</ribbonButton>
+	    </ribbon:dynamicGroupRight>
+	    <script src="/resources/scripts/FABridge.js" type="text/javascript" ></script>
+</content>

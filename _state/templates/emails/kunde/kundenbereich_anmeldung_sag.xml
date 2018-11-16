@@ -1,0 +1,147 @@
+<set name="subject" value="Anmeldung auf www.sag-akademie.de Firma: " />
+<content>
+ <div style="font-family:Arial,Helvetica; font-size:12px;">
+	
+<img src="https://www.sag-akademie.de/img/logo_ci.png" alt="Logo SAG-Akademie" border="0" align="right"/>
+<b>Die folgende Firma hat sich soeben für den Kundenbereich auf www.sag-akademie.de angemeldet:</b><br/>&nbsp;<br/>
+       
+		
+		 <table border="1" cellspacing="0" cellpadding="3" style="border-style:solid;border-width:1px;border-color:#dddddd;font-family:Arial,Helvetica; font-size:11px;">
+            
+            <tbody>
+                
+                <switch key="Kontakt:id">
+                    <case value="1">
+                        
+                    </case>
+                    
+                    
+                    <case value="*">
+                        
+                    
+                        
+                        <tr>
+                            <td>
+                                Firma
+                            </td>
+                            <td>
+                                <dbfield name="Kontakt:firma" notable="true"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Straße, Nr.
+                            </td>
+                            <td>
+                                <dbfield name="Kontakt:strasse" notable="true"/><dbfield name="Kontakt:nr" notable="true"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                PLZ, Ort
+                            </td>
+                            <td>
+                                <dbfield name="Kontakt:plz" notable="true"/><dbfield name="Kontakt:ort" notable="true"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Bundesland
+                            </td>
+                            <td>
+                                <dbfield name="Kontakt:Bundesland:name" notable="true"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Land
+                            </td>
+                            <td>
+                                <dbfield name="Kontakt:Land:name" notable="true"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Telefon
+                            </td>
+                            <td>
+                                <dbfield name="Kontakt:tel" notable="true"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Telefax
+                            </td>
+                            <td>
+                                <dbfield name="Kontakt:fax" notable="true"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Email
+                            </td>
+                            <td>
+                                <dbfield name="Kontakt:email" notable="true"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Internet
+                            </td>
+                            <td>
+                                <dbfield name="Kontakt:url" notable="true"/>
+                            </td>
+                        </tr>
+                                              
+                    </case>
+                </switch>
+                
+                
+                   
+					  <tr>
+                        <td>
+                            Anrede
+                        </td>
+                        <td>
+                            <dbfield name="Ansprechpartner:geschlecht" converter="anredeToString" notable="true"/>
+                        </td>
+                    </tr>
+					
+					  <tr>
+                        <td>
+                            Grad
+                        </td>
+                        <td>
+                            <dbfield name="Ansprechpartner:grad" notable="true"/>
+                        </td>
+                    </tr>
+					
+					 
+					
+                   <tr>
+                        <td>
+                            Name, Vorname
+                        </td>
+                        <td>
+                            <dbfield name="Ansprechpartner:name" notable="true"/>,&nbsp;<dbfield name="Ansprechpartner:vorname" notable="true"/>
+                        </td>
+                    </tr>
+					
+				
+                    
+                    <tr>
+                        <td>
+                            Email
+                        </td>
+                        <td>
+                            <dbfield name="Ansprechpartner:email" notable="true"/>
+                        </td>
+                    </tr>                   
+                   
+                    
+                            
+                
+            </tbody>
+        </table><br/>&nbsp;
+	</div>
+</content>

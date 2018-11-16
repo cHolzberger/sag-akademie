@@ -1,0 +1,16 @@
+ <set name="page_background" value="/img/admin/header_bg.jpg" />
+
+<content>
+<span class="headline" style="padding-left:0px;"><b>Datenbanksicherungen</b></span><br/>&nbsp;<br/>
+<foreach fromArray="files">
+	<dbfield name="headline" /><br/><div style="padding-left: 10px;">
+	<foreach fromArray="items">
+		<dblink datasource="dbtable" name="link" target="_blank" value="link" prefix="time"/><br/>
+	</foreach>
+	</div>
+	<br/>
+</foreach>
+
+
+</content>
+ 

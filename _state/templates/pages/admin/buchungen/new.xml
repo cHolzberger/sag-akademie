@@ -1,0 +1,174 @@
+
+<content>
+<!--
+	<dbiframe base="https://www.sag-akademie.de/seminar/termin/" name="rubrik"/>
+-->
+
+	<dbform class="no-reload">
+		<h1>
+			Neue Buchung
+		</h1>
+		<div class="c33">
+			<h2>
+					Informationen zur Buchung
+			</h2>
+				
+			<mform:combobox target="input_seminar_id" displayTarget="input_kursnr" template="mCompleteElementTemplate" updatePrefix='input_' json="/admin/json/autocomplete/termin;json?convert=1" filter="Kurs">
+				<dbinput name="kursnr" label="Kurs-Nr."/>
+				<dbinput name="seminar_id" type="hidden"/>
+					
+				<div class="mCompleteElement" style="display: none; width: 300px; overflow: hidden;" id="mCompleteElementTemplate">
+					<span class="label" style="font-size: small; clear:both;">
+						<b>{kursnr}</b>
+						<br/>{standort}
+					</span>
+					<span>{datum_begin}
+						<br/>{datum_ende}
+						<br/>
+					</span>
+				</div>
+			</mform:combobox>
+		    <switch key="Person">
+			<case value="#empty">
+
+			<mform:combobox target="input_person_id" displayTarget="input_personInfo" template="personTemplate" json="/admin/json/autocomplete/person;json" filter="Person">
+				<dbinput name="personInfo" label="Person"/>
+				<dbinput name="person_id" type="hidden"/>
+					
+				<div class="mCompleteElement" style="display: none; overflow: hidden;" id="personTemplate">
+					<span class="label" style="font-size: small;">{name},
+						<br/>{vorname}
+					</span>
+					<span>{firma}</span>
+				</div>
+			</mform:combobox>
+			</case>
+			<case value="*">
+			    <mdb:input mpath="Person:name" label="Person Name" readonly="true" />
+			    <mdb:input mpath="Person:vorname" label="Person Vorname" readonly="true" />
+			    <mdb:input mpath="Person:id" type="hidden" iName="buchung[person_id]"/>
+			</case>
+			</switch>
+				
+			<dbinput label="Buchungsdatum" name="datum" converter="mysqlDatetimeToLocal" class="datepicker"/>
+			
+			<dbinput name="vdrk_referrer" label="VDRK-Buchung"/>
+			<br/>
+			<br/>
+			
+			<h2>
+					Informationen zur Hotelbuchung
+			</h2>
+				
+			<mform:label label="Hotel buchen">
+				<select name="hotelbuchen" id="hotelbuchen">
+					<option value="0">Nein</option>
+					<option value="1">Ja</option>
+				</select>
+			</mform:label>
+				
+			<script language="javascript">
+					$("#hotelbuchen").change(function () {
+						if ( $("#hotelbuchen").val() == "1" ) {
+							$("#hotelbuchen_visible").show();
+						} else {
+							$("#hotelbuchen_visible").hide();
+						}
+					}); 
+					
+			</script>
+				
+			<span id="hotelbuchen_visible" style="display: none;">
+				<mform:combobox target="input_hotel_id" displayTarget="input_hotel_name" updatePrefix="input_HotelBuchung_" template="hotelTemplate" json="/admin/json/autocomplete/hotel;json" filter="Hotel">
+					<dbinput name="hotel_name" label="Hotel"/>
+					<dbinput name="hotel_id" type="hidden"/>
+					
+					<div class="mCompleteElement" style="display: none;" id="hotelTemplate">
+						<span class="label" style="font-size: small; width: 250px !important;">
+							<b>{name}</b>
+							<br/>{ort}
+						</span>
+						<div style="clear: both; height: 1px; width: 1px;">&nbsp;</div>
+					</div>
+				</mform:combobox>
+				
+				<mdb:input mpath="HotelBuchung:anreise_datum" label="Anreisedatum" />
+				<mdb:input mpath="HotelBuchung:uebernachtungen" label="Anzahl Übernachtungen" />
+				<mdb:input mpath="HotelBuchung:zimmerpreis_ez" label="Zimmerpreis Ez." converter="euroPreis" />
+				<mdb:input mpath="HotelBuchung:zimmerpreis_dz" label="Zimmerpreis Dz." converter="euroPreis" />
+				<mdb:input mpath="HotelBuchung:fruehstuecks_preis" label="Frühstückspreis" converter="euroPreis" />
+				<mdb:input mpath="HotelBuchung:marge" label="Marge" converter="euroPreis" />
+				<mdb:input mpath="HotelBuchung:storno_datum" label="Storno Datum" converter="mysqlDateToLocal" class="datepicker"/>
+			</span>
+		
+		</div>
+			
+		<div class="c33">
+			<h2>
+					Preise
+			</h2>
+			<dbinput label="Kursgeb&uuml;hr" name="kursgebuehr" converter="euroPreis" />
+			<dbinput label="Unterlagen" name="kosten_unterlagen" converter="euroPreis" />
+			<dbinput label="Verpflegung" name="kosten_verpflegung" converter="euroPreis" />
+				
+
+			<h2>Rabatt</h2>
+					<dbinput label="Rabatt" name="rabatt"/>
+					<dbinput type="checkbox" value="1" name="fruehbucherrabatt" label="Fr&uuml;hbucherrabatt"/>
+				
+
+			
+			
+			<h2>Förderung</h2>
+					
+				<dbinput type="checkbox" value="1" name="arbeitsagentur" label="Arbeitsagentur"/>
+				<dbinput label="zust. Arbeitsagentur" name="zustaendige_arbeitsagentur"/>
+				<dbinput label="Anteil Arbeitsagentur" name="arbeitsagenturanteil" converter="euroPreis"/>
+				<dbinput label="Anteil Versorgungsamt" name="versorgungsamtanteil" converter="euroPreis"/>
+				<dbinput label="Anteil VDRK" name="anteilvdrk" converter="euroPreis"/>
+				<dbinput type="checkbox" value="1" name="investitionsbank" label="Investitionsbank"/>
+				<dbinput type="checkbox" value="1" name="bildungscheck" label="ESF Förderung"/>
+				<dbinput label="Förderung Art" name="bildungscheck_ausstellung_art"/>
+				<dbinput label="Ausstellungsort" name="bildungscheck_ausstellung_ort"/>
+				<dbinput label="Ausstellungsdatum" name="bildungscheck_ausstellung_datum" converter="mysqlDateToLocal" class="datepicker"/>
+				
+			
+				
+				<h2>
+					Rechnung
+				</h2>
+				<dbinput label="Rechnungsnummer" name="rechnungsnummer" />
+				<dbinput label="Rechnung gestellt am" name="rechnunggestellt" converter="mysqlDateToLocal" class="datepicker"/>
+				<!--<dbinput label="Rechnungsbetrag" name="rechnungsbetrag" converter="euroPreis"/>-->
+				<dbinput label="Gutschrift" name="gutschrift" converter="euroPreis"/>
+
+				<dbinput label="Rechnungsnummer 2" name="rechnungsnummer1" />
+
+				<dbinput label="Rechnungsnummer 3" name="rechnungsnummer2" />
+				
+		</div>
+		
+		<div class="c33">
+			<h2>
+				Weitere Informationen
+			</h2>
+			<dbtextarea label="Notiz" name="notiz" style="width: 200px; height: 100px;">
+			</dbtextarea>
+			<dbtextarea label="Bemerkung (des Kunden)" name="bemerkung" style="width: 200px; height: 100px;">
+			</dbtextarea>
+			<dbtextarea label="Informationen (f&uuml;r den Kunden)" name="info_kunde" style="width: 200px; height: 100px;">
+			</dbtextarea>
+		</div>
+		
+	
+	</dbform>
+	<ribbon:dynamicGroupRight forId="verwaltungTab">
+		<ribbonButton icon="icon_reset" href="javascript:$.mosaikRuntime.resetForm();">
+				Reset
+		</ribbonButton>
+		
+		<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+				Speichern
+		</ribbonButton>
+	</ribbon:dynamicGroupRight>
+</content>

@@ -1,0 +1,96 @@
+<content>
+	<mform:form class="no-reload">
+			<h1 style="position: fixed; top: 135px; z-index: 9999;">
+				Duplikat in den Kontakten:
+				 (
+				<mdb:value mpath="KontaktCurrent" /> von
+				<mdb:value mpath="KontaktCount" />)
+				<mdb:link href="#DATA#" mpath="nextLink" urlencode="false">&Uuml;berspringen &gt;&gt;</mdb:link>
+			</h1>
+		<foreach fromArray="KontaktDuplikate">
+			<div style="width: 95%; height: 160px;"  id='topspacer'/>
+			
+			<foreach fromArray="duplicates">
+				<merger/>
+			</foreach>
+
+			<h2>Eintrag</h2>
+			<div class="c33">
+				<h2>
+				Angaben zum Unternehmen
+				</h2>
+				<dbinput readonly="readonly" readonly="readonly" name="firma" label="Firma"/>
+                <dbinput readonly="readonly" name="kontext" label="Kontext"/>
+
+                <dbinput readonly="readonly" name="zusatz" label="Zusatz"/>
+				<dbinput readonly="readonly" name="branche" label="Branche"/>
+				<dbinput readonly="readonly" name="hauptverwaltung" value="1" type="checkbox" label="Niederlassung"/>
+				<br/>
+				<dbinput readonly="readonly" name="vdrk_mitglied" value="1" type="checkbox" label="VDRK Mitglied"/>
+				<dbinput readonly="readonly" name="vdrk_mitglied_nr" label="VDRK Mitglied Nr"/>
+			
+				<h2>
+				Sonstige Informationen
+				</h2>
+				<dbinput readonly="readonly" name="alias" label="Alias"/>
+				<dbinput readonly="readonly" name="kundennr" label="Kunden-Nr."/>
+				<dbinput readonly="readonly" name="kundenstatus" label="Kundenstatus"/>
+				<dbselect readonly="readonly" name="kontaktkategorie" label="Kontaktkategorie" fromTable="KontaktKategorie" fromTableKey="id" fromTableDisplay="name"/>
+				<dbinput readonly="readonly" name="kontaktQuelle" label="Kontakt Quelle"/>
+				<dbinput readonly="readonly"  name="kontaktQuelleStand" label="Kontakt Quelle Stand" converter="mysqlDatetimeToLocal"/>
+				<br/>
+
+				<h2>
+				Informationen zur Bankverbindung
+				</h2>
+				<dbinput readonly="readonly" name="kto" label="Konto"/>
+				<dbinput readonly="readonly" name="blz" label="BLZ"/>
+				<dbinput readonly="readonly" name="bank" label="Bank"/>
+			</div>
+			<div class="c33">
+				<h2>
+				Adressinformation
+				</h2>
+				<dbinput readonly="readonly" name="strasse" label="Stra&szlig;e"/>
+				<dbinput readonly="readonly" name="nr" label="Nr"/>
+				<dbinput readonly="readonly" name="plz" label="PLZ" converter="plz"/>
+				<dbinput readonly="readonly" name="ort" label="Ort"/>
+				<dbselect readonly="readonly" name="bundesland_id" label="Bundesland" fromTable="XBundesland" dbtable="kontakt" fromTableKey="id" fromTableDisplay="name"/>
+				<dbselect readonly="readonly" name="land_id" label="Land" fromTable="XLand" dbtable="kontakt" fromTableKey="id" fromTableDisplay="name"/>
+				<h2>
+				Kontaktinformationen
+				</h2>
+				<dbinput readonly="readonly" name="tel" label="Telefon"/>
+				<dbinput readonly="readonly" name="fax" label="Fax"/>
+				<dbinput readonly="readonly" name="mobil" label="Mobil"/>
+
+				<dbinput readonly="readonly" name="email" label="E-Mail"/>
+				<dbinput readonly="readonly" name="url" label="URL"/>
+				<br/>
+				<dbinput readonly="readonly" name="newsletter" value="1" type="checkbox" label="Newsletter"/>
+				<dbinput readonly="readonly"  name="newsletter_anmeldedatum" label="Anmeldedatum" converter="mysqlDateToLocal"/>
+				<dbinput readonly="readonly"  name="newsletter_abmeldedatum" label="Abmeldedatum" converter="mysqlDateToLocal"/>
+			
+			</div>
+			<div class="c33">
+				<h2>
+				Notizen
+				</h2>
+				<dbtextarea readonly="readonly" label="Notiz" name="notiz" style="width: 225px; height: 100px;">
+				</dbtextarea>
+			</div>
+			<ribbon:dynamicGroupRight forId="administrationTab">
+			<ribbonButton icon="icon_reset" href="javascript:$.mosaikRuntime.resetForm();">
+				Reset
+			</ribbonButton>
+
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+
+		</foreach>
+		<br/>&nbsp;
+		
+	</mform:form>
+</content>

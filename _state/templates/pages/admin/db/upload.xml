@@ -1,0 +1,4 @@
+<content>
+<h1>Daten-Import</h1>
+	<text datasource="dbtable" name="text" />
+</content>

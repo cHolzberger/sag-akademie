@@ -1,0 +1,315 @@
+<pdf:content>
+	<set name="margin-top" value="15" /> <!-- in mm -->
+	<set name="margin-bottom" value="15" /> <!-- in mm -->
+
+	<pdf:header top="-10" style="height:40mm;">
+			<div style="font-size: 18px;font-family:Verdana;Arial;padding-left:1mm;height:40mm;">
+		<img src="/img/logo_ci.png" border="0" alt="SAG Schulungsakademie GmbH" align="right" style="width:40mm;height:13mm;"/>
+		<br/><b>
+				Kontakt</b><br/><br/><span style="font-size: 13px;">Firma: <mdb:var mpath="Kontakt:firma"/></span>
+		<br/>&nbsp;
+	</div>
+	</pdf:header>
+<br/>&nbsp;<br/>&nbsp;<br/>
+	<table border="0" cellspacing="0" cellpadding="5" style="font-family:Arial;font-size:10px !important;">
+		<tr>
+			<td valign="top" width="50%">
+
+				<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Unternehmen</b>
+						</td>
+					</tr>
+							
+									
+										<tr>
+						<td >
+Firma
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:firma" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Zusatz
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:zusatz"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Niederlassung
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:hauptverwaltung" converter="jaNeinToStr" />
+						</td>
+					</tr>
+										<tr>
+						<td >
+Kontaktkategorie
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:Kategorie:name" />
+						</td>
+					</tr>
+										<tr>
+						<td >
+Branche
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:Branche:name" />
+						</td>
+					</tr>
+										<tr>
+						<td >
+Tätigkeitsbereich
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:Taetigkeitsbereich:name" />
+						</td>
+					</tr>
+					
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Mitgliedschaften</b>
+						</td>
+					</tr>
+							
+									
+										<tr>
+						<td >
+VDRK Mitglied
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:vdrk_mitglied" converter="jaNeinToStr" />
+						</td>
+					</tr>
+					
+															<tr>
+						<td >
+VDRK Mitglied Nr.
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:vdrk_mitglied_nr" />
+						</td>
+					</tr>
+					
+															<tr>
+						<td >
+DWA Mitglied
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:dwa_mitglied" converter="jaNeinToStr" />
+						</td>
+					</tr>
+					
+															<tr>
+						<td >
+DWA Mitglied Nr.
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:dwa_mitglied_nr" />
+						</td>
+					</tr>
+															<tr>
+						<td >
+RSV Mitglied
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:rsv_mitglied" converter="jaNeinToStr" />
+						</td>
+					</tr>
+					
+															<tr>
+						<td >
+RSV Mitglied Nr.
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:rsv_mitglied_nr" />
+						</td>
+					</tr>
+	<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>sonstige Informationen</b>
+						</td>
+					</tr>
+							
+									
+										<tr>
+						<td>
+Alias
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:alias" />
+						</td>
+					</tr>
+															<tr>
+						<td>
+Kundennummer
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:kundennr" />
+						</td>
+					</tr>
+									<tr>
+						<td>
+Kundenstatus
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:kundenstatus" />
+						</td>
+					</tr>
+									<tr>
+						<td>
+Kontaktquelle
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:kontakt_quelle" />
+						</td>
+					</tr>
+									<tr>
+						<td>
+Kontaktquelle Stand
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:kontakt_quelle_stand" converter="mysqlDateToLocal" />
+						</td>
+					</tr>
+				</table>
+
+			</td>
+			<td valign="top" width="50%">
+
+
+
+								<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+						<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Adresse</b>
+						</td>
+					</tr>
+					
+					<tr>
+						<td >
+Straße, Nr.
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:strasse" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+PLZ
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:plz" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Ort
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:ort" />
+						</td>
+					</tr>
+
+	<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Kontaktinformationen</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Telefon
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:tel"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Fax
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:fax" />
+						</td>
+					</tr>
+										<tr>
+						<td >
+Email (Mailing)
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:email" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Email 2
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:email2" />
+						</td>
+					</tr>
+						<tr>
+						<td >
+Website
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:url" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Newsletter</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Newsletter
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:newsletter" converter="jaNeinToStr"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Anmeldedatum
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:newsletter_anmeldedatum" converter="mysqlDateToLocal"/>
+						</td>
+					</tr>
+<tr>
+						<td >
+Abmeldedatum
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:newsletter_abmeldedatum" converter="mysqlDateToLocal"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Notizen</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+interne Notiz
+						</td>
+						<td align="left">
+							<mdb:var mpath="Kontakt:notiz"/>
+						</td>
+					</tr>
+				</table>
+				</table>
+
+			</td>
+		</tr>
+	</table>
+	<pdf:footer bottom="-15">
+	</pdf:footer>
+</pdf:content>

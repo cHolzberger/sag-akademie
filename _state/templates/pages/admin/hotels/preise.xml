@@ -1,0 +1,45 @@
+<content>
+	<set name="page_background" value="/admin/img/header_bg.jpg"/>
+	<h1>
+		Hotelpreise f&uuml;r&nbsp;<dbfield name="Hotel:name"/>
+	</h1>
+	Die Preise für die Buchung errechnen sich aus der Zimmerart (EZ / DZ) + Frühstückspreis + Marge.
+	<br/><br/>
+	<mform:hotelpreise template="true" id="templateFields"/>
+	<mform:form id="dynForm">
+		<mform:container style="width: 650px; float: left;">
+		&nbsp;	
+			<foreach fromArray="HotelPreise">
+				<span>
+					<mform:hotelpreise/>
+				</span>
+			</foreach>
+		</mform:container>
+		<mform:buttons/>
+		<ribbon:dynamicGroupRight forId="verwaltungTab">
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm()();">
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+		<script type="text/javascript">
+			$("#dynForm").mForm().mForm.cloneFrom("#templateFields");
+		</script>
+		<div style="width: 33%; float:left; margin-left: 30px;">
+			<h2>
+				Zimmerpreise ausserhalb definierter Datumsbereiche:
+			</h2>
+			
+			<mdb:input mpath="HotelStandardPreis:zimmerpreis_ez" label="Einzelzimmer" converter="euroPreis"/>
+			<mdb:input mpath="HotelStandardPreis:zimmerpreis_dz" label="Doppelzimmer" converter="euroPreis"/>
+			<mdb:input mpath="HotelStandardPreis:zimmerpreis_mb46" label="Mehrbettzimmer (4-6)" converter="euroPreis"/>
+
+			<mdb:input mpath="HotelStandardPreis:fruehstuecks_preis" label="Frühstückspreis" converter="euroPreis"/>
+			<mdb:input mpath="HotelStandardPreis:marge" label="Marge" converter="euroPreis"/>
+			<div style="text-align: left; padding-top: 20px; clear:both;">
+				<input type="button" value="Neuen Bereich anlegen" id="add"/>
+			</div>
+		</div>
+		
+	</mform:form>
+	
+</content>

@@ -1,0 +1,236 @@
+<infoboxSmall>
+	<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+	<img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167" style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/>
+		<area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/>
+		<area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/>
+	</map>
+
+	<switch key="Person:kontakt_id">
+		<case value="1">
+			<img src="/img/image_uebersicht_privat.png" alt="" border="0" style="position: absolute; left:90px; top:45px;" />
+		</case>
+		<case value="*">
+			<img src="/img/image_uebersicht.png" alt="" border="0" style="position: absolute; left:90px; top:45px;" />
+		</case>
+	</switch>
+		
+</infoboxSmall>
+
+<content style="width:820px;left:30px;">
+		
+	<style>
+	.big-container,
+	.container {
+	border: 1px solid black;
+	padding: 6px;
+	margin: 5px;
+	float: left;
+	}
+
+	.big-container {
+		margin-left: 20px;
+
+	}
+
+	.label {
+		width: 100px !important;
+	}
+	</style>
+	<div style="width: 100%; height: 20px;font-size:14px;">
+		<b>&nbsp;Herzlich Willkommen im Kundenbereich der SAG-Akademie!</b>
+	</div>
+	<div class="c33">
+		<div class="container c100">
+			<h1 class="headline">&nbsp;&nbsp;&nbsp;Unternehmen</h1>
+
+			<mform:label label="Firma:" class="labelInputStart">
+				<mdb:value mpath="Kontakt:firma" />
+			</mform:label>
+		
+			<mform:label label="Straße, Nr.:" class="labelInputStart">
+				<mdb:value mpath="Kontakt:strasse" />
+				<mdb:value mpath="Kontakt:nr" />
+			</mform:label>
+			<mform:label label="PLZ, Ort:" class="labelInputStart">
+				<mdb:value mpath="Kontakt:plz" />
+				<mdb:value mpath="Kontakt:ort" />
+			</mform:label>
+			<mform:label label="Bundesland:" class="labelInputStart">
+				<mdb:value mpath="Kontakt:Bundesland:name" />
+			</mform:label>
+			<mform:label label="Land:" class="labelInputStart">
+				<mdb:value mpath="Kontakt:Land:name" />
+			</mform:label>
+			<div style="clear: both; height: 40px; position: relative;">
+				<mdb:link href="/kunde/kontakt?edit" type="button" mpath="id" style="position:absolute; right:2px; bottom: 2px;" id="unternehmen_aendern">Daten ändern</mdb:link>
+			</div>
+		</div>
+
+		<div class="container c100">
+			<h1 class="headline">&nbsp;&nbsp;&nbsp;Ansprechpartner</h1>
+
+			<mform:label label="Name:" class="labelInputStart">
+				<mdb:value mpath="Ansprechpartner:name" />
+			</mform:label>
+			<mform:label label="Vorname:" class="labelInputStart">
+				<mdb:value mpath="Ansprechpartner:vorname" />
+			</mform:label>
+			<mform:label label="E-Mail:" class="labelInputStart">
+				<mdb:value mpath="Ansprechpartner:email" />
+			</mform:label>
+		
+			<div style="clear: both; height: 40px; position: relative;">
+				<mdb:link href="/kunde/person/#DATA#?edit" mpath="Ansprechpartner:id" type="button" style="position:absolute; right:2px; bottom: 2px;"  id="anprechpartner_aendern">
+			Daten ändern
+				</mdb:link>
+			</div>
+		</div>
+
+		<div class="container c100">
+			<h1 class="headerLabel">
+			Mitarbeiter
+			</h1>
+			<mdb:quicklistContainer>
+				<foreach fromArray="Personen">
+					<mdb:quicklistItem
+					 mpathField1="name"
+					 mpathField2="vorname">
+						
+								<mdb:link href="/kunde/person/#DATA#?edit" mpath="id" type="button">
+								bearbeiten
+								</mdb:link>
+							
+					</mdb:quicklistItem>
+				</foreach>
+			</mdb:quicklistContainer>
+			<br/>
+			<div style="clear: both; height: 40px; position: relative;">
+				<mdb:link href="/kunde/person/neu" type="button" mpath="id" type="button" style="position:absolute; right:2px; bottom: 2px;">
+			hinzufügen
+				</mdb:link>
+			</div>
+
+		</div>
+	</div>
+	<div class="c66">
+	<!-- Inhouse -->
+		<div class="big-container c100 " id="inhouseTbl">
+			<h1 class="headerLabel">
+				Inhouse-Seminare
+			</h1>
+			<mdb:quicklistContainer style="position:relative;left:10px;width:96%;">
+			<foreach fromArray="InhouseTermine">
+				<mdb:quicklistItem48
+					 mpathField1="kursnr"
+					 mpathField2="bezeichnung">
+					 <div style="position:relative;right:5px;">
+							Ab 
+							<mdb:value mpath="datum_begin" converter="mysqlDateToLocal"/> in
+							<mdb:value mpath="inhouse_ort"/>
+						</div>
+						
+						<div style="position:absolute;right:5px;top:0px;">
+							 <switch key="status_str">
+							 <case value="#empty">
+							<mdb:link href="/kunde/inhouse_termin/#DATA#?edit" mpath="id">
+								<img src="/img/admin/icon_quicklist_edit.png" border="0" alt="Inhouse-Termin bearbeiten" style="position:relative;top:14px;"/>
+							</mdb:link>
+							</case>
+							<case value="*">
+								<br/>
+								<b><mdb:value mpath="status_str"/></b>
+							</case>
+						</switch>
+						</div>
+				 </mdb:quicklistItem48>
+			</foreach>
+			</mdb:quicklistContainer>
+	</div>
+	
+
+		
+		<div class="big-container c100 ">
+			<h1 class="headerLabel">
+				Buchungen
+			</h1>
+			<mdb:quicklistContainer style="position:relative;left:10px;width:96%;">
+				<foreach fromArray="Buchungen">
+					<mdb:quicklistItem48
+					 mpathField1="Seminar:kursnr"
+					 mpathField2="Seminar:SeminarArt:bezeichnung"
+					  mpathField6="Person:name"
+					  mpathField8="Person:vorname"
+					  >
+						<div style="position:relative;right:5px;">
+							Ab 
+							<mdb:value mpath="Seminar:datum_begin" converter="mysqlDateToLocal"/> in
+							<mdb:value mpath="Seminar:Standort:name"/>
+						</div>
+						
+						<div style="position:absolute;right:5px;top:0px;">
+							 <switch key="status_str">
+							 <case value="#empty">
+							<mdb:link href="/kunde/buchung/#DATA#?edit" mpath="uuid">
+								<img src="/img/admin/icon_quicklist_edit.png" border="0" alt="Person bearbeiten" style="position:relative;top:14px;"/>
+							</mdb:link>
+							</case>
+							<case value="*">
+								<br/>
+								<b><mdb:value mpath="status_str"/></b>
+							</case>
+						</switch>
+						</div>
+					</mdb:quicklistItem48>
+				</foreach>
+			</mdb:quicklistContainer>
+			<div style="clear: both; height: 30px; position: relative; padding-top: 4px;">
+			
+				<mdb:link href="/seminar/termin/Arbeitssicherheit" type="button" mpath="id" style="position:absolute; right:7px; top: 12px; float: left;">zu unseren Seminaren</mdb:link>
+			</div>
+		</div>
+		<!-- ACHTUNG HIER FEHLT EIN DIV </div>
+		TAGS WERDEN NICHT RICHTIG GESCHLOSSEN -->
+
+<!--
+<div style="position: absolute; left:0px; top:0px; width:830px; font-family:Arial,Helvetica;font-size:11px;">
+
+<div style="width:260px;float:left;padding-left:0px;padding-top:0px;height:100%;">
+
+<div style="position:relative;width:224px;height:15px;" class="headerLabel"><b>Unternehmen</b><mdb:link href="/kunde/kontakt?edit" type="button" mpath="id" style="position:absolute;top:2px;right:2px;">Bearbeiten</mdb:link><br/>&nbsp;</div>
+
+
+
+
+</div>
+
+<div style="width:260px;float:left;padding-left:25px;padding-top:0px;">
+<div style="position:relative;width:224px;height:15px;" class="headerLabel"><b>Ihre Firmendaten</b><br/>&nbsp;</div>
+	
+</div>
+
+<div style="width:260px;float:left;padding-left:25px;padding-top:0px;">
+
+<div style="position:relative;width:224px;height:15px;" class="headerLabel"><b>Buchungen</b><br/>&nbsp;</div>
+<mdb:quicklistContainer>
+<foreach fromArray="Buchungen">
+					<mdb:quicklistItem
+					 mpathField1="Seminar:kursnr"
+					 mpathField2="Seminar:SeminarArt:bezeichnung">
+						<mdb:link href="/kunde/buchung/#DATA#?edit" mpath="uuid">
+							<img src="/img/admin/icon_quicklist_edit.png" border="0" alt="Person bearbeiten"/>
+						</mdb:link>
+					</mdb:quicklistItem>
+</foreach>
+</mdb:quicklistContainer><br/>&nbsp;
+
+</div>
+
+</div>
+	<div style="clear: both;">
+		&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
+	</div>
+	-->
+	</content>

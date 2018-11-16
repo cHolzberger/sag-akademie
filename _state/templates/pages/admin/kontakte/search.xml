@@ -1,0 +1,12 @@
+<content>
+	<h1>Firmen - Suche nach: <mdb:value mpath="search" /> (Kunden)</h1>
+	<dbpager />
+<dbbuttons basehref="/admin/kontakte/" label="Aktionen" buttons="edit, delete" tooltipEdit="Kontakt bearbeiten" tooltipDelete="Kontakt löschen" noheader="true"/>
+
+<widget:itable mpath="/kontakt" />
+
+<dialog type="confirmation" target=".dbbuttons .delete" title="Person löschen?">
+	Wollen Sie den Kontakt wirklich L&ouml;schen?
+</dialog>
+
+</content>

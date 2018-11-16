@@ -1,0 +1,10 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infobox>
+        <img src="img/image_startseite.png" alt="" border="0" width="369" height="182" style="position: absolute; left:90px; top:25px;" />
+        <img src="img/direkt_zu_seminaren.png" alt="" border="0" width="228" height="173" style="position: absolute; left:477px; top:42px;" usemap="#seminaredirekt" /><map name="seminaredirekt"><area shape="RECT" coords="40,80,210,130" href="#" /></map>
+        <img src="img/kontaktformular_hotline.png" alt="" border="0" width="215" height="178" style="position: absolute; left:731px; top:36px;" usemap="#formulare" /><map name="formulare"><area shape="RECT" coords="75,30,210,53" href="#" /><area shape="RECT" coords="75,140,210,170" href="#" /></map>
+</infobox>
+
+<content>
+  <text datasource="content" />
+</content>

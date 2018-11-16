@@ -1,0 +1,29 @@
+<pdf:content>
+	<set name="margin-top" value="0.1"/><!-- in mm -->
+	<set name="margin-bottom" value="0.1"/><!-- in mm -->
+	<set name="margin-left" value="0.1"/><!-- in mm -->
+	<set name="margin-right" value="0.1"/><!-- in mm -->
+	<!--<div style="position: fixed; top: 149mm; height: 1mm; border-top: 0.1mm dashed black; width: 100%;" >&nbsp;</div>-->
+	<img src="/img/logo_ci.png" border="0" alt="SAG Schulungsakademie GmbH" style="position: fixed; top:106mm; left:10mm; width:40mm; height:13mm; left:10mm; bottom:0mm;"/>
+		<img src="/img/logo_ci.png" border="0" alt="SAG Schulungsakademie GmbH" style="position: fixed; top:228mm; left:10mm; width:40mm; height:13mm; left:10mm; bottom:0mm;"/>
+	
+	
+	<foreach fromArray="Teilnehmer">
+		<div style="color:black;font-family:verdana;arial; margin:0mm;  padding-left: 10mm;  border-bottom: 0.1mm dashed #999999; height: 122mm; text-align: left;">
+			<div style="padding-top: 82mm;text-align: center;">
+				
+					<div style="font-size:11.5mm;font-family:Verdana;">
+						<b><mdb:value mpath="grad" nonEmptySuffix=" " emptyValue="-" /><mdb:value mpath="vorname"/><mdb:value mpath="name"/></b><br/>
+					</div>
+					<div style="font-size:9mm;font-family:Verdana;color:#999999;">
+						<switch key="privat">
+							<case value="0">
+								<b><mdb:value mpath="firma"/></b>
+							</case>
+							<case value="1"></case>
+						</switch>
+					</div>
+			</div>
+		</div>
+	</foreach>
+</pdf:content>

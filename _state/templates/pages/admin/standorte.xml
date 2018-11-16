@@ -1,0 +1,34 @@
+<content>
+
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+<dbpager />
+
+	<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_standorte_neu" href="/admin/standorte/new">
+			Neuer Standort
+		</ribbonButton>
+	</ribbonDynamicGroup>
+
+	<dbbuttons basehref="/admin/standorte/" label="Aktionen" buttons="edit, delete" tooltipEdit="Standort bearbeiten" tooltipDelete="Standort löschen" noheader="true"/>
+	<widget:itable mpath="/standort" />
+<!--
+<dbtable table="Standort" recurse="true" style="width:98%;height:98%;">
+	<dbfield name="name" label="Name" />
+	<dbfield name="strasse" label="Stra&szlig;e" />
+	<dbfield name="nr" label="Nr." />
+	<dbfield name="Ort:plz" label="Plz" />
+	<dbfield name="Ort:ort" label="Ort" />
+	<dbfield name="tel" label="Telefon" />
+	<dbfield name="fax" label="Fax" />
+	<dbfield name="art" label="Art" />
+
+</dbtable>
+-->
+
+
+</content>
+
+<dialog type="confirmation" target=".dbbuttons .delete" title="Standort löschen?">
+	Wollen Sie den Standort wirklich l&ouml;schen?
+</dialog>

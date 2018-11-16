@@ -1,0 +1,9 @@
+<pdf>
+<head>
+	<title>Mosaik PDF Engine</title>
+</head>
+
+<container datasource="content" />
+
+
+</pdf>

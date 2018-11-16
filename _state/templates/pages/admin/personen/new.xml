@@ -1,0 +1,87 @@
+
+<content width="98%" top="30px" left="30px">
+	<ribbon:dynamicGroupRight forId="verwaltungTab">
+		<ribbonButton icon="icon_reset" href="javascript:$.mosaikRuntime.resetForm();">
+		Reset
+		</ribbonButton>
+
+		<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+		Speichern
+		</ribbonButton>
+	</ribbon:dynamicGroupRight>
+
+	<h1>
+		<img src="/css/theme/icons/person.png" border="0" style="margin-right: 5px; float: left;"/>
+		<switch key="Person:name">
+			<case value="#empty">
+		Neue Person
+			</case>
+			<case value="*">
+				<mdb:value mpath="Person:name" />,&nbsp;
+				<mdb:value mpath="Person:vorname" />
+			</case>
+		</switch>
+	</h1>
+
+	<dbform class="no-reload">
+		<div style="width: 33%; float:left;">
+			<h2>Angaben zur Firma</h2>
+
+			<switch key="Kontakt">
+				<case value="#empty">
+					<mform:combobox target="input_kontakt_id" displayTarget="input_kontaktInfo" template="kontaktTemplate" json="/admin/json/autocomplete/kontakt;json" filter="Kontakt">
+						<dbinput name="kontaktInfo" label="Firma"/>
+						<dbinput name="kontakt_id" type="hidden"/>
+					
+						<div class="mCompleteElement" style="display: none;" id="kontaktTemplate">
+							<span class="label" style="font-size: small; width: 250px;">
+								<b>{firma}</b>
+								<br/>{ort}
+							</span>
+							<div style="clear: both; height: 1px; width: 1px;">&nbsp;</div>
+						</div>
+					</mform:combobox>
+				</case>
+				<case value="*">
+					<mdb:input mpath="Kontakt:firma" label="Firma" readonly="true" />
+					<mdb:input mpath="Kontakt:id" type="hidden" iName="person[kontakt_id]"/>
+				</case>
+			</switch>
+	
+			<h2>Angaben zur Person</h2>
+			<dbselect name="geschlecht" label="Anrede" fromTable="XAnrede" fromTableKey="id" fromTableDisplay="anrede"/>
+			<dbinput name="vorname" label="Vorname"/>
+			<dbinput name="name" label="Name"/>
+			<dbinput name="grad" label="Grad"/>
+			<dbinput class="datepicker" name="geburtstag" label="Geburtstag" converter="mysqlDateToLocal"/>
+		
+			<h2>Angaben zur Position im Unternehmen</h2>
+			<dbinput name="funktion" label="Funktion"/>
+			<dbinput name="abteilung" label="Abteilung"/>
+			<dbinput name="ansprechpartner" value="1" type="checkbox" label="Ansprechpartner"/>
+			<dbinput name="geschaeftsfuehrer" value="1" type="checkbox" label="Geschäftsführer"/>
+		</div>
+		<div style="width: 33%; float:left;">
+			<h2>Adressinformationen</h2>
+			<dbinput name="strasse" label="Stra&szlig;e"/>
+			<dbinput name="nr" label="Nr"/>
+			<dbinput name="plz" label="PLZ" converter="plz"/>
+			<dbinput name="ort" label="Ort"/>
+			<dbselect name="bundesland_id" label="Bundesland" fromTable="XBundesland" dbtable="person" fromTableKey="id" fromTableDisplay="name"/>
+			<dbselect name="land_id" label="Land" fromTable="XLand" dbtable="person" fromTableKey="id" fromTableDisplay="name"/>
+			<h2>Kontaktinformationen</h2>
+			<dbinput name="tel" label="Telefon"/>
+			<dbinput name="fax" label="Fax"/>
+			<dbinput name="mobil" label="Mobil"/>
+			<dbinput name="email" label="EMail"/>
+			<dbinput name="newsletter" value="1" type="checkbox" label="Newsletter"/>
+			<dbinput class="datepicker" name="newsletter_anmeldedatum" label="Anmeldedatum" converter="mysqlDateToLocal"/>
+			<dbinput class="datepicker" name="newsletter_abmeldedatum" label="Abmeldedatum" converter="mysqlDateToLocal"/>
+		</div>
+
+		<div style="width: 33%; float:left; height: 95%;">
+		</div>
+	</dbform>
+
+	
+</content>

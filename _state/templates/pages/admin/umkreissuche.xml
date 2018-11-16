@@ -1,0 +1,68 @@
+
+<content stlye="width: 98%; height: 98%; position: absolute; display: block;">
+	<h1>Umkreissuche</h1>
+	<dbform class="no-reload form" style="width: 98%; height: 98%; position: absolute;">
+		<div class="c33">
+			<h2>Standort</h2>
+			<dbselect name="id" label="" fromTable="ViewStandortKoordinaten" fromTableKey="id" fromTableDisplay="standort_name"/>
+			<br/>
+			<br/>
+			<h2>Umkreis:</h2>
+			<select name="umkreis">
+				<option value="50">50 km</option>
+				<option value="100">100 km</option>
+				<option value="150">150 km</option>
+				<option value="200">200 km</option>
+				<option value="250">250 km</option>
+				<option value="300">300 km</option>
+				<option value="350">350 km</option>
+				<option value="400">400 km</option>
+				<option value="450">450 km</option>
+				<option value="500">500 km</option>
+			</select>
+			<br/>
+			<br/>
+			<br/>
+
+
+		</div>
+
+		<div class="c33">
+
+			<h2>Datenbanken</h2>
+			<input type="checkbox" value="person" name="db[]" /> Personen
+			<br/>
+			<input type="checkbox" value="kontakt" name="db[]" /> Kontakte
+			<br/>
+			<input type="checkbox" value="akquise_kontakt" name="db[]" /> Akquise-Kontakte
+			<br/>
+			<br/>
+			<br/>
+			<input name="newsletter" value="1" type="checkbox" /> Newsletter Feld berücksichtigen
+
+		</div>
+
+		<div class="c33">
+
+			<h2>Kategorie:</h2>
+			<br/>
+			<sag:kategorie />
+			<br/>
+			<br/>
+		</div>
+
+		<div style="clear:both;"></div>
+
+	</dbform>
+
+	<ribbon:dynamicGroupRight forId="verwaltungTab">
+		<!-- dirty hack ;)-->
+		<ribbonButton icon="icon_buchungen" href='/admin/umkreissuche' reload="true">
+						neue Suche
+		</ribbonButton>
+
+		<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+						Suchen
+		</ribbonButton>
+	</ribbon:dynamicGroupRight>
+</content>

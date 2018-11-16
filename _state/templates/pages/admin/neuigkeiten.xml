@@ -1,0 +1,22 @@
+<content>
+
+<set name="page_background" value="/admin/img/header_bg.jpg" />
+
+<dbpager />
+
+
+	<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_hotels_neu" href="/admin/neuigkeiten/new">
+			Neue Neuigkeit
+		</ribbonButton>
+	</ribbonDynamicGroup>
+
+<dbbuttons basehref="/admin/neuigkeiten/" label="Aktionen" buttons="edit, delete" tooltipEdit="Neuigkeit bearbeiten" tooltipDelete="Neuigkeit löschen" noheader="true"/>
+<widget:itable mpath="/neuigkeit" />
+
+
+</content>
+
+<dialog type="confirmation" target=".dbbuttons .delete" title="Neuigkeit löschen?">
+	Wollen Sie die Neuigkeit wirklich l&ouml;schen?
+</dialog>

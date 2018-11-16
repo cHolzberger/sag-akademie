@@ -1,0 +1,321 @@
+
+<pdf:content>
+	<set name="margin-top" value="22" /> <!-- in mm -->
+	<set name="margin-bottom" value="15" /> <!-- in mm -->
+	<set name="landscape" value="true" />
+
+<pdf:header top="-2">
+</pdf:header>
+	<div style="font-size: 18px;font-family:Verdana;Arial;">
+		<img src="/img/logo_ci.png" border="0" alt="SAG Schulungsakademie GmbH" align="right" style="width:40mm;height:13mm;"/>
+		<b>Anwesenheitsliste</b>
+	</div>
+	<div style="font-family:Verdana;Arial;font-size:10px;color:#999999;">
+		<b>Bezeichnung:<b/>
+			<span style="font-family:Verdana;Arial;font-size:10px;color:black;padding-right:45mm;">
+				<mdb:value mpath="SeminarArt:bezeichnung" />
+			</span><br/>
+		<b>Kurs-Nr.:<b/>
+			<span style="font-family:Verdana;Arial;font-size:10px;color:black;padding-right:45mm;">
+				<mdb:value mpath="Seminar:kursnr" />
+			</span><br/>	
+		<b>Datum:<b/>
+			<span style="font-family:Verdana;Arial;font-size:10px;color:black;padding-right:45mm;">
+				<mdb:value mpath="Seminar:datum_begin" converter="mysqlDateToLocal" />&nbsp;-&nbsp
+				<mdb:value mpath="Seminar:datum_ende" converter="mysqlDateToLocal" />
+			</span><br/>
+		<b>Ort:<b/>
+			<span style="font-family:Verdana;Arial;font-size:10px;color:black;padding-right:45mm;">
+				<mdb:value mpath="Standort:name" />
+			</span>
+	</div>
+	<br/>
+	<div style="font-weight:light;font-family:Verdana;Arial;font-size:9px;color:#999999;padding-right:10mm;">
+		<i>Wir dürfen Sie bitten, die korrekte Schreibweise zu überprüfen! 
+		Mit der Unterschrift willige ich ein, den SAG-Newsletter sowie Informationen zu Schulungen und Kursangeboten zu erhalten. 
+		Des weiteren wird das Einverständnis zur Weitergabe der Kontaktdaten an die Referenten erteilt. 
+		* Pflichtangaben!
+		<i/>
+	</div>
+	<br/>
+	<table border="0" cellspacing="0" cellpadding="2" width="99%" style="border-width:0.1mm;border-style:solid;border-color:black;font-size:9px;font-family:Verdana;Arial;">
+		<tr class="break">
+			<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:.1mm solid windowtext;border-bottom:medium none;">
+				&nbsp;
+			</td>
+			<td colspan="3" style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:.1mm solid windowtext;border-bottom:medium none;" align="center">
+				<b>Teilnehmer</b>
+			</td>
+			<td colspan="2" style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:.1mm solid windowtext;border-bottom:medium none;" align="center">
+				<b>Kontakt Arbeitgeber</b>
+			</td>
+			<td colspan="6" style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:.1mm solid windowtext;border-bottom:medium none;" align="center">
+				<b>Kontakt privat (Bitte keine Arbeitgeber-Daten)</b>
+			</td>
+
+			<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:.1mm solid windowtext;border-bottom:medium none;" align="center">
+				&nbsp;
+			</td>
+		</tr>
+		
+		<tr>
+			<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;" align="right">
+				<b>lfd.<br/>
+				Nr.</b>
+			</td>
+			<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>Grad</b>
+			</td>
+			<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>Name*</b>
+			</td>
+			<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>Vorname*</b>
+			</td>
+			<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>Firma / Kommune*</b>
+			</td>
+			<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>Telefon*</b>
+			</td>
+			<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>Geb.-Datum*</b>
+			</td>
+			<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>Straße*</b>
+			</td>
+			<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>PLZ*</b>
+			</td>
+			<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>Ort/Stadt*</b>
+			</td>
+			<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>Email</b>
+			</td>
+			<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>Telefon / Mobil</b>
+			</td>
+
+			<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+				<b>Unterschrift*</b>
+			</td>
+		</tr>
+
+		<foreach fromArray="Teilnehmer0">
+				
+			<tr>
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;" align="right">
+					<mdb:var mpath="count" converter="utf8Htmlentities"/>
+				</td>
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+					<mdb:var mpath="grad" emptyValue="-"/>
+				</td>
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+					<mdb:var mpath="name" converter="utf8Htmlentities"/>
+				</td>
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+					<mdb:var mpath="vorname" converter="utf8Htmlentities"/>
+				</td>
+			<!-- FIRMA -->
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width: 0.1mm; border-style: solid; border-color: black;">
+					<mdb:var mpath="firma" converter="utf8Htmlspecialchars" />
+				</td>
+			<!-- TELEFON -->
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width: 0.1mm; border-style: solid; border-color:black;">
+					<mdb:var mpath="telefon" converter="utf8Htmlspecialchars" />
+				</td>
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+					<mdb:var mpath="geburtstag" converter="mysqlDateToLocal"/>
+				</td>
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+					<mdb:var mpath="person_strasse" converter="utf8Htmlentities"/>
+				</td>
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+					<switch key="person_plz" converter="utf8Htmlentities">
+						<case value="0">
+							&nbsp;
+						</case>
+						<case value="*">
+							<mdb:var mpath="person_plz" />
+						</case>
+					</switch>
+				</td>
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+					<mdb:var mpath="person_ort" converter="utf8Htmlentities"/>
+				</td>
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+					<mdb:var mpath="person_email"/>
+				</td>
+				<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+					<switch key="person_mobil">
+						<case value="">
+							<mdb:var mpath="person_telefon"/>
+						</case>
+						<case value="*">
+							<mdb:var mpath="person_mobil"/>
+						</case>
+					</switch>
+				</td>
+				<td style="border-width:0.1mm;border-style:solid;border-color:black;">
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+					&nbsp;
+				</td>
+			</tr>
+
+		</foreach>
+	</table>
+		
+	<switch key="Teilnehmer1">
+		<case value="#empty">
+		</case>
+		<case value="*">
+			<pagebreak/>		
+		
+			<table border="0" cellspacing="0" cellpadding="2" width="99%" style="border-width:0.1mm;border-style:solid;border-color:black;font-size:9px;font-family:Verdana;Arial;">
+				<tr class="break">
+					<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:.1mm solid windowtext;border-bottom:medium none;">
+						&nbsp;
+					</td>
+					<td colspan="3" style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:.1mm solid windowtext;border-bottom:medium none;" align="center">
+						<b>Teilnehmer</b>
+					</td>
+					<td colspan="2" style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:.1mm solid windowtext;border-bottom:medium none;" align="center">
+						<b>Kontakt Arbeitgeber</b>
+					</td>
+					<td colspan="6" style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:.1mm solid windowtext;border-bottom:medium none;" align="center">
+						<b>Kontakt privat (Bitte keine Betriebsdaten)</b>
+					</td>
+					<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:.1mm solid windowtext;border-bottom:medium none;">
+						&nbsp;
+					</td>
+				</tr>
+		
+				<tr>
+					<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;" align="right">
+						<b>lfd.
+						<br/>Nr.
+						</b>
+					</td>
+					<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>Grad</b>
+					</td>
+					<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>Name*</b>
+					</td>
+					<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>Vorname*</b>
+					</td>
+					<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>Firma / Kommune*</b>
+					</td>
+					<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>Telefon*</b>
+					</td>
+					<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>Geb.-Datum*</b>
+					</td>
+					<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>Straße*</b>
+					</td>
+					<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>PLZ*</b>
+					</td>
+					<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>Ort/Stadt*</b>
+					</td>
+					<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>Email</b>
+					</td>
+					<td style="color:#000000;background-color:silver;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>Telefon / Mobil</b>
+					</td>
+					<td style="color:#ffffff;background-color:blue;border-left:.1mm solid windowtext;border-right:.1mm solid windowtext;border-top:medium none;border-bottom:.1mm solid windowtext;"> 
+						<b>Unterschrift*</b>
+					</td>
+				</tr>
+				
+				<foreach fromArray="Teilnehmer1">
+				
+					<tr>
+						<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;" align="right">
+							<mdb:var mpath="count" offset="10" converter="utf8Htmlentities" />
+						</td>
+						<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+							<mdb:var mpath="grad" emptyValue="-" converter="utf8Htmlentities"/>
+						</td>
+						<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+							<mdb:var mpath="name" converter="utf8Htmlentities"/>
+						</td>	
+						<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+							<mdb:var mpath="vorname" converter="utf8Htmlentities"/>
+						</td>
+							<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+							<mdb:var mpath="firma" converter="utf8Htmlspecialchars" />
+						</td>
+						<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+							<mdb:var mpath="telefon" converter="utf8Htmlspecialchars" />
+						</td>
+						<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+							<mdb:var mpath="geburtstag" converter="mysqlDateToLocal"/>
+						</td>
+						<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+							<mdb:var mpath="person_strasse" converter="utf8Htmlentities"/>
+						</td>
+						<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+							<switch key="person_plz">
+								<case value="0">
+									&nbsp;
+								</case>
+								<case value="*">
+									<mdb:var mpath="person_plz"/>
+								</case>
+							</switch>
+						</td>
+						<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+							<mdb:var mpath="person_ort" converter="utf8Htmlentities"/>
+						</td>
+						<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+							<mdb:var mpath="person_email"/>
+						</td>
+						<td style="color:#000000;font-size:8px;font-family:Verdana;Arial;border-width:0.1mm;border-style:solid;border-color:black;">
+							<switch key="person_mobil">
+								<case value="">
+									<mdb:var mpath="person_telefon"/>
+								</case>
+								<case value="*">
+									<mdb:var mpath="person_mobil"/>
+								</case>
+							</switch>
+						</td>
+						<td style="border-width:0.1mm;border-style:solid;border-color:black;">
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+							&nbsp;
+						</td>
+					</tr>
+				</foreach>
+			</table>
+		</case>
+	</switch>	
+		
+	<pdf:footer bottom="-15">
+	</pdf:footer>
+</pdf:content>

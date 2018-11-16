@@ -1,0 +1,21 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+	<!-- siehe resources/taglib/infoboxDownload.php-->
+
+ 	<infoboxDownload />
+
+	</infoboxSmall>
+
+<content>
+
+	<img src="/img/title_kursinformationen.png" alt="" border="0" width="185"
+		height="22" style="position: absolute; left:0px; top:0px;" />
+	<div style="position: realtive; left:0px; top:80px; padding-top:40px; position: realtive; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+		<foreach fromArray="seminarArt">
+			<sag:topDownload />
+		</foreach>
+	</div>
+		<div style="clear: both;">
+		&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
+	</div>
+</content>

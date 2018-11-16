@@ -1,0 +1,287 @@
+﻿
+<infoboxSmall>
+	<set name="page_background" value="/img/blue_box_klein.jpg"/>
+	
+	<img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167" style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons"/>
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/>
+		<area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/>
+		<area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/>
+	</map>
+	
+	<img src="/img/image_uebersicht.png" alt="" border="0" style="position: absolute; left:90px; top:45px;" />
+</infoboxSmall>
+
+
+<content>
+		
+	
+	<div style="width:835px;position:relative;top:-20px;left:0px;text-align:right;">
+				
+		<mdb:link href="/kunde/startseite/" type="button" mpath="id">
+					Zurück zur Übersicht
+		</mdb:link>
+
+	</div>
+	
+	<br/>
+	&nbsp;
+	<br/>
+	
+	
+
+	
+	<div style="position:relative; top:-20px; width: 900px; font-size:1.2em !important;">
+			
+		Ihre Buchung vom
+		<b>
+			<dbfield name="datum" notable="true" converter="mysqlDatetimeToLocal"/>
+		</b>
+		<br/>
+		<br/>
+		
+		<foreach fromArray="Buchungen">
+			<div style="width: 750px; clear: both;">
+				<table border="0" cellspacing="0" cellpadding="0" style="width: 750px; ">
+					<tr>
+						<td>
+							
+							<div style="width:750px; float: left; margin-bottom: 25px;">
+								<table border="1" cellspacing="0" cellpadding="0" style="width: 372px; float: left; margin-top : 5px; margin-right: 6px;">
+									<tbody>
+										<tr>
+											<td colspan="2" style="padding:5px !important;">
+												<b>
+												Angaben zum Seminar
+												</b>
+											</td>
+										</tr>
+										<tr>
+											<td style="padding:5px !important;">
+											Bezeichnung
+											</td>
+											<td style="padding:5px !important;">
+												<dbfield name="Seminar:SeminarArt:bezeichnung" notable="1"/>
+											</td>
+										</tr>
+										<tr>
+											<td style="padding:5px !important;">
+											Termin
+											</td>
+											<td style="padding:5px !important;">
+												<dbfield name="Seminar:datum_begin" converter="mysqlDateToLocal" notable="1"/> -
+												<dbfield name="Seminar:datum_ende" converter="mysqlDateToLocal" notable="1"/>
+											</td>
+										</tr>
+										<tr>
+											<td style="padding:5px !important;">
+											Ort
+											</td>
+											<td style="padding:5px !important;">
+												<dbfield name="Seminar:Standort:name" notable="1"/>
+											</td>
+										</tr>
+										<tr>
+											<td style="padding:5px !important;">
+											Kosten (zzgl. MwSt.)
+											</td>
+											<td style="padding:5px !important;">
+												<dbfield name="kursgebuehr" converter="euroPreis" notable="1"/>&nbsp;&euro;
+											</td>
+										</tr>
+									
+									</tr>
+									
+									
+								</tbody>
+							</table>
+								
+							<table border="1" cellspacing="0" cellpadding="0" style="width: 372px; margin-top : 5px;">
+								<tbody>
+									<tr>
+										<td colspan="2" style="padding:5px !important;">
+											<b>
+													Teilnehmer
+											</b>
+										</td>
+									</tr>
+									<tr>
+										<td style="padding:5px !important;">
+												Name, Vorname
+										</td>
+										<td style="padding:5px !important;">
+											<dbfield name="Person:name" notable="true"/>,&nbsp;
+											<dbfield name="Person:vorname" notable="true"/>
+										</td>
+									</tr>
+									<switch key="HotelBuchung:Hotel:name">
+										<case value="">
+										</case>
+										<case value="*">
+											<tr>
+												<td colspan="2" style="padding:5px !important;">
+													<b>
+													Hotelbuchung
+													</b>
+												</td>
+											</tr>
+											<tr>
+												<td style="padding:5px !important;">
+												Hotel
+												</td>
+												<td style="padding:5px !important;">
+													<dbfield name="HotelBuchung:Hotel:name" notable="true"/>
+													<br/>
+													<dbfield name="HotelBuchung:Hotel:strasse" notable="true"/>&nbsp;
+													<dbfield name="HotelBuchung:Hotel:nr" notable="true"/>
+													<br/>
+													<dbfield name="HotelBuchung:Hotel:plz" notable="true"/>&nbsp;
+													<dbfield name="HotelBuchung:Hotel:ort" notable="true"/>
+													<br/>
+													<dbfield name="HotelBuchung:Hotel:tel" notable="true"/>
+												</td>
+											</tr>
+											<tr>
+												<td style="padding:5px !important;">
+												Anzahl Übernachtungen
+												</td>
+												<td style="padding:5px !important;">
+													<dbfield name="HotelBuchung:uebernachtungen" notable="true"/>
+												</td>
+											</tr>
+										
+											<tr>
+												<td style="padding:5px !important;">
+											Anreisedatum
+												</td>
+												<td style="padding:5px !important;">
+													<dbfield name="HotelBuchung:anreise_datum" converter="mysqlDateToLocal" notable="1"/>
+												</td>
+											</tr>
+										
+											<tr>
+												<td style="padding:5px !important;">
+												Zimmerpreis EZ
+												</td>
+												<td style="padding:5px !important;">
+													<switch key="HotelBuchung:uebernachtungen">
+														<case value="">-
+														</case>
+														<case value="*">
+															<mdb:value mpath="HotelBuchung:Hotel:Preis:verkaufspreis_ez" converter="euroPreis" suffix="€"/>
+														</case>
+													</switch>
+												</td>
+											</tr>
+										</case>
+									</switch>
+								</tbody>
+							</table>
+							<br/>
+							<br/>
+								
+							<switch key="abgeschlossen">
+								<case value="0">
+									<div style="width:750px; clear: both; ">
+										<table border="0" cellspacing="0" cellpadding="0" style="width: 750px; margin-top: 5px;">
+											<colgroup>
+												<col width="100px"/>
+												<col width="650px"/>
+											</colgroup>
+																							
+											<tr>
+												<td  colspan="2">&nbsp;
+													<br/>
+																										
+													<switch key="HotelBuchung:uebernachtungen">
+														<case value="#empty">
+															<dblink name="hotelLink" value="Hotel nachträglich buchen" type="button"/>
+																&nbsp;&nbsp;&nbsp;
+															<br/>
+															<br/>
+														</case>
+														<case value="*">
+														</case>
+													</switch>
+														
+														
+													<dbform>
+														<dbselect name="id" fromTable="Seminar" fromTableKey="id" fromTableDisplay="datum_begin,datum_ende,Standort:Ort:ort" fromTableDisplaySpacer="-" style="float: left;"/>
+														<minput type="submit" value="Umbuchen" name="umbuchen" inputstyle="position:relative;top:-2px;"/>
+													</dbform>
+														Bitte beachten Sie, dass durch Umbuchungen Sonder-Rabatte (z.B. Restplatzkontigent) entfallen können.
+													<br/>
+													<br/>
+																										<div>
+														<dbform>
+															<div style="float: left;">
+																<xdbselect fromArray="Personen" fromTableDisplay="name,vorname"  fromTableKey="id" preselect="Person:id" name="person_id"/>
+															</div>
+															<minput type="submit" value="Teilnehmer für diese Buchung &auml;ndern" name="umbuchen" inputstyle="position:relative;top:-2px;"/>
+														</dbform>
+														<div style="clear: both;">&nbsp;</div>
+													</div>
+													
+																									<dblink name="zertifikatAnfordernLink" value="Zertifikat erneut anfordern" type="button"/>&nbsp;&nbsp;Das erneute Anfordern eines Zertifikats berechnen wir mit 30 € zzgl. MwSt.
+																									
+													<br/><br/>
+													
+													<dblink name="stornoLink" value="Diese Buchung stornieren" type="button"/>&nbsp;&nbsp;Bitte beachten Sie dass hierbei Kosten entstehen können, siehe
+													<a href="/pdf/agb.pdf" target="_blank">
+																AGBs
+													</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														
+													<br/>
+
+														<!-- ZERTIFIKAT ANFORDERN -->
+
+														
+														
+														
+														
+												</td>
+													
+											</tr>
+												
+											<tr>
+													
+												<td colspan="2">&nbsp;
+													<br/>
+													<br/>
+													
+												</td>
+											</tr>
+												
+										</table>
+										<br/>
+									</div>
+								</case>
+								<case value="1">
+													Das erneute Anfordern eines Zertifikats berechnen wir mit 30 € zzgl. MwSt.
+													<dblink name="zertifikatAnfordernLink" value="Zertifikat erneut anfordern" type="button"/>
+																								
+													<br/><br/>
+													
+								</case>
+							</switch>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</foreach>
+		
+	<div style="clear: both;">
+			&nbsp;
+	</div>
+		
+		
+		
+		
+<!-- FIXME: hier gehen zu viele divs zu! -->
+</div>
+<div style="clear: both;">
+			&nbsp;
+</div>
+	
+</content>

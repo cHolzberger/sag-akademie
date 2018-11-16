@@ -1,0 +1,142 @@
+<set name="page_background" value="/img/blue_box_klein.jpg"/>
+
+<infoboxSmall>
+	<img src="/img/image_seminare_overview.png" alt="" border="0" width="253" height="129" style="position: absolute; left:90px; top:25px;"/>
+	<img src="/img/nav_seminare_uebersicht.png" alt="" border="0" width="291" height="108" style="position: absolute; left:370px; top:32px;" usemap="#seminare_navigation"/>
+	<map name="seminare_navigation">
+		<area shape="RECT" coords="5,35,135,55" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="5,57,135,77" href="/seminar/termin/Kanalreinigung"/><area shape="RECT" coords="5,79,135,99" href="/seminar/termin/Kanalinspektion"/><area shape="RECT" coords="140,35,285,55" href="/seminar/termin/Dichtheitspr_ufung"/><area shape="RECT" coords="140,57,285,77" href="/seminar/termin/Kanalsanierung"/><area shape="RECT" coords="140,79,285,99" href="/seminar/termin/Abscheidetechnik"/>
+	</map>
+	<img src="/img/direkt_buttons.png" border="0" width="189" height="125" style="position: absolute; left:755px; top:29px;" usemap="#direkt_buttons"/>
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,10,175,35" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,80,175,105" href="/kontakt/callbackformular"/>
+	</map>
+</infoboxSmall>
+
+<content>
+		
+	<dbform class="form">
+	<table>
+		<tr>
+			<td colspan="2">
+			<b>
+				Hotelbuchung
+			</b>
+			</td>
+		</tr>
+		<tr id="hotelBuchenFelder0" class="">
+			<td colspan="2">
+				Die folgenden Hotels stehen zur Auswahl:<br/>&nbsp;<br/>
+				<table class="bfTableHotelAuswahl" border="1" cellspacing="0" cellpadding="3" bgcolor="white">
+					<tr>
+						<td>
+							<b>
+								Nr.
+							</b>
+						</td>
+						<td>
+							<b>
+								Kategorie
+							</b>
+						</td>
+						<td>
+							<b>
+								Beschreibung
+							</b>
+						</td>
+						<td>
+							<b>
+								Entfernung
+							</b>
+						</td>
+						<td>
+							<b>
+								Einzelzimmer
+							</b>
+						</td>
+					</tr>
+					<foreach fromArray="Seminar:Standort:Hotels">
+						<tr>
+							<td>
+								<dbfield name="count" notable="true"/>
+							</td>
+							<td>
+								<dbfield name="kategorie" notable="true"/>
+							</td>
+							<td>
+								<dbfield name="beschreibung" notable="true"/>
+							</td>
+							<td>
+								<dbfield name="entfernung" notable="true"/>
+							</td>
+							<td>
+								<mdb:value mpath="Preis:verkaufspreis_ez" suffix="€" converter="euroPreis"/>	
+							</td>
+						</tr>
+					</foreach>
+				</table>
+			</td>
+		</tr>
+		
+		<tr id="hotelBuchenFelder1">
+			<td>
+				Welches Hotel möchten Sie buchen? *
+			</td>
+			<td>
+				<select name="HotelBuchung[hotel_id]" nospan="true" style="width:154px;" id="hotel_idTeilnehmerAuswahl" validate="required">
+					<foreach fromArray="Buchungen:0:Seminar:Standort:Hotels">
+						<moption>
+							Hotel Nr.<dbfield name="count" notable="true"/>
+						</moption>
+					</foreach>
+				</select>
+			</td>
+		</tr>
+		
+		<tr id="hotelBuchenFelder1b" >
+			<td>
+				Anreisedatum *
+			</td>
+			<td>
+				<minput name="HotelBuchung[anreise_datum]" id="teilnehmerAnreisedatum" validate="required dateDE" value="" type="text" nospan="true" />
+			</td>
+		</tr>
+		<tr id="hotelBuchenFelder2">
+			<td>
+				Wie viele Übernachtungen möchten Sie buchen? *
+			</td>
+			<td>
+				
+				<select name="HotelBuchung[uebernachtungen]" nospan="true" style="width:154px;" id="uebernachtungenTeilnehmerAuswahl" validate="required">
+					<option value="1">
+						1 Übernachtung
+					</option>
+					<option value="2">
+						2 Übernachtungen
+					</option>
+					<option value="3">
+						3 Übernachtungen
+					</option>
+					<option value="4">
+						4 Übernachtungen
+					</option>
+					<option value="5">
+						5 Übernachtungen
+					</option>
+					<option value="6">
+						6 Übernachtungen
+					</option>
+					<option value="7">
+						7 Übernachtungen
+					</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2" style="text-align: right;">
+				<input type="submit" value="Hotel buchen" />
+			</td>
+		</tr>
+				
+	</table>
+	</dbform>
+</content>

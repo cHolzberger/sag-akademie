@@ -1,0 +1,24 @@
+﻿<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+<img src="/img/image_seminare_overview.png" alt="" border="0" width="253" height="129" style="position: absolute; left:90px; top:25px;"/>
+<img src="/img/nav_seminare_uebersicht.png" alt="" border="0" width="291" height="108" style="position: absolute; left:370px; top:32px;" usemap="#seminare_navigation" />
+<map name="seminare_navigation"><area shape="RECT" coords="5,35,135,55" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="5,57,135,77" href="/seminar/termin/Kanalreinigung"/><area shape="RECT" coords="5,79,135,99" href="/seminar/termin/Kanalinspektion"/><area shape="RECT" coords="140,35,285,55" href="/seminar/termin/Dichtheitspr_ufung"/><area shape="RECT" coords="140,57,285,77" href="/seminar/termin/Kanalsanierung"/><area shape="RECT" coords="140,79,285,99" href="/seminar/termin/Abscheidetechnik"/></map>
+<img src="/img/direkt_buttons.png" border="0" width="189" height="125" style="position: absolute; left:755px; top:29px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,10,175,35" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,80,175,105" href="/kontakt/callbackformular"/></map>
+</infoboxSmall>
+ 
+<content>
+	
+	<img src="/img/title_seminarbuchung.png" alt="" border="0" width="180"
+		height="22" style="position: absolute; left:0px; top:0px;" />
+
+<br/>
+&nbsp;<br/>&nbsp;<br/>
+Danke für Ihre Buchung.<br/>
+Ihre Buchung wurde umgebucht.<br/><br/>
+Bitte beachten Sie das eventuelle Hotelbuchungen storniert wurden.<br/><br/>
+
+<dbredirect name="parent" />
+
+</content>

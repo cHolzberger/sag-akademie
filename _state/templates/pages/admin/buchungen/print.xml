@@ -1,0 +1,301 @@
+
+<content>
+	<table border="0" cellspacing="0" cellpadding="5" style="font-family:Arial;font-size:10px !important;">
+		<tr>
+			<td valign="top" width="50%">
+
+				<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Buchung</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Status
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:status" converter="statusToStr" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Buchungsdatum
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:datum" converter="mysqlDateTimeToLocal" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Seminar
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:Seminar:SeminarArt:id"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Kurs-Nr.
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:Seminar:kursnr"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Seminarbeginn
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:Seminar:datum_begin" converter="mysqlDateToLocal"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Seminarende
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:Seminar:datum_ende" converter="mysqlDateToLocal"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Firma
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:Person:Kontakt:firma"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Person
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:Person:name"/>,
+							<mdb:value mpath="Buchung:Person:vorname"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Bestätigt
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:bestaetigt" converter="bestaetigtToStr" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Bestätigungsdatum
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:bestaetigungs_datum" converter="mysqlDateToLocal" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Stornodatum
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:storno_datum" converter="mysqlDateTimeToLocal" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Stornostatus
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:storno_status" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Bemerkung Kunde
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:bemerkung" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Rechnung</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Rechnungsnummer
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:rechnungsnummer" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Rechnung gestellt
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:rechnunggestellt" converter="mysqlDateToLocal" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Gutschrift
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:gutschrift" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Hotelbuchung</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Hotel
+						</td>
+						<td align="left">
+							<mdb:value mpath="HotelBuchung:Hotel:name" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Anreisedatum
+						</td>
+						<td align="left">
+							<mdb:value mpath="HotelBuchung:anreise_datum" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Übernachtungen
+						</td>
+						<td align="left">
+							<mdb:value mpath="HotelBuchung:uebernachtungen" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Stornodatum
+						</td>
+						<td align="left">
+							<mdb:value mpath="HotelBuchung:storno_datum" converter="mysqlDateToLocal" />
+						</td>
+					</tr>
+				</table>
+
+			</td>
+			<td valign="top" width="50%">
+
+
+
+				<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Preise</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Kursgebühr
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:kursgebuehr" converter="euroPreis" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Rabatt
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:rabatt" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Förderung</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Arbeitsagentur
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:arbeitsagentur" converter="jaNeinToStr" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Anteil Arbeitsagentur
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:arbeitsagenturanteil" converter="euroPreis"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Anteil Versorgungsamt
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:versorgungsamtanteil" converter="euroPreis"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Investitionsbank
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:investitionsbank" converter="jaNeinToStr"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Frühbucherrabatt
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:fruehbucherrabatt" converter="jaNeinToStr"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Bildungscheck
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:bildungscheck" converter="jaNeinToStr"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Anteil VDRK
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:anteilvdrk" converter="euroPreis"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Notizen</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Notiz
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:notiz" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Info für Kunde
+						</td>
+						<td align="left">
+							<mdb:value mpath="Buchung:info_kunde" />
+						</td>
+					</tr>
+				</table>
+
+			</td>
+		</tr>
+	</table>
+	<script type="text/javascript">window.print();window.close();</script>
+</content>

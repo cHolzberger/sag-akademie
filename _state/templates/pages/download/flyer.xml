@@ -1,0 +1,176 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+		<!-- siehe resources/taglib/infoboxDownload.php-->
+
+	<infoboxDownload />
+
+	</infoboxSmall>
+
+<content>
+
+	<img src="/img/title_flyer.png" alt="" border="0" style="position: absolute; left:0px; top:0px;" />
+
+	<div
+		style="position: absolute; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<table border="0" cellspacing="0" cellpadding="0" width="400"
+			style="position: absolute; left:0px; top:0px;width:400px;">
+			<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/SAG_Arbeitssicherheit.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Arbeitssicherheit.pdf" target="_blank" class="blau">
+							<b>Flyer Fachgebiet Arbeitssicherheit</b>
+						</a>
+						<br />
+						Informationen zu den Seminaren aus dem Bereich Arbeitssicherheit (Sicherheitsunterweisungen, Ersthelfer-Lehrgänge)
+					</span>
+				</td>
+			</tr>
+		
+						<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/SAG_Dichtheitspruefung.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Dichtheitspruefung.pdf" target="_blank" class="blau">
+							<b>Flyer Fachgebiet Dichtheitsprüfung</b>
+						</a>
+						<br />
+						Informationen zu den Seminaren aus dem Bereich Dichtheitsprüfung (Sachkunde Dichtheitsprüfung, Dichtheitsprüfung nach § 61a LWG NRW)
+					</span>
+				</td>
+			</tr>
+	
+						<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/SAG_Kanalsanierung.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Kanalsanierung.pdf" target="_blank" class="blau">
+							<b>Flyer Fachgebiet Kanalsanierung</b>
+						</a>
+						<br />
+						Informationen zu den Seminaren aus dem Bereich Kanalsanierung (Kurzlinersanierung, Schlauchlinersanierung, etc.)
+					</span>
+				</td>
+			</tr>
+	
+						<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/SAG_RSV.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_RSV.pdf" target="_blank" class="blau">
+							<b>Flyer Zertifizierter Fachkundiger
+für Rohrleitungssanierung
+(RSV/SAG)</b>
+						</a>
+						<br />
+						Bausausführung: Reparatur - Renovierung - Erneuerung (geschlossene Bauweise)
+					</span>
+				</td>
+			</tr>
+
+			
+
+		</table>
+		
+		<table border="0" cellspacing="0" cellpadding="0" width="400"
+			style="position: absolute; left:450px; top:15px; width:400px;">
+
+			<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/SAG_Kanalinspektion.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Kanalinspektion.pdf" target="_blank" class="blau">
+							<b>Flyer Fachgebiet Kanalinspektion</b>
+						</a>
+						<br />
+						Informationen zu den Seminaren aus dem Bereich Kanalinspektion (Grundkurse, Aufbaukurse)
+					</span>
+				</td>
+			</tr>
+			
+				<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/SAG_Kanalreinigung.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Kanalreinigung.pdf" target="_blank" class="blau">
+							<b>Flyer Fachgebiet Kanalreinigung</b>
+						</a>
+						<br />
+						Informationen zu den Seminaren aus dem Bereich Kanalreinigung (Grundkurse, Aufbaukurse)
+					</span>
+				</td>
+			</tr>
+			
+				<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/SAG_Abscheidetechnik.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Abscheidetechnik.pdf" target="_blank" class="blau">
+							<b>Flyer Fachgebiet Abscheidetechnik</b>
+						</a>
+						<br />
+						Informationen zu den Seminaren aus dem Bereich Abscheidetechnik (Fachkundelehrgänge Fettabscheider, Leichtflüssigkeitsabscheider etc.)
+					</span>
+				</td>
+			</tr>
+				<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/SAG_ZFKD_GE.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_ZFKD_GE.pdf" target="_blank" class="blau">
+							<b>Flyer Fachkundelehrgang ZFKD-GE</b>
+						</a>
+						<br />
+						Zertifizierter Fachkundiger für Kanaldienstleistungen - Grundstücksentwässerung
+					</span>
+				</td>
+			</tr>
+			
+
+			
+			
+
+	</div>
+</content>

@@ -1,0 +1,445 @@
+﻿<set name="subject" value="Ihre Seminar-Buchung auf www.sag-akademie.de"/>
+<content>
+	<div style="font-family:Arial,Helvetica; font-size:11px;">
+		<img src="https://www.sag-akademie.de/img/logo_ci.png" alt="Logo SAG-Akademie" border="0" align="right"/>
+				<switch key="Ansprechpartner:geschlecht">
+			<case value="0">
+				<b>Sehr geehrter Herr
+					<dbfield name="Ansprechpartner:name" notable="true"/>,
+				</b>
+			</case>
+			<case value="1">
+				<b>Sehr geehrte Frau
+					<dbfield name="Ansprechpartner:name" notable="true"/>,
+				</b>
+			</case>
+		</switch>
+		<br/>&nbsp;
+		<br/>
+		vielen Dank für Ihre verbindliche Seminar-Buchung auf www.sag-akademie.de .<br/>&nbsp;
+		<br/> 
+Die Buchungsdaten können Sie jederzeit im Kundenbereich auf www.sag-akademie.de einsehen, zusätzlich finden Sie am Ende dieser Email eine Zusammenfassung. Ggfls. können Sie im Kundenbereich auch eine Umbuchung oder Stornierung der Buchung vornehmen. Bitte beachten Sie, dass bei einer Stornierung Kosten entstehen können.<br/>&nbsp;
+		<br/>
+Die Allgemeinen Geschäftsbedingungen der SAG-Akademie finden Sie <a href="https://www.sag-akademie.de/pdf/agb.pdf" target="_blank">hier</a>. 
+		<br/>&nbsp;<br/>
+		Eine Anfahrtsbeschreibung und einen Routenplaner zu den Standorten der SAG-Akademie finden Sie
+		<a href="https://www.sag-akademie.de/kontakt/anfahrt" target="_blank">
+			hier
+		</a>
+		.<br/>
+		<br/>&nbsp;<br/>
+		Einige Hinweise zum Seminar:<br/>&nbsp;<br/>
+Seminarbeginn für alle Seminare ist 8.00 Uhr. Wir bitten um ein rechtzeitiges Erscheinen um Verzögerungen zu vermeiden. Die angegebenen Zeiten für das Ende eines Seminars sind Mindestzeiten.<br/>&nbsp;<br/> 
+  
+Neben dem Seminarordner mit den Schulungsunterlagen werden Kugelschreiber und Blöcke kostenlos zur Verfügung gestellt.<br/>&nbsp;<br/> 
+  
+Während des gesamten Seminars stehen Kaffee, Tee und Kaltgetränke zur Verfügung.   
+Jedes Seminar beinhaltet ein Frühstück mit belegten Brötchen und ein warmes Mittagessen.   
+Zusätzlich gibt es kurze Pausen während Seminars. Ein Raucherbereich steht zur Verfügung.<br/>&nbsp;<br/>
+Zusammenfassung der Buchungsdaten:<br/>&nbsp;<br/>
+
+		<table border="1" cellspacing="0" cellpadding="3" style="border-style:solid;border-width:1px;border-color:#dddddd;font-family:Arial,Helvetica; font-size:11px;">
+			
+			<tbody>
+				
+				<switch key="Kontakt:id">
+					<case value="1">
+						
+					</case>
+					
+					
+					<case value="*">
+						
+						
+						<tr>
+							<td colspan="2">
+								<b>
+									Ihre Angaben zur Firma / Kommune
+								</b>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Name der Firma oder Kommune
+							</td>
+							<td>
+								<dbfield name="Kontakt:firma" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Straße, Nr.
+							</td>
+							<td>
+								<dbfield name="Kontakt:strasse" notable="true"/><dbfield name="Kontakt:nr" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								PLZ, Ort
+							</td>
+							<td>
+								<dbfield name="Kontakt:plz" notable="true"/><dbfield name="Kontakt:ort" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Bundesland
+							</td>
+							<td>
+								<dbfield name="Kontakt:bundesland" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Land
+							</td>
+							<td>
+								<dbfield name="Kontakt:land" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Telefon
+							</td>
+							<td>
+								<dbfield name="Kontakt:tel" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Telefax
+							</td>
+							<td>
+								<dbfield name="Kontakt:fax" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Email
+							</td>
+							<td>
+								<dbfield name="Kontakt:email" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Website
+							</td>
+							<td>
+								<dbfield name="Kontakt:url" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								VDRK Mitglieds-Nr.
+							</td>
+							<td>
+								<dbfield name="Kontakt:vdrk_mitglied_nr" notable="true"/>
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td colspan="2">
+								&nbsp;
+							</td>
+						</tr>
+						
+					</case>
+				</switch>
+				
+				<foreach fromArray="Person">
+					<switch key="Person:ansprechpartner">
+						<case value="1">
+							<tr>
+								<td colspan="2">
+									<b>
+										Ihre Angaben zum Ansprechpartner
+									</b>
+								</td>
+							</tr>
+						</case>
+						<case value="*">
+							<tr>
+								<td colspan="2">
+									<b>
+										Ihre Angaben zum Teilnehmer
+									</b>
+								</td>
+							</tr>
+						</case>
+					</switch>
+					
+					<tr>
+						<td>
+							Grad
+						</td>
+						<td>
+							<dbfield name="Person:grad" notable="true"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							Funktion
+						</td>
+						<td>
+							<dbfield name="Person:funktion" notable="true"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							Name, Vorname
+						</td>
+						<td>
+							<dbfield name="Person:name" notable="true"/>,&nbsp;<dbfield name="Person:vorname" notable="true"/>
+						</td>
+					</tr>
+					
+					<switch key="Person:teilnehmer">
+
+						<case value="1">
+							
+							<tr>
+								<td>
+									Straße, Nr.
+								</td>
+								<td>
+									<dbfield name="Person:strasse" notable="true"/><dbfield name="Person:nr" notable="true"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									PLZ, Ort
+								</td>
+								<td>
+									<dbfield name="Person:plz" notable="true"/><dbfield name="Person:ort" notable="true"/>
+								</td>
+							</tr>
+						</case>
+					<case value="*">
+							
+						</case>
+					</switch>
+					
+					<tr>
+						<td>
+							Telefon
+						</td>
+						<td>
+							<dbfield name="Person:tel" notable="true"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							Mobil
+						</td>
+						<td>
+							<dbfield name="Person:mobil" notable="true"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							Email
+						</td>
+						<td>
+							<dbfield name="Person:email" notable="true"/>
+						</td>
+					</tr>
+					
+					 <switch key="Person:teilnehmer">
+                        <case value="1">
+					
+					                    <tr>
+                        <td>
+                            Geburtstag
+                        </td>
+                        <td>
+                            <dbfield name="Person:geburtstag" notable="true" converter="mysqlDateToLocal"/>
+                        </td>
+                    </tr>
+					</case>
+                    <case value="*">
+					
+					</case>
+					</switch>
+					
+					
+					<switch key="Person:teilnehmer">
+						<case value="0">
+							
+						</case>
+						<case value="*">
+							
+							<tr>
+								<td>
+									Seminar
+								</td>
+								<td>
+									<dbfield name="Seminar:SeminarArt:bezeichnung" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Kurs-Nr.
+								</td>
+								<td>
+									<dbfield name="Seminar:kursnr" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Zeitraum
+								</td>
+								<td>
+									<dbfield name="Seminar:datum_begin" converter="mysqlDateToLocal" notable="1"/>-<dbfield name="Seminar:datum_ende" converter="mysqlDateToLocal" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Ort
+								</td>
+								<td>
+									<dbfield name="Seminar:Standort:Ort:ort" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Kosten (zzgl. MwSt.)
+								</td>
+								<td>
+									<dbfield name="kursgebuehr" converter="euroPreis" notable="1"/>&nbsp;&euro;
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									zuständige Arbeitsagentur
+								</td>
+								<td>
+									<dbfield name="zustaendige_arbeitsagentur" notable="1"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Bildungsscheck Ausstellung Bundesland
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_bundesland" notable="1"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Bildungsscheck Ausstellung Ort
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_ort" notable="1"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Bildungsscheck Ausstellung Datum
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_datum" notable="1"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td valign="top">
+									Hotel
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:Hotel:name" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:strasse" notable="true"/>&nbsp;<dbfield name="HotelBuchung:Hotel:nr" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:plz" notable="true"/>&nbsp;<dbfield name="HotelBuchung:Hotel:ort" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:tel" notable="true"/>
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td>
+									Anzahl Übernachtungen
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:uebernachtungen" notable="true"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Anreisedatum
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:anreise_datum" notable="true"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Zimmerpreis EZ in &euro; pro Übernachtung
+								</td>
+								<td>
+									<mdb:value mpath="HotelBuchung:verkaufspreis_ez" converter="euroPreis" suffix="€"/>
+								</td>
+							</tr>
+							
+							
+						</case>
+					</switch>
+					  <tr>
+                        <td colspan="2">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Seminarunterlagen
+                        </td>
+                        <td>
+                            <mdb:value mpath="seminar_unterlagen" converter="jaNeinToStr" />
+                        </td>
+                    </tr>
+					<tr>
+						<td colspan="2">
+							&nbsp;
+						</td>
+					</tr>
+					
+				</foreach>
+				<tr>
+					<td>
+						Bemerkung
+					</td>
+					<td>
+						<mdb:value mpath="bemerkung" />
+					</td>
+				</tr>
+				<tr>
+                    <td>
+                        Anmerkungen SAG
+                    </td>
+                    <td>
+						<mdb:value mpath="info_kunde"  />
+                    </td>
+                </tr>
+				
+			</tbody>
+		</table><br/>&nbsp;
+		
+		
+		
+		<br/>&nbsp;
+		
+		
+	</div>
+</content>

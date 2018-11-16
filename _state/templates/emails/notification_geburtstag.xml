@@ -1,0 +1,44 @@
+﻿<content>
+
+<div style="font-family: Arial,Helvetica; font-size: 12px;">
+	<img align="right" alt="Logo SAG-Akademie" border="0" src="https://www.sag-akademie.de/img/torte.png" />
+	<p>
+		<mdb:value mpath="Person:anredestr" /> <mdb:value mpath="Person:name" />,</p>
+	<p>
+		Ihr Jahr dreht wieder seine Runde,<br>
+		J&auml;hrt sich just in dieser Stunde!<br>
+		Wir, wir lassen&lsquo;s uns nicht nehmen,<br>
+		zum Gratulieren anzustehen!</p>
+	<p>
+		Happy Birthday! Nur das Beste,<br>
+		W&uuml;nschen wir zum Wiegenfeste!<br>
+		Jubeln Sie, feiern Sie sch&ouml;n,<br>
+		Lassen Sie sich&rsquo;s bestens gehen!</p>
+	<p>
+		Wir w&uuml;nschen Ihnen, kurz gesagt:<br>
+		<b>ERF&Uuml;LLUNG</b>, und zwar jeden Tag,<br>
+		<b>GESUNDHEIT</b> und &lsquo;ne Menge Gl&uuml;ck,<br>
+		<b>BEWUSSTSEIN</b> f&uuml;r den Augenblick!</p>
+	<p>
+		Wir sagen <b>DANKE</b> f&uuml;r&rsquo;s Vertrauen,<br>
+		W&uuml;nschen uns, es auszubauen,<br>
+		Und sollten Sie Know How vermissen,<br>
+		Dann lassen Sie es uns doch wissen!</p>
+	<p>
+		Alles Gute zu Ihrem Geburtstag w&uuml;nscht das Team der SAG-Akademie!</p>
+	
+		<br />
+		Mit freundlichen Grüßen<br />
+		Ihr Team der SAG-Akademie<br />
+		___________________________________________________________________________________________________<br />
+<p style="font-family: Arial,Helvetica; font-size: 11px;">
+		SAG-Akademie GmbH für berufliche Weiterbildung<br />
+		Otto-Hesse-Str. 19/T9<br />
+		64293 Darmstadt<br />
+		Telefon:   +49 <mdb:value mpath="0" /> 61 51.101 55-0<br />
+		Fax:         +49 <mdb:value mpath="0" /> 61 51.101 55-155<br />
+		Email:       info@sag-akademie.de</p>
+</div>
+
+
+</content>

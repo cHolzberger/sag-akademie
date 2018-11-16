@@ -1,0 +1,112 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+		<!-- siehe resources/taglib/infoboxDownload.php-->
+
+	<infoboxDownload />
+
+	</infoboxSmall>
+
+<content>
+
+	
+	<div
+		style="position: absolute; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<table border="0" cellspacing="0" cellpadding="0" width="400"
+			style="position: absolute; left:0px; top:0px;width:400px;">
+			<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/pruefungsordnung_lafk.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/pruefungsordnung_lafk.pdf" target="_blank" class="blau">
+							<b>Prüfungsordnung Fachkundelehrgang für
+Leichtflüssigkeitsabscheider (LA-FK)</b>
+						</a>
+						<br />
+						Prüfungsordnung für die Anerkennung
+von Fachkundigen im Sinne
+der DIN EN 1999, Teil 100 und DIN
+EN 858, Teil 2
+					</span>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/pruefungsordnung_fafk.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/pruefungsordnung_fafk.pdf" target="_blank" class="blau">
+							<b>Prüfungsordnung Fachkundelehrgang für
+Fettabscheider (FA-FK)</b>
+						</a>
+						<br />
+						Prüfungsordnung für die Anerkennung
+von Fachkundigen im Sinne
+der DIN EN 4040-100 und DIN EN
+1825-2
+					</span>
+				</td>
+			</tr>
+
+			
+
+		</table>
+		
+		<table border="0" cellspacing="0" cellpadding="0" width="400"
+			style="position: absolute; left:450px; top:15px; width:400px;">
+
+			<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/pruefungsinhalte_lafk.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/pruefungsinhalte_lafk.pdf" target="_blank" class="blau">
+							<b>Prüfungsinhalte Fachkundelehrgang für
+Leichtflüssigkeitsabscheider (LA-FK)</b>
+						</a>
+						<br />
+						Prüfungsinhalte für Fachkundige im
+Sinne von DIN 1999-100 in Verbindung
+mit DIN EN 858-2
+					</span>
+				</td>
+			</tr>
+			
+				<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/pruefungsinhalte_lafk.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/pruefungsinhalte_lafk.pdf" target="_blank" class="blau">
+							<b>Prüfungsinhalte Fachkundelehrgang für
+Fettabscheider (FA-FK)</b>
+						</a>
+						<br />
+						Prüfungsinhalte für Fachkundige im
+Sinne von DIN 4040-100 in Verbindung
+mit DIN EN 1825-2
+					</span>
+				</td>
+			</tr>
+
+	</div>
+</content>
