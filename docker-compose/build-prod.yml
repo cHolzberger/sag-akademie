@@ -21,6 +21,10 @@ services:
   mysqldb:
     ports:
       - "3306:3306"
+  web:
+    hostname: www.sag-akademie.de
+    ports: 
+      - "8081:80"
 version: '2.0'
 volumes:
   certs:
