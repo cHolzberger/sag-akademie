@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+SELECT * from buchung WHERE buchung.id NOT IN (SELECT buchung.id as id from buchung, person where buchung.person_id = person.id ) AND buchung.deleted_at = '0000-00-00 00:00:00' ORDER BY `buchung`.`person_id` ASC
+
+-- alle buchuhngen die in den buchungen aber nicht in der view dazu sind
+SELECT * from buchung WHERE buchung.id NOT IN (SELECT buchung.id as id from buchung, view_buchung_preis where buchung.id = view_buchung_preis.id) AND buchung.deleted_at = '0000-00-00 00:00:00' 

@@ -1,0 +1,25 @@
+@CHARSET "UTF-8";
+
+th, td, table, tbody, tfoot, thead {
+        padding: 0px;
+        margin: 0px;
+        text-align: left;
+}
+
+.dbbuttons {
+        width: 85px;
+        padding-right: 25px;
+        padding-left: 10px;
+}
+
+table {
+        width: 740px;
+}
+
+tr.even > td {
+background-color:#f8f8fb !important;
+}
+
+tr.odd > td {
+background-color:#ffffff !important;
+}

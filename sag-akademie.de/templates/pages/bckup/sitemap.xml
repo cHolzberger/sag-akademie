@@ -1,0 +1,64 @@
+<set name="page_background" value="img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+<img src="/img/hotline.png" alt="" border="0" width="239" height="161" style="position: absolute; left:705px; top:6px;" usemap="#formulare" /><map name="formulare"><area shape="RECT" coords="90,80,230,120" href="#" /></map>
+<img src="/img/image_sitemap.png" alt="" border="0" width="250" height="128" style="position: absolute; left:90px; top:25px;"/>
+
+</infoboxSmall>
+
+<content>
+
+<img src="/img/title_sitemap.png" alt="" border="0" width="180" height="22" style="position: absolute; left:0px; top:0px;"/>
+
+<div style="position: absolute; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+
+<table border="0" cellspacing="10" cellpadding="5" width="600">
+<tr>
+<td valign="top" style="background-color:#eeeeee;width:25%;">
+<b>Startseite</b><br/>
+<a href="/startseite">Startseite</a>
+</td>
+<td valign="top" style="background-color:#eeeeee;width:25%;">
+<b>Über uns</b><br/>
+<a href="/philosophie">Philosophie</a><br/>
+<a href="/referenten">Referenten</a><br/>
+<a href="/partner">Partner</a><br/>
+<a href="/referenzen">Referenzen</a><br/>
+</td>
+<td valign="top" style="background-color:#eeeeee;width:25%;">
+<b>Seminare</b><br/>
+<a href="/seminare/arbeitssicherheit">Arbeitssicherheit</a><br/>
+<a href="/seminare/dichtheit">Dichtheitsprüfung</a><br/>
+<a href="/seminare/kanalreinigung">Kanalreinigung</a><br/>
+<a href="/seminare/kanalsanierung">Kanalsanierung</a><br/>
+<a href="/seminare/kanalinspektion">Kanalinspektion</a><br/>
+<a href="/seminare/abscheidetechnik">Abscheidetechnik</a><br/>
+</td>
+<td valign="top" style="background-color:#eeeeee;width:25%;">
+<b>Schulungszentrum</b><br/>
+<a href="/schulungszentrum">Schulungszentrum</a>
+</td>
+</tr>
+<tr>
+<td valign="top" style="background-color:#eeeeee;">
+<b>Download</b><br/>
+<a href="/download">Download</a>
+</td>
+<td valign="top" style="background-color:#eeeeee;">
+<b>Kontakt</b><br/>
+<a href="/kontakt/kontaktformular">Kontakt-Formular</a><br/>
+<a href="/kontakt/callbackformular">Callback-Formular</a><br/>
+<a href="/kontakt/anfahrt">Anfahrt</a><br/>
+<a href="/kontakt/anschrift">Anschrift & Telefon</a><br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
+</td>
+<td valign="top" style="background-color:#eeeeee;">
+<b>Impressum</b><br/><a href="/impressum">Impressum</a><br/>
+</td>
+<td valign="top" style="background-color:#eeeeee;">
+&nbsp;
+</td>
+</tr>
+</table>
+
+</div>
+</content>

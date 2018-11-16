@@ -1,0 +1,411 @@
+
+
+<infoboxSmall>
+	<set name="page_background" value="/img/blue_box_klein.jpg" />
+	<js:import src="/resources/scripts/forms/kunde_neu.js"/>
+	<img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167" style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/>
+		<area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/>
+		<area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/>
+	</map>
+
+	<img src="/img/image_uebersicht.png" alt="" border="0" style="position: absolute; left:90px; top:45px;" />
+		
+</infoboxSmall>
+<content style="width:820px;left:30px;">
+		
+
+	<style>
+		.breadcrumb-container {
+			border:  1px solid black;
+			color: white;
+			margin-bottom: 20px;
+			float: left;
+		}
+
+		.breadcrumb-item {
+			float: left;
+			border-right: 1px solid black;
+			background-color: blue;
+			padding-left: 3px;
+			padding-right: 3px;
+			padding-top: 1px;
+			padding-bottom: 6px;
+			font-family: Arial,Helvetica,Sans;
+			font-size: 1.2em;
+			font-weight:bold;
+			cursor: pointer;
+		}
+
+		.breadcrumb-item-active {
+			background-color: white !important;
+			color: black !important;
+			font-weight: bold;
+		}
+
+		breadcrumb-item:hover {
+		font-decoration: underline;
+		}
+
+		.steps {
+			clear: both;
+		}
+
+		.step {
+			display: none;
+		}
+
+		.step input {
+			font-size: 1.2em;
+			width: 250px !important;
+			display: block;
+			float: left;
+		}
+
+		.step label {
+			font-size: 1.2em;
+			 width: 250px !important;
+			 float: left;
+		}
+
+		div.dbselect,
+		.dbinput {
+			clear: both;
+			padding-top: 10px;
+		}
+
+		.minput {
+			clear: both;
+		}
+
+		.first {
+			display: block;
+		}
+
+		.breadcrumb-navigation {
+			position: relative;
+			left:0px;
+			width:425px;
+			text-align:right;
+			padding-right:30;
+			padding-top:10px;
+		}
+		#zurueck {
+			position: absolute;
+			left: 0;
+		}
+
+		#weiter {
+			position: absolute;
+			right: 0;
+		}
+
+		#sendenButton {
+			position: absolute;
+			right: 0;
+			display: none;
+		}
+		
+		#privat {
+			margin: 0;
+			padding: 0;
+			width: auto !important;
+		}
+		
+		.dbinput{
+		text-align: left;
+		}
+		
+		#AGBakzeptiert {
+			width: 1px !important;
+		}
+
+		/* hack */
+		.step .minputRadio .text {
+			width: 30px !important;
+			float: left;
+		}
+
+		.step .minputRadio .label {
+			width: 40px !important;
+			float: left;
+		}
+
+		#control {
+			clear: both;
+		}
+
+		/* Strasse und Nr input felder auf die richtige groesse bringen */
+		.nrInput,
+		.strasseInput {
+			float: left;
+			clear: none !important;
+		}
+
+		.strasseInput input{
+			width: 250px !important;
+		}
+		.nrInput input{
+			width: 40px !important;
+		}
+		
+		.plzInput,
+		.ortInput {
+			float: left;
+			clear: none !important;
+		}
+
+		.plzInput input{
+			width: 173px !important;
+		}
+		.ortInput input{
+			width: 173px !important;
+		}
+		.bundeslandLandInput select{
+			width: 244px !important;
+		}
+
+		#hiddenForm {
+		display: None;
+		}
+
+		.dawNr,
+		.vdrkNr,
+		.rsvNr,
+		#privatpersonKontakt {
+		display: none;
+		}
+		
+
+		
+
+	</style>
+	<form action="/kunde/neu?save" method="POST" class="form" id="anmeldung">
+		<dbinput type="hidden" name="id"/>
+<!-- navigation -->
+		<div class="breadcrumb-container">
+			<div class="breadcrumb-item" id="anmeldungAdressdatenCrumb" onclick="buchenForm.goTo('anmeldungAdressdaten');">
+			1. Adressdaten<img src="/img/nextstep.png" border="0"/>
+			</div>
+			<div class="breadcrumb-item" id="anmeldungKontaktdatenCrumb" onclick="buchenForm.goTo('anmeldungKontaktdaten')">
+			2. Kontaktdaten<img src="/img/nextstep.png" border="0"/>
+			</div>
+			<div class="breadcrumb-item" id="anmeldungMitgliedschaftCrumb" onclick="buchenForm.goTo('anmeldungMitgliedschaft')">
+			3. Verbände<img src="/img/nextstep.png" border="0"/>
+			</div>
+			<div class="breadcrumb-item" id="anmeldungAnsprechpartnerCrumb" onclick="buchenForm.goTo('anmeldungAnsprechpartner')">
+			4. Ansprechpartner<img src="/img/nextstep.png" border="0"/>
+			</div>
+			<div class="breadcrumb-item" id="anmeldungPasswortCrumb" onclick="buchenForm.goTo('anmeldungPasswort')">
+			5. Passwort festlegen<img src="/img/nextstep.png" border="0"/>
+			</div>
+			<div class="breadcrumb-item" id="anmeldungSendenCrumb" onclick="buchenForm.goTo('anmeldungSenden')">
+			6. Daten senden<img src="/img/nextstep.png" border="0"/>
+			</div>
+		</div>
+
+		<div class="steps">
+
+		<!-- Adressdaten -->
+			<div class="step first" id="anmeldungAdressdaten">
+				<span style="font-size: 1.2em;">Bitte machen Sie in diesem Schritt die Angaben zur <b>Adresse Ihrer Firma</b>.</span>
+				<br/>&nbsp;
+				<br/>
+				<mdb:input label="Ich möchte als Privatperson buchen" mpath="kontakt[privat]" type="checkbox" id="privat" value="1"/>
+				<div id="firmendaten" style="clear: both;">
+					<dbselect fromTable="ViewKontaktKategorieAnmeldung" label="Kategorie *" name="kontakt[kontaktkategorie]" fromTableDisplay="name" fromTableKey="id"/>
+					<mdb:input label="Name der Firma oder Kommune *" mpath="kontakt[firma]" value="" type="text" nospan="true" validate="required"/>
+
+					<dbselect name="kontakt[kontaktkategorie]" label="Kontaktkategorie" fromTable="KontaktKategorie" fromTableKey="id" fromTableDisplay="name"/>
+					<dbselect name="kontakt[branche_id]" label="Branche" fromTable="XBranche" fromTableKey="id" fromTableDisplay="name"/>
+					<dbselect name="kontakt[taetigkeitsbereich_id]" label="T&auml;tigkeitsbereich" fromTable="XTaetigkeitsbereich" fromTableKey="id" fromTableDisplay="name"/>
+					
+					<div  class="dbinput ">
+						<label for="input_kontakt[newsletter]" class="label">
+				Stra&szlig;e, Nr. *
+						</label>
+						<minput name="kontakt[strasse]" value="" type="text" validate="required" class="strasseInput"/>
+						<div style="clear: both; height: 1px; ">&nbsp;</div>
+					</div>
+					<div  class="dbinput ">
+						<label for="input_kontakt[newsletter]" class="label">
+				PLZ *
+						</label>
+						<minput name="kontakt[plz]" value="" type="text" validate="required digits" class="plzInput"/>
+						<div style="clear: both; height: 1px; ">&nbsp;</div>
+						</div>
+						<div  class="dbinput ">
+						<label for="input_kontakt[newsletter]" class="label">
+				Ort *
+						</label>
+						<minput name="kontakt[ort]" value="" type="text" validate="required" class="ortInput"/>
+						<div style="clear: both; height: 1px; ">&nbsp;</div>
+					</div>
+					<dbselect name="kontakt[bundesland_id]" label="Bundesland *" fromTable="XBundesland" fromTableKey="id" fromTableDisplay="name" class="bundeslandLandInput"/>
+					<dbselect name="kontakt[land_id]" label="Land *" fromTable="XLand" fromTableKey="id" fromTableDisplay="name" class="bundeslandLandInput"/>
+				</div>
+			</div>
+
+		<!-- Kontaktdaten -->
+			<div class="step" id="anmeldungKontaktdaten">
+				<div id="firmendatenKontakt">
+		<span style="font-size: 1.2em;">Bitte machen Sie in diesem Schritt die Angaben zu den <b>Kontaktdaten Ihrer Firma</b>.</span>
+				<br/>&nbsp;
+				<br/>
+				<mdb:input mpath="kontakt[tel]" value="" type="text" nospan="true" validate="required" label="Telefon (Zentrale) *" />
+				<mdb:input mpath="kontakt[fax]" value="" type="text" nospan="true" label="Fax (Zentrale)" />
+				<mdb:input mpath="kontakt[email]" value="" type="text" nospan="true" validate="required email" label="E-Mail (Zentrale) *" />
+				<div  class="dbinput ">
+					<label for="input_kontakt[newsletter]" class="label">
+				Newsletter abonnieren *
+					</label>
+					<minput name="kontakt[newsletter]" value="1" type="radio" label="ja" nospan="true" checked="checked"/>
+					<minput name="kontakt[newsletter]" value="0" type="radio" label="nein" nospan="true"/>
+					<div style="clear: both; height: 1px; ">&nbsp;</div>
+				</div>
+			
+				<mdb:input mpath="kontakt[url]" value="" type="text" nospan="true" label="Webseite"/>
+				</div>
+				<div id="privatpersonKontakt" style="margin-bottom: 10px;">
+					<span style="font-size: 1.2em;">Als Privatperson können Sie diesen Schritt überspringen.</span>
+					
+				</div>
+			</div>
+
+		<!-- Mitgliedschaften -->
+			<div class="step" id="anmeldungMitgliedschaft">
+		<span style="font-size: 1.2em;">Wir bieten eine Ermäßigung von 5 % für Mitglieder der folgenden Verbände:</span>
+				<br/>&nbsp;
+				<br/>
+					<div  class="dbinput ">
+					<label for="input_kontakt[vdrk_mitglied]" class="label">
+				DWA Mitglied
+					</label>
+					<minput name="kontakt[dwa_mitglied]" value="1" type="radio" label="ja" nospan="true" id="dawYes"/>
+					<minput name="kontakt[dwa_mitglied]" value="0" type="radio" label="nein" nospan="true" checked="checked" id="dawNo"/>
+					<div style="clear: both; height: 1px; ">&nbsp;</div>
+				</div>
+				<mdb:input mpath="kontakt[dwa_mitglied_nr]" value="" type="text" nospan="true"  label="DWA Mitglieds-Nummer *" id="dawNr" class="re dawNr" /><div class="dawNr" style="padding-left:250px;"><br/><br/>Wir behalten uns vor, die angegebene Mitglieds-Nummer zu prüfen.</div>
+				
+				
+
+				<div  class="dbinput ">
+					<label for="input_kontakt[vdrk_mitglied]" class="label" >
+				RSV Mitglied
+					</label>
+					<minput name="kontakt[rsv_mitglied]" value="1" type="radio" label="ja" nospan="true" id="rsvYes"/>
+					<minput name="kontakt[rsv_mitglied]" value="0" type="radio" label="nein" nospan="true" checked="checked" id="rsvNo"/>
+					<div style="clear: both; height: 1px; ">&nbsp;</div>
+				</div>
+				<mdb:input mpath="kontakt[rsv_mitglied_nr]" value="" type="text" nospan="true"   label="RSV Mitglieds-Nummer *" id="rsvNr" class="rsvNr"/><div class="rsvNr" style="padding-left:250px;"><br/><br/>Wir behalten uns vor, die angegebene Mitglieds-Nummer zu prüfen.</div>
+				
+				<div  class="dbinput ">
+					<label for="input_kontakt[vdrk_mitglied]" class="label">
+				VDRK Mitglied
+					</label>
+					<minput name="kontakt[vdrk_mitglied]" value="1" type="radio" label="ja" nospan="true" id="vdrkYes"/>
+					<minput name="kontakt[vdrk_mitglied]" value="0" type="radio" label="nein" nospan="true" checked="checked" id="vdrkNo"/>
+					<div style="clear: both; height: 1px; ">&nbsp;</div>
+				</div>
+				<mdb:input mpath="kontakt[vdrk_mitglied_nr]" value="" type="text" nospan="true"  label="VDRK Mitglieds-Nummer *" id="vdrkNr" class="vdrkNr"/><div class="vdrkNr" style="padding-left:250px;"><br/><br/>Wir behalten uns vor, die angegebene Mitglieds-Nummer zu prüfen.</div>
+				
+			<br/>
+			</div>
+
+		<!-- Ansprechpartner -->
+			<div class="step" id="anmeldungAnsprechpartner">
+		<span style="font-size: 1.2em;">Bitte machen Sie in diesem Schritt Angaben zu Ihren <b>persönlichen Daten</b>.</span>
+				<br/>&nbsp;
+				<br/>
+				<div class="dbinput">
+					<label class="label">
+						Anrede *
+					</label>
+					<minput name="ansprechpartner[geschlecht]" value="0" type="radio" label="Herr" nospan="true" checked="checked"/>
+					<minput name="ansprechpartner[geschlecht]" value="1" type="radio" label="Frau" nospan="true"/>
+				</div>
+
+					<dbselect name="ansprechpartner[grad]" label="Grad" fromTable="XGrad" fromTableKey="id" fromTableDisplay="id"/>
+
+				<mdb:input mpath="ansprechpartner[vorname]" value="" label="Vorname *" type="text" nospan="true" validate="required"/>
+				<mdb:input mpath="ansprechpartner[name]" value="" label="Name *" type="text" nospan="true" validate="required"/>
+				<mdb:input mpath="ansprechpartner[geburtstag]" value="" label="Geburtstag *" type="text" nospan="true" validate="required dateDE" converter="mysqlDateToLocal"/>
+				<mdb:input mpath="ansprechpartner[funktion]" value="" label="Funktion" type="text" nospan="true"/>
+				<mdb:input mpath="ansprechpartner[abteilung]" value="" label="Abteilung" type="text" nospan="true"/>
+				<div  class="dbinput ">
+					<label for="input_kontakt[newsletter]" class="label">
+				Stra&szlig;e, Nr. (privat)
+					</label>
+					<minput name="ansprechpartner[strasse]" value="" type="text" class="strasseInput"/>
+					<div style="clear: both; height: 1px; ">&nbsp;</div>
+				</div>
+				
+							<div  class="dbinput ">
+						<label for="input_kontakt[newsletter]" class="label">
+				PLZ (privat)
+						</label>
+						<minput name="ansprechpartner[plz]" value="" type="text" class="plzInput"/>
+						<div style="clear: both; height: 1px; ">&nbsp;</div>
+						</div>
+						<div  class="dbinput ">
+						<label for="input_kontakt[newsletter]" class="label">
+				Ort (privat)
+						</label>
+						<minput name="ansprechpartner[ort]" value="" type="text" class="ortInput"/>
+						<div style="clear: both; height: 1px; ">&nbsp;</div>
+					</div>
+								
+				
+				<dbselect name="ansprechpartner[bundesland_id]" label="Bundesland (privat)" fromTable="XBundesland" fromTableKey="id" fromTableDisplay="name"/>
+				<dbselect name="ansprechpartner[land_id]" label="Land (privat)" fromTable="XLand" fromTableKey="id" fromTableDisplay="name"/>
+				<mdb:input mpath="ansprechpartner[email]" value="" label="E-Mail *" type="text" nospan="true" validate="required email"/>
+				<br/><br/><div style="left:250px;position:relative;width:250px;">An diese Email-Adresse wird eine Bestätigung nach der Anmeldung versendet.</div>
+				<div  class="dbinput ">
+					<label for="input_kontakt[newsletter]" class="label">
+				Newsletter abonnieren *
+					</label>
+					<minput name="ansprechpartner[newsletter]" value="1" type="radio" label="ja" nospan="true" checked="checked"/>
+					<minput name="ansprechpartner[newsletter]" value="0" type="radio" label="nein" nospan="true"/>
+					<div style="clear: both; height: 1px; ">&nbsp;</div>
+				</div>
+				<mdb:input mpath="ansprechpartner[tel]" value="" label="Telefon Durchwahl *" validate="required" type="text" nospan="true"/>
+				<mdb:input mpath="ansprechpartner[mobil]" value="" label="Mobil" type="text" nospan="true"/>
+			</div>
+
+		<!-- Passwort -->
+			<div class="step" id="anmeldungPasswort">
+		<span style="font-size: 1.2em;">Bitte wählen Sie in diesem Schritt ein <b>Passwort</b> und <b>Benutzernamen</b>. Minimum 6 Zeichen Länge.</span>
+				<br/>&nbsp;
+				<br/>
+				<mdb:input id="user" mpath="ansprechpartner[login_name]" value="" label="Benutzername *" type="text" validate="required" />
+				<mdb:input id="pw1" mpath="ansprechpartner[passwort]" value="" label="Passwort *" type="password" validate="required" />
+				<mdb:input id="pw2" mpath="ansprechpartner[passwort_wiederholung]" value="" label="Passwort wiederholen *" type="password" validate="required" />
+	<br/>&nbsp;
+				<br/>
+
+			</div>
+
+		<!-- Senden -->
+			<div class="step" id="anmeldungSenden">
+				
+				<div class="dbinput">
+					<mform:captcha name="captcha" captcha="buchung" id="captcha" validate="captcha"/><br/>
+				</div>
+			</div>
+		</div>
+		<div id="hiddenForm">&nbsp;</div>
+	</form>
+	
+
+	<div id="control" style="padding-top:10px;">
+		<button id="zurueck" align="left"><< Zur&uuml;ck
+		</button>
+		<button id="weiter" align="right">Weiter >></button>
+		<button align="right" id="sendenButton" >Senden</button>
+		<div style="padding-top:10px;padding-bottom:10px;">&nbsp;</div>
+		<div style="position:absolute;left:530px; top:-250px; width:300px;display:none;text-align:left;" id="hinweise">
+		</div>
+	</div>
+	
+</content>

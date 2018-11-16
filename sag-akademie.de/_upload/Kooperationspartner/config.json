@@ -1,0 +1,16 @@
+{
+	"default": {
+		"class": "Kooperationspartner_Kooperationspartner",
+		"name": "Kooperationspartner",
+		"fieldname": "Filedata",
+		"filestore": "/img/",
+		"fileprefix": "kooperationspartner_",
+		"allowedExtensions": ["jpg", "jpeg", "png"],
+		"defaultset": true,
+		"defaultvalue": "/img/referent_keinfoto.jpg"
+	},
+
+	"production": {
+		"_extends": "default"
+	}
+}

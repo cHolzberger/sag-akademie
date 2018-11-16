@@ -1,0 +1,46 @@
+<content>
+	<div style="clear: right;">
+				<ribbon:dynamicGroupRight forId="verwaltungTab">
+					<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+						Speichern
+					</ribbonButton>
+				</ribbon:dynamicGroupRight>
+
+				<ribbon:dynamicGroupRight forId="verwaltungTab" offset="100px" class="ui-ribbon-group-reset">
+					<ribbonButton icon="icon_print" href="javascript:$.mosaikRuntime.print();">
+						Drucken
+					</ribbonButton>
+				</ribbon:dynamicGroupRight>
+			</div>
+
+	<h1>
+		Referent
+	</h1>
+
+	<br/>&nbsp;<br/>
+	<dbform class="no-reload">
+	    
+			<div class="c33">
+			<h2>Stammdaten</h2>
+			    <dbselect name="anrede_id" label="Anrede" fromTable="XAnrede" fromTableKey="id" fromTableDisplay="anrede"/>
+			    <mdb:input mpath="Referent:grad" label="Grad" />
+
+				<mdb:input mpath="Referent:vorname" label="Vorname" />
+				<mdb:input mpath="Referent:name" label="Name" />
+				
+				<mdb:input mpath="Referent:kuerzel" label="K&uuml;rzel" />
+			    
+			</div>
+	    	<div class="c33">
+				<h2>Informaton</h2>
+				<mdb:input mpath="Referent:beschreibung" label="Beschreibung" />
+				<!-- FIXME: upload !!! -->
+			    <mdb:image mpath="Referent:image" label="Bild" />
+				<mform:upload name="image_upload" label="Upload:" />
+			
+
+			</div>
+	</dbform>
+
+
+</content>

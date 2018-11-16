@@ -1,0 +1,26 @@
+services:
+  haproxy:
+    container_name: system_haproxy
+    environment:
+      HAPROXY_USESSL: '"yes"'
+
+      HAPROXY_VHOST_HTTP_PROD: '{"name": "prod", "domain": "^www.sag-akademie.de$$",
+      "port":"80","sslport": "443","backend": "127.0.0.1:8081","forcessl": true}'
+      HAPROXY_VHOST_HTTP_PROD2: '{"name": "prod2", "domain": "^sag-akademie.de$$",
+      "port":"80","sslport": "443","backend": "127.0.0.1:8081","forcessl": false}'
+      HAPROXY_VHOST_HTTP_BETA: '{"name": "beta", "domain": "^beta.sag-akademie.de$$",
+      "port":"80","sslport": "443", "backend": "127.0.0.1:8082", "forcessl": true}'
+    image: mosaiksoftware/debian-haproxy
+    network_mode: host
+    ports:
+    - 80:80/tcp
+    - 443:443/tcp
+    - 5629:5629/tcp
+    volumes:
+    - certs:/etc/letsencrypt:rw
+version: '2.0'
+volumes:
+  certs:
+    driver: local-persist
+    driver_opts:
+      mountpoint: /srv/datastore/system_haproxy/certs

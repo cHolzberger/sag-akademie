@@ -1,0 +1,42 @@
+<content>
+	<dbpager />
+<dbbuttons basehref="/admin/akquise/" label="Aktionen" buttons="edit, delete" tooltipEdit="Kontakt bearbeiten" tooltipDelete="Kontakt löschen" noheader="true"/>
+<widget:itable mpath="/akquise" />
+<!--
+<dbtable fromArray="Results" style="width:95%;height:90%;">
+	<dbfield name="firma" label="Firma" />
+	<dbfield name="strasse" label="Straße" />
+	<dbfield name="nr" label="Nr." />
+	<dbfield name="plz" label="PLZ" />
+	<dbfield name="ort" label="Ort" />
+	<dbfield name="bundesland" label="Bundesland" />
+	<dbfield name="kreis" label="Kreis" />
+	<dbfield name="regierungsbezirk" label="Regierungsbezirk" />
+	<dbfield name="tel" label="Telefon" />
+	<dbfield name="fax" label="Fax" />
+	<dbfield name="abteilung" label="Abteilung" />
+	<dbfield name="anrede" label="Anrede" />
+	<dbfield name="titel" label="Titel" />
+	<dbfield name="vorname" label="Vorname" />
+	<dbfield name="name" label="Name" />
+	<dbfield name="tel_durchwahl" label="Telefon Durchwahl" />
+	<dbfield name="mobil" label="Mobil" />
+	<dbfield name="url" label="Website" converter="autoLink" />
+	<dbfield name="email" label="Email Firma" converter="autoLink" />
+	<dbfield name="newsletter" label="Newsletter" />
+	<dbfield name="abmelde_datum" label="Abmelde-Datum" converter="mysqlDateToLocal" />
+	<dbfield name="anmelde_datum" label="Anmelde-Datum" converter="mysqlDateToLocal" />
+	<dbfield name="geaendert_von" label="Geändert von" />
+	<dbfield name="bereits_in_verteiler" label="Bereits in Verteiler" />
+	<dbfield name="vergleich" label="Vergleich" />
+	<dbfield name="umkreis" label="Umkreis" />
+	<dbfield name="branche" label="Branche" />
+        <dbfield name="kontakt_quelle_name" label="Datenpool" />
+	<dbfield name="geaendert" label="Geändert" converter="mysqlDateTimeToLocal" />
+</dbtable>
+-->
+
+ <dialog type="confirmation" target=".dbbuttons .delete" title="Kontakt löschen?">
+	Wollen Sie den Kontakt wirklich L&ouml;schen?
+</dialog>
+</content>

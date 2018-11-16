@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" opaqueBackground="0xffffff" paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10" backgroundColor="0xffffff" fontSize="9">
+	<mx:Script><![CDATA[
+	import mx.collections.ArrayCollection;
+	[Bindable]
+	public var dataProvider:ArrayCollection = new ArrayCollection();
+	
+	[Bindable]
+	public var page:Number=1;
+	]]></mx:Script>
+	
+	<mx:Text text="SAG Schulungsakademie GmbH" />
+	
+	<mx:PrintDataGrid id="dgData" dataProvider="{dataProvider}" rowHeight="25" minColumnWidth="10" fontSize="9" width="100%">
+		<mx:columns>
+			<mx:DataGridColumn dataField="Print..." />
+		</mx:columns>
+	</mx:PrintDataGrid>
+	<mx:HBox>
+	<mx:Text text="Seite {page}" />
+	</mx:HBox>
+</mx:VBox>

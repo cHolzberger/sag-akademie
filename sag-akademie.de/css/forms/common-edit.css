@@ -1,0 +1,13 @@
+/* klassen die sich alle formulare teilen */
+
+.align-right .mform-content {
+	text-align: right;
+}
+
+.currency-field input{
+	text-align: right;
+}
+
+.kilometer-field input{
+	text-align: right;
+}

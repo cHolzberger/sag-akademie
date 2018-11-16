@@ -1,0 +1,41 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+	<!-- siehe resources/taglib/infoboxDownload.php-->
+ 	<infoboxDownload />
+</infoboxSmall>
+
+<content>
+
+	<img src="/img/title_agb.png" alt="" border="0" width="185"
+		height="22" style="position: absolute; left:0px; top:0px;" />
+
+	<div
+		style="position: absolute; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<table border="0" cellspacing="0" cellpadding="0" width="400"
+			style="position: absolute; left:0px; top:0px;width:400px;">
+			<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/agb.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/agb.pdf" target="_blank" class="blau">
+							<b>AGB der SAG-Akademie</b>
+						</a>
+						<br />
+						Unsere allgemeinen Geschäftsbedingungen
+					</span>
+				</td>
+			</tr>
+
+			
+
+		</table>
+
+	</div>
+</content>

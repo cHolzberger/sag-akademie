@@ -1,0 +1,20 @@
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+<content>
+<h1>Buchungen f&uuml;r&nbsp;<dbfield name="Hotel:name" label=""/>:</h1>
+Anschrift:&nbsp;<dbfield name="Hotel:strasse" />&nbsp;<dbfield name="Hotel:nr" />,&nbsp;<dbfield name="Hotel:plz" />&nbsp;<dbfield name="Hotel:ort" /> <br/><br/>
+
+<dbbuttons basehref="/admin/hotels/" label="Aktionen" buttons="edit" tooltipEdit="Buchung bearbeiten"  noheader="true"/>
+<dbtable fromArray="Hotel:Buchungen" style="width: 95%; height: 90%;">
+	<dbfield name="anreise_datum" label="Anreisedatum" />
+	<dbfield name="uebernachtungen" label="&Uuml;bernachtungen" />
+	<dbfield name="zimmerpreis_ez" label="EZ Preis" converter="euroPreis"/>
+	<dbfield name="zimmerpreis_dz" label="DZ Preis" converter="euroPreis"/>
+	<dbfield name="fruehstuecks_preis" label="Fr&uuml;hst&uuml;ckspreis" converter="euroPreis"/>
+	<dbfield name="marge" label="Marge" converter="euroPreis"/>
+	<dbfield name="storno_datum" label="Storno Datum" converter="mysqlDateToLocal"/>
+	<dbfield name="Buchung:Person:name" label="Name" />
+	<dbfield name="Buchung:Person:vorname" label="Vorname" />
+</dbtable>
+	
+</content>

@@ -1,0 +1,7 @@
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+<content>
+Seminar: <br/>
+	<dbcontent name="Ort:plz" label="Plz" /><br/>
+	<dbcontent name="Ort:ort" label="Ort" /><br/>
+</content>

@@ -1,0 +1,20 @@
+<content>
+	<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_kontakte_neu_kontakt" href="/admin/akquise/new">
+			Neuer Akq. Kontakt
+		</ribbonButton>
+	</ribbonDynamicGroup>
+		<h1>Akquise Daten</h1>
+	<div style="padding-top:15px;" class="c100">
+	<widget:searchboxkontakt label="Firmensuche" icon="/img/admin/icon_widget_k_search.png" href="/admin/akquise/"/>
+	<widget:alphabetkontakt label="Firma" icon="/img/admin/icon_widget_kontakte.png" href="/admin/akquise/"/>
+	</div>
+	<!--
+	<div class="c66" style="padding-top:15px;">
+	    <widget:advancedSearch table="ViewAkquise" formaction="/admin/akquise/advancedSearch?art=1" label="Akquise Kontakte" />
+	    <widget:advancedSearch table="ViewAkquiseKontaktR" formaction="/admin/akquise/advancedSearch?art=3" label="Akquise Kontakte & Kunden" />
+    	    <widget:advancedSearch table="ViewKontakt" formaction="/admin/akquise/advancedSearch?art=2" label="Kunden" />
+            <widget:advancedSearch table="ViewSeminarPreis" formaction="/admin/termine/advancedSearch" label="Termine" />
+            <widget:advancedSearch table="ViewBuchungPreis" formaction="/admin/buchungen/advancedSearch" label="ViewBuchungPreis" />
+	</div>-->
+</content>

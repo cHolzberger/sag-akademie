@@ -1,0 +1,18 @@
+{
+	"standort": {
+		"name": "Luenen - Raum - 2"
+	},
+
+	"tage": {
+		"1": {
+			"tag": "1",
+			"code": "test",
+			"info": "test123",
+			"color": "0xefefef"
+		},
+		"30": {
+			"tag": "2",
+			"color": "0xeeeeee"
+		}
+	}
+}

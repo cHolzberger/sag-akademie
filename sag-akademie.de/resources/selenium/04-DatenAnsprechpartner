@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://sag-akademie.localhost/" />
+<title>04-(Privat) DetailDaten Ansprechpartner</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">04-(Privat) DetailDaten Ansprechpartner</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=nav_login_img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=benutzer</td>
+	<td>test-account</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>testpassword</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=kundeloginSenden</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=anprechpartner_aendern_button</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_vorname</td>
+	<td>Christian</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_name</td>
+	<td>Holzberger</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_geschlecht_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_geburtstag</td>
+	<td>23.04.1983</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_funktion</td>
+	<td>Test-Funktion</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_abteilung</td>
+	<td>Test-Abteilung</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_ausgeschieden_1</td>
+	<td>off</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_strasse</td>
+	<td>Test-Strasse 20</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_plz</td>
+	<td>32423</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_ort</td>
+	<td>Testhausen</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_email</td>
+	<td>debug@mosaik-software.de</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_newsletter_0</td>
+	<td>on</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_tel</td>
+	<td>0571 7307146</td>
+</tr>
+<tr>
+	<td>verifyValue</td>
+	<td>id=input_Person_mobil</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

@@ -1,0 +1,288 @@
+
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+	<img src="/img/image_seminare_overview.png" alt="" border="0" width="253" height="129" style="position: absolute; left:90px; top:25px;"/>
+	<img src="/img/nav_seminare_uebersicht.png" alt="" border="0" width="291" height="108" style="position: absolute; left:370px; top:32px;" usemap="#seminare_navigation" />
+	<map name="seminare_navigation">
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Kanalreinigung" COORDS="4,39, 101,51"/>
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Arbeitssicherheit" COORDS="5,28, 100,38"/>
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Kanalinspektion" COORDS="3,52, 102,62"/>
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Kanalbau" COORDS="4,61, 101,73"/>
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Sachkunde" COORDS="3,75, 104,85"/>
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Sonstiges" COORDS="5,87, 102,98"/>
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Dichtheitspr_ufung" COORDS="149,27, 285,39"/>
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Kanalsanierung" COORDS="149,41, 289,50"/>
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Abscheidetechnik" COORDS="150,52, 285,63"/>
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Grundst_ucksentw_asserung" COORDS="151,64, 287,74"/>
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/Fachkunde" COORDS="150,75, 214,88"/>
+		<AREA SHAPE="RECT" HREF="https://www.sag-akademie.de/seminar/termin/neue%20Seminare" COORDS="150,87, 230,98"/>
+	</map>
+	<img src="/img/direkt_buttons.png" border="0" width="189" height="125" style="position: absolute; left:755px; top:29px;" usemap="#direkt_buttons" />
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,10,175,35" href="/kontakt/kontaktformular"/>
+		<area shape="RECT" coords="30,80,175,105" href="/kontakt/callbackformular"/>
+	</map>
+</infoboxSmall>
+
+<content>
+
+	<div style="width:840px; font-size:12px; line-height:140%;">
+	
+	<mdb:ifEmpty mpath="SeminarArten">
+		<br/>
+		<br/>
+			Dieser Bereich befindet sich noch in Bearbeitung.
+		<br/>
+			Sie finden die Seminare in den entsprechenden Fachbereichen.
+	</mdb:ifEmpty>
+	
+	 <switch key="rubrik1">	 
+          
+			
+			            <case value="Kanalinspektion">                
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+Fachbereich<mdb:var mpath="rubrik1" /></p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick über Einzelseminare des Fachbereichs und themenverwandte Lehrgänge.
+</p>
+<p style="margin-bottom:8px;">
+Mit der <mdb:link  href="https://www.sag-akademie.de/files/2013-03-15_SAG-Akademie_KI_Broschuere_Druckversion.pdf" mpath="rubrik1" target="_blank"><b>Broschüre des Fachbereichs</b></mdb:link> <a href="https://www.sag-akademie.de/files/broschuere_kanalinspektion.pdf" target="_blank"><img src="https://www.sag-akademie.de/files/pdf_klein.png" border="0" alt="" style="position:relative; top:3px;"/></a>	erhalten eine Kurzübersicht der entsprechenden Lehrgänge und weitere interessante Informationen. Die <b>Seminar-Infos</b>, die Sie zu jedem Lehrgang im unteren Bereich downloaden können, informieren gezielt zu einzelnen Lehrgängen.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			
+            </case>
+			
+						            <case value="Arbeitssicherheit">                
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+Fachbereich<mdb:var mpath="rubrik1" /></p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick über Einzelseminare des Fachbereichs und themenverwandte Lehrgänge.
+</p>
+<p style="margin-bottom:8px;">
+Mit der <mdb:link  href="https://www.sag-akademie.de/files/2013-03-15_SAG-Akademie_UVV_Broschuere_Druckversion.pdf" mpath="rubrik1" target="_blank"><b>Broschüre des Fachbereichs</b></mdb:link> <a href="https://www.sag-akademie.de/files/broschuere_kanalinspektion.pdf" target="_blank"><img src="https://www.sag-akademie.de/files/pdf_klein.png" border="0" alt="" style="position:relative; top:3px;"/></a>	erhalten eine Kurzübersicht der entsprechenden Lehrgänge und weitere interessante Informationen. Die <b>Seminar-Infos</b>, die Sie zu jedem Lehrgang im unteren Bereich downloaden können, informieren gezielt zu einzelnen Lehrgängen.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			
+            </case>
+			
+						            <case value="Kanalsanierung">                
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+Fachbereich<mdb:var mpath="rubrik1" /></p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick über Einzelseminare des Fachbereichs und themenverwandte Lehrgänge.
+</p>
+<p style="margin-bottom:8px;">
+Mit der <mdb:link  href="https://www.sag-akademie.de/files/2013-03-15_SAG-Akademie_KS_Broschuere_Druckversion.pdf" mpath="rubrik1" target="_blank"><b>Broschüre des Fachbereichs</b></mdb:link> <a href="https://www.sag-akademie.de/files/broschuere_kanalinspektion.pdf" target="_blank"><img src="https://www.sag-akademie.de/files/pdf_klein.png" border="0" alt="" style="position:relative; top:3px;"/></a>	erhalten eine Kurzübersicht der entsprechenden Lehrgänge und weitere interessante Informationen. Die <b>Seminar-Infos</b>, die Sie zu jedem Lehrgang im unteren Bereich downloaden können, informieren gezielt zu einzelnen Lehrgängen.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			
+            </case>
+			
+						            <case value="Grundstücksentwässerung">                
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+Fachbereich<mdb:var mpath="rubrik1" /></p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick über Einzelseminare des Fachbereichs und themenverwandte Lehrgänge.
+</p>
+<p style="margin-bottom:8px;">
+Mit der <mdb:link  href="https://www.sag-akademie.de/files/2013-03-15_SAG-Akademie_GEA_Broschuere_Druckversion.pdf" mpath="rubrik1" target="_blank"><b>Broschüre des Fachbereichs</b></mdb:link> <a href="https://www.sag-akademie.de/files/broschuere_kanalinspektion.pdf" target="_blank"><img src="https://www.sag-akademie.de/files/pdf_klein.png" border="0" alt="" style="position:relative; top:3px;"/></a>	erhalten eine Kurzübersicht der entsprechenden Lehrgänge und weitere interessante Informationen. Die <b>Seminar-Infos</b>, die Sie zu jedem Lehrgang im unteren Bereich downloaden können, informieren gezielt zu einzelnen Lehrgängen.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			
+            </case>
+			
+						            <case value="Dichtheitsprüfung">                
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+Fachbereich<mdb:var mpath="rubrik1" /></p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick über Einzelseminare des Fachbereichs und themenverwandte Lehrgänge.
+</p>
+<p style="margin-bottom:8px;">
+Mit der <mdb:link  href="https://www.sag-akademie.de/files/2013-03-15_SAG-Akademie_DI_Broschuere_Druckversion.pdf" mpath="rubrik1" target="_blank"><b>Broschüre des Fachbereichs</b></mdb:link> <a href="https://www.sag-akademie.de/files/broschuere_kanalinspektion.pdf" target="_blank"><img src="https://www.sag-akademie.de/files/pdf_klein.png" border="0" alt="" style="position:relative; top:3px;"/></a>	erhalten eine Kurzübersicht der entsprechenden Lehrgänge und weitere interessante Informationen. Die <b>Seminar-Infos</b>, die Sie zu jedem Lehrgang im unteren Bereich downloaden können, informieren gezielt zu einzelnen Lehrgängen.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			
+            </case>
+			
+						            <case value="Abscheidetechnik">                
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+Fachbereich<mdb:var mpath="rubrik1" /></p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick über Einzelseminare des Fachbereichs und themenverwandte Lehrgänge.
+</p>
+<p style="margin-bottom:8px;">
+Mit der <mdb:link  href="https://www.sag-akademie.de/files/2013-03-15_SAG-Akademie_AT_Broschuere_Druckversion.pdf" mpath="rubrik1" target="_blank"><b>Broschüre des Fachbereichs</b></mdb:link> <a href="https://www.sag-akademie.de/files/broschuere_kanalinspektion.pdf" target="_blank"><img src="https://www.sag-akademie.de/files/pdf_klein.png" border="0" alt="" style="position:relative; top:3px;"/></a>	erhalten eine Kurzübersicht der entsprechenden Lehrgänge und weitere interessante Informationen. Die <b>Seminar-Infos</b>, die Sie zu jedem Lehrgang im unteren Bereich downloaden können, informieren gezielt zu einzelnen Lehrgängen.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			
+            </case>
+			
+						            <case value="Kanalreinigung">                
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+Fachbereich<mdb:var mpath="rubrik1" /></p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick über Einzelseminare des Fachbereichs und themenverwandte Lehrgänge.
+</p>
+<p style="margin-bottom:8px;">
+Mit der <mdb:link  href="https://www.sag-akademie.de/files/2013-03-17_SAG-Akademie_KR_Broschuere.pdf" mpath="rubrik1" target="_blank"><b>Broschüre des Fachbereichs</b></mdb:link> <a href="https://www.sag-akademie.de/files/broschuere_kanalinspektion.pdf" target="_blank"><img src="https://www.sag-akademie.de/files/pdf_klein.png" border="0" alt="" style="position:relative; top:3px;"/></a>	erhalten eine Kurzübersicht der entsprechenden Lehrgänge und weitere interessante Informationen. Die <b>Seminar-Infos</b>, die Sie zu jedem Lehrgang im unteren Bereich downloaden können, informieren gezielt zu einzelnen Lehrgängen.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			
+            </case>
+			
+						        			
+			  <case value="Sachkunde">                
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+<mdb:var mpath="rubrik1" />lehrgänge</p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick unserer Sachkundelehrgänge.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			
+            </case>
+			
+			 <case value="Fachkunde">                
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+<mdb:var mpath="rubrik1" />lehrgänge</p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick unserer Fachkundelehrgänge.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			
+            </case>
+			
+			<case value="neue Seminare">                
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+<mdb:var mpath="rubrik1" /></p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick unserer neuen Seminare.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			
+            </case>
+			
+			<case value="Sonstiges">                
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+<mdb:var mpath="rubrik1" /></p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick der sonstigen Seminare.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			
+            </case>
+			
+			
+            <case value="*">			
+				<p style="margin-top: 10px; color: #000099; text-transform: uppercase; margin-bottom: 25px; font-size: 18px;">
+Fachbereich <mdb:var mpath="rubrik1" /></p>
+<p style="margin-top:10px; margin-bottom:5px;">
+Nachfolgend erhalten Sie einen Überblick über Einzelseminare des Fachbereichs und themenverwandte Lehrgänge.
+</p>
+<p style="margin-bottom:8px;">
+Bitte nutzen Sie unsere kompetente, persönliche Beratung - am besten vor der Buchung!
+</p>
+<p style="margin-bottom:20px;">
+Unsere Mitarbeiter in Darmstadt (Tel. 0 61 51 . 101 55-111)  oder in Lünen (Tel. 02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.
+</p>			     
+            </case>
+        </switch>
+	
+
+	<img src="/img/trennerlinks.png" alt="" border="0" width="851" height="1" vspace="15" style="" /><br/>
+	</div>
+	
+	<foreach fromArray="SeminarArten" recurse="true" style="position: absolute;">
+		<div style="position: relative; margin-top:4px;">
+			<div style="width: 675px; float: left; margin-right: 40px;" class="seminartext" >
+						
+							
+				<div style="color:#999999 !important; margin-bottom:7px !important;">
+					<b><dbfield name="id" notable="1" /></b>&nbsp;|&nbsp;<b><mdb:value mpath="Rubrik:name" /></b>
+				</div>
+				
+				<span style="font-size:12px !important; line-height:140%;">
+						<dbfield name="bezeichnung" class="kurzbeschreibung" notable="1"/>
+					</span>
+					
+				<div style="margin-top:7px !important; margin-bottom:7px !important;">
+					<dbfield name="dauer" label="Dauer"/>&nbsp;
+					<switch key="dauer">
+						<case value="1">Tag</case>
+						<case value="*">Tage</case>
+					</switch>
+						&nbsp;&nbsp;|&nbsp;				
+					<dbfield name="kursgebuehr" converter="euroPreis" />&nbsp;€&nbsp;zzgl. MwSt.
+					&nbsp;|&nbsp;&nbsp;
+                    <mdb:link  href="/pdf/top2;pdf/#DATA#" mpath="id" target="_blank">Seminar-Infos</mdb:link><a href="http://beta.sag-akademie.de/admin/pdf/top2;pdf/KI-G-EN?token=28df385b4dbee98030daeb64b327811e" target="_blank"><img src="https://www.sag-akademie.de/files/pdf_klein.png" border="0" alt="" style="position:relative; top:3px;"/></a>
+				</div>
+
+				
+			</div>
+			<div style="float: left;">
+					<div style="padding-bottom:8px !important; padding-top:10px;">					
+					<br />
+					<foreach fromArray="Seminare" onEmpty="Termine auf Anfrage">
+						<dbfield name="datum_begin" converter="mysqlDateToLocal"/>&nbsp;|<dbfield name="Standort:Ort:ort" />
+						<br/>
+					</foreach>
+				</div>
+				<div>
+					<mdb:link  href="/seminar/info/#DATA###DATA1#" mpath="id" mpath1="title" >
+						<img src="/img/seminar_detail.png" border="0" alt="weitere Informationen" width="137" height="41" />
+					</mdb:link>
+				</div>
+		
+			</div>
+			<img src="/img/trennerlinks.png" alt="" border="0" width="851" height="1" vspace="15" style="" />
+			<br />
+
+	
+			
+		</div>
+	</foreach>
+</content>

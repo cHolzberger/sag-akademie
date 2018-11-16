@@ -1,0 +1,129 @@
+/* scroll table contents */
+/* !!!!!!!!!!!!! bitte nichts in dieser datei aendern !!!!!!!!!!!!!!!
+ *
+ * daten in site.css ueberschreiben
+ */
+div.tsContainer {
+	overflow: visible;
+	position: absolute;
+	height: 98%;
+}
+
+
+
+div.tsWrapper {
+	overflow: scroll;
+	float: left;
+	height: auto;
+	width: auto;
+	top:0px;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	border: 0px !important; 
+}
+
+.headWrapper {
+	border-bottom: 1px solid #cdcdcd;
+}
+
+table.headTable,
+table.tsTable {
+	border: none;
+	margin-right: 0 !important;
+	empty-cells: show;
+	border-collapse: collapse;
+	width: 2000px;
+	text-align: left;
+	background-color: transparent;
+}
+
+table.tsTable > tbody > tr > td {
+	min-width: 20px;
+	border: 1px solid #cdcdcd;
+	white-space: nowrap !important; /* Only works for THs in IE */
+	overflow: hidden;
+	table-layout: fixed;
+}
+
+th.tsTh .kiketable-text {
+	height: auto;
+	width: auto;
+	min-width: 50px;
+	white-space: nowrap !important;
+}
+
+th.tsTh {
+	height: 20px;
+	border: 1px solid #cdcdcd;
+	border-left: 0px !important;
+	overflow: hidden;
+	/* top: expression(this.offsetParent.scrollTop-2);*/
+	z-index: 20;
+	white-space: nowrap !important;
+	word-wrap: line-break;
+	vertical-align: middle!important;	
+}
+
+.tsSliderH {
+	background: transparent !important;
+	z-index: 300; 
+	border: none!important;
+	width: auto!important;
+}
+
+.tsSliderV {
+	border: none !important;
+	background: transparent !important;
+	z-index: 300;
+	height: auto !important; 
+}
+
+.tsSliderHContainer {
+	background-image: url(/css/table/img/scrollBgH.png);
+	background-repeat: repeat;
+	padding-top: 3px;
+	height: 12px;
+	z-index: 299;
+	border: 1px solid gray;
+}
+
+.tsSliderVContainer {
+	background-image: url(/css/table/img/scrollBg.png);
+	background-repeat: repeat;
+	padding-left: 3px;
+	width: 12px;
+	border: 1px solid gray;
+	z-index: 299;
+}
+.tsSliderVContainer .tsSliderV .ui-slider-handle:hover,
+.tsSliderVContainer .tsSliderV .ui-slider-handle {
+	background-image: url(/css/table/img/scroll.png);
+	background-repeat: repeat-y;
+	border: 1px solid #aaaaaa;
+
+} .tsSliderVContainer .tsSliderV .ui-slider-handle:hover {
+	background-image: url(/css/table/img/scrollHover.png);
+} 
+
+.tsSliderHContainer .tsSliderH .ui-slider-handle:hover,
+.tsSliderHContainer .tsSliderH .ui-slider-handle {
+	background-image: url(/css/table/img/scrollH.png);
+	background-repeat: repeat-x;
+	border: 1px solid #aaaaaa;
+
+} .tsSliderHContainer .tsSliderH .ui-slider-handle:hover {
+	background-image: url(/css/table/img/scrollHoverH.png);
+}
+
+.dbColumnOn,
+.dbColumnOff {
+	cursor: hand;
+}
+.headTable thead, 
+.headTable thead th,
+.headTable {
+	max-height: 24px;
+	height: 24px;
+}
+

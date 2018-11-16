@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Simple custom MXML TitleWindow component.
+     The TitleWindowApp application displays this component. 
+     You cannot run it independently. -->
+     
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+    title="Spalten" status="" showCloseButton="false" close="PopUpManager.removePopUp(this);" borderAlpha="0.75">
+	
+    <mx:Script>
+        <![CDATA[    
+			import flash.events.MouseEvent;
+			import mx.controls.Alert;
+			import mx.controls.CheckBox;
+			import mx.collections.ArrayCollection;
+            import mx.managers.PopUpManager;
+            import mx.controls.Text;
+           
+            // A reference to the TextInput control in which to put the result.
+			[Bindable]
+			public var fields:Array = null;
+			
+			public var cb:Function = null;
+           
+            // Event handler for the OK button.
+            private function onOk():void {
+				if ( cb != null ) cb( );
+				PopUpManager.removePopUp(this);
+            }
+			
+			public function clk( event:MouseEvent ):void {
+				var cbox:CheckBox = event.target as CheckBox;
+				if ( fields[cbox.repeaterIndex].visible )
+					fields[cbox.repeaterIndex].visible = false;
+				else 
+					fields[cbox.repeaterIndex].visible = true;
+				//fields[cbox.repeaterIndex].visible != fields[cbox.repeaterIndex].visible
+				//Alert.show(cbox.selected.toString());
+				//fields[offset].visible = false;
+			}
+			
+			
+        ]]>
+    </mx:Script>
+
+    <mx:Tile>
+		<mx:Repeater dataProvider="{fields}" id="rp">
+			<mx:CheckBox label="{rp.currentItem.headerText}" selected="{rp.currentItem.visible}" click="clk(event)" id="show" />
+		</mx:Repeater>
+		
+	</mx:Tile>
+	<mx:HBox>
+		<mx:Spacer width="100%" />
+		<mx:Button label="Ok" click="onOk();" />
+	</mx:HBox>
+</mx:TitleWindow>

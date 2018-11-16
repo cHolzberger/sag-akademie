@@ -1,0 +1,14 @@
+<content>
+	<script type="text/javascript"  src="/resources/scripts/forms/dokumente_test.js"></script>
+
+	<h1>E-Mail Test</h1>
+		
+		Dokument:
+		<select id="testVorlage">
+			<option value="GeburtstagsCheck">Geburtstags E-Mail</option>
+			<option value="TeilnehmerNichtErreichtCheck">Teilnehmerzahl nicht erreicht 1-3</option>
+		</select>
+		
+		<button id="testSendenButton">Senden</button>
+		
+</content>

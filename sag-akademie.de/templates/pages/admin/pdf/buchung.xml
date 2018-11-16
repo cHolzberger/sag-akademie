@@ -1,0 +1,297 @@
+<pdf:content>
+	<set name="margin-top" value="15" /> <!-- in mm -->
+	<set name="margin-bottom" value="15" /> <!-- in mm -->
+
+	<pdf:header top="-10" style="height:40mm;">
+			<div style="font-size: 18px;font-family:Verdana;Arial;padding-left:1mm;height:40mm;">
+		<img src="/img/logo_ci.png" border="0" alt="SAG Schulungsakademie GmbH" align="right" style="width:40mm;height:13mm;"/>
+		<br/><b>
+				Buchung</b><br/><br/><span style="font-size: 13px;">Kurs-Nr.: <mdb:var mpath="Buchung:Seminar:kursnr"/> &nbsp;&nbsp;Firma: <mdb:var mpath="Buchung:Person:Kontakt:firma"/> &nbsp;&nbsp;Person: <mdb:var mpath="Buchung:Person:name"/>, <mdb:var mpath="Buchung:Person:vorname"/></span>
+		<br/>&nbsp;
+	</div>
+	</pdf:header>
+<br/>&nbsp;<br/>&nbsp;<br/>
+	<table border="0" cellspacing="0" cellpadding="5" style="font-family:Arial;font-size:10px !important;">
+		<tr>
+			<td valign="top" width="50%">
+
+				<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Buchung</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Status
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:status" converter="statusToStr" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Buchungsdatum
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:datum" converter="mysqlDateTimeToLocal" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Seminar
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:Seminar:SeminarArt:id"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Kurs-Nr.
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:Seminar:kursnr"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Seminarbeginn
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:Seminar:datum_begin" converter="mysqlDateToLocal"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Seminarende
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:Seminar:datum_ende" converter="mysqlDateToLocal"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Firma
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:Person:Kontakt:firma"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Person
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:Person:name"/>,
+							<mdb:var mpath="Buchung:Person:vorname"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Stornodatum
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:storno_datum" converter="mysqlDateTimeToLocal" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Stornostatus
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:storno_status" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Bemerkung Kunde
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:bemerkung" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Rechnung</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Rechnungsnummer
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:rechnungsnummer" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Rechnung gestellt
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:rechnunggestellt" converter="mysqlDateToLocal" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Gutschrift
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:gutschrift" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Hotelbuchung</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Hotel
+						</td>
+						<td align="left">
+							<mdb:var mpath="HotelBuchung:Hotel:name" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Anreisedatum
+						</td>
+						<td align="left">
+							<mdb:var mpath="HotelBuchung:anreise_datum" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Übernachtungen
+						</td>
+						<td align="left">
+							<mdb:var mpath="HotelBuchung:uebernachtungen" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Stornodatum
+						</td>
+						<td align="left">
+							<mdb:var mpath="HotelBuchung:storno_datum" converter="mysqlDateToLocal" />
+						</td>
+					</tr>
+				</table>
+
+			</td>
+			<td valign="top" width="50%">
+
+
+
+				<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Preise</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Kursgebühr
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:kursgebuehr" converter="euroPreis" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Rabatt
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:rabatt" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Förderung</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Arbeitsagentur
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:arbeitsagentur" converter="jaNeinToStr" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Anteil Arbeitsagentur
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:arbeitsagenturanteil" converter="euroPreis"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Anteil Versorgungsamt
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:versorgungsamtanteil" converter="euroPreis"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Investitionsbank
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:investitionsbank" converter="jaNeinToStr"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Frühbucherrabatt
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:fruehbucherrabatt" converter="jaNeinToStr"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Bildungscheck
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:bildungscheck" converter="jaNeinToStr"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Anteil VDRK
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:anteilvdrk" converter="euroPreis"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Notizen</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Notiz
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:notiz" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Info für Kunde
+						</td>
+						<td align="left">
+							<mdb:var mpath="Buchung:info_kunde" />
+						</td>
+					</tr>
+				</table>
+
+			</td>
+		</tr>
+	</table>
+	<pdf:footer bottom="-15">
+	</pdf:footer>
+</pdf:content>

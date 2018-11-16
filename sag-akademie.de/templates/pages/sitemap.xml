@@ -1,0 +1,85 @@
+﻿<set name="page_background" value="img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+<img src="/img/image_sitemap.png" alt="" border="0" width="250" height="128" style="position: absolute; left:90px; top:25px;"/>
+     	 <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167"
+                style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+
+</infoboxSmall>
+
+<content>
+
+<img src="/img/title_sitemap.png" alt="" border="0" width="180" height="22" style="position: absolute; left:0px; top:0px;"/>
+
+<div style="position: absolute; left:0px; top:35px; width:850px; font-family:Arial,Helvetica;font-size:11px;">
+
+<table border="0" cellspacing="1" cellpadding="5">
+
+<tr>
+<td bgcolor="#dddddd" width="108"><b>Startseite</b></td>
+<td bgcolor="#dddddd" width="108"><b>Über uns</b></td>
+<td bgcolor="#dddddd" width="108"><b>Seminare</b></td>
+<td bgcolor="#dddddd" width="108"><b>Schulungszentrum</b></td>
+<td bgcolor="#dddddd" width="108"><b>Download</b></td>
+<td bgcolor="#dddddd" width="108"><b>Kontakt</b></td>
+<td bgcolor="#dddddd" width="108"><b>Impressum</b></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee"><a href="/startseite">Startseite</a></td>
+<td bgcolor="#eeeeee"><a href="/ueberuns/philosophie">Philosophie</a></td>
+<td bgcolor="#eeeeee"><a href="/seminar/termin/arbeitssicherheit">Arbeitssicherheit</a></td>
+<td bgcolor="#eeeeee"><a href="/schulungszentrum">Schulungszentrum</a></td>
+<td bgcolor="#eeeeee"><a href="/download">Download</a></td>
+<td bgcolor="#eeeeee"><a href="/kontakt/kontaktformular">Kontakt-Formular</a></td>
+<td bgcolor="#eeeeee"><a href="/impressum">Impressum</a></td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee"><a href="/bildungscheck">Bildungsscheck</a></td>
+<td bgcolor="#eeeeee"><a href="/ueberuns/referenten">Referenten</a></td>
+<td bgcolor="#eeeeee"><a href="/seminar/termin/dichtheit">Dichtheitsprüfung</a></td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee"><a href="/kontakt/callbackformular">Callback-Formular</a></td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee"><a href="/ueberuns/partner">Partner</a></td>
+<td bgcolor="#eeeeee"><a href="/seminar/termin/kanalreinigung">Kanalreinigung</a></td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee"><a href="/kontakt/anfahrt">Anschrift & Anfahrt</a></td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee"><a href="/seminar/termin/kanalsanierung">Kanalsanierung</a></td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee"><a href="/seminar/termin/kanalinspektion">Kanalinspektion</a></td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+</tr>
+<tr>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee"><a href="/seminar/termin/abscheidetechnik">Abscheidetechnik</a></td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+<td bgcolor="#eeeeee">&nbsp;</td>
+</tr>
+</table>
+
+</div>
+</content>

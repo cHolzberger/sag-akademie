@@ -1,0 +1,53 @@
+<set name="page_background" value="img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+<img src="/img/hotline.png" alt="" border="0" width="239" height="161" style="position: absolute; left:705px; top:6px;" usemap="#formulare" /><map name="formulare"><area shape="RECT" coords="90,80,230,120" href="#" /></map>
+<img src="/img/image_schulungszentrum.png" alt="" border="0" width="590" height="131" style="position: absolute; left:90px; top:25px;"/>
+
+</infoboxSmall>
+
+<content>
+
+<img src="/img/title_schulungszentrum.png" alt="" border="0" width="180" height="22" style="position: absolute; left:0px; top:0px;"/>
+
+<div style="position: absolute; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+
+<table border="0" cellspacing="0" cellpadding="0" width="630" style="position: absolute; left:0px; top:0px;">
+<tr>
+<td valign="top" width="380">
+<span style="font-size:14px;"><b>Darmstadt</b></span><br/>
+<span style="font-size:11px;">
+(Schulungszentrum und Verwaltung)<br/>
+&nbsp;<br>
+SAG-Akademie GmbH<br/>
+<i>für berufliche Weiterbildung</i><br/>
+Otto-Hesse-Str. 19/T9<br/>
+64293 Darmstadt<br/>
+&nbsp;<br/>
+Telefon: +49 [0] 61 51.101 55-0<br/>
+Fax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+49 [0] 61 51.101 55-155<br/>
+&nbsp;<br/>
+<a href="pdf/anfahrt_darmstadt.pdf"><img src="/img/button_anfahrtsbeschreibung.png" alt="" border="0" width="191" height="53"></a> 
+</span>
+</td>
+<td valign="top" width="250">
+<span style="font-size:14px;"><b>Lünen</b></span><br/>
+<span style="font-size:11px;">
+(Schulungszentrum)<br/>
+&nbsp;<br>
+SAG-Akademie GmbH<br/>
+<i>für berufliche Weiterbildung</i><br/>
+Pierbusch 4<br/>
+44536 Lünen<br/>
+&nbsp;<br/>
+Telefon: +49 [0] 2 31.225 11 11<br/>
+Fax:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+49 [0] 2 31.225 11 25<br/>
+&nbsp;<br/>
+<a href="pdf/anfahrt_luenen.pdf"><img src="/img/button_anfahrtsbeschreibung.png" alt="" border="0" width="191" height="53"></a>
+</span>
+</td>
+</tr>
+</table>
+
+</div>
+</content>

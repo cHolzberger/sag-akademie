@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:Mosaik="*" xmlns:SAG="com.sag.view.*" layout="absolute" width="100%" height="100%"  backgroundColor="0xefefef" creationComplete="componentInit();" horizontalScrollPolicy="off" verticalScrollPolicy="off" styleName="plain">
+	<mx:Script><![CDATA[
+		import com.sag.models.SPlanungMonat;
+		import com.sag.models.Standort;
+		import mx.controls.Alert;
+		import com.mosaik.JsonProxy;
+		import mx.collections.ArrayCollection;
+		import mx.events.CollectionEvent;
+		import org.osflash.thunderbolt.Logger;
+		import mx.controls.CheckBox;
+		import flash.display.StageDisplayState;
+		import json.*;
+		import com.sag.view.DialogTerminStatus;
+		import mx.managers.PopUpManager;
+		import com.mosaik.MosaikConfig;
+		import flash.external.*;
+			
+		private var loader:JsonProxy;
+		private var ldrWidth:Number = 0;
+		
+		[Bindable]
+		private var showReferent:Boolean = false;
+		
+		[Bindable]
+		private var showTeilnehmer:Boolean = false;
+
+		[Bindable]
+		public var currentYear:Number = 2009;
+		
+		[Bindable]
+		public var termine:ArrayCollection = new ArrayCollection();
+		
+		[Bindable]
+		public var delTermine:ArrayCollection = new ArrayCollection();
+		
+		[Bindable]
+		public var notizenAnzeigen:Boolean = true;
+		
+		[Bindable]
+		public var lStandorte:ArrayCollection = new ArrayCollection();
+		
+		private function componentInit():void {
+			var i:int;
+			//showLoadingScreen();
+			currentYear = parseInt(Application.application.parameters.year);
+			loader = new JsonProxy ("/admin/json/jahresplanung/" + currentYear + ";json");
+			callLater(loader.request, [onData]);
+			//loader.request(onTermine);
+//			stage.addEventListener(Event.MOUSE_ , mouseLeave);
+			//Logger.hide = true;
+			showReferent = false;
+		}
+		
+		public function mouseLeave(evt:Event):void {
+			if ( evt.currentTarget != application) return;
+			Alert.show("left");
+			var evtx:MouseEvent = new MouseEvent(MouseEvent.MOUSE_UP);
+			content.dispatchEvent(evtx);
+		}
+		
+		
+		
+		public function toggleFullScreen():void {
+                try {
+                    switch (Application.application.stage.displayState) {
+                        case StageDisplayState.FULL_SCREEN:
+                            /* If already in full screen mode, switch to normal mode. */
+                            Application.application.stage.displayState = StageDisplayState.NORMAL;
+                            break;
+                        default:
+                            /* If not in full screen mode, switch to full screen mode. */
+                            Application.application.stage.displayState = StageDisplayState.FULL_SCREEN;
+                            break;
+                    }
+                } catch (err:SecurityError) {
+                    // ignore
+                }
+        }
+		
+		public function fullscreen():void {
+			callLater(toggleFullScreen);
+		}
+		
+		private function onData(data:Object):void {
+			currentYear = parseInt(Application.application.parameters.year);
+			/* call chain seminar -> standorte -> termine */
+			
+			ldrText.text = "Lade Seminare...";
+			callLater(this.onSeminar,[data]);
+			Logger.info ("Loading Done");
+			delTermine = new ArrayCollection();
+		}
+		
+		private function onStandort(xdata:Object):void {
+			var data:Array = xdata.standorte;
+			Logger.info ("Standorte Laden");
+			var i:String = "";
+			var standorte:Array = new Array();
+			
+			for (i in data) {
+				var st:Standort = new Standort(data[i]);
+				standorte.push(st);
+			}
+	
+			standort.dataProvider = new ArrayCollection(standorte);
+			
+			ldrText.text = "Lade Termine...";
+			callLater(this.onTermine, [xdata]);
+		}
+		
+		private function onSeminar(xdata:Object):void {
+			var data:Array = xdata.seminar_arten;
+			Logger.info ("Seminare laden");
+			seminar.dataProvider = new ArrayCollection(data);
+			
+			ldrText.text = "Lade Standorte...";
+			callLater(this.onStandort, [xdata]);
+		}
+		
+		private function onTermine (data:Object):void {
+			var monat:String;
+			var iMonat:int = parseInt(data.month);
+			var nt:Array = new Array(); // termine
+			var nn:Array = new Array(); // notizen
+			var sMonat:String = "";
+			var tag:String;
+			
+			Logger.info ("Termine Laden");
+			
+			for (iMonat = 0; iMonat < 12; iMonat ++) {
+				sMonat = (iMonat + 1).toString();
+					
+				nt.push (new SPlanungMonat(currentYear, iMonat,  standort.dataProvider, data.termine[sMonat], data.notizen[sMonat], data.feiertage[sMonat])) ;
+			}
+			
+			ldrText.text = "Erstelle Kalender...";
+			callLater(this.onTermineFinish, [nt]);
+		}
+		
+		private function onTermineFinish(nt:Array):void {
+			Logger.info("Termine Finish");
+			termine = new ArrayCollection (nt);
+			MosaikConfig.setObj("termine", termine);
+			callLater(this.removeLdr);
+		}
+		
+		private function removeLdr():void {
+			ldr.visible = false;
+			content.visible = true;
+//			hideLoadingScreen();
+		}
+			
+		private function onSave():void {
+			ldr.visible = true;
+			content.visible = false;
+			ldrText.text = "Speichere Daten";
+			callLater(this.sendData);
+		}
+		
+		public function save():void {
+			this.onSave();
+		}
+		
+		private function sendData():void {
+			//Alert.show("speichern:" + termine.toString());
+			var jsonObj:Object = new Object();
+			
+			jsonObj.format = "year";
+			jsonObj.year = currentYear;
+			jsonObj.data = new Array();
+			jsonObj.notizen = new Array();
+			jsonObj.del = new Array();
+			
+			var i:uint;
+			
+			for ( i = 0; i < termine.length; i++) {
+				jsonObj.data.push(termine[i]._termine);
+			}
+			
+			for ( i = 0; i < termine.length; i++) {
+				jsonObj.notizen.push(termine[i]._notizen);
+			}
+			
+			jsonObj.del = delTermine.toArray();
+			
+			loader.save(jsonObj,"POST", saveDone);
+		}
+		
+		private function saveDone(data:Object):void {
+			ldrText.text = "Speichern abgeschlossen";
+			callLater(loader.request, [onData]);
+		}
+		
+		private function onTerminStatusChange(event:Event):void {
+			if ( event.target.parent.id != "status" ) return;
+			ExternalInterface.call("$.mosaikRuntime.setChanged");
+
+			var statusChange:DialogTerminStatus = DialogTerminStatus(PopUpManager.createPopUp( this, DialogTerminStatus , true));
+			statusChange.tag = event.target.parent.parent;
+			PopUpManager.centerPopUp(statusChange);
+		}
+		
+		public function toggleReferenten():void {
+			if ( showReferent == false ) {
+				showReferent = true;
+				showTeilnehmer = false;
+			} else {
+				showReferent = false; 
+			}
+		}
+		
+		public function toggleTeilnehmer():void {
+			if ( showTeilnehmer == false ) {
+				showTeilnehmer = true; 
+				showReferent = false;
+			} else {
+				showTeilnehmer = false;
+			}
+		}
+	]]></mx:Script>
+	
+	<fab:FABridge xmlns:fab="bridge.*" />
+
+	<mx:HBox id="ldr" width="100%" height="540" verticalAlign="middle">
+				<mx:Spacer width="50%" />
+				<mx:Text id="ldrText" text="Lade Daten vom Server..." fontSize="18"/>
+				<mx:Spacer width="50%" />
+	</mx:HBox>
+			
+	<mx:HDividedBox width="100%" height="100%" id="content" visible="false">
+		<mx:HBox minWidth="15" width="99%" minHeight="560"  height="100%" id="cal" horizontalGap="0" verticalGap="0">
+			
+			
+			<mx:Repeater dataProvider="{termine}" id="rpTermine">
+				<SAG:PlanungGruppeMonat title="{rpTermine.currentItem.label}" termine="{rpTermine.currentItem}" click="onTerminStatusChange(event);" 
+				showReferent="{showReferent}" 
+				showTeilnehmer="{showTeilnehmer}" />
+			</mx:Repeater>
+		</mx:HBox>
+		
+		<mx:VBox explicitWidth="215" height="100%">
+			<mx:ApplicationControlBar width="100%">
+				<mx:Label width="100%" textAlign="center" fontSize="24" text="{currentYear.toString()}" color="0x000000" />
+			</mx:ApplicationControlBar>
+			<mx:VBox verticalGap="1" width="100%">
+				<SAG:TagesPlanungTrashcan id="trash" termine="{termine}" trash="{delTermine}" />
+				<mx:Button label="Vollbild" click="toggleFullScreen();" />
+				<mx:CheckBox id="showReferenten" label="Referenten anzeigen" selected="{showReferent}" click="toggleReferenten()" />
+				<mx:CheckBox id="showTeilnehmerCb" label="Teilnehmer anzeigen" selected="{showTeilnehmer}" click="toggleTeilnehmer()" />
+			</mx:VBox>
+
+			<!--<mx:HBox>
+				<mx:Button label="Speichern" click="onSave();" />
+			</mx:HBox>-->
+			
+			
+			<SAG:Seminare id="seminar" height="66%" width="100%" />
+			<SAG:Standorte id="standort" height="33%" width="100%" />
+		</mx:VBox>
+		
+	</mx:HDividedBox>
+</mx:Application>

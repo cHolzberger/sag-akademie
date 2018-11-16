@@ -1,0 +1,89 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+		<!-- siehe resources/taglib/infoboxDownload.php-->
+
+	<infoboxDownload />
+
+	</infoboxSmall>
+
+<content>
+
+	
+	<div
+		style="position: absolute; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<table border="0" cellspacing="0" cellpadding="0" width="400"
+			style="position: absolute; left:0px; top:0px;width:400px;">
+			<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/AZWV-Handbuch-Anlage70_FO-070_AT-Zertifikatverlängerung_V1.1_111010.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/AZWV-Handbuch-Anlage70_FO-070_AT-Zertifikatverlängerung_V1.1_111010.pdf" target="_blank" class="blau">
+							<b>Antrag zur Zertifikatverlängerung Generalinspektion von Leichtflüssigkeits- und Fettabscheidern</b>
+						</a>
+						<br />
+						Download Antrag
+					</span>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/AZWV-Handbuch-Anlage71_FO-071_Zertifikatverlängerung_V1.0_190711.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/AZWV-Handbuch-Anlage71_FO-071_Zertifikatverlängerung_V1.0_190711.pdf" target="_blank" class="blau">
+							<b>Antrag zur Verlängerung sonstiger Sach- und Fachkundezertifikate</b>
+						</a>
+						<br />
+						Download Antrag
+					</span>
+				</td>
+			</tr>
+
+			
+
+		</table>
+		
+		<table border="0" cellspacing="0" cellpadding="0" width="400"
+			style="position: absolute; left:450px; top:15px; width:400px;">
+
+			<tr>
+				<td valign="middle">
+					<nobr />
+					&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+													<b>Verlängerung Sachkundezertifikat Dichtheitsprüfung gemäß § 61a LWG NRW nach KomNetGEW-Anforderungen</b><br/>
+						
+						<br />
+						<b>Informationen zur Zertifikatsverlängerung erhalten Sie bei IKT:</b><br/><br/>
+Dipl.-Ing. Marco Schlüter, Tel. 0209 17806-31, E-Mail <a href="mailto:schlueter@ikt.de">schlueter@ikt.de</a><br/>
+Dipl.-Ing. Amely Dyrbusch, Tel. 0209 17806-38, E-Mail <a href="mailto:dyrbusch@ikt.de">dyrbusch@ikt.de</a>
+
+					</span>
+				</td>
+			</tr>
+			
+				<tr>
+				<td valign="middle">
+					&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					&nbsp;
+				</td>
+			</tr>
+
+	</div>
+</content>

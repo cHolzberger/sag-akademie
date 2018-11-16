@@ -1,0 +1,14 @@
+.mdb-input .label {
+	width: 115px !important;
+}
+
+.dbselect .label {
+	width: 115px !important;
+}
+
+/* nur innerhalb einer mform-group anders vorgehen */
+.mform-group-content .mdb-input .label,
+.mform-group-content .dbselect .label {
+	color: #888;
+	font-weight: bold;
+}

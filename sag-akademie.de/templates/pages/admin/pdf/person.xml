@@ -1,0 +1,271 @@
+<pdf:content>
+	<set name="margin-top" value="15" /> <!-- in mm -->
+	<set name="margin-bottom" value="15" /> <!-- in mm -->
+
+	<pdf:header top="-10" style="height:40mm;">
+			<div style="font-size: 18px;font-family:Verdana;Arial;padding-left:1mm;height:40mm;">
+		<img src="/img/logo_ci.png" border="0" alt="SAG Schulungsakademie GmbH" align="right" style="width:40mm;height:13mm;"/>
+		<br/><b>
+				Person</b><br/><br/><span style="font-size: 13px;">Name: <mdb:var mpath="Person:name"/>, <mdb:var mpath="Person:vorname"/> &nbsp;&nbsp;Firma: <mdb:var mpath="Person:Kontakt:firma"/></span>
+		<br/>&nbsp;
+	</div>
+	</pdf:header>
+<br/>&nbsp;<br/>&nbsp;<br/>
+	<table border="0" cellspacing="0" cellpadding="5" style="font-family:Arial;font-size:10px !important;">
+		<tr>
+			<td valign="top" width="50%">
+
+				<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Person</b>
+						</td>
+					</tr>
+										<tr>
+						<td >
+Anrede
+						</td>
+						<td align="left">
+							<switch key="Person:geschlecht">
+			<case value="0">
+				Herr
+			</case>
+			<case value="1">
+				Frau
+			</case>
+		</switch>
+						</td>
+					</tr>
+										
+										<tr>
+						<td >
+Grad
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:grad" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Name
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:name"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Vorname
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:vorname" />
+						</td>
+					</tr>
+										<tr>
+						<td >
+Geburtstag
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:geburtstag" converter="mysqlDateToLocal" />
+						</td>
+					</tr>
+	<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Adresse</b>
+						</td>
+					</tr>
+					
+					<tr>
+						<td >
+Straße, Nr.
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:strasse" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+PLZ
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:plz" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Ort
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:ort" />
+						</td>
+					</tr>
+<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Position im Unternehmen</b>
+						</td>
+					</tr>
+					
+					<tr>
+						<td >
+Mitarbeiter ausgeschieden
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:ausgeschieden" converter="jaNeinToStr" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Funktion
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:funktion" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Abteilung
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:abteilung" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Ansprechpartner
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:ansprechpartner" converter="jaNeinToStr" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Geschäftsführer
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:geschaeftsfuehrer" converter="jaNeinToStr" />
+						</td>
+					</tr>
+				</table>
+
+			</td>
+			<td valign="top" width="50%">
+
+
+
+								<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Kontaktinformationen</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Telefon
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:tel"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Fax
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:fax" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Mobil
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:mobil" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Email
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:email" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Newsletter</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Newsletter
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:newsletter" converter="jaNeinToStr"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Anmeldedatum
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:newsletter_anmeldedatum" converter="mysqlDateToLocal"/>
+						</td>
+					</tr>
+<tr>
+						<td >
+Abmeldedatum
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:newsletter_abmeldedatum" converter="mysqlDateToLocal"/>
+						</td>
+					</tr>
+<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Kundenbereich</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Benutzername
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:login_name"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+Passwort
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:login_password"/>
+						</td>
+					</tr>
+					<tr>
+						<td >
+gesperrt
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:gesperrt" converter="jaNeinToStr"/>
+						</td>
+					</tr>
+<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Notizen</b>
+						</td>
+					</tr>
+					<tr>
+						<td >
+interne Notiz
+						</td>
+						<td align="left">
+							<mdb:var mpath="Person:notiz"/>
+						</td>
+					</tr>
+				</table>
+
+			</td>
+		</tr>
+	</table>
+	<pdf:footer bottom="-15">
+	</pdf:footer>
+</pdf:content>

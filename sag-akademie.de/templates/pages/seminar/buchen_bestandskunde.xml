@@ -1,0 +1,725 @@
+
+<infoboxSmall>
+	<img src="/img/image_seminare_overview.png" alt="" border="0" width="253" height="129" style="position: absolute; left:90px; top:25px;"/>
+	<img src="/img/nav_seminare_uebersicht.png" alt="" border="0" width="291" height="108" style="position: absolute; left:370px; top:32px;" usemap="#seminare_navigation"/>
+	<map name="seminare_navigation">
+		<area shape="RECT" coords="5,35,135,55" href="/seminar/termin/Arbeitssicherheit"/>
+		<area shape="RECT" coords="5,57,135,77" href="/seminar/termin/Kanalreinigung"/>
+		<area shape="RECT" coords="5,79,135,99" href="/seminar/termin/Kanalinspektion"/>
+		<area shape="RECT" coords="140,35,285,55" href="/seminar/termin/Dichtheitspr_ufung"/>
+		<area shape="RECT" coords="140,57,285,77" href="/seminar/termin/Kanalsanierung"/>
+		<area shape="RECT" coords="140,79,285,99" href="/seminar/termin/Abscheidetechnik"/>
+	</map>
+	
+	<img src="/img/direkt_buttons.png" border="0" width="189" height="125" style="position: absolute; left:755px; top:29px;" usemap="#direkt_buttons"/>
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,10,175,35" href="/kontakt/kontaktformular"/>
+		<area shape="RECT" coords="30,80,175,105" href="/kontakt/callbackformular"/>
+	</map>
+</infoboxSmall>
+
+<content>
+
+	<style>
+		.breadcrumb-container {
+			border:  1px solid black;
+			color: white;
+			margin-bottom: 20px;
+			float: left;
+		}
+
+		.breadcrumb-item {
+			float: left;
+			border-right: 1px solid black;
+			background-color: blue;
+			padding-left: 3px;
+			padding-right: 3px;
+			padding-top: 1px;
+			padding-bottom: 6px;
+			font-family: Arial,Helvetica,Sans;
+			font-size: 1.2em;
+			font-weight:bold;
+			cursor: pointer;
+		}
+
+		.breadcrumb-item-active {
+			background-color: white !important;
+			color: black !important;
+			font-weight: bold;
+		}
+
+		breadcrumb-item:hover {
+		font-decoration: underline;
+		}
+
+		.steps {
+			clear: both;
+		}
+
+		.step {
+			display: none;
+		}
+
+		.step input {
+			font-size: 1.2em;
+			width: 250px !important;
+			display: block;
+			float: left;
+		}
+
+		.step label {
+			font-size: 1.2em;
+			 width: 250px !important;
+			 float: left;
+		}
+		
+		label.vorauslabel {
+			font-size: 1.2em;
+			 width: 280px !important;
+			 float: left;
+		}
+		
+				label.agblabel {
+			font-size: 1.2em;
+			 width: 160px !important;
+			 float: left;
+		}
+		
+		input.ohnewidth{
+		width: auto !important;
+		}
+
+		div.dbselect,
+		.dbinput {
+			clear: both;
+			padding-top: 10px;
+		}
+
+		.minput {
+			clear: both;
+		}
+
+		.first {
+			display: block;
+		}
+
+		.breadcrumb-navigation {
+			position: relative;
+			left:0px;
+			width:425px;
+			text-align:right;
+			padding-right:30;
+			padding-top:10px;
+		}
+		#zurueck {
+			position: absolute;
+			left: 0;
+		}
+
+		#weiter {
+		}
+
+		#sendenButton {
+			position: relative;
+			left: 332px;
+			display: none;
+		}
+
+		#neuerTeilnehmer {
+
+		}
+
+		/* hack */
+		.step .minputRadio .text {
+			width: 30px !important;
+			float: left;
+		}
+
+		.step .minputRadio .label {
+			width: 40px !important;
+			float: left;
+		}
+
+		#control {
+			clear: both;
+		}
+		#teilnehmerControl {
+			position: relative;
+			height: 30px;
+			clear: both;
+		}
+
+
+
+		/* Strasse und Nr input felder auf die richtige groesse bringen */
+		.nrInput,
+		.strasseInput {
+			float: left;
+			clear: none !important;
+		}
+
+		.strasseInput input{
+			width: 150px !important;
+		}
+		.nrInput input{
+			width: 20px !important;
+		}
+
+		#hotelbuchen {
+		display: none;
+		}
+
+		#bildungscheck {
+		display: none;
+		}
+		#mitarbeiterNeuForm,
+		#arbeitsagentur {
+		display: none;
+		}
+	</style>
+	<js:import src="/resources/scripts/forms/buchen_kunde.js" />
+
+	<set name="page_background" value="/img/blue_box_klein.jpg"/>
+	<img src="/img/title_seminarbuchung.png" alt="" border="0" width="180" height="22" style="position: absolute; left:0px; top:0px;"/>
+	
+	<div style="position:absolute;left:530px; top:-250px; width:300px;display:none;text-align:left;" id="hinweise">
+
+		<div id="hinweisBildungsscheck" style="display:none;">
+			<img src="/img/title_hinweis.png" border="0" alt="" style="padding-bottom:3px;"/>
+			<br/>
+						Wir weisen Sie darauf hin, dass der Bildungsscheck vor
+			<br/>
+						der Anmeldung zum Seminar vorliegen muss.
+			<br/>&nbsp;
+		</div>
+
+		<div id="hinweisHotel" style="display:none;">
+			<img src="/img/title_hinweis.png" border="0" alt="" style="padding-bottom:3px;"/>
+			<br/>
+						Die Angaben zu den Hotels sind nicht verbindlich,
+			<br/>
+						da die Zimmerpreise häufig Änderungen unterworfen sind
+			<br/>
+						(insbesondere in Darmstadt zu Messe-  u. Kongresszeiten).
+			<br/>&nbsp;
+		</div>
+
+	</div>
+	<div class="seminarBuchungInfo">
+		<table border="0" cellspacing="0" cellpadding="0" style="" class="seminarBuchungTable">
+			<tr>
+				<td colspan="2">
+					<b>
+					Ihre Auswahl
+					</b>
+				</td>
+			</tr>
+		
+			<tr>
+				<td>
+				Seminar
+				</td>
+				<td>
+					<dbfield name="SeminarArt:bezeichnung" notable="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				Kurs-Nr.
+				</td>
+				<td>
+					<dbfield name="kursnr" notable="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				Zeitraum&nbsp;&nbsp;
+				</td>
+				<td>
+					<dbfield name="datum_begin" converter="mysqlDateToLocal" notable="1"/>&nbsp;&nbsp;bis&nbsp;
+					<dbfield name="datum_ende" converter="mysqlDateToLocal" notable="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				Ort&nbsp;&nbsp;
+				</td>
+				<td>
+					<dbfield name="Standort:Ort:ort" notable="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				Dauer
+				</td>
+				<td>
+					<dbfield name="SeminarArt:dauer" notable="1"/>&nbsp;Tage
+				</td>
+			</tr>
+			<tr>
+				<td>
+				Kosten
+				</td>
+				<td>
+					<mdb:value mpath="preis" converter="euroPreis" suffix="€ (zzgl. MwSt.)" />
+					<br/>
+
+				</td>
+			</tr>
+			<switch key="hinweis">
+				<case value="#empty"></case>
+				<case value="*">
+					<tr>
+						<td>
+							<b>
+								<font color="red">Hinweis!</font>
+							</b>
+						</td>
+						<td>
+							<b>
+								<mdb:value mpath="hinweis" converter="nl2br" />
+							</b>
+						</td>
+					</tr>
+				</case>
+			</switch>
+		
+		
+		</table>
+	
+		<table border="0" cellspacing="0" cellpadding="0" style="margin-top: 20px; z-index: 999;" class="seminarBuchungTable" id="Teilnehmer">
+			<tr>
+				<td colspan="3">
+					<b>
+					Teilnehmer
+					</b>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+
+
+	<div style="position: relative; width:900px;">
+
+		<form action="/seminar/buchen" method="POST" class="form" id="buchung">
+			<dbinput type="hidden" name="id"/>
+			<div class="breadcrumb-container">
+				<div class="breadcrumb-item" id="buchungTeilnehmerCrumb" onclick="buchenForm.goTo('buchungTeilnehmer');">
+			1. Teilnehmer<img src="/img/nextstep.png" border="0"/>
+				</div>
+				<div class="breadcrumb-item" id="buchungHotelCrumb" onclick="buchenForm.goTo('buchungHotel');">
+			2. Hotel<img src="/img/nextstep.png" border="0"/>
+				</div>
+				<div class="breadcrumb-item" id="buchungUnterlagenCrumb" onclick="buchenForm.goTo('buchungUnterlagen');">
+			3. Seminarunterlagen<img src="/img/nextstep.png" border="0"/>
+				</div>
+				<div class="breadcrumb-item" id="buchungFoerderungCrumb" onclick="buchenForm.goTo('buchungFoerderung');">
+			4. F&ouml;rderung<img src="/img/nextstep.png" border="0"/>
+				</div>
+				<div class="breadcrumb-item" id="buchungSendenCrumb" onclick="buchenForm.goTo('buchungSenden')">
+			5. buchen<img src="/img/nextstep.png" border="0"/>
+				</div>
+			</div>
+
+			<div style="clear: both; height: 1px; width: 10px; overflow: hidden;">&nbsp;<!-- IE FIX --></div>
+
+			<div class="step first" id="buchungTeilnehmer">
+				
+				<!-- bestehender mitarbeiter -->
+				<div id="mitarbeiterSelect">
+					<xdbselect fromArray="Personen" fromTableDisplay="name,vorname" fromTableKey="id" preselect="0" name="personTmpl[id]" label="Teilnehmer auswählen"/>
+				</div>
+				<div  class="dbinput ">
+					<label  class="label">
+						Mitarbeiter anlegen (falls noch nicht in Liste)
+					</label>
+					<minput type="checkbox" name="personTmpl[person_neu]" value="1" id="mitarbeiterneu" inputstyle="width: auto !important;"/>
+				</div>
+				<!-- neuer mitarbeiter -->
+				<div id="mitarbeiterNeuForm" style="padding-top: 10px; clear: both;">
+				<div class="dbinput">
+					<label class="label">
+						Anrede *
+					</label>
+						<mdb:input mpath="personTmpl[geschlecht]" value="1" type="radio" label="Frau" nospan="true" class="minputRadio" inputstyle="width:auto !important;"/>
+
+						<mdb:input mpath="personTmpl:geschlecht" value="0" type="radio" label="Herr" nospan="true" class="minputRadio" inputstyle="width:auto !important;"/>
+
+					<div style="clear: both;"/>
+				</div>
+				<dbselect name="grad" label="Grad" fromTable="XGrad" fromTableKey="id" fromTableDisplay="id"/>
+
+				<!-- notiz an samir:
+				mpath schreibt um von a:b nach a[b] also entweder a:b oder a[b] benutzen -->
+				<mdb:input mpath="personTmpl:vorname" value="" label="Vorname *" type="text" nospan="true" validate="required"/>
+				<mdb:input mpath="personTmpl:name" value="" label="Name *" type="text" nospan="true" validate="required"/>
+				<mdb:input mpath="personTmpl:geburtstag" value="" label="Geburtstag *" type="text" nospan="true" validate="required dateDE" converter="mysqlDateToLocal"/>
+				<mdb:input mpath="personTmpl:funktion" value="" label="Funktion" type="text" nospan="true"/>
+				<mdb:input mpath="personTmpl:abteilung" value="" label="Abteilung" type="text" nospan="true"/>
+				<mdb:input mpath="personTmpl:strasse" value="" label="Stra&szlig;e, Nr. (privat) *" type="text" nospan="true" validate="required"/>
+				
+				<mdb:input mpath="personTmpl[plz]" value="" label="PLZ (privat) *" type="text" nospan="true" validate="required"/>
+				<mdb:input mpath="personTmpl[ort]" value="" label="Ort (privat) *" type="text" nospan="true" validate="required"/>
+			
+								
+				<!-- notiz an samir:
+				dbselect schreibt nicht um deswegen personTmpl[bundesland_id]
+				-->
+				<dbselect name="personTmpl[bundesland_id]" label="Bundesland (privat) *" fromTable="XBundesland" fromTableKey="id" fromTableDisplay="name"/>
+				
+							
+				<dbselect name="personTmpl[land_id]" label="Land (privat) *" fromTable="XLand" fromTableKey="id" fromTableDisplay="name"/>
+				
+				<div style="width:500px;">&nbsp;<br/>Hinweis: Da die Weiterbildung immer eine persönliche Qualifikation darstellt, ist zur Identifikation des Teilnehmers bzw. des Zertifikat-Inhabers die Angabe des Geburtsdatums und der privaten Anschrift zwingend erforderlich.<br/>&nbsp; 
+				</div>
+				<mdb:input mpath="personTmpl:email" value="" label="E-Mail *" type="text" nospan="true" validate="required email"/>
+				<div  class="dbinput ">
+					<label class="label">
+				Newsletter abonnieren *
+					</label>
+					<mdb:input mpath="personTmpl:newsletter" value="1" type="radio" label="ja" nospan="true" class="minputRadio" inputstyle="width:auto !important;"/>
+					<mdb:input mpath="personTmpl:newsletter" value="0" type="radio" label="nein" nospan="true" class="minputRadio" inputstyle="width:auto !important;"/>
+					
+				</div>
+				<mdb:input mpath="personTmpl:tel" value="" label="Telefon (privat)" type="text" nospan="true"/>
+				<mdb:input mpath="personTmpl:mobil" value="" label="Mobil (privat)" type="text" nospan="true"/>
+
+				</div>
+			</div>
+			<div class="step" id="buchungFoerderung">
+				<!-- Arbeitsagentur -->
+				<div  class="dbinput ">
+					<label  class="label">
+													Förderung durch Arbeitsagentur
+
+					</label>
+					<minput name="personTmpl[arbeitsagentur]" id="arbeitsagenturJa" value="1" type="radio" label="ja" nospan="true"/>
+					<minput name="personTmpl[arbeitsagentur]" id="arbeitsagenturNein" value="0" type="radio" label="nein" nospan="true" checked="checked"/>
+				</div>
+				<div id="arbeitsagentur">
+					<mdb:input mpath="personTmpl[zustaendige_arbeitsagentur]" id="zustaendige_arbeitsagentur" value="" type="text" nospan="true" label="zuständige Arbeitsagentur *"/>
+				</div>
+				<!-- Bildungscheck -->
+				<div class="dbinput">
+					<label  class="label">
+						Förderung über ESF - Europäischer Sozialfond (z.B. Bildungsscheck, Qualifizierungsscheck)
+					</label>
+					<minput name="personTmpl[bildungscheck]" id="teilnehmerBildungscheckJa" value="1" type="radio" label="ja" nospan="true"/>
+					<minput name="personTmpl[bildungscheck]" id="teilnehmerBildungscheckNein" value="0" type="radio" label="nein" nospan="true" checked="checked"/>
+				</div>
+				<div id="bildungscheck">
+				<mdb:input mpath="personTmpl[bildungscheck_ausstellung_art]" id="teilnehmerBildungscheckArt" value="" type="text" nospan="true" label="Art (z.B. Bildungsscheck, Qualifizierungsscheck) *"/>
+					<mdb:input mpath="personTmpl[bildungscheck_ausstellung_ort]" id="teilnehmerBildungscheckOrt" value="" type="text" nospan="true" label="Ausstellungsort *"/>
+					<mdb:input mpath="personTmpl[bildungscheck_ausstellung_datum]" id="teilnehmerBildungscheckDatum" value="" type="text" nospan="true" label="Ausstellungsdatum *"/>
+				
+					<dbselect fromTable="XBundesland" fromTableDisplay="name" fromTableKey="id" preselect="0" name="personTmpl[bildungscheck_ausstellung_bundesland_id]" label="Bundesland *"/>
+				</div>
+				
+			<div style="width:500px;clear:both;">&nbsp;<br/>Hinweis: Zur Sicherung der Förderung muss das Ausstellungsdatum des Förderungsgutscheins vor dem Buchungsdatum liegen.<br/>&nbsp; 
+				</div>
+			</div>
+
+			<div class="step" id="buchungUnterlagen">
+				<div style="width:500px;">Die Seminarunterlagen werden ab 01.01.2019 Digital auf einem USB-Stick ausgegeben. Benötigen sie die Unterlagen zusätzlich in gedruckter Form wählen Sie dies bitte hier aus.</div>
+				<div class="dbinput">
+					<label  class="label">
+						Möchten Sie die Unterlagen in gedruckter Form Ihrer Buchung hinzufügen? (Es entstehen Zusatzkosten in Höhe von 80,- &euro; zzgl. MwSt. pro Teilnehmer)
+					</label>
+					<minput name="personTmpl[seminar_unterlagen]" id="buchungUnterlagenJa" value="1" type="radio" label="ja" nospan="true" />
+					<minput name="personTmpl[seminar_unterlagen]" id="buchungUnterlagenNein" value="0" type="radio" label="nein" nospan="true" checked="checked"/>
+				</div>
+			</div>
+			<div class="step" id="buchungHotel">
+
+
+				<!-- Hotel-->
+				<div class="dbinput">
+					<label  class="label">
+						Möchten Sie ein Hotel buchen? *
+					</label>
+					<minput name="personTmpl[hotelBuchen]" id="hotelBuchenJa" value="1" type="radio" label="ja" nospan="true" />
+					<minput name="personTmpl[hotelBuchen]" id="hotelBuchenNein" value="0" type="radio" label="nein" nospan="true" checked="checked"/>
+				</div>
+					<!-- HOTEL TABLE -->
+				<div id="hotelbuchen">
+				
+					<div class="dbinput">
+						<label class="label">
+							Welches Hotel möchten Sie buchen? *
+						</label>
+						
+						<select name="personTmpl[hotel_id]" nospan="true" style="width:154px;" id="hotel_idTeilnehmerAuswahl" validate="required">
+							<foreach fromArray="Standort:Hotels">
+								<moption>
+										Hotel Nr.
+									<dbfield name="count" notable="true"/>
+								</moption>
+							</foreach>
+						</select>
+					</div>
+
+					
+					
+						
+					<mdb:input mpath="personTmpl[anreise_datum]" id="teilnehmerAnreisedatum" validate="dateDE" value="" type="text" nospan="true" label="Anreisedatum *" inputstyle="width: 150px !important;"/>
+						
+					<div style="dbinput" style="clear: both; padding-top: 10px;">
+						<label class="label">
+							Wie viele Übernachtungen möchten Sie buchen? *
+						</label>
+						
+
+						<select name="personTmpl[uebernachtungen]" nospan="true" style="width:154px;" id="uebernachtungenTeilnehmerAuswahl" validate="required">
+							<option value="1">
+									1 Übernachtung
+							</option>
+							<option value="2">
+									2 Übernachtungen
+							</option>
+							<option value="3">
+									3 Übernachtungen
+							</option>
+							<option value="4">
+									4 Übernachtungen
+							</option>
+							<option value="5">
+									5 Übernachtungen
+							</option>
+							<option value="6">
+									6 Übernachtungen
+							</option>
+							<option value="7">
+									7 Übernachtungen
+							</option>
+						</select>
+					</div>
+				<br/><br/>
+				<div style="position:relative;left:380px;"><input type="button" value="zurück" onClick="buchenForm.prev();" style="width:50px !important;"/>&nbsp;&nbsp;&nbsp;<input type="button" value="weiter" onClick="buchenForm.next();" style="width:50px !important;" /></div>
+				
+					<div class="dbinput">
+						<br/>Die folgenden Hotels stehen zur Auswahl:<br/><br/><br/>					
+						<table class="bfTableHotelAuswahl" border="1" cellspacing="0" cellpadding="3" bgcolor="white">
+							<tr>
+								<td>
+									<b>
+											Nr.
+									</b>
+								</td>
+								<td>
+									<b>
+											Kategorie
+									</b>
+								</td>
+								<td>
+									<b>
+											Beschreibung
+									</b>
+								</td>
+								<td>
+									<b>
+											Entfernung
+									</b>
+								</td>
+								<td>
+									<b>
+											Einzelzimmer
+									</b>
+								</td>
+							</tr>
+							<foreach fromArray="Standort:Hotels">
+								<tr>
+									<td valign="top">
+										<dbfield name="count" notable="true"/>
+									</td>
+									<td valign="top">
+										<dbfield name="kategorie" notable="true"/>
+									</td>
+									<td>
+										<dbfield name="beschreibung" notable="true"/>
+									</td>
+									<td valign="top">
+										<dbfield name="entfernung" notable="true"/>
+									</td>
+									<td valign="top">
+										<mdb:value mpath="Preis:verkaufspreis_ez" converter="euroPreis" suffix="€"/>&nbsp;
+										<mdb:value mpath="Preis:info" />
+
+									</td>
+								</tr>
+							</foreach>
+						</table>
+					</div>
+				</div>
+				
+			</div>
+
+			<div class="step" id="buchungSenden">
+				
+				<div class="dbinput">
+					<label class="label agblabel">
+						Ich akzeptiere die
+						<a href="/pdf/agb.pdf" target="_blank">
+								AGB
+						</a>
+							*
+					</label>
+					<input type="checkbox" id="agbAkzeptiert" name="agb" value="1" class="required ohnewidth"/>
+					
+					<br/>
+					<br/>
+					<div style="width:480px;height:100px;overflow:scroll;border-style:solid;border-width:1px;">
+						<div style="padding:10px;">
+							<b>Allgemeine Geschäftsbedingungen
+der SAG-Akademie GmbH für berufliche Weiterbildung
+							</b>
+							<br/>
+							<br/>
+
+							<i>Allgemeines</i>
+							<br/>
+Es gelten ausschließlich die Geschäftsbedingungen der SAG-Akademie GmbH. Mit der Anmeldung zur
+Veranstaltung werden die AGB vollumfänglich und vorbehaltlos anerkannt.
+							<br/>
+							<br/>
+
+							<i>Anmeldung</i>
+							<br/>
+Anmeldungen und Änderungen der Buchung erfolgen per Mail über die Homepage der SAG-Akademie
+GmbH. Bei Faxanmeldung ist das Anmeldeformular pro Teilnehmer auszufüllen. Bitte senden Sie ausschließlich
+unser Anmeldeformular schriftlich (Post-/Faxweg oder e-Mail) an die SAG-Akademie GmbH.
+In der Regel ist die Teilnehmerzahl der Veranstaltungen begrenzt. Es wird die Reihenfolge des Maileingangs
+bzw. des postalischen Eingangs berücksichtigt. Erhält der Teilnehmer bzw. der Anmeldende
+keine Anmeldebestätigung gilt die Rechnung über die Teilnahmegebühr als Anmeldebestätigung.
+							<br/>
+							<br/>
+
+							<i>Bestätigung von Teilnahmevoraussetzungen</i>
+							<br/>
+Mit der Unterschrift auf der Anmeldung bzw. mit Versandt der digitalen Anmeldung über das Internet
+wird die Erfüllung der Zugangsvoraussetzung(en) des Teilnehmers zu einem Seminar bei der SAGAkademie
+GmbH verbindlich bestätigt. Die Zugangsvoraussetzungen sind den TOPs bzw. den Kursinformationen
+und den Prüfungsordnungen auf der Homepage zu entnehmen.
+							<br/>
+							<br/>
+
+							<i>Abmeldung/ Stornierung</i>
+							<br/>
+Bei schriftlicher Abmeldung/ Stornierung bis 10 Arbeitstage vor der Veranstaltung wird die Teilnahmegebühr
+(abzüglich 10% Bearbeitungsgebühr) zurückerstattet. Bei kurzfristigerer Abmeldung (Datum
+des Poststempels) muss die Teilnahmegebühr in voller Höhe berechnet werden. Sie ist auch in vollem
+Umfang fällig, wenn der Teilnehmer nicht auf der Veranstaltung erscheint. Die Abmeldung muss
+schriftlich erfolgen.
+							<br/>
+							<br/>
+
+							<i>Teilnahmegebühr</i>
+							<br/>
+Die Teilnehmergebühr ist spätestens zwei Tage vor Beginn der Veranstaltung fällig. Bei Umbuchung
+gilt das erste gebuchte Veranstaltungsdatum. Bitte zahlen Sie jedoch die Teilnahmegebühr erst nach
+Erhalt unserer Rechnung. Die Rechnung gilt gleichzeitig als Teilnahmebestätigung, in so fern keine
+gesonderte Bestätigung erfolgt ist. Ein Lehrgang kann nicht auf mehrere Teilnehmer aufgeteilt werden.
+Eine Teilbelegung führt nicht zu einer Preisreduzierung. Eine Teilberechnung oder Teilzahlung der
+Teilnehmergebühr ist nicht möglich.
+							<br/>
+							<br/>
+
+							<i>Haftung</i>
+							<br/>
+Die SAG-Akademie kann bei Vorliegen höherer Gewalt die Veranstaltung absagen. Bereits gezahlte
+Gebühren werden erstattet.
+Bei Absage aufgrund ungenügender Seminarbeteiligung, sowie bei Krankheit von Dozenten, wird der
+Teilnehmer automatisch dem nächsten Seminar am gleichen Veranstaltungsort zugebucht. Wird innerhalb
+der nächsten sechs Monate nach abgesagtem Seminartermin kein gleichwertiges Seminar angeboten,
+wird die bereits gezahlte Gebühr erstattet.
+Weitergehende Ansprüche gegen den Veranstalter bestehen nicht.
+Eine Haftung gegenüber Diebstahl sowie für Personenschäden, Beschädigungen von Gegenständen
+und Kraftfahrzeuge ist ausgeschlossen.
+							<br/>
+							<br/>
+
+							<i>Veränderungen der Veranstaltung</i>
+							<br/>
+Veranstaltungen können in Ausnahmefällen gegenüber der Ausschreibung verändert werden. Dies
+kann zu einer Aktualisierung des Inhalts, des Ablaufs, zu Dozentenwechsel oder Preisanpassungen
+führen. Diese Veränderungen berechtigen nicht zum Rücktritt.
+							<br/>
+							<br/>
+
+							<i>Copyright</i>
+							<br/>
+Das Copyright der Lehrgangsunterlagen liegt bei der SAG-Akademie GmbH für berufliche Weiterbildung
+bzw. bei den Scriptverfassern. Ohne vorherige schriftliche Zustimmung dürfen die Unterlagen
+weder nachgedruckt, vervielfältigt oder gleich in welcher Art und Weise verwendet werden.
+							<br/>
+							<br/>
+
+							<i>Sonderkonditionen</i>
+							<br/>
+Bei verschiedenen Veranstaltungen sind Sonderkonditionen möglich. Informationen hierzu erhalten Sie
+telefonisch, über Seminarinformationen oder auf unserer Homepage
+						</div>
+					</div>
+					
+					
+				</div>
+				
+				<br/>
+				
+				<div class="dbinput">
+					<label class="label vorauslabel">
+						Ich akzeptiere die Teilnahmevoraussetzungen
+							*
+					</label>
+					<input type="checkbox" id="voraussetzungenAkzeptiert" name="voraussetzungen" value="1" class="required ohnewidth"/>
+					
+					<br/>
+					<br/>
+					<div style="width:480px;height:100px;overflow:scroll;border-style:solid;border-width:1px;">
+						<div style="padding:10px;">
+							<b>Teilnahmevoraussetzungen für dieses Seminar</b>
+							<br/>
+							<br/>
+							<dbfield name="SeminarArt:voraussetzungen" notable="1"/>
+						</div>
+					</div>
+					
+					
+				</div>
+				
+				<br/>
+				<span style="font-size:1.2em;">Bemerkung</span>
+				<br/>
+				<div class="dbinput">
+
+					<textarea name="bemerkung" nospan="true" style="width:476px; height:120px;" rows="2">
+					</textarea>
+				</div>
+			</div>
+				
+		
+			<div style="position:relative; left:0px; width:500px; display:none;" id="hiddenForm">
+			</div>
+		</form>
+		
+	</div>
+	<div style="clear: both;">
+		&nbsp;
+	</div>
+
+	<div id="teilnehmerControl">
+		<button align="right"  id="neuerTeilnehmer" align="right" >Teilnehmer speichern und buchen</button>
+		<button align="right"  id="weitererTeilnehmer" align="right" >einen weiteren Teilnehmer hinzuf&uuml;gen</button>
+
+	</div>
+
+	<div id="control">
+					<input type="button" value="abbrechen und zurück zum Kundenbereich" onClick="window.location.href='/kunde/startseite';"/>
+		<button id="zurueck" align="left" style="position: relative; left: 20px;">zur&uuml;ck
+		</button>
+		<button id="weiter" align="right" style="position: relative; left: 40px;">weiter</button>
+		<button align="right" id="sendenButton" >Buchung abschließen</button>
+		<div style="position:absolute;left:530px; top:-250px; width:300px;display:none;text-align:left;" id="hinweise">
+		</div>
+	</div>
+</content>

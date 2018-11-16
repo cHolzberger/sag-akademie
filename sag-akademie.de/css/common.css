@@ -1,0 +1,103 @@
+input.error {
+	background-color: #ff9999 !important;
+}
+tr.hiddenTr {
+	display: none;
+}  .headline {
+	font-size: 13px;
+} .kurzbeschreibung {
+	width: 500px;
+	word-wrap: break-word;
+	white-space: normal;
+} .form > .minput > input {
+	width: 150px;
+} .form > .minputRadio > input {
+	width: auto !important;
+} .form > .minput > .label {
+	text-align: right;
+	padding-right: 5px;
+} .form > .strasse > input {
+	width: 124px;
+} .form > .nr > input {
+	width: 17px;
+}
+
+/* css fix for selected links */
+a {
+	text-decoration: none;
+	font-weight: bold;
+	outline: none;
+}
+
+a:link {
+	text-decoration: none;
+	font-weight: bold;
+	color: #000099;
+}
+
+a:visited {
+	text-decoration: none;
+	font-weight: bold;
+	color: #000099;
+}
+
+a:focus, a:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: #1c1cc2;
+}
+
+a:active {
+	text-decoration: none;
+	font-weight: bold;
+	color: #1c1cc2;
+}
+
+ul {
+	margin-left: 8px;
+	padding-left: 8px;
+}
+
+.cclear {
+	clear: both;
+	height: 1px;
+} .c25 {
+	padding-right: 5px;
+	width: 25%;
+	float: left;
+} .c33 {
+	padding-right: 1%;
+	width: 32%;
+	float: left;
+} .c50 {
+	padding-right: 1%;
+	width: 49%;
+	float: left
+} .c66 {
+	padding-right: 1%;
+	width: 65%;
+	float: left
+} .c100 {
+	width: 99%;
+	float: left;
+	padding-right: 1%;
+} label.error {
+	display: none !important;
+}
+
+.cverysmall {
+	width: 185px;
+	padding-right: 5px;
+	float: left;
+} .csmall {
+	width: 350px;
+	padding-right: 5px;
+	float: left;
+}
+
+ul,
+p {
+	padding-top: 0px;
+	margin-top: 0px;
+}
+

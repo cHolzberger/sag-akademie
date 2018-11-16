@@ -1,0 +1,73 @@
+<content>
+	<set name="page_background" value="/admin/img/header_bg.jpg"/>
+	
+	<h1>
+		Hotel
+	</h1>
+	
+	<br/>&nbsp;<br/>
+	<dbform table="seminarArt" class="no-reload">
+		
+		<div style="width:100%;">
+			<div class="c33">
+				<h2>Hotel-Daten</h2>
+				<dbinput name="aktiv" label="Aktiv (0/1)"/>
+				<dbinput name="plz" label="PLZ"/>
+				<dbinput name="ort" label="Ort"/>
+				<dbselect name="standort_id" label="Standort" fromTable="Standort" fromTableKey="id" fromTableDisplay="Ort:ort"/>
+				<dbinput name="name" label="Name"/>
+				<dbinput name="strasse" label="Stra&szlig;e"/>
+				<dbinput name="nr" label="Nr"/>
+				<dbinput name="tel" label="Telefon"/>
+				<dbinput name="fax" label="Fax"/>
+				<dbinput name="email" label="EMail"/>
+				<dbinput name="url" label="URL"/>
+				<dbinput name="ansprechpartner" label="Ansprechpartner"/>
+				
+			</div>
+			
+			<div class="c33">
+				<h2>Informationen</h2>
+				<dbinput name="kategorie" label="Kategorie"/>
+				<dbinput name="entfernung" label="Entfernung"/><br/>
+				<dbtextarea style="width: 340px; height: 100px;" name="beschreibung" label="Beschreibung"/>
+				<dbtextarea style="width: 340px; height: 100px;" name="notiz" label="Notiz"/>
+                                <h2>Weitere Informationen</h2>
+                                <dbinput readonly="readonly" name="GeaendertVon:name" label="Geändert von"/>
+                                <dbinput readonly="readonly" name="geaendert" label="Geändert" converter="mysqlDateTimeToLocal" />
+			</div>
+			<div class="c33">
+
+			<switch key="Hotel:id">
+				<case value="" />
+				<case value="*">
+					<div style="width: 20%; float: left; position: absolute; right: 10px;">
+						<widget:container headline="Hotel" icon="/img/admin/icon_seminare.png">
+							<mdb:link href="/admin/hotels/#DATA#?show" mpath="Hotel:id" value="Buchungen anzeigen"/><br/>
+							<mdb:link href="/admin/hotels/#DATA#?preise" mpath="Hotel:id" value="Preise bearbeiten"/>
+							
+							<br/>
+						</widget:container>
+						
+					</div>
+				</case>
+			</switch>
+			</div>
+			<div style="clear: right;">
+				<ribbon:dynamicGroupRight forId="verwaltungTab">
+					<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+						Speichern
+					</ribbonButton>
+				</ribbon:dynamicGroupRight>
+				
+				<ribbon:dynamicGroupRight forId="verwaltungTab" offset="100px" class="ui-ribbon-group-reset">
+		<ribbonButton icon="icon_print" href="javascript:$.mosaikRuntime.print();">
+			Drucken
+		</ribbonButton>
+				</ribbon:dynamicGroupRight>
+			</div>
+		</div>
+	</dbform>
+	
+	
+</content>

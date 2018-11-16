@@ -1,0 +1,21 @@
+<set name="page_background" value="/img/blue_box_klein.jpg"/>
+<infoboxSmall>
+	<img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167" style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons"/>
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/>
+	</map>
+	
+	<img src="/img/image_kundenbereich.png" alt="" border="0" style="position: absolute; left:90px; top:45px;"/>
+	
+</infoboxSmall>
+
+
+<content style="width:820px;left:30px;">
+	
+	<h2>Danke für Ihre Anmeldung</h2><br/>
+	<span style="font-size:12px;">
+	Wir haben Ihnen zur Bestätigung eine Email gesendet. Sie können sich aber jetzt schon direkt im Kundenbereich mit Ihrem Benutzernamen und dem von Ihnen gewählten Passwort <a href="/kunde"><b>einloggen</b></a>.<br/><br/>
+	Wir empfehlen Ihnen im nächsten Schritt Ihre Mitarbeiter anzulegen, damit Sie für diese dann Seminar-Buchungen vornehmen können.<br/><br/>
+	Wenn Sie noch Fragen zum Kundenbereich haben, helfen wir Ihnen gern weiter.
+</span>
+</content>

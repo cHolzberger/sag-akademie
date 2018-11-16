@@ -1,0 +1,335 @@
+<set name="subject" value="Änderung Ihrer Seminar-Buchung auf www.sag-akademie.de"/>
+<content>
+<div style="font-family:Arial,Helvetica; font-size:12px;">
+ <img src="https://www.sag-akademie.de/img/logo_ci.png" alt="Logo SAG-Akademie" border="0" align="right"/>
+		<switch key="Ansprechpartner:geschlecht">
+			<case value="0">
+				<b>Sehr geehrter Herr
+					<dbfield name="Ansprechpartner:name" notable="true"/>,
+				</b>
+			</case>
+			<case value="1">
+				<b>Sehr geehrte Frau
+					<dbfield name="Ansprechpartner:name" notable="true"/>,
+				</b>
+			</case>
+		</switch>
+		<br/>&nbsp;
+		<br/>
+Ihre Buchung wurde wie folgt geändert:
+<br/>&nbsp;<br/>
+		
+		<table border="1" cellspacing="0" cellpadding="3" style="border-style:solid;border-width:1px;border-color:#dddddd;font-family:Arial,Helvetica; font-size:12px;">
+			
+			<tbody>
+				
+				
+				
+				<foreach fromArray="Buchungen">
+									
+					<tr>
+						<td>
+							Teilnehmer
+						</td>
+						<td>
+							<mdb:value mpath="Person:name" notable="true"/>,&nbsp;<mdb:value mpath="Person:vorname" notable="true"/>
+						</td>
+					</tr>
+					
+					<switch key="Person:teilnehmer">
+
+						<case value="1">
+							
+							<tr>
+								<td>
+									Straße, Nr.
+								</td>
+								<td>
+									<dbfield name="Person:strasse" notable="true"/><dbfield name="Person:nr" notable="true"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									PLZ, Ort
+								</td>
+								<td>
+									<dbfield name="Person:plz" notable="true"/><dbfield name="Person:ort" notable="true"/>
+								</td>
+							</tr>
+						</case>
+					<case value="*">
+							
+						</case>
+					</switch>
+					
+					<tr>
+						<td>
+							Telefon
+						</td>
+						<td>
+							<dbfield name="Person:tel" notable="true"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							Mobil
+						</td>
+						<td>
+							<dbfield name="Person:mobil" notable="true"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>
+							Email
+						</td>
+						<td>
+							<dbfield name="Person:email" notable="true"/>
+						</td>
+					</tr>
+					
+					 <switch key="Person:teilnehmer">
+                        <case value="1">
+					
+					                    <tr>
+                        <td>
+                            Geburtstag
+                        </td>
+                        <td>
+                            <dbfield name="Person:geburtstag" notable="true" converter="mysqlDateToLocal"/>
+                        </td>
+                    </tr>
+					</case>
+                    <case value="*">
+					
+					</case>
+					</switch>
+					
+					
+					<switch key="Person:teilnehmer">
+						<case value="0">
+							
+						</case>
+						<case value="*">
+							
+						  <tr>
+                                <td>
+                                    Seminar
+                                </td>
+                                <td>
+                                    <dbfield name="Seminar:SeminarArt:bezeichnung" notable="1"/>
+                                </td>
+                            </tr>
+								 <tr>
+                                <td>
+                                    Kurs-Nr. (alt)
+                                </td>
+                                <td>
+                                    <dbfield name="AlteBuchung:Seminar:kursnr" notable="1"/>
+                                </td>
+                            </tr>
+							<tr>
+								<td>
+									Kurs-Nr. (neu)
+								</td>
+								<td>
+									<dbfield name="Seminar:kursnr" notable="1"/>
+								</td>
+							</tr>
+							  </tr>
+									                            <tr>
+                                <td>
+                                    Zeitraum (alt)
+                                </td>
+                                <td>
+                                    <dbfield name="AlteBuchung:Seminar:datum_begin" converter="mysqlDateToLocal" notable="1"/>-<dbfield name="AlteBuchung:Seminar:datum_ende" converter="mysqlDateToLocal" notable="1"/>
+                                </td>
+                            </tr>
+							<tr>
+								<td>
+									Zeitraum (neu)
+								</td>
+								<td>
+									<dbfield name="Seminar:datum_begin" converter="mysqlDateToLocal" notable="1"/>-<dbfield name="Seminar:datum_ende" converter="mysqlDateToLocal" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+                                <td>
+                                    Ort (alt)
+                                </td>
+                                <td>
+                                    <dbfield name="AlterStandort" notable="1"/>
+                                </td>
+                            </tr>
+							<tr>
+								<td>
+									Ort (neu)
+								</td>
+								<td>
+									<dbfield name="Seminar:Standort:name" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Kosten (zzgl. MwSt.)
+								</td>
+								<td>
+									<dbfield name="kursgebuehr" converter="euroPreis" notable="1"/>&nbsp;&euro;
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									zuständige Arbeitsagentur
+								</td>
+								<td>
+									<dbfield name="zustaendige_arbeitsagentur" notable="1"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Bildungsscheck Ausstellung Bundesland
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_bundesland" notable="1"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Bildungsscheck Ausstellung Ort
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_ort" notable="1"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Bildungsscheck Ausstellung Datum
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_datum" notable="1"/>
+								</td>
+							</tr>
+							
+								<td valign="top">
+									Hotel
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:Hotel:name" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:strasse" notable="true"/>&nbsp;<dbfield name="HotelBuchung:Hotel:nr" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:plz" notable="true"/>&nbsp;<dbfield name="HotelBuchung:Hotel:ort" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:tel" notable="true"/>
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td>
+									Anzahl Übernachtungen
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:uebernachtungen" notable="true"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Anreisedatum
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:anreise_datum" notable="true"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Zimmerpreis EZ in &euro; pro Übernachtung
+								</td>
+								<td>
+									<mdb:value mpath="HotelBuchung:verkaufspreis_ez" converter="euroPreis" suffix="€"/>
+								</td>
+							</tr>
+							
+							
+						</case>
+					</switch>
+					  <tr>
+                        <td colspan="2">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Seminarunterlagen
+                        </td>
+                        <td>
+                            <mdb:value mpath="seminar_unterlagen" converter="jaNeinToStr" />
+                        </td>
+                    </tr>
+					<tr>
+						<td colspan="2">
+							&nbsp;
+						</td>
+					</tr>
+					<tr>
+					<td>
+						Bemerkung
+					</td>
+					<td>
+						<dbfield name="bemerkung" notable="true"/>
+					</td>
+				</tr>
+				<tr>
+                    <td>
+                        Anmerkungen SAG
+                    </td>
+                    <td>
+                        <dbfield name="info_kunde" notable="true"/>
+                    </td>
+                </tr>
+				
+				</foreach>
+				
+			</tbody>
+		</table><br/>&nbsp;
+		
+		
+		
+		<br/>
+		Hinweis: Dies ist eine automatisch generierte Email. Bitte antworten Sie nicht auf diese Email.
+		<br/>
+		<br/>
+	
+	Mit freundlichen Grüßen
+		<br/>
+		<i>Ihr Team der SAG-Akademie</i>
+		<br/>&nbsp;
+		<br/>
+--
+		<br/>&nbsp;
+		<br/>
+SAG-Akademie GmbH
+		<br/>
+für berufliche Weiterbildung
+		<br/> 
+Otto-Hesse-Str. 19/T9
+		<br/>
+64293 Darmstadt
+		<br/>&nbsp;
+		<br/>
+  
+Telefon: +49 [0] 61 51.101 55-0
+		<br/>
+Fax:       +49 [0] 61 51.101 55-155
+		<br/>
+Email:      info@sag-akademie.de
+		<br/>&nbsp;
+		
+		
+	</div>
+</content>

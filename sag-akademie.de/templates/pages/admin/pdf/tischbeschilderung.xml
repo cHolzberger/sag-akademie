@@ -1,0 +1,67 @@
+<pdf:content>
+	<set name="margin-top" value="0.1"/>
+	<!-- in mm -->
+	<set name="margin-bottom" value="0.1"/>
+	<!-- in mm -->
+	<set name="margin-left" value="0.1"/>
+	<!-- in mm -->
+	<set name="margin-right" value="0.1"/>
+	<!-- in mm -->
+	<!--<div style="position: fixed; top: 149mm; height: 1mm; border-top: 0.1mm dashed black; width: 100%;" >&nbsp;</div>-->
+	<style type="text/css">
+		.tnCard {
+			position:relative;
+			 color:black;
+			 font-family:verdana;arial;
+			  margin:0mm;
+			    padding-left: 10mm;
+			      border-bottom: 0.3mm dashed #999999;
+			       height: 122mm;
+			        text-align: left;
+			        page-break-inside: avoid;
+			        z-index: 10;
+		}
+		
+		.tnInfo {
+			padding-top: 78mm;
+			bottom: 20mm;
+			text-align: center;
+			 position: absolute;
+			  left: 0; 
+			  right: 0;
+			  z-index: 10;
+		}
+	</style>
+	<foreach fromArray="Teilnehmer">
+		<div class="tnCard" >
+			<div class="tnInfo">
+
+				<div style="font-size:11.5mm;font-family:Verdana;">
+					<b>
+						<mdb:var mpath="grad" nonEmptySuffix=" " emptyValue="" />
+						<mdb:var mpath="vorname"/>
+						<mdb:var mpath="name"/>
+					</b>
+					<br/>
+				</div>
+				<div style="font-size:9mm;font-family:Verdana;color:#999999;">
+					<switch key="privat">
+						<case value="0">
+							<b>
+								<mdb:var mpath="firma"/>
+							</b>
+						</case>
+						<case value="1"></case>
+					</switch>
+				</div>
+			</div>
+			<img src="/img/logo_ci.png" border="0" alt="SAG Schulungsakademie GmbH" style="position:absolute; left:10mm; width:40mm; height:13mm; left:10mm; bottom:5mm;"/>
+			<div style="position:absolute; right:10mm; bottom:5mm;font-family:Verdana,Arial;font-size:7mm; color:blue;">
+				<b>
+					<mdb:var mpath="Seminar:seminar_art_id" />
+				</b>
+			</div>
+		</div>
+		
+	</foreach>
+</pdf:content>

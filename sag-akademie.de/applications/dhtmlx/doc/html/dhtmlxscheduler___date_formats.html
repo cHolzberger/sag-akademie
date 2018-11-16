@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" href="./_default/default.css" type="text/css" media="screen" title="no title" charset="utf-8"><title>
+    dhtmlxscheduler:date_formats    []
+  </title></head>
+
+<body>
+<div class="dokuwiki">
+  
+  <div class="page">
+    <!-- wikipage start -->
+    
+
+
+<h2><a name="date_converters" id="date_converters">Date Converters</a></h2>
+<div class="level2">
+
+<p>
+
+You can generate a date convert function as follows:
+
+</p>
+<pre class="code javascript"><span class="kw2">var</span> convert <span class="sy0">=</span> scheduler.<span class="me1">date</span>.<span class="me1">date_to_str</span><span class="br0">&#40;</span><span class="st0">&quot;%format%&quot;</span><span class="br0">&#41;</span>;
+some_string <span class="sy0">=</span> convert<span class="br0">&#40;</span> date_object <span class="br0">&#41;</span>;</pre>
+<p>
+Backward convertion can be achieved as follows:
+
+</p>
+<pre class="code javascript"><span class="kw2">var</span> convert <span class="sy0">=</span> scheduler.<span class="me1">date</span>.<span class="me1">str_to_date</span><span class="br0">&#40;</span><span class="st0">&quot;%format%&quot;</span><span class="br0">&#41;</span>;
+date_object <span class="sy0">=</span> convert<span class="br0">&#40;</span> date_as_string <span class="br0">&#41;</span>;</pre>
+<p>
+Both functions can be used in UTC variation
+
+</p>
+<pre class="code javascript"><span class="co1">//convert date object in local time to string in UTC time</span>
+<span class="kw2">var</span> convert <span class="sy0">=</span> scheduler.<span class="me1">date</span>.<span class="me1">date_to_str</span><span class="br0">&#40;</span><span class="st0">&quot;%format%&quot;</span><span class="sy0">,</span><span class="kw2">true</span><span class="br0">&#41;</span>;
+<span class="co1">//convert string in UTC time to date object in local time</span>
+<span class="kw2">var</span> convert <span class="sy0">=</span> scheduler.<span class="me1">date</span>.<span class="me1">str_to_date</span><span class="br0">&#40;</span><span class="st0">&quot;%format%&quot;</span><span class="sy0">,</span><span class="kw2">true</span><span class="br0">&#41;</span>;</pre>
+</div>
+
+    <!-- wikipage stop -->
+  </div>
+
+  <div class="clearer">&nbsp;</div>
+
+  
+  <div class="copyright">&copy; DHTMLX</div></body>
+</html>

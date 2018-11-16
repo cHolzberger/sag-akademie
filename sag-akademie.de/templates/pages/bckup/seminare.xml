@@ -1,0 +1,39 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+<img src="/img/hotline.png" alt="" border="0" width="239" height="161" style="position: absolute; left:705px; top:6px;" usemap="#formulare" /><map name="formulare"><area shape="RECT" coords="90,80,230,120" href="#" /></map>
+<img src="/img/image_seminare_overview.png" alt="" border="0" width="253" height="129" style="position: absolute; left:90px; top:25px;"/>
+<img src="/img/nav_seminare_uebersicht.png" alt="" border="0" width="291" height="108" style="position: absolute; left:370px; top:32px;"/>
+</infoboxSmall>
+
+<content>
+
+<image key="title" style="position: absolute; left:0px; top:0px;" />
+
+<foreach fromArray="SeminarArten" recurse="true" style="position: absolute;">
+<div style="position: relative;">
+<img src="/img/trenner.png" alt="" border="0" width="851" height="1" style="position: absolute; margin-left:0px; margin-top:1px;"><br>
+<div style="width: 400px;">
+	<b><dbfield name="bezeichnung" /></b><br/>
+	<dbfield name="kurzbeschreibung"  />
+	<p>Dauer: <dbfield name="dauer" label="Dauer"/>&nbsp;Tage</p>
+	<p>Kosten: <dbfield name="nettoep" converter="euroPreis" />&nbsp;€</p>
+</div>
+	<div style="position: absolute; top: 10px; left: 500px; width: 150px;">
+	Termine:<br/>
+	<foreach fromArray="Seminare">
+		<p><dbfield name="datum_begin" converter="dateFormat"/>
+		<dbfield name="Standort:Ort:ort" /></p>
+	</foreach>
+	</div> 
+	<div style="clear: both;">&nbsp;</div>
+	<img src="/img/trenner.png" alt="" border="0" width="851" height="1" style="position: absolute; margin-left:0px; margin-top:1px;"><br />
+</div>
+<div style="position: absolute; top: 10px; left: 650px;"> 
+	<dblink basehref="/seminarInfo/" name="id">Informationen</dblink>
+</div>
+
+</foreach> 
+
+
+</content>

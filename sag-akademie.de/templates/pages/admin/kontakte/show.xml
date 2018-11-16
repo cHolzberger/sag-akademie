@@ -1,0 +1,12 @@
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+
+<content>
+Firma: <br/>
+	<dbcontent name="Kontakt:id" label="" /><br/>
+
+	Personen:<br/>
+	<foreach fromArray="Kontakt:Personen">
+		<dbfield name="name" notable="notable" />
+	</foreach>
+</content>

@@ -1,0 +1,169 @@
+﻿<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+	 <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167"
+                style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+	<img src="/img/img_partner_neu.png" alt="" border="0" style="position: absolute; left:110px; top:40px;" />
+</infoboxSmall>
+  
+<content>
+
+	<img src="/img/title_partner.png" alt="" border="0" width="180"
+		height="22" style="position: absolute; left:0px; top:0px;" />
+		
+		
+		
+		
+	<div
+		style="position: relative; left:0px; top:35px; width:550px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<foreach fromArray="Partner">
+			<p><strong><mdb:out mpath="name" /></strong></p>
+			<p style="position: relative; padding-bottom: 20px;">
+				<mdb:image mpath="logo" width="107" height="127"  dblink="link" style="position: absolute; right: -200px; float: right;"/>			
+
+				<mdb:out mpath="text" />
+			</p>
+		</foreach>
+		<div style="position: relative;">
+					
+				
+								<img src="/img/rsv_link.png" alt="" border="0" width="262" height="124" style="position: absolute; left:600px; top:150px;" usemap="#rsv"/><map name="rsv"><area shape="RECT" coords="130,50,230,90" href="http://www.rsv-ev.de/" target="_blank" /></map>
+								
+																<img src="/img/drk_link.png" alt="" border="0" width="262" height="124" style="position: absolute; left:600px; top:450px;" usemap="#drk"/><map name="drk"><area shape="RECT" coords="130,50,230,90" href="http://www.drk-luenen.de/" target="_blank" /></map>
+																
+																<img src="/img/kanalinspekteure_link.png" alt="" border="0" width="262" height="124" style="position: absolute; left:600px; top:580px;" usemap="#kanalinspekteure"/><map name="kanalinspekteure"><area shape="RECT" coords="130,50,230,90" href="http://www.kanalinspekteure.de/" target="_blank" /></map>
+
+																<img src="/img/courseforme.jpg" alt="" border="0" width="262" height="124" style="position: absolute; left:600px; top:720px;" usemap="#course"/><map name="course"><area shape="RECT" coords="130,50,230,90" href="http://www.courseforme.de/" target="_blank" /></map>
+
+		<!-- alte seite geht hier weiter! -->
+		
+			
+
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+		<p>
+			<b>Rohrleitungssanierungsverband e.V.</b>
+		</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+				
+			<p>
+			<b>Deutsches Rotes Kreuz Kreisverband Lünen e.V.</b>
+		</p>
+
+		<p>Bei unseren Seminaren im Bereich Arbeitssicherheit kooperieren wir mit dem Deutschen Roten Kreuz Kreisverband Lünen e.V.</p>
+			
+
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+
+			<p>
+			<b>kanalinspekteure.de</b>
+		</p>
+
+
+
+		<p>Das Portal dient dem Erfahrungsaustausch unter Kanalinspekteuren, Kanalsanierern sowie Kanalreinigern.<br/></p>
+			
+
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+
+<p>
+			<b>courseforme.de</b>
+		</p>
+
+
+
+		<p>Unsere Seminare sind bei courseforme.de gelistet.<br/></p>
+			
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>
+			<p>&nbsp;</p>			<p>&nbsp;</p>
+			
+							<p>
+			<b>Aufbau unserer Musterkanalstrecke</b>
+		</p>
+
+		<p>Beim Aufbau unserer Musterkanalstrecke wurden wir unterstützt von:</p>
+			
+			<ul>
+			<li><a href="http://www.funkegruppe.de/" target="_blank">Funke Gruppe</a></li>
+			
+			</ul>
+			
+						<table border="0" cellspacing="0" cellpadding="5">
+			<tr>
+			
+			<td width="175" align="center"><a href="http://www.funkegruppe.de/" target="_blank"><img src="/img/str_funke.png" border="0" alt="" width="163" height="51" /></a></td>
+	</tr>
+			</table>
+			
+			
+			<p>&nbsp;</p>
+			
+				<p>
+			<b>Unterstützende Unternehmen und Hersteller</b>
+		</p>
+
+		<p>Folgende Unternehmen und Hersteller unterstützen uns im praktischen Schulungsbereich:</p>
+			
+			<ul>
+			<li><a href="http://www.haerke.de/" target="_blank">Härke GmbH & Co. KG</a></li>
+			<li><a href="http://www.ibak.de/" target="_blank">IBAK</a></li>
+			<li><a href="http://www.haite.de/" target="_blank">Ingenieurbüro Haite</a></li>
+			<li><a href="http://www.ist-sanierung.de/" target="_blank">IST</a></li>
+			<li><a href="http://itv.de/" target="_blank">itv gesellschaft f. industrie-tv mbh</a></li>
+			<li><a href="http://www.kummert.de/" target="_blank">Kummert Inspektionssysteme</a></li>
+			<li><a href="http://www.messen-nord.de/" target="_blank">MesSen Nord</a></li>
+			<li><a href="http://www.auer.de/" target="_blank">MSA Auer</a></li>
+			<li><a href="http://www.spering.com/" target="_blank">Spering micro-systems</a></li>
+			<li><a href="http://www.uhrig-bau.eu" target="_blank">UHRIG Kanaltechnik GmbH</a></li>
+			</ul>
+			
+			<table border="0" cellspacing="0" cellpadding="5">
+			<tr>
+			
+			<td width="175" align="center"><a href="http://www.ist-sanierung.de/" target="_blank"><img src="/img/unter_ist.png" border="0" alt="" width="163" height="51" /></a></td>
+			<td width="175" align="center"><a href="http://www.ibak.de/" target="_blank"><img src="/img/unter_ibak.png" border="0" alt="" width="163" height="51" /></a></td>
+			</tr>
+			<tr>
+			<td align="center"><a href="http://www.spering.com/" target="_blank"><img src="/img/unter_spering.png" border="0" alt="" width="163" height="51" /></a></td>
+			<td align="center"><a href="http://www.haite.de/" target="_blank"><img src="/img/unter_haite.png" border="0" alt="" width="163" height="51" /></a></td>
+			<td align="center"><a href="http://www.auer.de/" target="_blank"><img src="/img/unter_msaauer.png" border="0" alt="" width="163" height="51" /></a></td>
+			</tr>
+			<tr>
+			<td colspan="3"><a href="http://www.kummert.de/" target="_blank"><img src="/img/unter_kummert.jpg" border="0" alt="" /></a>&nbsp;&nbsp;&nbsp;<a href="http://itv.de/" target="_blank"><img src="/img/unter_itv.jpg" border="0" alt="" /></a>&nbsp;&nbsp;&nbsp;<a href="http://www.messen-nord.de/" target="_blank"><img src="/img/unter_messennord.jpg" border="0" alt="" /></a>&nbsp;&nbsp;&nbsp;<a href="http://www.haerke.de/" target="_blank"><img src="/img/unter_haerke.jpg" border="0" alt="" /></a>&nbsp;&nbsp;&nbsp;<a href="http://www.uhrig-bau.eu" target="_blank"><img src="/img/unter_uhrig.png" border="0" alt="" /></a></td>
+			</tr>
+			</table>
+			
+			
+			<p>&nbsp;</p>
+
+</div>
+	</div>
+			<div style="clear: both;">
+		&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
+	</div>
+</content>

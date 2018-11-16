@@ -1,0 +1,43 @@
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+
+<content>
+ <h1>Standort</h1>
+
+<br/>&nbsp;<br/>
+<dbform table="Standort" class="no-reload">
+	<div class="c33">
+	<h2>Standort-Daten</h2>
+
+	<dbinput name="name" label="Name" />
+	<dbinput name="strasse" label="Stra&szlig;e" />
+	<dbinput name="nr" label="Nr." />
+	<dbinput name="plz" label="Plz" />
+	<dbinput name="tel" label="Telefon" />
+	<dbinput name="fax" label="Fax" />
+	<dbinput name="art" label="Art" /><br/>
+	
+	</div>
+	<div class="c33">
+	<h2>Planung</h2>
+		<dbinput name="sichtbar_planung" label="In der Planungskomponente anzeigen" type="checkbox" value="1" /><br/><br/><br/>
+		<dbinput name="planung_aktiv" label="Sofort in der Planungskomponente anzeigen" type="checkbox" value="1" /><br/>
+		<div style="clear: both;">&nbsp;</div>
+
+	<h2>Weitere Informationen</h2>
+                <dbinput readonly="readonly" name="GeaendertVon:name" label="Geändert von"/>
+                <dbinput readonly="readonly" name="geaendert" label="Geändert" converter="mysqlDateTimeToLocal" />
+        </div>
+	<ribbon:dynamicGroupRight forId="verwaltungTab">
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();" >
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+		
+		<ribbon:dynamicGroupRight forId="verwaltungTab" offset="100px" class="ui-ribbon-group-reset">
+		<ribbonButton icon="icon_print" href="javascript:$.mosaikRuntime.print();">
+			Drucken
+		</ribbonButton>
+		</ribbon:dynamicGroupRight>
+</dbform>
+</content>

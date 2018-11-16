@@ -1,0 +1,12 @@
+<content>
+<h1>Tabellen</h1>
+<div style="width: 98%; height: 95%;">
+<foreach fromArray="Table">
+    <div style="width: 300px; float: left;">
+    <mdb:link mpath="name" href="/admin/db/labels/#DATA#" value="name"/><br/>
+  
+    </div>
+</foreach>
+</div>
+
+</content>

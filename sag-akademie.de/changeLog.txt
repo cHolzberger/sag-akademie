@@ -1,0 +1,15 @@
+-- Version 1.8.47 Online gestellt
+	Neu:
+		Kalender Beta
+		Refrenten Planung Beta
+		Ueberarbeitung des Imports
+		Feiertage zu Bundeslaendern
+		Datenimport 
+
+r754 | sschwenker | 2009-05-06 18:44:58 GMT
+Changed paths:
+	M /www.sag-akademie.de/css/theme/ui.theme.css
+	A /www.sag-akademie.de/css/theme/bar_bg.png
+
+verlauf hinter ribbons
+----------------------------------------------------------------------------

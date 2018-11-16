@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init();">
+	<mx:Script>
+		<![CDATA[
+			//
+			// Author: Wayne IV Mike
+			// Project:	JSwoof - The Flex JSON library.
+			// Description: Character Escaping Example.
+			// Date: 2nd June 2009.
+			// Contact: wayne.ivor@googlemail.com , dappa2000@blueyonder.co.uk
+			//
+			
+			import json.*;
+			import mx.controls.Alert;
+			
+			/***********************************************************************/
+			
+			private function init():void
+			{
+				var simpleJSON:String = "{\"name\":\"\\u0048e\\u006c\\u006Co	world\\u2019s\"}";
+				
+				var jObj:Object = JParser.decode(simpleJSON);
+				
+				if(jObj == null)
+				{
+					var errObj:Object = JParser.getLastError();
+					Alert.show(errObj.errorStr);			
+				}
+				
+				var jStr:String = JParser.encode(jObj);
+				
+				if(jStr != null && jStr != "")
+				{
+					Alert.show("Decoded -> " + jObj.name + "\n\r" + "Encoded -> " + jStr);
+				}
+			}
+			
+			/***********************************************************************/
+		]]>
+	</mx:Script>
+	
+</mx:Application>

@@ -1,0 +1,113 @@
+<pdf:content>
+
+	<set name="margin-top" value="10" /> 
+	<set name="margin-bottom" value="10" />
+	<set name="margin-left" value="10" />
+	<set name="margin-right" value="10" />
+
+    <style type="text/css">
+        .rubrik {
+            color:<mdb:var mpath="Farbe" />;
+        }
+		@font-face {
+            font-family: Jolly;
+            src: url('/resources/font/Constantia.ttf') format('truetype');
+        }
+		* {
+            font-family: Jolly;
+			line-height: 140%;
+			letter-spacing: 120%;
+        }
+
+        div {
+            font-family: Jolly;
+        }
+    </style>
+   
+   <div style="position:relative;float:left;width:60mm;font-size:7pt;">
+   <img src="http://www.sag-akademie.de/files/top2_sag.jpg" border="0" alt="" style="width:60mm; height:28mm;"/><br/>
+<switch key="Seminar">
+    <case value="#empty">
+       <div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Termine</b>
+	</div>
+	<div style="padding:2mm;color:black;background-color:#f5f5f5;">
+	 Termine auf Anfrage
+	</div>   
+    </case>
+    <case value="*">
+	<div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Termine</b>
+	</div>
+	<div style="padding:2mm;color:black;background-color:#f5f5f5;">
+	 <foreach fromArray="Seminar">
+                <mdb:var mpath="datum_begin" converter="mysqlDateToLocal" />&nbsp;in <mdb:var mpath="Standort:Ort:ort" /><br/>
+                
+            </foreach>
+	</div>     
+    </case>
+</switch>
+
+<div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Seminargebühr</b>
+</div>
+<div style="padding:2mm;color:black;background-color:#f5f5f5;">
+<mdb:var mpath="SeminarArt:kursgebuehr" />,00&nbsp;&euro; (zzgl. MwSt.)<br/><br/>
+<span style="font-size:7pt;">
+Incl. Hochwertige Seminarordner mit Inhaltsverzeichnis und Farbdrucken, Frühstück, Mittagessen und Snacks, Kalt- und Warmgetränke zu jeder Zeit, Schreibutensilien, Willkommensgeschenk
+</span>
+</div> 
+
+<div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Dauer</b>
+</div>
+<div style="padding:2mm;color:black;background-color:#f5f5f5;">
+<mdb:var mpath="SeminarArt:dauer" />&nbsp;Tage<br/>
+</div>   
+
+<div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Zielgruppe</b>
+</div>
+<div style="padding:2mm;color:black;background-color:#f5f5f5;">
+    <mdb:var mpath="SeminarArt:zielgruppe" />   
+
+</div> 
+
+<div style="padding:2mm;color:white;background-color:#0b24fb;">
+	<b>Teilnahmevoraussetzung</b>
+</div>
+<div style="padding:2mm;color:black;background-color:#f5f5f5;">
+	<mdb:var mpath="SeminarArt:voraussetzungen" />
+</div> 
+
+<div style="padding:2mm;color:yellow;background-color:#0b24fb;">
+	<b>Wir sind uns sicher...</b>
+</div>
+<div style="padding:2mm;color:black;background-color:#f5f5f5;">
+	Sollte dem Teilnehmer dieser Lehrgang nicht gefallen, zahlen wir die vollständigen Lehrgangsgebühren zurück!
+</div> 
+<img src="http://www.sag-akademie.de/files/top2_zukunft.jpg" border="0" alt="" style="width:60mm; height:28mm;"/>
+   </div>
+   
+   <div style="position:relative;float:right; width:110mm;">
+   
+<div style="padding:2mm; padding-bottom:4mm; font-size:8pt;" class="rubrik"><mdb:var mpath="RubrikName" />:<br/>
+	<span style="font-size:14pt;"><b><mdb:var mpath="SeminarArt:bezeichnung" />&nbsp;(<mdb:var mpath="SeminarArt:id" />)</b></span>
+</div>
+
+
+ <div style="padding:2mm;width:120mm; font-size:8pt;">
+   <b>Kurzbeschreibung</b><br/><hr/>  
+    <mdb:var mpath="SeminarArt:kurzbeschreibung" /><br/> <br/> 	
+	<b>Seminarinhalte</b><br/><hr/>  
+    <mdb:var mpath="SeminarArt:langbeschreibung" /><br/> <br/> 
+	<b>Nachweise</b><br/><hr/>
+    <mdb:var mpath="SeminarArt:nachweise" /><br/> <br/>    
+<b>weitere Informationen</b><br/><hr/>
+Für eine telefonische Beratung stehen Ihnen Frau Anja Kratt in Darmstadt (Tel. <b>0 61 51.101 55-111</b>) und Herr Michael Scholle in Lünen (Tel. <b>02 31.225 11-62</b>) gern zur Verfügung.<br/><br/>Weitere Informationen finden Sie auch auf unserer Homepage unter <a href="http://www.sag-akademie.de"><b>www.sag-akademie.de</b></a>
+    </div>
+   </div>
+   
+  
+   
+</pdf:content>

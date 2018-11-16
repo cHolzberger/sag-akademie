@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <title>SAG-Akademie Verwaltung</title>
+    </head>
+    <script type="text/javascript" src="gears_init.js">
+    </script>
+    <body text="#000000" bgcolor="#FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000" background="bg.jpg" style="margin:0;">
+        <div style="width:auto;height:auto;z-index:2;text-align:center;top:0px;left:0px;right:0px;bottom:0px;">
+            <br>
+            <br>
+            <br>
+            <div style="background-color:#ffffff;z-index:3;width:350px;font-family:Verdana,Arial;font-size:11px;font-weight:bold;text-align:right;padding-right:40px;margin:auto;">
+                <div style="text-align:center;padding-left:20px;padding-top:10px;padding-bottom:20px;">
+                    <img src="logo_ci.png" alt="" border="0" width="212" height="75">
+                </div>
+                <form action="http://sag-akademie.mosaik-software.de/admin/" method="POST" id="loginForm" name="loginForm">
+                    Benutzername:&nbsp;&nbsp; <input name="username" type="text" style="width:200px;" id="username"/>
+                    <br/>
+                    <br/>
+                    Passwort:&nbsp;&nbsp; <input name="password" type="password" style="width:200px;"/>
+                    <br/>
+                    <br/>
+                    Datenbank:&nbsp;&nbsp; 
+                    <select name="umgebung" id="umgebung" style="width: 205px;" onChange="setTarget();">
+                        <option value="http://sag-akademie.mosaik-software.de/admin/">Produktiv</option>
+                        <option value="http://test-sag-akademie.mosaik-software.de/admin/">Test</option>
+                        <option value="http://sag-akademie.localhost/admin/">Lokal</option>
+                    </select>
+                    <br/>
+                    <br/>
+										Aktualisieren <input type="checkbox" name="gearsUpdate" />
+
+                    <input type="submit" value="Einloggen"/>
+                    <br/>
+                    &nbsp;
+                </form>
+            </div>
+        </div>
+    </body>
+    <script type="text/javascript">
+        /* create the local database */
+        if (window.google && google.gears) {
+        
+        	var db = google.gears.factory.create('beta.database');
+        	db.open('sag_akademie');
+        	db.execute('create table if not exists J_Config (key TEXT, value TEXT, id INT PRIMARY KEY)');
+        	
+        	var rs = db.execute("SELECT * from J_Config WHERE key='login.username'");
+        	
+        	var hit = 0;
+        	while (rs.isValidRow()) {
+        		hit = 1;
+        		if (rs.fieldByName("value")) {
+        			document.getElementById("username").value = rs.fieldByName("value");
+        		}
+        		rs.next();
+        	}
+        	
+        	if (hit == 0) {
+        		db.execute("insert into J_Config (key,value) VALUES (?,?)", ["login.username", ""])
+        	}
+        	rs.close();
+        	
+        	document.getElementById("username").onblur = function() {
+        		db.execute("update J_Config  SET value=? WHERE key = 'login.username'", [document.getElementById("username").value]);
+        	};
+        	
+        	
+        	/* create a managed store */
+        	var STORE_NAME = "sagstore";
+        	
+        	try {
+        		var localServer = google.gears.factory.create('beta.localserver');
+        		var store = localServer.openStore(STORE_NAME);
+        		
+        		if (!store) {
+        			store = localServer.createManagedStore(STORE_NAME);
+        			store.manifestUrl = '/_gearsmanifest.php';
+        			store.checkForUpdate();		
+        		}
+        		
+        		store.enabled = true;
+        	} catch (ex) {
+        		alert("Can't create offline store! \n" + ex.message);
+        	}
+        	
+        }
+		
+		function checkForUpdate() {
+			store = localServer.createManagedStore(STORE_NAME);
+        	store.manifestUrl = '/_gearsmanifest.php';
+        	store.checkForUpdate();		
+		}
+        
+        function setTarget() {
+        	document.getElementById("loginForm").action = document.getElementById("umgebung").value;
+        };
+		
+		checkForUpdate();
+    </script>
+</html>

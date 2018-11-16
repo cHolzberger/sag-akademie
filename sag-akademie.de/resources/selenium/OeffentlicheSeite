@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://sag-akademie.localhost/" />
+<title>Account erstellen - Privatperson</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Account erstellen - Privatperson</td></tr>
+</thead><tbody>
+<!--Anmelden Form aufrufen-->
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=nav_login_img</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>//input[@value='Anmelden']</td>
+	<td></td>
+</tr>
+<!--Privat person wählen-->
+<tr>
+	<td>click</td>
+	<td>id=privat</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=weiter</td>
+	<td></td>
+</tr>
+<!--Daten eingeben-->
+<tr>
+	<td>waitForVisible</td>
+	<td>id=anmeldungKontaktdaten</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=weiter</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=anmeldungMitgliedschaft</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=weiter</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=anmeldungAnsprechpartner</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input_ansprechpartner[vorname]</td>
+	<td>Christian</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input_ansprechpartner[name]</td>
+	<td>Holzberger</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input_ansprechpartner[geburtstag]</td>
+	<td>23.04.1983</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input_ansprechpartner[funktion]</td>
+	<td>Test-Funktion</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input_ansprechpartner[abteilung]</td>
+	<td>Test-Abteilung</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input_ansprechpartner[strasse]</td>
+	<td>Test-Strasse 20</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input_ansprechpartner[plz]</td>
+	<td>32423</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input_ansprechpartner[ort]</td>
+	<td>Testhausen</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=input_ansprechpartner_bundesland_id</td>
+	<td>label=Nordrhein-Westfalen</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input_ansprechpartner[email]</td>
+	<td>debug@mosaik-software.de</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//input[@id='input_ansprechpartner[newsletter]' and @value='0']</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=input_ansprechpartner[tel]</td>
+	<td>0571 7307146</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=weiter</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=anmeldungPasswort</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=user</td>
+	<td>test-account</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=pw1</td>
+	<td>testpassword</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=pw2</td>
+	<td>testpassword</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=weiter</td>
+	<td></td>
+</tr>
+<tr>
+	<td>waitForVisible</td>
+	<td>id=anmeldungSenden</td>
+	<td></td>
+</tr>
+<!--Test-Captcha eingeben-->
+<tr>
+	<td>type</td>
+	<td>id=captcha</td>
+	<td>t1t1</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=sendenButton</td>
+	<td></td>
+</tr>
+<!--Auf Danke für Ihre Anmeldung prüfen-->
+<tr>
+	<td>verifyTextPresent</td>
+	<td>Danke für Ihre Anmeldung</td>
+	<td></td>
+</tr>
+<tr>
+	<td>verifyTextPresent</td>
+	<td>einloggen</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>

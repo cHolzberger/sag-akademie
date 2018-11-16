@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:Mosaik="com.mosaik.*" xmlns:l="*" xmlns:SAG="com.sag.view.*" layout="absolute" width="100%" height="100%"  backgroundGradientColors="[0x000000,0x323232]" applicationComplete="componentInit();">
+	
+	<mx:VBox width="100%" height="100%">
+
+		<mx:Label text="Seminar {seminar_id} dauer {dauer} Tag(e) in {standort}" width="100%" opaqueBackground="0xffffff" />
+		<mx:HDividedBox width="100%" height="100%">
+			<mx:VBox width="100%">
+				<SAG:TagesPlanung id="p" textAlign="center" />
+			</mx:VBox>
+			<mx:VBox height="100%">
+				<SAG:Referenten id="referent" />
+				<SAG:TagesPlanungTrashcan id="trash" />
+			</mx:VBox>
+		</mx:HDividedBox>
+		<mx:Spacer width="100%" height="5" />
+		<mx:ApplicationControlBar width="100%">
+			<mx:Spacer width="100%" />
+			<mx:Button click="onSaveButtonPressed();" label="Speichern" color="0x000000"/>
+		</mx:ApplicationControlBar>
+	</mx:VBox>
+	
+	<mx:Script><![CDATA[
+		import flash.display.LineScaleMode;
+		import mx.collections.ArrayCollection;
+		import mx.controls.Alert;
+		import com.mosaik.MosaikConfig;
+		import com.mosaik.JsonProxy;
+		import mx.rpc.events.ResultEvent;
+		import mx.rpc.events.FaultEvent;
+		import com.sag.models.PlanungTag;
+		
+		
+		// logging
+		import org.osflash.thunderbolt.ThunderBoltTarget;
+		import org.osflash.thunderbolt.Logger;
+		import mx.logging.Log;	
+		private var loggingTarget:ThunderBoltTarget;
+
+		/* Configuration 
+		 * init for MosaikConfig made here! */
+		MosaikConfig.setVar("version", "0.1");
+	
+		private var planungLoader:JsonProxy;
+		private var seminar:Object;
+		
+		[Bindable]
+		private	var tage:Array;
+
+		[Bindable]
+		private var seminar_id:String = "#seminar_id#";
+		[Bindable] 
+		private var dauer:String = "#dauer#";
+		[Bindable]
+		private var standort:String = "#standort#";
+		
+		private var standort_id:String;
+		
+		public function initLogger(): void {
+			loggingTarget = new ThunderBoltTarget();
+			loggingTarget.includeTime = false;
+			Log.addTarget (loggingTarget);
+			Log.getLogger("debug").info("Thunderbolt FLEX - Logging started");
+			Logger.includeTime = false;
+		}
+		
+		public function onSaveButtonPressed():void {
+			var saveTage:Object = new Object;
+			
+			saveTage.mode = "multi";
+			saveTage.standort_id = standort_id;
+			saveTage.data = new Object();
+			saveTage.seminar_id = seminar_id;
+			
+			for ( var i:String in p.tage ) {
+				saveTage.data[i] = p.tage[i].data.toArray();
+			}
+			planungLoader.save(saveTage);
+		}
+		
+		private function componentInit():void {
+			initLogger();
+		
+			MosaikConfig.setVar("datahost", "");
+
+			if ( Application.application.parameters.seminar_art_id != null) {
+				seminar_id = Application.application.parameters.seminar_art_id;
+			} else { 
+				seminar_id = "UVV"
+			}
+			
+			if ( Application.application.parameters.standort_id != null) {
+				standort_id = Application.application.parameters.standort_id;
+			} else {
+				standort_id = "1";
+			}
+			var seminarLoader:JsonProxy = new JsonProxy("/admin/json/seminar/"+encodeURIComponent(seminar_id)+";json?standort_id=" + standort_id);
+			
+			var standortLoader:JsonProxy = new JsonProxy("/admin/json/standort/"+standort_id+";json");
+			
+			standortLoader.request(onStandort);
+			
+			seminarLoader.request(onJsonResult);
+		}
+		
+		private function onStandort ( result:Object ):void {
+			standort = result.data.name;
+		}
+		
+		private function onJsonResult( result:Object ):void {
+			tage = new Array();
+
+			seminar_id = result.data.id;
+			dauer = result.data.dauer;
+			seminar = result.data;
+			
+			planungLoader = new JsonProxy("/admin/json/seminarArtReferent/" + encodeURIComponent(seminar_id) + ";json?standort_id=" + standort_id);
+			planungLoader.request(onTagesplanungResult);
+		}		
+		
+		private function onTagesplanungResult (result:Object):void {
+			// initalize seminar 
+			var i:int;
+			
+			//initalize global var Tage
+		
+			for ( i = 1; i <= parseInt(seminar.dauer); i++) {
+				var tmpT:PlanungTag = new PlanungTag();
+				var referentTag: Array = new Array();
+				tmpT.tag = i;
+				
+				for ( var j:String in result.data[i] ) {
+					referentTag.push(result.data[i.toString()][j]);
+					Logger.info( "Data:", result.data[i.toString()][j] );	
+				}
+				
+				tmpT.data = new ArrayCollection(referentTag);
+				tage.push(tmpT);
+			}		
+				
+			p.tage = tage;
+		}
+	]]></mx:Script>
+</mx:Application>

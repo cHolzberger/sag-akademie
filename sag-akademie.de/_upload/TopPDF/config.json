@@ -1,0 +1,16 @@
+{
+	"default": {
+		"class": "TopPDF_TopPDF",
+		"name": "TopPDF",
+		"fieldname": "Filedata",
+		"filestore": "/pdf/",
+		"fileprefix": "pdf_",
+		"allowedExtensions": ["pdf"],
+		"defaultset": false,
+		"defaultvalue": ""
+	},
+
+	"production": {
+		"_extends": "default"
+	}
+}

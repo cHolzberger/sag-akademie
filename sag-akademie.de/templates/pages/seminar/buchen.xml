@@ -1,0 +1,111 @@
+<infoboxSmall>
+	<js:import src="/resources/scripts/forms/buchen_anonym.js" />
+
+	<img src="/img/image_seminare_overview.png" alt="" border="0" width="253" height="129" style="position: absolute; left:90px; top:25px;"/>
+	<img src="/img/nav_seminare_uebersicht.png" alt="" border="0" width="291" height="108" style="position: absolute; left:370px; top:32px;" usemap="#seminare_navigation"/>
+	<map name="seminare_navigation">
+		<area shape="RECT" coords="5,35,135,55" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="5,57,135,77" href="/seminar/termin/Kanalreinigung"/><area shape="RECT" coords="5,79,135,99" href="/seminar/termin/Kanalinspektion"/><area shape="RECT" coords="140,35,285,55" href="/seminar/termin/Dichtheitspr_ufung"/><area shape="RECT" coords="140,57,285,77" href="/seminar/termin/Kanalsanierung"/><area shape="RECT" coords="140,79,285,99" href="/seminar/termin/Abscheidetechnik"/>
+	</map>
+	
+	<img src="/img/direkt_buttons.png" border="0" width="189" height="125" style="position: absolute; left:755px; top:29px;" usemap="#direkt_buttons"/>
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,10,175,35" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,80,175,105" href="/kontakt/callbackformular"/>
+	</map>
+</infoboxSmall>
+
+<content>
+
+	<set name="page_background" value="/img/blue_box_klein.jpg"/>
+	<img src="/img/title_seminarbuchung.png" alt="" border="0" width="180" height="22" style="position: absolute; left:0px; top:0px;"/>
+	
+	<br/>
+	&nbsp;<br/>
+	<div class="seminarBuchungInfo">
+	<table border="0" cellspacing="0" cellpadding="0" style="" class="seminarBuchungTable">
+		<tr>
+			<td colspan="2">
+				<b>
+					Ihre Auswahl
+				</b>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Seminar
+			</td>
+			<td>
+				<dbfield name="SeminarArt:bezeichnung" notable="1"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Kurs-Nr.
+			</td>
+			<td>
+				<dbfield name="kursnr" notable="1"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Zeitraum&nbsp;&nbsp;
+			</td>
+			<td>
+				<dbfield name="datum_begin" converter="mysqlDateToLocal" notable="1"/>&nbsp;&nbsp;bis&nbsp;
+				<dbfield name="datum_ende" converter="mysqlDateToLocal" notable="1"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Ort&nbsp;&nbsp;
+			</td>
+			<td>
+				<dbfield name="Standort:Ort:ort" notable="1"/>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Dauer
+			</td>
+			<td>
+				<dbfield name="SeminarArt:dauer" notable="1"/>&nbsp;<switch key="SeminarArt:dauer">
+			    <case value="1">Tag</case>
+			    <case value="*">Tage</case>
+		    </switch>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Kosten
+			</td>
+			<td>
+				<mdb:value mpath="preis" converter="euroPreis" suffix="€ (zzgl. MwSt.)" /><br/>
+
+			</td>
+		</tr>
+		<switch key="hinweis">
+			<case value="#empty"></case>
+			<case value="*">
+			<tr><td><b><font color="red">Hinweis!</font></b></td><td>
+					<b><mdb:value mpath="hinweis" converter="nl2br" /></b>
+				</td></tr>
+			</case>
+		</switch>
+		
+		
+	</table>
+	</div>
+
+	<div style="position: relative;" id="logindiv">
+	Sie haben bereits Zugangsdaten für den Kundenbereich der SAG-Akademie?&nbsp;<br/>&nbsp;<br/>
+			
+			<sag:kundelogin >
+				<dbinput type="hidden" name="id"/>
+			</sag:kundelogin>
+	</div>
+
+	<div style="postion:relative;"><br/>
+				<a href="/kunde/neu"><b>Melden Sie sich hier</b></a> an, wenn Sie noch keinen Zugang zum Kundenbereich<br/>der SAG-Akademie haben oder <a href="/kunde"><b>fordern Sie Ihr Passwort per Email an</b></a>, falls<br/>Sie es vergessen haben.<br/>
+			</div>
+			
+	
+</content>

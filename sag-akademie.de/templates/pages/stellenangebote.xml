@@ -1,0 +1,64 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+
+ 	 <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167"
+                style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+	<img src="/img/image_stellenangebote.png" alt="" border="0" width="260"
+		height="128" style="position: absolute; left:90px; top:25px;" />
+	<img src="/img/stellenangebotebereich_bg.png" alt="" border="0"
+		width="291" height="108" style="position: absolute; left:370px; top:30px;" />
+		
+		<select name="stellenangebotebereich" class="hrefSelect" style="width:190px;position: absolute; left:390px; top:100px;">
+			<option>Bereich wählen</option>
+			<option value="/stellenangebote/stellenangebote_sag">Stellenangebote im Hause der SAG-Akademie</option>
+			<option value="/stellenangebote/stellenangebote_unternehmen">Stellenangebote anderer Unternehmen</option>
+			<option value="/stellenangebote/stellenangebote_extern">externe Jobbörsen</option>
+			</select>
+	</infoboxSmall>
+
+<content>
+
+	<img src="/img/title_stellenangebote.png" alt="" border="0" width="160" height="21" style="position: absolute; left:0px; top:0px;" />
+
+<div
+		style="position: absolute; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<table border="0" celspacing="0" cellpadding="0" style="font-size:12px important!;">
+  
+  <tr>
+  <td class="suTdBig">
+<a href="/stellenangebote/stellenangebote_sag">Stellenangebote der SAG</a>
+</td>
+  <td class="suTdBig">
+Alle Informationen zu den Stellenangeboten im Hause der SAG-Akademie
+</td>    
+  </tr>
+  
+    <tr>
+  <td class="suTdBig">
+<a href="/stellenangebote/stellenangebote_unternehmen">Stellenangebote anderer Unternehmen</a>
+</td>
+  <td class="suTdBig">
+Stellenangebote anderer Unternehmen
+</td>    
+  </tr>
+  
+      <tr>
+  <td class="suTdBig">
+<a href="/stellenangebote/stellenangebote_extern">externe Jobbörsen</a>
+</td>
+  <td class="suTdBig">
+  Jobbörsen auf externen Websites
+</td>    
+  </tr>
+  
+   
+</table>  
+  
+  <br/>&nbsp;<br/>
+
+	</div>
+
+
+</content>

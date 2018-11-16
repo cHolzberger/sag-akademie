@@ -1,0 +1,123 @@
+<?php
+include_once("adm/dbcontent.php");
+include_once("presentationModel/array/PMColumnLayout.php");
+include_once("presentationModel/array/PMGridLayout.php");
+
+
+class ADM_Stats extends SAG_Admin_Component {
+    function map($name) {
+	return "ADM_Stats";
+    }
+
+
+    /**
+	 * Benutzt folgende Views zur Ermittlung der Statistiken:
+	 * ViewBuchungStatusSumme
+	 * ViewBuchungenSummeJahr
+	 * ViewSeminareProBereich
+	 * ViewSeminareProBereichJahr
+	 * ViewSeminarBelegung
+	 * ViewSeminarBelegungJahr
+	 * 
+	 */
+    function sagYear() {
+	$ds = new MosaikDatasource();
+	
+	// Buchungen Pro Jahr
+	$year = $_GET['year'];
+	$ds->add("Auswahljahr", $year);
+
+	/** buchungen pro monat generieren **/
+	$pm = new PMColumnLayout();
+
+	$buchungen = array();
+	$_buchungen = Doctrine::getTable("ViewBuchungStatusSumme")->findByJahr($year, Doctrine::HYDRATE_ARRAY);
+
+	$pm->filter($_buchungen,$buchungen);
+	
+	$ds->add("Buchungen", $buchungen);
+	/** gesamt anzahl der buchungen generieren **/
+	$pm = new PMColumnLayout();
+       	$buchungenJahr = array();
+	$_buchungenJahr = Doctrine::getTable("ViewBuchungenSummeJahr")->findByJahr($year, Doctrine::HYDRATE_ARRAY);
+	$pm->index="jahr";
+	$pm->filter($_buchungenJahr,$buchungenJahr);
+	$ds->add("BuchungenJahr",$buchungenJahr[$year]);
+	
+	// Seminare nach bereich im Jahr
+	$pm = new PMGridLayout();
+	$pm->calculate=true;
+	$tbereich = array();
+	for ( $i=1; $i<12; $i++) {
+	    $tbereich[$i]=array();
+	}
+
+	$_tbereich = Doctrine::getTable("ViewSeminareProBereich")->findByJahr($year, Doctrine::HYDRATE_ARRAY);
+	$pm->filter($_tbereich, $tbereich);
+
+	$pm = new PMGridLayout();
+	$pm->verticalLabels = "jahr";
+	$pm->horizontalLabels = "name";
+
+	$tbereichGesamt = array();
+	$_tbereichGesamt = Doctrine::getTable("ViewSeminareProBereichJahr")->findByJahr($year, Doctrine::HYDRATE_ARRAY);
+	$pm->calculate=true;
+	$pm->filter($_tbereichGesamt, $tbereichGesamt);
+    
+	$ds->add("SeminareNachBereich", $tbereich);
+	$ds->add("SeminareNachBereichGesamt", $tbereichGesamt[$year]);
+	
+	// Buchungen nach bereich
+	$pm = new PMGridLayout();
+	$pm->calculate=true;
+	$nbereich = array();
+	for ( $i=1; $i<12; $i++) {
+	    $nbereich[$i]=array();
+	    $nbereich[$i]['monat'] = $pm->getMonatLabel($i+1);
+	}
+
+	$_nbereich = Doctrine::getTable("ViewSeminarBelegung")->findByJahr($year, Doctrine::HYDRATE_ARRAY);
+	$pm->filter($_nbereich, $nbereich);
+
+	$pm = new PMGridLayout();
+	$pm->verticalLabels = "jahr";
+	$pm->horizontalLabels = "name";
+
+	$nbereichGesamt = array();
+	$_nbereichGesamt = Doctrine::getTable("ViewSeminarBelegungJahr")->findByJahr($year, Doctrine::HYDRATE_ARRAY);
+	$pm->calculate=true;
+	$pm->filter($_nbereichGesamt, $nbereichGesamt);
+
+	
+	$ds->add("Belegung", $nbereich);
+	$ds->add("BelegungGesamt", $nbereichGesamt[$year]);
+
+	$this->pageReader->addDatasource($ds);
+	$this->pageReader->loadPage("stats/sag_year");
+    }
+    function sag() {
+	if(isset($_GET['year']) && is_numeric($_GET['year'])) {
+	    $this->sagYear();
+	}else {
+	    $this->pageReader->loadPage("stats/sag");
+	}
+    }
+    function renderHtmlForward($class_name, $namespace = "") {
+	$this->addBreadcrumb($this->url(), "Stats");
+
+	list($config, $content) = $this->createPageReader();
+
+	if (is_array($class_name)) {
+	    $namespace = $class_name[1];
+	    $class_name = $class_name[0];
+	}
+	if ( $this->next() == "sag") {
+	    $this->addBreadcrumb($this->url().'/sag', "SAG");
+	    $this->sag();
+	} else {
+	    $this->addBreadcrumb($this->url().'/web', "Web");
+	    $this->pageReader->loadPage("stats/web");
+	}
+	return $this->pageReader->output->get();
+    }
+}

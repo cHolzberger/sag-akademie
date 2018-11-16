@@ -1,0 +1,17 @@
+<content>
+	<set name="page_background" value="/img/admin/header_bg.jpg" />
+	<dbpager />
+	
+			<dbbuttons basehref="/admin/termine/" buttons="edit, show, delete" tooltipEdit="bearbeiten" tooltipShow="Buchungen" tooltipDelete="löschen" noheader="true"/>
+<widget:itable mpath="/termin" />
+
+
+<dialog type="confirmation" target=".dbbuttons .delete" title="Termin löschen?">
+	Wollen Sie den Termin wirklich L&ouml;schen?
+</dialog>
+<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_termine_neu" href="/admin/termine/new">
+			Neuer Termin
+		</ribbonButton>
+	</ribbonDynamicGroup>
+</content>

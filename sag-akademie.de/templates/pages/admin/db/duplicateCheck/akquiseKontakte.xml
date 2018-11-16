@@ -1,0 +1,82 @@
+<content>
+	<h1 style="position: fixed; top: 135px; z-index: 9999;">
+		Duplikate in den Akquise-Daten finden (<mdb:value mpath="AkquiseKontaktCurrent"/>von<mdb:value mpath="AkquiseKontaktCount"/>) <mdb:link href="#DATA#" mpath="nextLink">&Uuml;berspringen &gt;&gt;</mdb:link> 
+	</h1>
+	<mform:form class="no-reload">
+	<foreach fromArray="AkquiseKontaktDuplikate">
+		<div style="width: 95%; height: 160px;"  id='topspacer' />
+		<foreach fromArray="duplicates">
+			<merger/>
+		</foreach>
+                <h2>Eintrag</h2>
+                <div class="c33">
+<h2>Angaben zum Unternehmen</h2>
+	<dbinput readonly="readonly"  name="firma" label="Firma" />
+	<dbinput readonly="readonly"  name="branche" label="Branche" />
+
+
+	<h2>Angaben zum Ansprechpartner</h2>
+	<dbinput readonly="readonly"  name="anrede" label="Anrede" />
+	<dbinput readonly="readonly"  name="titel" label="Titel" />
+	<dbinput readonly="readonly"  name="vorname" label="Vorname" />
+	<dbinput readonly="readonly"  name="name" label="Name" />
+	<dbinput readonly="readonly"  name="abteilung" label="Abteilung" />
+	<dbinput readonly="readonly"  name="tel_durchwahl" label="Telefon Durchwahl" />
+	<dbinput readonly="readonly"  name="mobil" label="Mobil" />
+
+
+
+</div>
+<div class="c33">
+<h2>Adressinformationen</h2>
+	<dbinput readonly="readonly"  name="strasse"	label="Stra&szlig;e" />
+	<dbinput readonly="readonly"  name="nr"	label="Nr" />
+	<dbinput readonly="readonly"  name="plz"	label="PLZ" converter="plz"/>
+	<dbinput readonly="readonly"  name="ort"	label="Ort" />
+	<dbinput readonly="readonly"  name="bundesland" label="Bundesland" />
+	<dbinput readonly="readonly"  name="kreis" label="Kreis" />
+	<dbinput readonly="readonly"  name="regierungsbezirk" label="Regierungsbezirk" />
+
+<h2>Kontaktinformationen</h2>
+	<dbinput readonly="readonly"  name="tel" label="Telefon" />
+	<dbinput readonly="readonly"  name="fax" label="Fax" />
+	<dbinput readonly="readonly"  name="url"	label="URL" />
+	<br/>
+	<dbinput readonly="readonly"  name="email" label="E-Mail" />
+	<dbinput readonly="readonly"  name="newsletter" value="1" type="checkbox" label="Newsletter" />
+	<dbinput readonly="readonly"  name="anmelde_datum" label="Anmeldedatum" converter="mysqlDateToLocal"/>
+	<dbinput readonly="readonly"  name="abmelde_datum" label="Abmeldedatum" converter="mysqlDateToLocal"/>
+
+</div>
+<div class="c33">
+
+<h2>Adress-Qualifizierung</h2>
+<dbinput readonly="readonly"  name="qualifiziert" value="1" type="checkbox" label="Qualifiziert" />
+<dbinput readonly="readonly"   name="qualifiziert_datum" label="Qualifiziert Datum" converter="mysqlDateToLocal"/>
+<dbtextarea readonly="readonly"  label="Qualifiziert Notiz" name="qualifiziert_notiz" style="width: 225px; height: 100px;">
+</dbtextarea>
+
+<h2>Weitere Informationen</h2>
+<dbselect readonly="readonly"  name="kontaktkategorie" label="Kontaktkategorie" fromTable="KontaktKategorie" fromTableKey="id" fromTableDisplay="name"/>
+<dbinput readonly="readonly"  name="umkreis" label="Umkreis" />
+<dbinput readonly="readonly"  name="vergleich" label="Vergleich" />
+<dbinput readonly="readonly"  name="bereits_in_verteiler" label="Bereits in Verteiler" />
+<dbselect readonly="readonly"  name="quelle_id" label="Kontakt Quelle" fromTable="KontaktQuelle" fromTableKey="id" fromTableDisplay="name"/>
+<dbinput readonly="readonly"   name="kontakt_quelle_stand" label="Kontakt Quelle Stand" converter="mysqlDateToLocal" />
+<dbinput readonly="readonly"  name="geaendert_von" label="Geändert von" />
+<dbinput readonly="readonly"   name="geaendert" label="Geändert" converter="mysqlDateTimeToLocal" />
+
+</div>
+		
+	</foreach><br/>&nbsp;
+	<ribbon:dynamicGroupRight forId="administrationTab">
+		<ribbonButton icon="icon_reset" href="javascript:$.mosaikRuntime.resetForm();">
+			Reset
+		</ribbonButton>
+		
+		<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+			Speichern
+		</ribbonButton>
+	</ribbon:dynamicGroupRight>
+	</mfrom:form>
+</content>

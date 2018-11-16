@@ -1,0 +1,53 @@
+div.quicklistContainer {
+	background-color: white;
+	border: 1px solid #666666;
+	width: 90%;
+	max-height: 400px;
+	overflow: auto;
+}
+
+div.quicklistItem {
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position: relative;
+	height: 45px;
+	overflow: hidden;
+}
+
+div.quicklistItem >  img {
+	opacity: 0.75;
+	height: 24px;
+	cursor: pointer;
+
+}
+
+div.quicklistItem-content {
+	right: 10px;
+	top: 6px;
+	position: absolute;
+}
+
+div.quicklistItem:hover {
+	background-color: #d3d6f2 !important;
+}
+
+div.quicklistItem:hover >  img {
+	opacity: 1;
+	height: 32px;
+}
+
+div.quicklistItem-odd {
+	background-color: #efefed;
+}
+
+div.quicklistItem-even {
+	background-color: white;
+}
+div.quicklistItem_checkbox {
+	left: 0px;
+	position: absolute;
+	height: 18px;
+	left: 5px;
+	top:30px;
+}

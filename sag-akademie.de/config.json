@@ -1,0 +1,62 @@
+{
+	"default": {
+		"moduleRoot": "_rpc",
+		"storeRoot": "_upload",
+		
+		"libraryPath": "_lib/",
+		"cacheFolder": "/resources/cache",
+
+		"db": {
+			"modelsPath": "lib/db/models/",
+			"templatesPath": "lib/db/templates/",
+			"dsn": "mysql:dbname=akademie_de_stable;host=mysqldb",
+			"user": "sagakademie",
+			"password": "54g-4k4d3m13"
+		},
+
+		"memcache": {
+			"use": true,
+			"host": "memcache",
+			"port": "11211"
+		},
+
+		"includePath": [
+			"_lib"
+		]
+	},
+
+	"production": {
+		"_extends": "default"
+	},
+
+	"online": {
+		"_extends": "default",
+		"db": {
+			"dsn": "mysql:dbname=sag-akademie_de_stable;host=mysqldb",
+            "user": "sagakademie",
+            "password": "54g-4k4d3m13"
+        }
+	},
+	"beta": {
+		"_extends": "default",
+		"db": {
+			"dsn": "mysql:dbname=sag-akademie_de_stable;host=mysqldb",
+			"user": "sag_stable",
+			"password": "54g-4k4d3m13"
+		}
+	},
+
+	"molle": {
+		"_extends": "default",
+		"db": {
+			"dsn": "mysql:dbname=sag-akademie_de_stable;host=mysqldb",
+			"user": "sag_stable",
+			"password": "54g-4k4d3m13"
+		},
+		"memcache": {
+			"use": true,
+			"host": "memcache",
+			"port": "11211"
+		}
+	}
+}

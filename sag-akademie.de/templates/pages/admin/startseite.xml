@@ -1,0 +1,144 @@
+<content>
+	<div style="margin-bottom: 30px; width:98%;">
+		<ribbonDynamicRemove/>
+		<div style="width: 100%;">
+			<h1>
+				Willkommen <mdb:value mpath="Benutzer:nachname" />, <mdb:value mpath="Benutzer:vorname" />
+			</h1>
+			<br/>
+			
+			<!--<widget:container headline="Buchung hinzuf&uuml;gen" icon="/img/admin/icon_buchungen.png">
+				<div style="position:relative;padding-left:22px;">
+					<foreach fromArray="SeminarArtRubrik">
+						<switch key="aktiv">
+							<case value="1">
+								<js:hyperlink basehref="/admin/buchungen/new?rubrik=" name="linkname" value="name"/><br/>
+							</case>
+						</switch>
+					</foreach>
+				</div>
+			</widget:container>-->
+			
+			
+			<widget:container headline="Buchungen verwalten" icon="/img/admin/icon_buchungen.png">
+				<div style="position:relative;padding-left:22px;">
+					<js:hyperlink href="/admin/buchungen">
+						<img src="/img/admin/mini_icon_search.png" border="0" style="position:absolute; top:-2px; left:-3px;"/>Suche
+					</js:hyperlink>
+		
+				</div>
+				<div style="position:relative;padding-left:22px;padding-top:5px;">
+					<js:hyperlink href="/admin/buchungen/?list=1&lastweek=1">
+						<img src="/img/admin/mini_icon_show.png" border="0" style="position:absolute; top:2px; left:-3px;"/>Buchungen: 7 Tage Rückblick
+					</js:hyperlink>
+				</div>
+				
+				
+				<div style="position:relative;padding-left:22px;padding-top:5px;">
+					<js:hyperlink href="/admin/buchungen/new">
+						<img src="/img/admin/mini_icon_new.png" border="0" style="position:absolute; top:2px; left:-3px;"/>neue Buchung anlegen
+					</js:hyperlink>
+				</div>
+				
+			</widget:container>
+			
+			
+			
+			<widget:container headline="Termine verwalten" icon="/img/admin/icon_termine.png">
+				<div style="position:relative;padding-left:22px;">
+					<js:hyperlink href="/admin/termine">
+						<img src="/img/admin/mini_icon_show.png" border="0" style="position:absolute; top:-2px; left:-3px;"/>alle Termine anzeigen
+					</js:hyperlink>
+				</div>
+				<div style="position:relative;padding-left:22px;padding-top:5px;">
+					<js:hyperlink href="/admin/termine/new">
+						<img src="/img/admin/mini_icon_new.png" border="0" style="position:absolute; top:2px; left:-3px;"/>neuen Termin anlegen
+					</js:hyperlink>
+				</div>
+				<!--
+				<div style="position:relative;padding-left:22px;padding-top:5px;">
+					<js:hyperlink href="/admin/buchungen/?list=1&next2week=1">
+						<img src="/img/admin/mini_icon_show.png" border="0" style="position:absolute; top:2px; left:-3px;"/>SeminarTeilnehmer: 14 Tage Vorschau
+					</js:hyperlink>
+				</div>
+				-->
+			</widget:container>
+			
+			
+			<widget:container headline="Seminare verwalten" icon="/img/admin/icon_seminare.png">
+				<div style="position:relative;padding-left:22px;">
+					<js:hyperlink href="/admin/seminare">
+					<img src="/img/admin/mini_icon_show.png" border="0" style="position:absolute; top:-2px; left:-3px;"/>alle Seminare anzeigen
+					</js:hyperlink>
+				</div>
+				<div style="position:relative;padding-left:22px;padding-top:5px;">
+					<js:hyperlink href="/admin/seminare/new">
+						<img src="/img/admin/mini_icon_new.png" border="0" style="position:absolute; top:2px; left:-3px;"/>neues Seminar anlegen
+					</js:hyperlink>
+				</div>
+				
+			</widget:container>
+			
+			
+			
+			<div style="clear: both; height: 30px;">
+			</div>
+			
+			<widget:container headline="Firmen verwalten" icon="/img/admin/icon_kontakte.png">
+				<div style="position:relative;padding-left:22px;">
+					<js:hyperlink href="/admin/kontakte">
+						<img src="/img/admin/mini_icon_search.png" border="0" style="position:absolute; top:-2px; left:-3px;"/>Suche
+					</js:hyperlink>
+				</div>
+				<div style="position:relative;padding-left:22px;padding-top:5px;">
+					<js:hyperlink href="/admin/kontakte/new">
+						<img src="/img/admin/mini_icon_new.png" border="0" style="position:absolute; top:2px; left:-3px;"/>neue Firma anlegen
+					</js:hyperlink>
+				</div>
+				
+				<div style="position:relative;padding-left:22px;padding-top:5px;">
+					<js:hyperlink href="/admin/personen/new">
+						<img src="/img/admin/mini_icon_new.png" border="0" style="position:absolute; top:2px; left:-3px;"/>neue Person anlegen
+					</js:hyperlink>
+				</div>
+			</widget:container>
+			
+			<widget:container headline="Hotels verwalten" icon="/img/admin/icon_hotels.png">
+				<div style="position:relative;padding-left:22px;">
+					<js:hyperlink href="/admin/hotels">
+						<img src="/img/admin/mini_icon_show.png" border="0" style="position:absolute; top:-2px; left:-3px;"/>alle Hotels anzeigen
+					</js:hyperlink>
+				</div>
+				<div style="position:relative;padding-left:22px;padding-top:5px;">
+					<js:hyperlink href="/admin/hotels/new">
+						<img src="/img/admin/mini_icon_new.png" border="0" style="position:absolute; top:2px; left:-3px;"/>neues Hotel anlegen
+					</js:hyperlink>
+				</div>	
+			</widget:container>
+			
+			<widget:container headline="Standorte verwalten" icon="/img/admin/icon_standorte.png">
+				<div style="position:relative;padding-left:22px;">
+					<js:hyperlink href="/admin/standorte">
+						<img src="/img/admin/mini_icon_show.png" border="0" style="position:absolute; top:-2px; left:-3px;"/>alle Standorte anzeigen
+					</js:hyperlink>
+				</div>
+				<div style="position:relative;padding-left:22px;padding-top:5px;">
+					<js:hyperlink href="/admin/standorte/new">
+						<img src="/img/admin/mini_icon_new.png" border="0" style="position:absolute; top:2px; left:-3px;"/>neuen Standort anlegen
+					</js:hyperlink>
+				</div>
+				
+			</widget:container>
+			
+
+			<widget:container headline="Statistiken" icon="/img/admin/icon_stats.png" style="float:left;margin-right:20px;height:120px;width:200px;">
+			Buchungen diesen Monat:  <mdb:value mpath="BuchungenThisMonth" /><br/>
+			Buchungen Vormonat:  <mdb:value mpath="BuchungenLastMonth" /><br/>
+			Storno diesen Monat: <mdb:value mpath="StornoThisMonth" /><br/>
+			Storno Vormonat: <mdb:value mpath="StornoLastMonth" /><br/>
+			Umbuchungen diesen Monat: <mdb:value mpath="UmbuchungenThisMonth" /><br/>
+			Umbuchungen Vormonat: <mdb:value mpath="UmbuchungenLastMonth" /><br/>
+			</widget:container>			
+		</div>
+
+</content>

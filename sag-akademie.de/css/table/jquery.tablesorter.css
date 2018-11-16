@@ -1,0 +1,83 @@
+
+/* tables */
+table.dbtable,
+table.tablesorter {
+	font-family:arial;
+	background-color: #CDCDCD;
+	margin:10px 0pt 15px;
+	width: 100%;
+	text-align: left;
+	clear: both;
+}
+
+table.dbtable > thead > tr > th,
+ table.dbtable > tfoot > tr > th,
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #8dbdd8;
+	border-right: 1px solid #FFF;
+	padding: 4px;
+}
+
+table.dbtable > thead > tr > .header,
+table.tablesorter > thead > tr > .header {
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+
+table.dbtable > tbody > td,
+table.tablesorter > tbody > td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+	white-space: nowrap;
+}
+
+table.dbtable > tbody  > tr:hover > td {
+	background-color: #D3E2EB ! important;
+}
+
+table.dbtable > tbody > tr.odd > td,
+table.tablesorter > tbody >  tr.odd > td {
+	background-color:#F0F0F6;
+}
+
+table.dbtable > thead > tr  .headerSortUp,
+table.tablesorter > thead > tr  .headerSortUp {
+	background-image: url(/img/tablesorter/asc.gif);
+}
+
+table.dbtable >  thead >  tr .headerSortDown,
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(/img/tablesorter/desc.gif);
+}
+
+table.dbtable > thead > tr .headerSortDown, table.dbtable thead tr .headerSortUp,
+table.tablesorter > thead > tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+	background-color: #6097B6;
+}
+
+.tsFooter {
+	position: absolute;
+	padding: 2px;
+	height: 20px;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	width: auto;
+	font-family:arial;
+	border: 0px solid transparent !important;
+	border-top: 1px solid #cdcdcd !important;
+	background-image: url(/css/table/img/bgTheader.png) !important;
+}
+
+.toprightSpacer {
+	background-image: url(/css/table/img/bgTheader.png) !important;
+	position: absolute; width: 17px; height: 24px; right:0px; top:0px; border-left: 1px solid #cdcdcd; background-color: #cdcdcd;
+	border-bottom: 1px solid #cdcdcd;
+}
+
+.headWrapper {
+	background-image: url(/css/table/img/bgTheader.png) !important;
+}

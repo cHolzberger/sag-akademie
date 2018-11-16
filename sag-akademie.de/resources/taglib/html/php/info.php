@@ -1,0 +1,4 @@
+<content>
+<?=phpinfo();?>
+</content>
+

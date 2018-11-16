@@ -1,0 +1,20 @@
+/* 
+    Document   : statseite.css
+    Created on : Nov 12, 2010, 12:32:48 PM
+    Author     : cholzberger
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+
+
+#navContainer2 {
+	position: relative;
+	display: block;
+	margin-left:auto;
+	margin-right:auto;
+	width: 1px;
+	left: -600px;
+	top: 200px !important;
+
+}

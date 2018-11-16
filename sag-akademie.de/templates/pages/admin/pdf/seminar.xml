@@ -1,0 +1,305 @@
+<pdf:content>
+	<set name="margin-top" value="15" /> <!-- in mm -->
+	<set name="margin-bottom" value="15" /> <!-- in mm -->
+
+	<pdf:header top="-10" style="height:40mm;">
+			<div style="font-size: 18px;font-family:Verdana;Arial;padding-left:1mm;height:40mm;">
+		<img src="/img/logo_ci.png" border="0" alt="SAG Schulungsakademie GmbH" align="right" style="width:40mm;height:13mm;"/>
+		<br/><b>
+				Seminar</b><br/><br/><span style="font-size: 13px;">ID: <mdb:var mpath="SeminarArt:id"/>&nbsp;&nbsp;Bezeichnung: <mdb:var mpath="SeminarArt:bezeichnung"/></span>
+		<br/>&nbsp;
+	</div>
+	</pdf:header>
+<br/>&nbsp;<br/>&nbsp;<br/>
+	<table border="0" cellspacing="0" cellpadding="5" style="font-family:Arial;font-size:10px !important;">
+		<tr>
+			<td valign="top" width="50%">
+
+				<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Seminar</b>
+						</td>
+					</tr>
+										
+										<tr>
+						<td >
+ID
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:id" />
+						</td>
+					</tr>
+						<tr>
+						<td >
+Bezeichnung
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:bezeichnung" />
+						</td>
+					</tr>	
+									<tr>
+						<td >
+Rubrik 1
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:Rubrik:name" />
+						</td>
+					</tr>
+							<tr>
+						<td >
+Rubrik 2
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:Rubrik2:name" />
+						</td>
+					</tr>
+							<tr>
+						<td >
+Rubrik 3
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:Rubrik3:name" />
+						</td>
+					</tr>
+							<tr>
+						<td >
+Rubrik 4
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:Rubrik4:name" />
+						</td>
+					</tr>
+							<tr>
+						<td >
+Rubrik 5
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:Rubrik5:name" />
+						</td>
+					</tr>
+							<tr>
+						<td >
+Status
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:Status:name" />
+						</td>
+					</tr>
+<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Seminardauer</b>
+						</td>
+					</tr>
+										
+										<tr>
+						<td >
+Dauer / Tage
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:dauer" />
+						</td>
+					</tr>
+															<tr>
+						<td >
+Stunden / Tag
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:stunden_pro_tag" />
+						</td>
+					</tr>
+															<tr>
+						<td >
+Pause / Tag
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:pause_pro_tag" />
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Teilnehmer Informationen</b>
+						</td>
+					</tr>
+							<tr>
+						<td >
+min. Teilnehmer
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:teilnehmer_min_tpl" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+max. Teilnehmer
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:teilnehmer_max_tpl"/>
+						</td>
+					</tr>
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>Kosten / Umsatz</b>
+						</td>
+					</tr>
+							<tr>
+						<td >
+Kursgebühr
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:kursgebuehr" converter="euroPreis"/>
+						</td>
+					</tr>
+					
+										<tr>
+						<td >
+Verwaltungskosten
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:kosten_allg" converter="floatToString" /> %
+						</td>
+					</tr>
+															<tr>
+						<td >
+Referentenkosten
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:kosten_refer" converter="euroPreis"/> &euro;
+						</td>
+					</tr>
+															<tr>
+						<td >
+Seminarunterlagen
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:kosten_unterlagen" converter="euroPreis"/> &euro;
+						</td>
+					</tr>
+															<tr>
+						<td >
+Verpflegung
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:kosten_verpflegung" converter="euroPreis"/> &euro;
+						</td>
+					</tr>
+															<tr>
+						<td >
+Prüfung
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:kosten_pruefung" converter="floatToString" /> %
+						</td>
+					</tr>
+				</table>
+
+			</td>
+			<td valign="top" width="50%">
+
+
+
+												<table border="1" cellspacing="0" cellpadding="5" style="font-family:Arial;" width="100%">
+					<tr>
+						<td colspan="2" bgcolor="#eeeeee">
+							<b>weitere Informationen</b>
+						</td>
+					</tr>
+										
+										<tr>
+						<td >
+PDF Titel 1
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:info_titel" />
+						</td>
+					</tr>
+															<tr>
+						<td >
+PDF Titel 2
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:info_titel2" />
+						</td>
+					</tr>
+															<tr>
+						<td >
+PDF Titel 3
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:info_titel3" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Organisatorisches
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:organisatorisches" />
+						</td>
+					</tr>
+					<tr>
+						<td >
+Gerätschaften
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:geraetschaften" />
+						</td>
+					</tr>
+					
+										<tr>
+						<td >
+Hinweis (veröffentlicht)
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:seminar_hinweis" />
+						</td>
+					</tr>
+										<tr>
+						<td >
+Zielgruppe
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:zielgruppe" />
+						</td>
+					</tr>
+										<tr>
+						<td >
+Voraussetzungen
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:voraussetzungen" />
+						</td>
+					</tr>
+										<tr>
+						<td >
+Nachweise
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:nachweise" />
+						</td>
+					</tr>
+										<tr>
+						<td >
+Kurzbeschreibung
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:kurzbeschreibung" />
+						</td>
+					</tr>
+										<tr>
+						<td >
+Langbeschreibung
+						</td>
+						<td align="left">
+							<mdb:var mpath="SeminarArt:langbeschreibung" />
+						</td>
+					</tr>
+				
+				</table>
+
+			</td>
+		</tr>
+	</table>
+	<pdf:footer bottom="-15">
+	</pdf:footer>
+</pdf:content>

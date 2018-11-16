@@ -1,0 +1,333 @@
+﻿<set name="subject" value="Seminar-Buchung auf www.sag-akademie.de"/>
+<content>
+	<div style="font-family:Arial,Helvetica; font-size:12px;">
+		<img src="https://www.sag-akademie.de/img/logo_ci.png" alt="Logo SAG-Akademie" border="0" align="right"/>
+		<b>
+			Die folgende Seminarbuchung wurde soeben über das Admin vorgenommen:
+		</b>
+		<br/>&nbsp;<br/>
+		
+		
+		<table border="1" cellspacing="0" cellpadding="3" style="border-style:solid;border-width:1px;border-color:#dddddd;font-family:Arial,Helvetica; font-size:11px;">
+			
+			<tbody>
+				
+				<switch key="Kontakt:id">
+					<case value="1">
+						
+					</case>
+					
+					
+					<case value="*">
+												
+						
+						<tr>
+							<td>
+								Name der Firma oder Kommune
+							</td>
+							<td>
+								<dbfield name="Kontakt:firma" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Straße, Nr.
+							</td>
+							<td>
+								<dbfield name="Kontakt:strasse" notable="true"/><dbfield name="Kontakt:nr" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								PLZ, Ort
+							</td>
+							<td>
+								<dbfield name="Kontakt:plz" notable="true"/><dbfield name="Kontakt:Ort:ort" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Bundesland
+							</td>
+							<td>
+								<dbfield name="Kontakt:Bundesland:name" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Land
+							</td>
+							<td>
+								<dbfield name="Kontakt:Land:name" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Telefon
+							</td>
+							<td>
+								<dbfield name="Kontakt:tel" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Telefax
+							</td>
+							<td>
+								<dbfield name="Kontakt:fax" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Email
+							</td>
+							<td>
+								<dbfield name="Kontakt:email" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Website
+							</td>
+							<td>
+								<dbfield name="Kontakt:url" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								DWA Mitglieds-Nr.
+							</td>
+							<td>
+								<dbfield name="Kontakt:dwa_mitglied_nr" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								RSV Mitglieds-Nr.
+							</td>
+							<td>
+								<dbfield name="Kontakt:rsv_mitglied_nr" notable="true"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								VDRK Mitglieds-Nr.
+							</td>
+							<td>
+								<dbfield name="Kontakt:vdrk_mitglied_nr" notable="true"/>
+							</td>
+						</tr>
+						
+						
+						<tr>
+							<td colspan="2">
+								&nbsp;
+							</td>
+						</tr>
+						
+					</case>
+				</switch>
+				
+				<foreach fromArray="Buchungen">
+					
+							<tr>
+								<td colspan="2">
+									<b>
+										Teilnehmer
+									</b>
+								</td>
+							</tr>
+					
+					
+							
+					<tr>
+						<td>
+							Name, Vorname
+						</td>
+						<td>
+							<dbfield name="Person:name" notable="true"/>,&nbsp;<dbfield name="Person:vorname" notable="true"/>
+						</td>
+					</tr>	
+									
+					<switch key="Person:teilnehmer">
+						<case value="0">
+							
+						</case>
+						<case value="*">
+							
+							<tr>
+								<td>
+									Seminar
+								</td>
+								<td>
+									<dbfield name="Seminar:SeminarArt:bezeichnung" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Kurs-Nr.
+								</td>
+								<td>
+									<dbfield name="Seminar:kursnr" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Zeitraum
+								</td>
+								<td>
+									<dbfield name="Seminar:datum_begin" converter="mysqlDateToLocal" notable="1"/>-<dbfield name="Seminar:datum_ende" converter="mysqlDateToLocal" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Ort
+								</td>
+								<td>
+									<dbfield name="Seminar:Standort:Ort:ort" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Kosten (zzgl. MwSt.)
+								</td>
+								<td>
+									<dbfield name="kursgebuehr" converter="euroPreis" notable="1"/>&nbsp;&euro;
+								</td>
+							</tr>
+							
+					<switch key="zustaendige_arbeitsagentur">
+			<case value="">
+			</case>
+			<case value="*">
+							<tr>
+								<td>
+									zuständige Arbeitsagentur
+								</td>
+								<td>
+									<dbfield name="zustaendige_arbeitsagentur" notable="1"/>
+								</td>
+							</tr>
+			</case>
+</switch>			
+<switch key="bildungscheck_ausstellung_ort">
+			<case value="">
+			</case>
+			<case value="*">
+			<tr>
+								<td>
+									ESF Förderung Art
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_art" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									ESF Förderung Ausstellung Bundesland
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_bundesland" notable="1"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									ESF Förderung Ausstellung Ort
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_ort" notable="1"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									ESF Förderung Ausstellung Datum
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_datum" notable="1"/>
+								</td>
+							</tr>
+							</case>
+</switch>	
+	<switch key="HotelBuchung:Hotel:name">
+			<case value="">
+			</case>
+			<case value="*">			
+							<tr>
+								<td valign="top">
+									Hotel
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:Hotel:name" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:strasse" notable="true"/>&nbsp;<dbfield name="HotelBuchung:Hotel:nr" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:plz" notable="true"/>&nbsp;<dbfield name="HotelBuchung:Hotel:ort" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:tel" notable="true"/>
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td>
+									Anzahl Übernachtungen
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:uebernachtungen" notable="true"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Anreisedatum
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:anreise_datum" notable="true"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Zimmerpreis EZ in &euro; pro Übernachtung
+								</td>
+								<td>
+									<mdb:value mpath="HotelBuchung:verkaufspreis_ez" converter="euroPreis" suffix="€"/>
+								</td>
+							</tr>
+							</case>
+</switch>						
+							
+						</case>
+					</switch>
+					
+					<tr>
+						<td colspan="2">
+							&nbsp;
+						</td>
+					</tr>
+					
+				</foreach>
+					<switch key="bemerkung">
+			<case value="">
+			</case>
+			<case value="*">	
+				<tr>
+					<td>
+						Bemerkung
+					</td>
+					<td>
+						<dbfield name="bemerkung" notable="true"/>
+					</td>
+				</tr>
+</case>
+</switch>			
+				
+			</tbody>
+		</table><br/>&nbsp;
+		
+		
+		
+		<br/>&nbsp;
+		
+		
+	</div>
+</content>

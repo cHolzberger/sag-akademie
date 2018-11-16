@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>jQuery Select box</title>
+<link rel="stylesheet" type="text/css" href="/css/select/selectbox.css" />
+<script type="text/javascript" src="/resources/cache/google/jquery.js"></script>
+<script type="text/javascript" src="/js/jquery/jquery.selectbox-0.6-beta1.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#myselectbox').selectbox();
+});
+</script>
+</head>
+
+<body>
+<!--<a href="#" id="showme">show me/ hide me</a>-->
+<div id="hiddendiv" style="display:;">
+  <form id="forms" method="get">
+  <select id="myselectbox" name="myselectbox" tabindex="2">
+	  <option value="1">option 1</option>
+	  <option value="2" selected="selected">option 2</option>
+	  <option value="3">option 3</option>
+	  <option value="4">option 4</option>
+	  <option value="5">option 5</option>
+	  <option value="6">option 6</option>
+	  <option value="7">option 7</option>
+	  <option value="8">option 8</option>
+	  <option value="9">option 9</option>
+	  <option value="10">option 10</option>
+  </select>
+  <input type="submit" />
+  </form>
+</div>
+</body>
+</html>

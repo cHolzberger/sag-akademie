@@ -1,0 +1,30 @@
+{
+	"default": {
+		"namespace": "Database",
+		"rpcClasses": [
+			"Database_Aktuelles",
+			"Database_XTable",
+			"Database_Kontakt",
+			"Database_AkquiseKontakt",
+			"Database_Termin",
+			"Database_Referent",
+			"Database_Todo",
+			"Database_Buchung",
+			"Database_Person",
+			"Database_Seminar",
+			"Database_Hotel",
+			"Database_Kooperationspartner",
+			"Database_Stellenangebot",
+			"Database_Download",
+			"Database_User",
+			"Database_Standort",
+			"Database_Kategorie",
+			"Database_HotelBuchung",
+			"Database_Feiertag"
+		]
+	},
+
+	"production": {
+		"_extends": "default"
+	}
+}

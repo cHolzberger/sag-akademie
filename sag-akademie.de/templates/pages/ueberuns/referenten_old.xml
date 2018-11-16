@@ -1,0 +1,149 @@
+﻿<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+	 <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167"
+                style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+	<img src="/img/image_referenten.png" alt="" border="0" width="514"
+		height="135" style="position: absolute; left:120px; top:20px;" />
+
+</infoboxSmall>
+
+<content>
+
+	<img src="/img/title_referenten.png" alt="" border="0" width="180"
+		height="22" style="position: absolute; left:0px; top:0px;" />
+
+	<div
+		style="position: relative; left:0px; top:0px; width:800px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<table border="0" cellspacing="5" cellpadding="10">
+			<tr>
+				<td width="160">
+					<img src="/img/referent_koch.jpg" alt="" border="0" width="107"
+						height="127"/>
+				</td>
+								<td width="160">
+					<img src="/img/referent_guenzel.jpg" alt="" border="0" width="107"
+						height="127"/>
+				</td>
+				<td width="160">
+					<img src="/img/referent_bezela.jpg" alt="" border="0" width="107"
+						height="127"/>
+				</td>
+				
+				<td width="160">
+					<img src="/img/referent_dunkel.jpg" alt="" border="0" width="107"
+						height="127"/>
+				</td>
+
+				<td width="160">
+					<img src="/img/referent_johannsen.jpg" alt="" border="0" width="107"
+						height="127"/>
+				</td>
+
+							
+			</tr>
+
+			<tr>
+				<td valign="top">
+					<b>Andreas Koch</b>
+					<br />&nbsp;
+					<br />
+					Geschäftsführer der SAG-Akademie GmbH
+				</td>
+					<td valign="top">
+					<b>Dipl.-Ing. Wilfried Günzel</b>
+					<br />&nbsp;
+					<br />
+					Öffentlich bestellter und vereidigter Sachverständiger für
+					Kanalinspektion und grabenlose Kanalsanierung (IHK Lippe zu
+					Detmold)
+				</td>
+				
+				<td valign="top">
+					<b>Dipl.-Ing. Werner Bezela</b>
+					<br />&nbsp;
+					<br />
+					Öffentlich bestellter und vereidigter Sachverständiger für
+					Kanalnetzsanierung (IHK Nord Westfalen)
+				</td>
+				
+					<td valign="top">
+					<b>Dipl.-Ing. Markus Dunkel</b>
+					<br />&nbsp;
+					<br />
+					Zertifizierter Kanalsanierungsberater
+				</td>
+			
+				<td valign="top">
+					<b>Jörg Johannsen</b>
+					<br />&nbsp;
+					<br />
+					Fachkundiger für Leichtflüssigkeits- und Fettabscheider
+				</td>
+			
+
+			</tr>
+						<tr><td colspan="5">&nbsp;</td></tr>
+				<tr>
+				
+								<td width="160">
+						<img src="/img/referent_keinfoto.jpg" alt="" border="0" width="107"
+						height="127"/>
+				</td>
+				
+				<td width="160">
+					<img src="/img/referent_rahmoeller.jpg" alt="" border="0" width="107"
+						height="127">
+				</td>
+				<td width="160">
+<img src="/img/referent_nielsen.jpg" alt="" border="0" width="107"
+						height="127"/>
+				</td>
+				<td width="160">
+<img src="/img/referent_ney.jpg" alt="" border="0" width="107"
+						height="127"/>
+				</td>
+				<td width="160">
+
+				</td>
+							
+
+			</tr>
+			<tr>
+			
+					<td valign="top">
+					<b>Andreas Germann</b>
+					<br />&nbsp;
+					<br />
+					Geprüfter Umwelttechniker und Sachverständiger für Abscheidetechnik
+				</td>
+				
+				<td valign="top">
+				<b>Thomas Rahmöller</b>
+					<br />&nbsp;
+					<br />
+					DRK Kreisverband Lünen e.V.
+				</td>
+				<td valign="top">
+<b>Dipl.-Ing. Norbert Nielsen</b>
+					<br />&nbsp;
+					<br />
+					Güteschutz Kanalbau
+				</td>
+				<td valign="top">
+<b>Dipl.-Ing. Jörg Ney</b>
+				</td>
+				<td valign="top">
+
+				</td>
+
+			</tr>
+		</table>
+
+	</div>
+		<div style="clear: both;">
+		&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
+	</div>
+</content>

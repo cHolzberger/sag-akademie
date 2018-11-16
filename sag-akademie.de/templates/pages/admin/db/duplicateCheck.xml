@@ -1,0 +1,10 @@
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+<content>
+  Datenbank Reorganisation:<br/><br/>
+  Schritt 1.) <a href="/admin/db/duplicateCheck/kontakte">Duplikate in den Kontakten finden.</a><br/>
+  Schritt 2.) <a href="/admin/db/duplicateCheck/personen">Duplikate in den Personen finden.</a><br/>
+  Schritt 3.) <a href="/admin/db/duplicateCheck/buchungen">Duplikate in den Buchungen finden.</a><br/>
+
+   </div>
+</content>

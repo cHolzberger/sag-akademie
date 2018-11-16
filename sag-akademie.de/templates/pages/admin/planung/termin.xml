@@ -1,0 +1,7 @@
+<content>
+	<ribbonDynamicRemove />
+	<h1>Terminplanung</h1>
+	<mdb:link mpath="GET:seminar_id" href="/admin/termine/#DATA#?edit">Zur&uuml;ck zum Termin</mdb:link>
+	<br/>
+	<widget:planungTermin />
+</content>

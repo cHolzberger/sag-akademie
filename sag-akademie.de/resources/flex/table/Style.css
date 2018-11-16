@@ -1,0 +1,34 @@
+﻿global {
+	fontFamily: AppFont;
+	fontSize: 10;
+}
+	
+Application {
+	fontFamily: AppFont;
+}
+		
+	
+		
+@font-face {
+    src:url("fonts/verdana.ttf");
+    fontFamily: AppFont;
+	fontWeight: Regular;
+}
+		
+@font-face {
+    src:url("fonts/verdanab.ttf");
+	fontFamily: AppFont;
+	fontWeight: Bold;
+}
+		
+Panel {
+	borderThicknessLeft: 5;
+	borderThicknessRight: 5;
+	borderThicknessTop: 3;
+	borderThicknessBottom: 5;
+}
+
+DataGridColumn {
+	paddingLeft: 10;
+	paddingRight: 10;
+}

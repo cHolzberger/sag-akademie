@@ -1,0 +1,961 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+				layout="vertical"
+				width="100%"
+				height="100%"
+				creationComplete="componentInit();"
+				paddingBottom="0"
+				paddingLeft="0"
+				paddingRight="0"
+				paddingTop="0"
+				verticalGap="1"
+				opaqueBackground="0x000000">
+	<fab:FABridge xmlns:fab="bridge.*"/>
+
+	<mx:Style source="assets/yflexskin.css" />
+	<mx:Style source="Style.css" />
+
+	<mx:Script>
+		<![CDATA[
+			import com.mosaik.XSettings;
+			import flash.events.KeyboardEvent;
+			import flash.geom.Point;
+			import flash.net.URLRequest;
+			import mx.rpc.events.ResultEvent;
+			import mx.rpc.events.FaultEvent;
+			import mx.collections.ArrayCollection;
+			import com.adobe.serialization.json.JSON;
+			import mx.controls.Alert;
+			import mx.controls.dataGridClasses.DataGridColumn;
+			import bridge.FABridge;
+			import com.mosaik.JsonProxy;
+			import flash.external.*;
+			import mx.events.DataGridEvent;
+			import mx.controls.listClasses.ListData;
+			import mx.controls.dataGridClasses.DataGridListData;
+			import mx.controls.listClasses.BaseListData;
+			import mx.controls.dataGridClasses.DataGridItemRenderer
+			import mx.events.FlexEvent;
+			import flash.events.MouseEvent;
+			import mx.managers.PopUpManager;
+			import mx.printing.FlexPrintJob;
+			import mx.binding.utils.BindingUtils;
+			import mx.utils.ObjectProxy;
+			import json.*;
+			import flash.events.Event;
+			import mx.utils.ArrayUtil;
+			import mx.controls.Alert;
+			import flash.ui.Keyboard;
+
+			[Bindable]
+			public var editSwitch:Boolean = false;
+
+			public static var comboxValues:Object = new Object();
+
+			private var ds:JsonProxy = new JsonProxy("http://test-sag-akademie.mosaik-software.de/test");
+			[Bindable]
+			public var gridHeaders:Array = new Array();
+
+			[Bindable]
+			public var headers:Array = new Array();
+
+			[Bindable]
+			public var availableHeaders:Array = new Array();
+
+
+			[Bindable]
+			public var iTableVersion:String = "1.6.1";
+			public var xSettings:XSettings = new XSettings();
+
+			[Bindable]
+			public var dataArray:ArrayCollection = new ArrayCollection();
+			public var results:ArrayCollection;
+
+			private var loadingScreen:LoadingPopup = null;
+
+/************************
+* INIT
+************************/
+			public function componentInit():void {
+				if (Application.application.parameters.datasource){
+					ds.setUrl(Application.application.parameters.datasource);
+				}
+				showLoadingScreen();
+				ds.request(this.onJsonResult, Application.application.parameters);
+				ExternalInterface.call("RightClick.init", "itable");
+				dgData.addEventListener(MouseEvent.ROLL_OUT, mouseLeave);
+				dgData.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);				
+				dgData.addEventListener(KeyboardEvent.KEY_UP, keyUp);
+
+			}
+	
+/********************
+ * LABEL FUNKTIONEN
+ ********************/ 
+			private function akQuelle_labelFunc(item:Object, column:DataGridColumn = null):String {
+				var val:String;
+				if (column == null){
+					val = item as String;
+				} else {
+					val = item[column.dataField];
+				}
+
+				if (val == "0")
+					return "Akquise";
+				return "Kunden";
+			}
+
+			private function anrede_labelFunc(item:Object, column:DataGridColumn = null):String {
+				var val:String;
+				if (column == null){
+					val = item as String;
+				} else {
+					val = item[column.dataField];
+				}
+
+				if (val == "0")
+					return "Herr";
+				return "Frau";
+			}
+
+			private function bool_labelFunc(item:Object, column:DataGridColumn = null):String {
+				var val:String;
+				if (column == null){
+					val = item as String;
+				} else {
+					val = item[column.dataField];
+				}
+
+				if (val == "0")
+					return "Nein";
+				return "Ja";
+			}
+
+			private function status_labelFunc(item:Object, column:DataGridColumn = null):String {
+				var val:String;
+				if (column == null){
+					val = item as String;
+				} else {
+					val = item[column.dataField];
+				}
+
+				if (val == "0")
+					return "Gebucht"; // vorher "Nicht Bestaetigt" -> 28.04.10;
+				if (val == "1")
+					return "Gebucht"; //vorher: "Bestaetigt"; -> 28.04.10
+				if (val == "2")
+					return "Storniert";
+				if (val == "3")
+					return "Umgebucht";
+				if (val == "4")
+					return "Abgesagt";
+				if (val == "5")
+					return "nicht Teilgenommen";
+
+				return "UNDEFINIERT!!!";
+			}
+
+			private function price_labelFunc(item:Object, column:DataGridColumn):String {
+				var val:String;
+				if (column == null){
+					val = item as String;
+				} else {
+					val = item[column.dataField];
+				}
+				
+				if ( val.charAt( val.length - 5) == "," ) return cLocalFormat.format(val); 
+				return cFormat.format(val);
+			}
+
+			private function combo_labelFunc(item:Object, column:DataGridColumn = null):String {
+				var val:String = "";
+				var flags:Array;
+				if (column == null){
+					val = item as String;
+				} else {
+					var i:Number;
+					flags = comboxValues[column.dataField];
+					for (i = 0; i < flags.length; i++){
+						if (flags[i].id == item[column.dataField]){
+							val = flags[i].name;
+							break;
+						}
+					}
+				}
+
+				return val;
+			}
+
+			private function date_labelFunc(item:Object, column:DataGridColumn = null):String {
+				var val:String = "";
+				if (column == null){
+					val = item as String;
+				} else {
+					val = item[column.dataField];
+				}
+
+				if (val == null)
+					return "";
+				else if (val == "")
+					return "";
+				else if (val == "0000-00-00")
+					return "";
+
+				var dt:Array = String(val).split(" ");
+				var dateInfo:Array = dt[0].split("-");
+				var year:String = dateInfo[0];
+				var month:String = dateInfo[1];
+				var day:String = dateInfo[2];
+
+				return day + "." + month + "." + year;
+			}
+
+			private function datetime_labelFunc(item:Object, column:DataGridColumn = null):String {
+				var val:String;
+				if (column == null){
+					val = item as String;
+				} else {
+					val = item[column.dataField];
+				}
+
+				if (val == null)
+					return "";
+				else if (val == "")
+					return "";
+				else if (val == "0000-00-00 00:00")
+					return "";
+				else if (val == "0000-00-00 00:00:00")
+					return "";
+
+				var dt:Array = String(val).split(" ");
+				var dateInfo:Array = dt[0].split("-");
+				var year:String = dateInfo[0];
+				var month:String = dateInfo[1];
+				var day:String = dateInfo[2];
+
+				var timeInfo:Array = dt[1].split(":");
+
+				var hour:String = timeInfo[0];
+				var minute:String = timeInfo[1];
+
+				return day + "." + month + "." + year + " " + hour + ":" + minute;
+
+			}
+
+//	private function price_labelFunc(item:Object, column:DataGridColumn):String {
+			//  	return "1 " + item[column.dataField];
+			//}
+
+			private function onSort(event:DataGridEvent):void {
+				onShift();
+				if (!event.dataField)
+					return;
+				xSettings.setVar(ds.url, "sortOn", event.dataField);
+				
+				if (dgData.columns[event.columnIndex].sortDescending){
+					xSettings.setVar(ds.url, "sortOnDesc", "true");
+				} else {
+					xSettings.setVar(ds.url, "sortOnDesc", "false");
+				}
+
+			}
+
+			private function onResize(event:DataGridEvent):void {
+				trace(dgData.columns[event.columnIndex].width);
+				xSettings.setVar(ds.url, event.dataField, dgData.columns[event.columnIndex].width);
+			}
+
+			private function onShift():void {
+				var sort:String = "";
+				for (var i:int; i < dgData.columns.length; i++){
+					if (sort != "")
+						sort += ","
+					sort = sort + dgData.columns[i].dataField;
+				}
+				xSettings.setVar(ds.url, "sortOrder", sort);
+			}
+			
+/******************
+* DATEN LADEN 
+******************/
+			private var requestCount:int = 0;
+			private var requestPages:int = 0;
+
+			
+			private function onJsonResult(jsonData:Object):void {
+				headers = jsonData.headers as Array;
+				var sortOrder:String = "";
+				var map:Object = new Object();
+				var evt:DataGridEvent = null;
+				sortOrder = xSettings.getVar(ds.url, "sortOrder", "").value;
+
+				var sorted:Array = sortOrder.split(/,/);
+				var i:int;
+
+				var sortOn:String = xSettings.getVar(ds.url, "sortOn", "").value;
+				var sortDesc:Boolean = xSettings.getVar(ds.url, "sortOnDesc", "false").value == "true";
+
+				if (sorted.length > 1){
+					for (i = 0; i < sorted.length; i++){
+						map[sorted[i]] = i;
+						var tmp:DataGridColumn = new DataGridColumn("Unknown");
+						tmp.visible = false;
+						gridHeaders.push(tmp);
+					}
+				}
+
+				for (i = 0; i < headers.length; i++){
+					//Alert.show(String(headers[i]));
+					if (headers[i].hide == true)
+						continue;
+					availableHeaders.push(headers[i]);
+					var col:DataGridColumn = new DataGridColumn(headers[i].field);
+					
+					col.headerText = String(headers[i].label);
+					if (headers[i].format == "price"){
+						col.labelFunction = price_labelFunc;
+					} else if (headers[i].format == "date"){
+						col.labelFunction = date_labelFunc;
+					} else if (headers[i].format == "anrede"){
+						col.labelFunction = anrede_labelFunc;
+					} else if (headers[i].format == "datetime"){
+						col.labelFunction = datetime_labelFunc;
+					} else if (headers[i].format == "status"){
+						col.labelFunction = status_labelFunc;
+					} else if (headers[i].format == "quelle"){
+						col.labelFunction = akQuelle_labelFunc;
+					} else if (headers[i].format == "bool"){
+						col.labelFunction = bool_labelFunc;
+						col.rendererIsEditor = false;
+						col.itemEditor = boolEditor;
+					} else if (headers[i].format == "email"){
+						col.itemRenderer = EmailRenderer;
+					} else if (headers[i].format == "web"){
+						col.itemRenderer = WebRenderer;
+					} else if (headers[i].format == "combo"){
+						comboxValues[headers[i].field] = headers[i].values;
+						col.labelFunction = combo_labelFunc;
+						col.rendererIsEditor = false;
+						col.itemEditor = genDropdown;
+						GenDropdown.flags = comboxValues;
+					}
+
+
+					if (headers[i].editable == "true"){
+						BindingUtils.bindProperty(col, "editable", this, "editSwitch")
+							//col.editable = true;
+					} else {
+						col.editable = false;
+					}
+					var width:int = parseInt(xSettings.getVar(ds.url, headers[i].field, 0).value);
+					var visible:int = parseInt(xSettings.getVar(ds.url, headers[i].field + "_vis", 1).value);
+					if (visible != 1){
+						col.visible = false;
+					}
+
+					if (width != 0){
+						col.width = width;
+					}
+
+					if (map[headers[i].field] != null){
+						gridHeaders[map[headers[i].field]] = col;
+						if (headers[i].field == sortOn){
+							//col.sortDescending = sortDesc;
+							// dir
+							
+							evt = new DataGridEvent(DataGridEvent.HEADER_RELEASE, false, true, map[headers[i].field], null, 0, null, null, 0);
+							
+						}
+						
+					} else {
+						gridHeaders.push(col);
+					}
+				}
+
+				dgData.columns = gridHeaders;
+				dataArray = new ArrayCollection();
+
+				if (evt != null) {
+					if ( sortDesc ) {
+						dgData.dispatchEvent(evt);
+					} else {
+						callLater(dgData.dispatchEvent, [evt]);
+						dgData.dispatchEvent(evt);
+					}
+				}
+				
+				// headline
+				if (jsonData.headline ) {
+					pageHeadeline.text = new String(jsonData.headline );
+				}
+				
+				//rows count
+				if (jsonData.count) {
+					progress.maximum = parseInt(jsonData.count);
+					requestCount = parseInt(jsonData.count);
+					requestPages = parseInt(jsonData.pages);
+				}
+				
+				
+				var _pobj:Object = Application.application.parameters;
+				
+				_pobj.page = 1;
+				ds.request (addData, _pobj);
+				
+				if (jsonData.count == 0){
+					loadingScreen.text = "Keine Daten gefunden."
+				} else {
+					hideLoadingScreen();
+				}
+			}
+			
+			private var dataCount:int = 0;
+			
+			private function addData(jsonData:Object):void {
+				var _pdata:Array = ArrayUtil.toArray(jsonData.data);
+				if ( jsonData.page != undefined && parseInt(jsonData.page) < requestPages ) {
+					var _pobj:Object = Application.application.parameters;
+					_pobj.page = parseInt(jsonData.page) + 1;
+					ds.request (addData, _pobj);
+				}
+				
+				for ( var i:int = 0; i < _pdata.length; i++) {
+					callLater(insertData, [_pdata[i]]);
+				}
+				
+				
+			}
+			
+			private function insertData (obj:Object) :void{
+				dataCount ++;
+				dataArray.addItem( obj );
+				progress.setProgress (dataCount, requestCount );
+				progress.label = "Datensätze: " + dataCount.toString() + " / " + requestCount.toString();
+			}
+
+/***********************
+* UI EVENT HANDLING
+***********************/
+			private var currentItem:Object = null;
+
+			public function onRollOver(event:MouseEvent):void {
+				if (!event.target)
+					return;
+				try {
+					if (this.currentItem != event.target.data){
+						this.currentItem = event.target.data;
+					}
+				} catch (e:ReferenceError){
+				} catch (e:TypeError){
+				}
+			}
+
+			public function rightClick():void {
+				ExternalInterface.call("$.mosaikRuntime.replace", "#ID#", currentItem.id);
+				ExternalInterface.call("showPopup");
+			}
+			
+			public function keyDown(e:KeyboardEvent):void {
+				var newScroll:int;
+				
+				if ( e.keyCode == Keyboard.UP ) {
+					newScroll = dgData.verticalScrollPosition -1;
+					dgData.verticalScrollPosition = newScroll < dgData.maxVerticalScrollPosition ? newScroll: 0;
+				} else if ( e.keyCode == Keyboard.DOWN ) {
+					newScroll = dgData.verticalScrollPosition + 1;
+					dgData.verticalScrollPosition = newScroll < dgData.maxVerticalScrollPosition ? newScroll: dgData.maxVerticalScrollPosition;
+				} else if ( e.keyCode == Keyboard.RIGHT ) {
+					newScroll = dgData.horizontalScrollPosition +1;
+					dgData.horizontalScrollPosition = newScroll < dgData.maxHorizontalScrollPosition ? newScroll: dgData.maxHorizontalScrollPosition;
+				} else if ( e.keyCode == Keyboard.LEFT ) {
+					newScroll = dgData.horizontalScrollPosition -1;
+					dgData.horizontalScrollPosition = newScroll > 0 ? newScroll: 0;
+				} else if ( e.keyCode == Keyboard.PAGE_DOWN ) {
+					newScroll = dgData.verticalScrollPosition + 10;
+					dgData.verticalScrollPosition = newScroll < dgData.maxVerticalScrollPosition ? newScroll : dgData.maxVerticalScrollPosition;
+				} else if ( e.keyCode == Keyboard.PAGE_UP ) {
+					newScroll = dgData.verticalScrollPosition - 10;
+					dgData.verticalScrollPosition = newScroll > 0 ? newScroll : 0;
+				} else if ( e.keyCode == Keyboard.HOME ) {
+					dgData.horizontalScrollPosition = 0;
+				} else if ( e.keyCode == Keyboard.END ) {
+					dgData.horizontalScrollPosition = dgData.maxHorizontalScrollPosition;
+				}
+			}
+			
+			public function keyUp(e:KeyboardEvent):void {
+				
+			}
+			
+			public function handleWheel(event:Object):void {
+				var obj:InteractiveObject = null;
+				var objects:Array = getObjectsUnderPoint( new Point(event.x, event.y) );
+				
+				for (var i:int = objects.length - 1; i >= 0; i--) {
+					if (objects[i] is InteractiveObject){
+						obj = objects[i] as InteractiveObject;
+						break;
+					} else {
+						if (objects[i] is Shape && (objects[i] as Shape).parent){
+							obj = (objects[i] as Shape).parent;
+							break;
+						}
+					}
+				}
+
+				if (obj){
+					var mEvent:MouseEvent = new MouseEvent(MouseEvent.MOUSE_WHEEL, true, false, event.x, event.y, obj, event.ctrlKey, event.altKey, event.shiftKey, false, -Number(event.delta));
+					obj.dispatchEvent(mEvent);
+				}
+			}
+
+			public function mouseLeave(evt:Event):void {
+				var evtx:MouseEvent = new MouseEvent(MouseEvent.MOUSE_UP);
+				dgData.dispatchEvent(evtx);
+			}
+
+			/********************
+			 * SUCHE 
+			 ********************/
+			public function onSearch():void {
+				// lets go and make search
+				dataArray.filterFunction = filterSearch;
+				dataArray.refresh();
+			}
+
+			public function filterSearch(data:Object):Boolean {
+				// Alert.show(data.toString());
+
+				var val:String = new String(data[searchField.selectedItem.field]).toLowerCase();
+
+				if (searchField.selectedItem.format == "date"){
+					val = date_labelFunc(val);
+				} else if (searchField.selectedItem.format == "anrede"){
+					val = anrede_labelFunc(val);
+				} else if (searchField.selectedItem.format == "datetime"){
+					val = datetime_labelFunc(val);
+				} else if (searchField.selectedItem.format == "status"){
+					val = status_labelFunc(val);
+				} else if (searchField.selectedItem.format == "quelle"){
+					val = akQuelle_labelFunc(val);
+				} else if (searchField.selectedItem.format == "bool"){
+					val = bool_labelFunc(val);
+				} else if (searchField.selectedItem.format == "combo"){
+					val = combo_labelFunc(val);
+				}
+
+				if (val.search(searchFor.text.toLowerCase()) == -1){
+					return false;
+				} else {
+					return true;
+				}
+			}
+
+			/************************
+			 * SETTINGS SPEICHERN
+			 ************************/
+			public function changeVis():void {
+				for (var i:Number = 0; i < dgData.columns.length; i++){
+					if (dgData.columns[i].visible){
+						xSettings.setVar(ds.url, dgData.columns[i].dataField + "_vis", "1");
+					} else {
+						xSettings.setVar(ds.url, dgData.columns[i].dataField + "_vis", "0");
+					}
+				}
+			}
+
+			private function selectFields(event:Event):void {
+				var statusChange:HeaderSelect = HeaderSelect(PopUpManager.createPopUp(this, HeaderSelect, true));
+				statusChange.fields = dgData.columns;
+				statusChange.cb = changeVis;
+
+				PopUpManager.centerPopUp(statusChange);
+			}
+
+			public function onPrint():void {
+				var printJob:FlexPrintJob = new FlexPrintJob();
+
+				if (printJob.start()){
+					var pv:PrintView = new PrintView();
+					var page:Number = 0;
+					var col:Array = new Array();
+					var i:Number = 0;
+					var tmpw:Number = 0;
+
+					printJob.printAsBitmap = false;
+					pv.height = printJob.pageHeight;
+					pv.width = printJob.pageWidth;
+					pv.dataProvider = dataArray;
+
+					addChild(pv);
+
+					for (i = i; i < dgData.columns.length; i++){
+
+						if (tmpw + dgData.columns[i].width < pv.width && dgData.columns[i].visible){
+							col.push(dgData.columns[i]);
+							tmpw = tmpw + dgData.columns[i].width;
+						} else if (dgData.columns[i].width > pv.width){
+							col.push(dgData.columns[i]);
+							tmpw = tmpw + dgData.columns[i].width;
+							/* dupl code */
+							pv.dgData.columns = col;
+
+
+							while (pv.dgData.validNextPage){
+								page++;
+								//Put the next page of data in the view.
+								pv.page = page;
+								pv.dgData.nextPage();
+								//Queue the additional page.
+								printJob.addObject(pv);
+							}
+
+							col = new Array();
+							tmpw = 0;
+						} else {
+							/* dupl code */
+							pv.dgData.columns = col;
+							pv.dataProvider = dataArray;
+
+							while (pv.dgData.validNextPage){
+								page++;
+								//Put the next page of data in the view.
+								pv.page = page;
+								pv.dgData.nextPage();
+								//Queue the additional page.
+								printJob.addObject(pv);
+							}
+
+							col = new Array();
+							tmpw = 0;
+						}
+					}
+
+					printJob.send();
+					removeChild(pv);
+				}
+			}
+
+			private function storeInformation(obj:Object):void {
+				//Alert.show(obj.id.toString());
+				var save:Object = new Object();
+				// obj
+				save['saveRow'] = new Object();
+				for each ( var head:Object in headers ) {
+					if (head.field == "id" || head.editable == "true" ) {
+						save['saveRow'][head.field] = obj[head.field];
+					}
+					
+				}
+				save['noRefresh'] = true;
+				ds.save(save, "POST", saveDone);
+			}
+
+			private function saveDone():void {
+				//Alert.show("saved");
+			}
+
+			/** behandlung der aenderungen im datagrid **/
+			private function saveInformation(event:DataGridEvent):void {
+				var row:Number = Number(event.rowIndex);
+				var obj:Object = dgData.dataProvider.getItemAt(row);
+				callLater(storeInformation, [obj]);
+				//trace (event);
+				//myservice.setInformationen(1, 2, 3);
+				//Alert.show("hi there");
+			}
+
+			private function onEnableEdit():void {
+				if (editSwitch == false){
+					editEnable.label = "Sperren";
+					editSwitch = true;
+				} else {
+					editSwitch = false;
+					editEnable.label = "Bearbeiten";
+				}
+			}
+
+			private function showLoadingScreen():void {
+				loadingScreen = LoadingPopup(PopUpManager.createPopUp(this, LoadingPopup, true));
+				PopUpManager.centerPopUp(loadingScreen);
+			}
+
+			private function hideLoadingScreen():void {
+				PopUpManager.removePopUp(loadingScreen);
+			}
+			
+			/******************************
+			 * XLS DOWNLOAD
+			 ******************************/
+			private function xlsDownload():void {
+				var url:URLRequest = new URLRequest("/_posttoxls.php");
+				var variables:URLVariables = new URLVariables();
+				variables.type = "xlsExport";
+				var expHead:Array = new Array();
+				var x:Object;
+				for (var i:int = 0; i < dgData.columns.length; i++){
+					if (dgData.columns[i].visible){
+						x = new Object();
+						x.label = dgData.columns[i].headerText;
+						x.field = dgData.columns[i].dataField;
+						expHead.push(x);
+					}
+				}
+
+				variables.headers = JParser.encode(expHead);
+				variables.data = JParser.encode(dataArray.toArray());
+				url.data = variables;
+				url.method = URLRequestMethod.POST;
+
+				navigateToURL(url, "download");
+			}
+		]]>
+	</mx:Script>
+
+	<mx:Component id="boolEditor"
+				  className="BoolEditor">
+		<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+				   verticalScrollPolicy="off"
+				   horizontalScrollPolicy="off"
+				   implements="mx.managers.IFocusManagerComponent, mx.controls.listClasses.IDropInListItemRenderer">
+			<mx:Script>
+				<![CDATA[
+					import mx.controls.listClasses.BaseListData;
+					import mx.controls.dataGridClasses.DataGridListData;
+					import mx.utils.ArrayUtil;
+					import mx.controls.Alert;
+					import mx.binding.utils.*;
+
+					import mx.collections.ArrayCollection;
+
+					[Bindable]
+					public var index:Number = 1;
+
+					private var _listData:DataGridListData;
+
+					[Bindable]
+					static public var flags:Object;
+					[Bindable]
+					private var list:Array = [{label: "Nein"}, {label: "Ja"}];
+
+					[Bindable("dataChange")]
+					public function get listData():BaseListData {
+						return _listData;
+					}
+
+					override protected function commitProperties():void {
+						text = data[_listData.dataField];
+
+						super.commitProperties();
+						dispatchEvent(new Event("dataChange"));
+					}
+
+					public function set listData(value:BaseListData):void {
+						_listData = DataGridListData(value);
+						dispatchEvent(new Event("dataChange"));
+					}
+
+					public function set text(t:String):void {
+						index = new Number(t);
+					}
+
+					public function get text():String {
+						return index.toString();
+					}
+				]]>
+			</mx:Script>
+			<mx:ComboBox id="cb"
+						 selectedIndex="{index}"
+						 width="100%"
+						 height="100%"
+						 color="0x000000"
+						 dataProvider="{list}"
+						 change="index = cb.selectedIndex">
+			</mx:ComboBox>
+		</mx:Canvas>
+	</mx:Component>
+
+	<mx:Component id="genDropdown"
+				  className="GenDropdown">
+		<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml"
+				   verticalScrollPolicy="off"
+				   horizontalScrollPolicy="off"
+				   implements="mx.managers.IFocusManagerComponent, mx.controls.listClasses.IDropInListItemRenderer">
+			<mx:Script>
+				<![CDATA[
+					import mx.controls.listClasses.BaseListData;
+					import mx.controls.dataGridClasses.DataGridListData;
+					import mx.utils.ArrayUtil;
+					import mx.controls.Alert;
+					import mx.binding.utils.*;
+
+					import mx.collections.ArrayCollection;
+
+					[Bindable]
+					public var index:Number = 1;
+
+					private var _listData:DataGridListData;
+
+					[Bindable]
+					static public var flags:Object;
+					[Bindable]
+					private var list:ArrayCollection;
+
+					[Bindable("dataChange")]
+					public function get listData():BaseListData {
+						return _listData;
+					}
+
+					override protected function commitProperties():void {
+						list = new ArrayCollection(flags[_listData.dataField]);
+						updateSelected(data[_listData.dataField]);
+						super.commitProperties();
+						dispatchEvent(new Event("dataChange"));
+					}
+
+					public function set listData(value:BaseListData):void {
+						_listData = DataGridListData(value);
+						list = new ArrayCollection(flags[_listData.dataField]);
+						dispatchEvent(new Event("dataChange"));
+					}
+
+					public function updateSelected(value:String):void {
+						var i:Number;
+
+						for (i = 0; i < list.length; i++){
+							if (list[i].id == value){
+								index = i;
+								break;
+							}
+						}
+					}
+
+					public function set text(t:String):void {
+						updateSelected(data[_listData.dataField]);
+						//updateSelected( t );
+					}
+
+					public function get text():String {
+						return list[index].id;
+					}
+				]]>
+			</mx:Script>
+			<mx:ComboBox id="cb"
+						 labelField="name"
+						 selectedIndex="{index}"
+						 width="100%"
+						 height="100%"
+						 color="0x000000"
+						 dataProvider="{list}"
+						 change="index = cb.selectedIndex">
+			</mx:ComboBox>
+		</mx:Canvas>
+	</mx:Component>
+
+	<mx:Component id="searchDropdown"
+				  className="SearchDropdown">
+		<mx:Text text="{data.label}"/>
+	</mx:Component>
+
+	<!-- the gui itself -->
+	<mx:ApplicationControlBar width="100%" dock="true">
+		
+		
+		<mx:Text id="pageHeadeline" text="Headline" fontSize="18" fontWeight="bold" />
+
+	
+		<!--<mx:Button label="Suchen" click="onSearch();" />-->
+		<mx:Spacer width="100%"/>
+		<!--<mx:Button label="Bearbeiten" />-->
+		<mx:Button toolTip="Bearbeiten" icon="@Embed('assets/icons/edit.png')"
+				   id="editEnable"
+				   click="onEnableEdit();" width="24" height="24" />
+		<!--<mx:Button label="Drucken" click="onPrint();" />-->
+		<mx:Button toolTip="XLS Export"
+		icon="@Embed('assets/icons/export.png')"
+				   click="xlsDownload();" width="24" height="24" />
+		<mx:Button toolTip="Spalten"
+		icon="@Embed('assets/icons/spalten.png')"
+				   click="selectFields(event);" width="24" height="24"/>
+	</mx:ApplicationControlBar>
+	<mx:DataGrid horizontalScrollPolicy="on" 
+				 id="dgData"
+				 x="0"
+				 y="0"
+				 width="100%"
+				 height="100%"
+				 editable="true"
+				 rowHeight="25"
+				 
+				 cacheAsBitmap="false"
+				 dataProvider="{dataArray}"
+				 minColumnWidth="10"
+				 mouseMove="onRollOver(event);"
+				 columnStretch="onResize(event);"
+				 headerShift="onShift();"
+				 headerRelease="onSort(event);"
+				 itemEditEnd="saveInformation(event);"
+				 >
+		<mx:columns>
+			<mx:DataGridColumn dataField="iTable V{iTableVersion} - Lade Daten..."/>
+		</mx:columns>
+	</mx:DataGrid>
+
+	<mx:ApplicationControlBar width="100%" >
+		<mx:Image
+		source="@Embed('assets/icons/search.png')"  width="24" height="24"/>
+				<mx:Text text="Feld:" fontWeight="bold" />
+		<mx:ComboBox dataProvider="{availableHeaders}"
+					 itemRenderer="{searchDropdown}"
+					 id="searchField"
+					 text="---"/>
+
+		<mx:Text text="Text:" fontWeight="bold" />
+		<mx:TextInput id="searchFor"
+					  keyUp="onSearch();"/>
+		<mx:Spacer width="100%" />
+		<mx:ProgressBar id="progress" labelPlacement="bottom" themeColor="#EE1122" minimum="0" visible="true" maximum="100"
+             color="0x323232" label="" direction="right" mode="manual" width="200"/>
+		
+	</mx:ApplicationControlBar>
+	<!-- js bridging and HTTP Bridge -->
+	<fab:FABridge xmlns:fab="bridge.*"/>
+	<!-- components to render cell content -->
+
+	<mx:CurrencyFormatter id="cFormat"
+						  precision="2"
+						  currencySymbol=" €"
+						  alignSymbol="right"
+						  decimalSeparatorTo=","
+						  thousandsSeparatorTo="."
+						  useThousandsSeparator="true"/>
+						  
+  <mx:CurrencyFormatter id="cLocalFormat"
+						  precision="2"
+						  currencySymbol=" €"
+						  alignSymbol="right"
+						  decimalSeparatorFrom=","
+						  decimalSeparatorTo=","
+						  thousandsSeparatorFrom="."
+						  thousandsSeparatorTo="."
+						  useThousandsSeparator="true"/>
+
+
+	<mx:Component id="WebRenderer">
+		<mx:LinkButton xmlns:mx="http://www.adobe.com/2006/mxml"
+					   label="{data.url}"
+					   click="navigateToURL(new URLRequest(data.url));"
+					   textAlign="left"/>
+	</mx:Component>
+	<mx:Component id="EmailRenderer">
+		<mx:LinkButton xmlns:mx="http://www.adobe.com/2006/mxml"
+					   label="{data.email}"
+					   click="navigateToURL(new URLRequest('mailto:' + data.email));"
+					   textAlign="left"/>
+	</mx:Component>
+
+	<mx:CurrencyFormatter id="currencyFormatter"
+						  precision="2"
+						  useNegativeSign="false"/>
+
+</mx:Application>

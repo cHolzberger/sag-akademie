@@ -1,0 +1,9 @@
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+<content>
+<span class="headline" style="padding-left:0px;"><b>Wartung</b></span><br/>&nbsp;<br/>
+  <a href="/admin/db/duplicateCheck/kontakte">Duplikate in den Kontakten finden</a><br/>
+    <a href="/admin/db/duplicateCheck/personen">Duplikate in den Personen finden</a><br/>&nbsp;<br/>
+  <a href="/admin/db/import">Kontakte und Personen via CSV importieren</a><br/>
+   </div>
+</content>

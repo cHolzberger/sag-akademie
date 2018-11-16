@@ -1,0 +1,675 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs For Class Minify_HTML</title>
+			<link rel="stylesheet" href="styles/phpdoc.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="class-name"><img src="images/Class_logo.png"
+														alt=" Class"
+														title=" Class"
+														style="vertical-align: middle"> Minify_HTML</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+													<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+						|											<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+						
+					</div>
+	<div class="info-box-body">
+        		<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Compress HTML</p>
+<p class="description"><p>This is a heavy regex-based removal of whitespace, unnecessary comments and  tokens. IE conditional comments are preserved. There are also options to have  STYLE and SCRIPT blocks compressed by callback functions.</p><p>A test suite is available.</p></p>
+	<ul class="tags">
+				<li><span class="field">author:</span> Stephen Clay &lt;<a href="mailto:steve@mrclay.org">steve@mrclay.org</a>&gt;</li>
+			</ul>
+		<p class="notes">
+			Located in <a class="field" href="Minify/_lib---jsmin---htmlmin.php.html">/export/home/molle/Data/wrk/SAG-Akademie-GmbH/SAG-Akademie.de/applications/phpdoc/phpDocumentor/lib/jsmin/htmlmin.php</a> (line <span class="field">19</span>)
+		</p>
+		
+				
+		<pre></pre>
+	
+			</div>
+</div>
+
+
+
+	<a name="sec-var-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variable Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+						<span class="disabled">Vars</span> (<a href="#sec-vars">details</a>)
+							| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+								</div>
+		<div class="info-box-body">
+			<div class="var-summary">
+																																																								<div class="var-title">
+					<img src="images/Variable.png" alt=" " />
+					<span class="var-type">mixed</span>
+					<a href="#$_cssMinifier" title="details" class="var-name">$_cssMinifier</a>
+				</div>
+																<div class="var-title">
+					<img src="images/Variable.png" alt=" " />
+					<span class="var-type">mixed</span>
+					<a href="#$_isXhtml" title="details" class="var-name">$_isXhtml</a>
+				</div>
+																<div class="var-title">
+					<img src="images/Variable.png" alt=" " />
+					<span class="var-type">mixed</span>
+					<a href="#$_jsMinifier" title="details" class="var-name">$_jsMinifier</a>
+				</div>
+																<div class="var-title">
+					<img src="images/Variable.png" alt=" " />
+					<span class="var-type">mixed</span>
+					<a href="#$_placeholders" title="details" class="var-name">$_placeholders</a>
+				</div>
+																<div class="var-title">
+					<img src="images/Variable.png" alt=" " />
+					<span class="var-type">mixed</span>
+					<a href="#$_replacementHash" title="details" class="var-name">$_replacementHash</a>
+				</div>
+											</div>
+		</div>
+	</div>
+
+	<a name="sec-method-summary"></a>
+	<div class="info-box">
+		<div class="info-box-title">Method Summary</span></div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+																		<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+				 
+				|
+						<span class="disabled">Methods</span> (<a href="#sec-methods">details</a>)
+		</div>
+		<div class="info-box-body">			
+			<div class="method-summary">
+																				<div class="method-definition">
+					<img src="images/StaticMethod.png" alt=" "/>
+					static
+					<a href="#minify" title="details" class="method-name">minify</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$html</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+																<span class="method-result">string</span>
+									</div>
+																																																																																																				<div class="method-definition">
+					<img src="images/Constructor.png" alt=" "/>
+					<a href="#__construct" title="details" class="method-name">__construct</a>
+											(<span class="var-type">string</span>&nbsp;<span class="var-name">$html</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+																<span class="method-result">null</span>
+									</div>
+																								<div class="method-definition">
+					<img src="images/Method.png" alt=" "/>
+					<a href="#process" title="details" class="method-name">process</a>
+										()
+																<span class="method-result">string</span>
+									</div>
+																<div class="method-definition">
+					<img src="images/Method.png" alt=" "/>
+					<a href="#_commentCB" title="details" class="method-name">_commentCB</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+																<span class="method-result">void</span>
+									</div>
+																<div class="method-definition">
+					<img src="images/Method.png" alt=" "/>
+					<a href="#_needsCdata" title="details" class="method-name">_needsCdata</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$str</span>)
+																<span class="method-result">void</span>
+									</div>
+																<div class="method-definition">
+					<img src="images/Method.png" alt=" "/>
+					<a href="#_outsideTagCB" title="details" class="method-name">_outsideTagCB</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+																<span class="method-result">void</span>
+									</div>
+																<div class="method-definition">
+					<img src="images/Method.png" alt=" "/>
+					<a href="#_removeCdata" title="details" class="method-name">_removeCdata</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$str</span>)
+																<span class="method-result">void</span>
+									</div>
+																<div class="method-definition">
+					<img src="images/Method.png" alt=" "/>
+					<a href="#_removePreCB" title="details" class="method-name">_removePreCB</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+																<span class="method-result">void</span>
+									</div>
+																<div class="method-definition">
+					<img src="images/Method.png" alt=" "/>
+					<a href="#_removeScriptCB" title="details" class="method-name">_removeScriptCB</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+																<span class="method-result">void</span>
+									</div>
+																<div class="method-definition">
+					<img src="images/Method.png" alt=" "/>
+					<a href="#_removeStyleCB" title="details" class="method-name">_removeStyleCB</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+																<span class="method-result">void</span>
+									</div>
+																<div class="method-definition">
+					<img src="images/Method.png" alt=" "/>
+					<a href="#_removeTextareaCB" title="details" class="method-name">_removeTextareaCB</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+																<span class="method-result">void</span>
+									</div>
+																<div class="method-definition">
+					<img src="images/Method.png" alt=" "/>
+					<a href="#_reservePlace" title="details" class="method-name">_reservePlace</a>
+											(<span class="var-type"></span>&nbsp;<span class="var-name">$content</span>)
+																<span class="method-result">void</span>
+									</div>
+											</div>
+		</div>
+	</div>		
+
+	<a name="sec-vars"></a>
+	<div class="info-box">
+		<div class="info-box-title">Variables</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+										<a href="#sec-var-summary">Vars</a> (<span class="disabled">details</span>)
+						
+			
+										| 
+									<a href="#sec-method-summary">Methods</a> (<a href="#sec-methods">details</a>)
+							
+					</div>
+		<div class="info-box-body">
+			
+<a name="$_cssMinifier" id="$_cssMinifier"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_cssMinifier</span>
+			 = <span class="var-default"> null</span>			(line <span class="line-number">167</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="$_isXhtml" id="$_isXhtml"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_isXhtml</span>
+			 = <span class="var-default"> null</span>			(line <span class="line-number">164</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="$_jsMinifier" id="$_jsMinifier"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_jsMinifier</span>
+			 = <span class="var-default"> null</span>			(line <span class="line-number">168</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="$_placeholders" id="$_placeholders"><!-- --></A>
+<div class="evenrow">
+
+	<div class="var-header">
+		<img src="images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_placeholders</span>
+			 = <span class="var-default">array()</span>			(line <span class="line-number">166</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+<a name="$_replacementHash" id="$_replacementHash"><!-- --></A>
+<div class="oddrow">
+
+	<div class="var-header">
+		<img src="images/Variable.png" />
+		<span class="var-title">
+			<span class="var-type">mixed</span>
+			<span class="var-name">$_replacementHash</span>
+			 = <span class="var-default"> null</span>			(line <span class="line-number">165</span>)
+		</span>
+	</div>
+
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	
+		
+		
+
+</div>
+						
+		</div>
+	</div>
+	
+	<a name="sec-methods"></a>
+	<div class="info-box">
+		<div class="info-box-title">Methods</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+															<a href="#sec-var-summary">Vars</a> (<a href="#sec-vars">details</a>)
+														<a href="#sec-method-summary">Methods</a> (<span class="disabled">details</span>)
+						
+		</div>
+		<div class="info-box-body">
+			<A NAME='method_detail'></A>
+<a name="minify" id="minify"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="images/StaticMethod.png" />
+		<span class="method-title">static minify</span> (line <span class="line-number">39</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">&quot;Minify&quot; an HTML page</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			minify
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$html</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$html</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$options</span><span class="var-description">: <p>'cssMinifier' : (optional) callback function to process content of STYLE  elements.</p><p>'jsMinifier' : (optional) callback function to process content of SCRIPT  elements. Note: the type attribute is ignored.</p><p>'xhtml' : (optional boolean) should content be treated as XHTML1.0? If  unset, minify will sniff for an XHTML doctype.</p></span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="__construct" id="__construct"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="images/Constructor.png" />
+		<span class="method-title">Constructor __construct</span> (line <span class="line-number">63</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Create a minifier object</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">null</span>
+		<span class="method-name">
+			__construct
+		</span>
+					(<span class="var-type">string</span>&nbsp;<span class="var-name">$html</span>, [<span class="var-type">array</span>&nbsp;<span class="var-name">$options</span> = <span class="var-default">array()</span>])
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type">string</span>
+				<span class="var-name">$html</span>			</li>
+					<li>
+				<span class="var-type">array</span>
+				<span class="var-name">$options</span><span class="var-description">: <p>'cssMinifier' : (optional) callback function to process content of STYLE  elements.</p><p>'jsMinifier' : (optional) callback function to process content of SCRIPT  elements. Note: the type attribute is ignored.</p><p>'xhtml' : (optional boolean) should content be treated as XHTML1.0? If  unset, minify will sniff for an XHTML doctype.</p></span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="process" id="process"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="images/Method.png" />
+		<span class="method-title">process</span> (line <span class="line-number">83</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+<p class="short-description">Minify the markeup given in the constructor</p>
+	<ul class="tags">
+				<li><span class="field">access:</span> public</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">string</span>
+		<span class="method-name">
+			process
+		</span>
+				()
+			</div>
+	
+		
+			
+	</div>
+<a name="_commentCB" id="_commentCB"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="images/Method.png" />
+		<span class="method-title">_commentCB</span> (line <span class="line-number">150</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_commentCB
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$m</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="_needsCdata" id="_needsCdata"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="images/Method.png" />
+		<span class="method-title">_needsCdata</span> (line <span class="line-number">241</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_needsCdata
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$str</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="_outsideTagCB" id="_outsideTagCB"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="images/Method.png" />
+		<span class="method-title">_outsideTagCB</span> (line <span class="line-number">170</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_outsideTagCB
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$m</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="_removeCdata" id="_removeCdata"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="images/Method.png" />
+		<span class="method-title">_removeCdata</span> (line <span class="line-number">234</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_removeCdata
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$str</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$str</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="_removePreCB" id="_removePreCB"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="images/Method.png" />
+		<span class="method-title">_removePreCB</span> (line <span class="line-number">175</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_removePreCB
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$m</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="_removeScriptCB" id="_removeScriptCB"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="images/Method.png" />
+		<span class="method-title">_removeScriptCB</span> (line <span class="line-number">207</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_removeScriptCB
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$m</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="_removeStyleCB" id="_removeStyleCB"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="images/Method.png" />
+		<span class="method-title">_removeStyleCB</span> (line <span class="line-number">185</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_removeStyleCB
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$m</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="_removeTextareaCB" id="_removeTextareaCB"><!-- --></a>
+<div class="evenrow">
+	
+	<div class="method-header">
+		<img src="images/Method.png" />
+		<span class="method-title">_removeTextareaCB</span> (line <span class="line-number">180</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_removeTextareaCB
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$m</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$m</span>			</li>
+				</ul>
+		
+			
+	</div>
+<a name="_reservePlace" id="_reservePlace"><!-- --></a>
+<div class="oddrow">
+	
+	<div class="method-header">
+		<img src="images/Method.png" />
+		<span class="method-title">_reservePlace</span> (line <span class="line-number">157</span>)
+	</div> 
+	
+	<!-- ========== Info from phpDoc block ========= -->
+	<ul class="tags">
+				<li><span class="field">access:</span> protected</li>
+			</ul>
+	
+	<div class="method-signature">
+		<span class="method-result">void</span>
+		<span class="method-name">
+			_reservePlace
+		</span>
+					(<span class="var-type"></span>&nbsp;<span class="var-name">$content</span>)
+			</div>
+	
+			<ul class="parameters">
+					<li>
+				<span class="var-type"></span>
+				<span class="var-name">$content</span>			</li>
+				</ul>
+		
+			
+	</div>
+						
+		</div>
+	</div>
+
+	
+	<p class="notes" id="credit">
+		Documentation generated on Sat, 27 Feb 2010 06:45:04 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

@@ -1,0 +1,101 @@
+version: "3"
+
+services: 
+  web:
+    container_name: sag_prod_www
+    hostname: www.sag-akademie.de
+    image: hub.ad.mosaiksoftware.de/sag/www
+    ports: 
+      - "8081:80"
+    environment:
+      PHP_MCM_DEBUG_CONFIG: www.sag-akademie.de
+    networks:
+      sag:
+        aliases: 
+          - web
+    volumes:
+      - files:/var/www/files
+      - pdf:/var/www/pdf
+      - resources_pdf:/var/www/resources/pdf
+      - downloads:/var/www/downloads
+      - img:/var/www/img
+      - apache_logs:/var/log/apache2
+      - templates:/var/www/templates
+  mysqldb:
+    container_name: sag_prod_mysql
+    image: hub.ad.mosaiksoftware.de/sag/mysql
+    volumes: 
+      - mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: sag1234
+      MYSQL_USER: sag_stable
+      MYSQL_PASSWORD: "54g-4k4d3m13"
+      MYSQL_DATABASE: sag-akademie_de_stable
+      command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+     sag:
+      aliases: 
+        - mysqldb
+    ports: 
+      - "3306:3306"
+  memcache:
+    container_name: sag_prod_memcache
+    image: memcached
+    expose: 
+      - "11211"
+    command: memcached -m 1024 -p 11211 -vvv
+    networks:
+     sag:
+      aliases: 
+        - memcache
+   sftp:
+    image: mosaiksoftware/debian-rssh
+    ports:
+      - "21:4001"
+    environment:
+      SSH_PORT: "4001"
+      ALLOW_SFTP: "yes"
+      USER: "sag"
+      PASSWORD: "sag#2018"
+      USER_1: "ms"
+      PASSWORD_1: "ms#2018"
+    volumes:
+      - "templates:/chroot/home/sag"
+      - "templates:/chroot/home/ms"
+
+volumes:
+    mysql: 
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/sag_prod/mysql
+    files:
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/sag_prod/files
+    pdf:
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/sag_prod/pdf
+    resources_pdf:
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/sag_prod/resources_pdf
+    downloads:
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/sag_prod/downloads
+    img: 
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/sag_prod/img
+    templates: 
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/sag_prod/templates
+    apache_logs:
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/sag_prod/apache-logs
+networks:
+  sag:
+

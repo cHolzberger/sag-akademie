@@ -1,0 +1,76 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+	<!-- siehe resources/taglib/infoboxDownload.php-->
+	<infoboxDownload />
+
+</infoboxSmall>
+
+<content>
+
+	<img src="/img/title_anfahrten.png" alt="" border="0" width="230"
+		height="22" style="position: absolute; left:0px; top:0px;" />
+
+	<div
+		style="position: absolute; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<table border="0" cellspacing="0" cellpadding="0" width="400"
+			style="position: absolute; left:0px; top:0px;">
+			<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/anfahrt_darmstadt.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/anfahrt_darmstadt.pdf" target="_blank" class="blau">
+							<b>Anfahrtsbeschreibung zur SAG in Darmstadt</b>
+						</a>
+						<br />
+						Wegbeschreibung und Anfahrtskizze zum SAG Standort in Darmstadt
+					</span>
+				</td>
+			</tr>
+									<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/anfahrt_luenen.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/anfahrt_luenen.pdf" target="_blank" class="blau">
+							<b>Anfahrtsbeschreibung zur SAG in Lünen</b>
+						</a>
+						<br />
+						Wegbeschreibung und Anfahrtskizze zum SAG Standort in Lünen
+					</span>
+				</td>
+			</tr>
+									<tr>
+				<td valign="middle">
+					<nobr />
+					<a href="/pdf/anfahrt_kassel.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/anfahrt_kassel.pdf" target="_blank" class="blau">
+							<b>Anfahrtsbeschreibung zur SAG in Kassel</b>
+						</a>
+						<br />
+						Wegbeschreibung und Anfahrtskizze zum SAG Standort in Kassel
+					</span>
+				</td>
+			</tr>
+
+			
+
+		</table>
+
+	</div>
+</content>

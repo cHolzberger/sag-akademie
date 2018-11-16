@@ -1,0 +1,16 @@
+{
+	"default": {
+		"class": "Aktuelles_Aktuelles",
+		"name": "Aktuelles",
+		"fieldname": "Filedata",
+		"filestore": "/pdf/",
+		"fileprefix": "aktuell_",
+		"allowedExtensions": ["pdf"],
+		"defaultset": false,
+		"defaultvalue": ""
+	},
+
+	"production": {
+		"_extends": "default"
+	}
+}

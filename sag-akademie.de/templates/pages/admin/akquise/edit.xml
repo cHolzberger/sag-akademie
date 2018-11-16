@@ -1,0 +1,128 @@
+<content width="98%;" top="30px" left="30px;" >
+	<h1><switch key="AkquiseKontakt:firma">
+			<img src="/css/theme/icons/kontakt.png" border="0" style="margin-right: 5px; float: left;"/>
+			<case value="">
+				Neuer Akquise Kontakt
+			</case>
+			<case value="*">
+				<mdb:value mpath="AkquiseKontakt:firma" />
+			</case>
+	</switch></h1>
+	<switch key="AkquiseKontakt:firma">
+		<case value="*">
+			<mdb:link href="/admin/akquise/#DATA#?konvert" mpath="AkquiseKontakt:id" class="transfertokontakt" >
+				Kontakt &uuml;bernehmen
+			</mdb:link>
+
+			<dialog type="confirmation" target=".transfertokontakt" title="Kontakt &uuml;bernehmen?">
+				Möchten Sie diesen Akquise Kontakt als Kunde &uuml;bernehmen. Der Akquise Kontakt wird gel&ouml;scht.
+			</dialog>
+		</case>
+	</switch>
+	<dbform class="no-reload">
+		<!-- ERSTE SPALTE -->
+		<div class="c33">
+			<h2>Angaben zum Unternehmen</h2>
+			<dbinput name="firma" label="Firma" />
+			<dbinput name="zusatz" label="Zusatz"/>
+			<dbinput name="branche" label="Branche" />
+			<dbinput name="hauptverwaltung" value="1" type="checkbox" label="Niederlassung"/>
+			<dbselect name="kontaktkategorie" label="Kontaktkategorie" fromTable="KontaktKategorie" fromTableKey="id" fromTableDisplay="name"/>
+			<dbselect name="branche_id" label="Branche" fromTable="XBranche" fromTableKey="id" fromTableDisplay="name"/>
+			<dbselect name="taetigkeitsbereich_id" label="T&auml;tigkeitsbereich" fromTable="XTaetigkeitsbereich" fromTableKey="id" fromTableDisplay="name"/>
+			<h2>Mitgliedschaften</h2>
+			<dbinput name="vdrk_mitglied" value="1" type="checkbox" label="VDRK Mitglied"/>
+			<dbinput name="vdrk_mitglied_nr" label="VDRK Mitglied Nr"/>
+			<br/>
+			<dbinput name="dwa_mitglied" value="1" type="checkbox" label="DWA Mitglied"/>
+			<dbinput name="dwa_mitglied_nr" label="DWA Mitglied Nr"/><br/>
+			<dbinput name="rsv_mitglied" value="1" type="checkbox" label="RSV Mitglied"/>
+			<dbinput name="rsv_mitglied_nr" label="RSV Mitglied Nr"/>
+
+			
+			<h2>
+				Sonstige Informationen
+			</h2>
+			<dbinput name="alias" label="Alias"/>
+			<dbinput name="kundennr" label="Kunden-Nr."/>
+			<dbinput name="kundenstatus" label="Kundenstatus"/>
+			<dbselect name="quelle_id" label="Kontakt Quelle" fromTable="KontaktQuelle" fromTableKey="id" fromTableDisplay="name"/>
+			<dbinput class="datepicker" name="kontakt_quelle_stand" label="Kontakt Quelle Stand" converter="mysqlDatetimeToLocal"/>
+			<br/>
+			<dbinput name="wiedervorlage" value="1" type="checkbox" label="Wiedervorlage"/>
+		</div>
+		<!-- ZWEITE SPALTE -->
+		<div class="c33">
+			<h2>Adressinformationen</h2>
+			<dbinput name="strasse"	label="Stra&szlig;e, Nr." />
+			<dbinput name="plz"	label="PLZ" converter="plz"/>
+			<dbinput name="ort"	label="Ort" /> 
+			<!--<dbinput name="bundesland" label="Bundesland" />-->
+			<dbselect name="bundesland_id" label="Bundesland" fromTable="XBundesland" dbtable="AkquiseKontakt" fromTableKey="id" fromTableDisplay="name"/>
+			<!--<dbselect name="land_id" label="Land" fromTable="XLand" dbtable="kontakt" fromTableKey="id" fromTableDisplay="name"/>-->
+
+
+			<dbinput name="kreis" label="Kreis" />
+			<dbinput name="regierungsbezirk" label="Regierungsbezirk" />
+
+			<h2>Kontaktinformationen</h2>
+			<dbinput name="tel" label="Telefon" />
+			<dbinput name="fax" label="Fax" />
+			<dbinput name="url"	label="URL" />
+			<br/>
+			<dbinput name="email" label="E-Mail (Mailing)" />
+			<dbinput name="email2" label="E-Mail 2"/>
+
+			<dbinput name="newsletter" value="1" type="checkbox" label="Newsletter" />
+			<dbinput class="datepicker" name="anmelde_datum" label="Anmeldedatum" converter="mysqlDateToLocal"/>
+			<dbinput class="datepicker" name="abmelde_datum" label="Abmeldedatum" converter="mysqlDateToLocal"/>
+			<h2>
+				Notizen
+			</h2>
+			<dbtextarea label="Notiz" name="notiz" style="width: 225px; height: 100px;">
+			</dbtextarea>
+		</div>
+		<!-- DRITTE SPALTE -->
+		<div class="c33">
+			<h2>Angaben zum Ansprechpartner</h2>
+			<dbinput name="anrede" label="Anrede" />
+			<dbinput name="titel" label="Titel" />
+			<dbinput name="vorname" label="Vorname" />
+			<dbinput name="name" label="Name" />
+			<dbinput name="abteilung" label="Abteilung" />
+			<dbinput name="tel_durchwahl" label="Telefon Durchwahl" />
+			<dbinput name="mobil" label="Mobil" />
+			<dbinput name="ansprechpartner_email" label="E-Mail" />
+			
+			<h2>Adress-Qualifizierung</h2>
+			<dbinput name="qualifiziert" value="1" type="checkbox" label="Qualifiziert" />
+			<dbinput class="datepicker" name="qualifiziert_datum" label="Qualifiziert Datum" converter="mysqlDateToLocal"/>
+			<dbtextarea label="Qualifiziert Notiz" name="qualifiziert_notiz" style="width: 225px; height: 100px;">
+			</dbtextarea>
+
+			<h2>Weitere Informationen</h2>
+			<!--
+			<dbinput name="umkreis" label="Umkreis" />
+			<dbinput name="vergleich" label="Vergleich" />
+			<dbinput name="bereits_in_verteiler" label="Bereits in Verteiler" />-->
+			<dbinput readonly="readonly" name="AngelegtVon:name" label="Angelegt von"/>
+			<dbinput readonly="readonly" name="GeaendertVon:name" label="Geändert von"/>
+			<dbinput readonly="readonly" name="geaendert" label="Geändert" converter="mysqlDateTimeToLocal" />
+			
+			
+		</div>
+		<ribbon:dynamicGroupRight forId="verwaltungTab">
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();" >
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+
+		<ribbon:dynamicGroupRight forId="verwaltungTab" offset="100px" class="ui-ribbon-group-reset">
+			<ribbonButton icon="icon_print" href="javascript:$.mosaikRuntime.print();">
+				Drucken
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+
+	</dbform>
+
+</content>

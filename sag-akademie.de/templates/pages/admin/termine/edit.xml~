@@ -1,0 +1,282 @@
+
+<content>
+	<js:import src="/resources/scripts/forms/admin_termin.js" />
+
+	<ribbon:dynamicGroupRight forId="verwaltungTab">
+		<ribbonButton icon="icon_print" href="javascript:$.mosaikRuntime.print();">
+			Drucken
+		</ribbonButton>
+		
+		<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+			Speichern
+		</ribbonButton>
+	</ribbon:dynamicGroupRight>
+	
+	<h1>
+		Seminartermin
+	</h1>
+	<dbform class="no-reload termin-edit">
+		<div class="csmall">
+			<dbinput name="id" type="hidden"/>
+			<mform:group label="Angaben zum Termin">
+				<mform:label label="Seminar-ID">
+					<!-- fuer neue seminare -->
+					<mdb:input type="hidden" mpath="SeminarArt:id" />
+
+					<mdb:var mpath="SeminarArt:id" />
+				</mform:label>
+				<mform:label label="Bezeichnung">
+					<mdb:var mpath="SeminarArt:bezeichnung" />
+				</mform:label>
+				<mdb:input mpath="Seminar:kursnr" label="Kurs Nr."/>
+				<dbselect name="standort_id" label="Ort" fromTable="Standort" fromTableKey="id" fromTableDisplay="name"/>
+				<div id="freigabestatus" class="dbselect">
+					<label class="label" for="input_Seminar_standort_id">Freigabe</label>
+					<dbselect name="freigabe_status" fromTable="SeminarFreigabestatus" fromTableKey="id" fromTableDisplay="name" />
+					<mdb:value mpath="Seminar:freigabe_datum"  converter="mysqlDateToLocal" />
+				</div>
+					
+				<mdb:input class="datepicker" mpath="Seminar:storno_datum" label="Absagedatum" converter="mysqlDateToLocal"/>
+				<mdb:input type="checkbox" value="1" mpath="Seminar:ausgebucht" label="Ausgebucht"/>
+				
+			</mform:group>
+			<mform:group label="Seminardauer" id="seminardauer">
+				<mdb:input class="datepicker" mpath="Seminar:datum_begin" label="von" converter="mysqlDateToLocal" labelstyle="width: 30px;"/>
+				<mdb:input class="datepicker" mpath="Seminar:datum_ende" label="&nbsp;bis" converter="mysqlDateToLocal"  labelstyle="width: 30px;"/>
+				<div class="cclear"> &nbsp; </div>
+				<mform:label label="Tage">
+					<mdb:value mpath="Seminar:dauer" />
+				</mform:label>
+				<div class="cclear"> &nbsp; </div>
+				<mform:label label="Stunden pro Tag" class="align-right">
+					<mdb:input mpath="Seminar:stunden_pro_tag" default="SeminarArt:stunden_pro_tag" style="float: left; width: 100px; min-width: 25px; clear: none;" nolabel="true" append="Std"  converter="euroPreis"/>
+					<div style="float: left; padding-top: 3px; padding-right: 4px; min-width: 10px; max-width: 200px; width: 93px; text-align: right;" id="stundenGesamt">#WERT#</div>
+					<div style="float: left; padding-top: 3px;">Std</div>
+				</mform:label>
+				<mform:label label="Pause pro Tag" class="align-right">
+					<mdb:input mpath="Seminar:pause_pro_tag" default="SeminarArt:pause_pro_tag"  style="float: left; width: 100px; min-width: 25px; clear: none;" nolabel="true" append="Std"  converter="euroPreis"/>
+					<div style="float: left; padding-top: 3px; padding-right: 4px; min-width: 10px; max-width: 200px; width: 93px; text-align: right;" id="pauseGesamt">#WERT#</div>
+					<div style="float: left; padding-top: 3px;">Std</div>
+				</mform:label>
+				<div class="cclear"> &nbsp; </div>
+				<mform:label label="Gesamt Stunden" id="gesamtStundenLabel" class="align-right">
+					<strong><span id="gesamtStunden">#WERT!#</span></strong>
+				</mform:label>
+				<mform:label label="Gesamt UE" id="gesamtUeLabel" class="align-right">
+					<strong><span id="gesamtUe">#WERT!#</span></strong>
+				</mform:label>
+				<div class="cclear"> &nbsp; </div>
+			<!-- fixme: Tage -->
+			<!-- fixme: Stunden -->
+			<!-- fixme: UE -->
+			</mform:group>
+			<mform:group label="Teilnehmerstatus">
+				<mdb:input mpath="Seminar:teilnehmer_min" label="min. TN-Zahl" default="SeminarArt:teilnehmer_min_tpl" class="float-left"/>
+				<mdb:input mpath="Seminar:teilnehmer_max" label="max. TN-Zahl" default="SeminarArt:teilnehmer_max_tpl"  class="float-left"/>
+
+				<hr class="cclear" />
+				<mform:label label="TN-Stand:" bold="true" id="tn-stand-label">
+					<mdb:value mpath="anzahlBestaetigt" />
+				</mform:label>
+				
+				<mform:label label="storniert:"  id="storniert-label">
+					<mdb:value mpath="anzahlStorniert" />
+				</mform:label>
+				<mform:label label="umgebucht:"  id="umgebucht-label">
+					<mdb:value mpath="anzahlUmgebucht" />
+				</mform:label>
+				<mform:label label="nicht erschienen"  id="nicht-teilg-label">
+					<mdb:value mpath="anzahlNichtTeilgenommen" />
+				</mform:label>
+				<div class="cclear">&nbsp;</div>
+			</mform:group>
+		</div>
+		
+		<div class="csmall">
+			<mform:group label="Interne Informationen">
+				<mdb:textarea mpath="Seminar:interne_information" style="width: 98%; height: 50px;" rte="true">
+				</mdb:textarea>
+			</mform:group>
+			<mform:group label="Hinweis zum Termin (veröffentlicht)">
+
+				<mdb:textarea mpath="Seminar:hinweis" style="width: 98%; height: 50px;" rte="true">
+				</mdb:textarea>
+			</mform:group>
+			<mform:group label="Organisatorisches">
+
+				<mdb:textarea mpath="Seminar:organisatorisches" style="width: 98%; height: 50px;" rte="true">
+				</mdb:textarea>
+			</mform:group>
+			<mform:group label="Ger&auml;tschaften">
+
+				<mdb:textarea mpath="Seminar:geraetschaften" style="width: 98%; height: 50px;" rte="true">
+				</mdb:textarea>
+			</mform:group>
+		</div>
+		<div class="csmall">
+			<mform:group label="Referenten">
+				<table style="width: 330px;" id="referentenTable">
+					<thead>
+						<th class="tag-label">
+							
+						</th>
+						<th style="width: 95px; color: #888;" >
+							Theorie
+						</th>
+						<th style="width: 95px; color: #888;" >
+							Praxis
+						</th>
+					</thead>
+					<tbody id="referenten">
+					</tbody>
+				</table>
+			</mform:group>
+			<mform:group label="Kosten &amp; Umsatz" id="kosten-und-umsatz">
+				<mdb:input mpath="Seminar:kursgebuehr" default="SeminarArt:kursgebuehr"  label="Kursgebühr" default="SeminarArt:kursgebuehr" append="€" converter="euroPreis"/>
+				
+				<mform:label label="min. TN-Zahl" class="align-right" append="€">
+					<span id="tnUmsatzMin">#WERT!#</span>
+				</mform:label>
+				<mform:label label="max. TN-Zahl" class="align-right" append="€">
+					<span id="tnUmsatzMax">#WERT!#</span>
+				</mform:label>
+				<mform:label label="TN-Stand / Umsatz" bold="false" class="align-right" append="€">
+					<strong>
+						<span id="tnAuslastung">#WERT!#</span>
+					</strong>
+					<strong>
+						<span id="tnUmsatzStand">#WERT!#</span>
+					</strong>
+					
+				</mform:label>
+				<!-- verwaltungskosten -->
+				<mform:label label="Verwaltungskosten" class="align-right" >
+					<mdb:input mpath="Seminar:kosten_allg" default="SeminarArt:kosten_allg"  style="float: left; width:  100px; min-width: 25px; clear: none;" nolabel="true" append="%"  />
+
+					<div style="float: left; padding-top: 3px; padding-right: 4px; min-width: 10px; max-width: 200px; width: 93px; text-align: right; color: red;" id="seminarVerwaltungskosten">#WERT#</div>
+					<div style="float: left; padding-top: 3px;">€</div>
+				</mform:label>
+				<!-- referentenkosten -->
+				<mform:label label="Referentenkosten" class="align-right" >
+					<mdb:input mpath="Seminar:kosten_refer" default="SeminarArt:kosten_refer"  nolabel="true" append="€" converter="euroPreis" style="float: left; width:  100px; min-width: 25px; clear: none;"/>
+					<div style="float: left; padding-top: 3px; padding-right: 4px; min-width: 10px; max-width: 200px; width: 93px; text-align: right; color: red;" id="seminarReferentenkosten">#WERT#</div>
+					<div style="float: left; padding-top: 3px;">€</div>
+				</mform:label>
+				
+
+				<!-- Kosten seminarunterlagen -->
+				<mform:label label="Seminarunterlagen" class="align-right">
+					<mdb:input mpath="Seminar:kosten_unterlagen" default="SeminarArt:kosten_unterlagen"  style="float: left; width: 100px; min-width: 25px; clear: none;" nolabel="true" append="€"  converter="euroPreis"/>
+					<div style="float: left; padding-top: 3px; padding-right: 4px; min-width: 10px; max-width: 200px; width: 93px; text-align: right; color: red;" id="seminarUnterlagen">#WERT#</div>
+					<div style="float: left; padding-top: 3px;">€</div>
+				</mform:label>
+				<!-- VERPFLEGUNG -->
+				<mform:label label="Verpflegung" class="align-right">
+					<mdb:input  mpath="Seminar:kosten_verpflegung" default="SeminarArt:kosten_verpflegung"  style="float: left; width: 100px; min-width: 25px; clear: none;" nolabel="true" append="€"  converter="euroPreis"/>
+					<div style="float: left; padding-top: 3px; padding-right: 4px; min-width: 10px; max-width: 200px; width: 93px; text-align: right; color: red;" id="seminaVerpflegung">#WERT#</div>
+					<div style="float: left; padding-top: 3px;">€</div>
+				</mform:label>
+				<mform:label label="Prüfung" class="align-right">
+					<mdb:input mpath="Seminar:kosten_pruefung" default="SeminarArt:kosten_pruefung"  style="float: left; width: 100px; min-width: 25px; clear: none;" nolabel="true" append="%"  />
+					<div style="float: left; padding-top: 3px; padding-right: 4px; min-width: 10px; max-width: 200px; width: 93px; text-align: right; color: red;" id="seminarPruefung">#WERT#</div>
+					<div style="float: left; padding-top: 3px;">€</div>
+				</mform:label>
+				<mform:label label="Gewinn" class="align-right" append="€">
+					<strong><span id="gewinn">#WERT#</span></strong>
+				</mform:label>
+
+				<!--<mdb:input mpath="seminar:nettoep" label="Netto EP" converter="euroPreis" default="SeminarArt:nettoep"/>-->
+				<!--
+				<mdb:input mpath="seminar:kosten_allg" label="Kosten Allgemein" converter="euroPreis" default="SeminarArt:kosten_allg"/>
+				<mdb:input mpath="seminar:kosten_unterlagen" label="Kosten Unterlagen" converter="euroPreis" default="SeminarArt:kosten_unterlagen"/>
+				<mdb:input mpath="seminar:kosten_verpflegung" label="Kosten Verpflegung" tooltip="Kosten für die Verpflegung, pro Tag und Person" converter="euroPreis" default="SeminarArt:kosten_verpflegung"/>
+				<mdb:input mpath="seminar:kosten_refer" label="Kosten Referent" converter="euroPreis" default="SeminarArt:kosten_refer"/>
+		-->
+			</mform:group>
+			<mform:group label="Weitere Informationen">
+				<mform:label label="Ge&auml;ndert von">
+					<mdb:value mpath="Seminar:GeaendertVon:name" /> am <mdb:value mpath="Seminar:geaendert" converter="mysqlDateTimeToLocal"/>
+				</mform:label>
+				<!--<mdb:input readonly="readonly" mpath="GeaendertVon:name" label="Geändert von"/>
+				<mdb:input readonly="readonly" mpath="geaendert" label="Geändert am" converter="mysqlDateTimeToLocal" />-->
+			</mform:group>
+			
+		</div>
+		<div class="cverysmall">
+			<mform:group label="Links zur Homepage">
+				<mdb:link title="Startseite" href="/" mpath="Seminar:SeminarArt:id" target="_blank">Startseite</mdb:link>
+				<br/>
+				<mdb:link title="Startseite" href="/seminar/info/#DATA#" mpath="Seminar:SeminarArt:id" target="_blank">Seminar</mdb:link>
+				<br/>
+				<mdb:link title="Startseite" href="/seminar/buchen/#DATA#" mpath="Seminar:id" target="_blank">Buchen</mdb:link>
+
+			</mform:group>
+
+			<mform:group label="Interne Links (Admin)">
+				<mdb:link mpath="Seminar:SeminarArt:id" href="/admin/seminare/#DATA#?edit">Seminar</mdb:link>
+				<br/>
+				<mdb:link mpath="Seminar:id" mpath1="Seminar:standort_id" href="/admin/planung/termin?standort_id=#DATA1#&amp;seminar_id=#DATA#" >Referentenplanung Termin</mdb:link>
+				<br/>
+				<mdb:link mpath="Seminar:seminar_art_id" mpath1="Seminar:standort_id" href="/admin/planung/seminar?standort_id=#DATA1#&amp;seminar_art_id=#DATA#" >Referentenplanung Seminar</mdb:link>
+				<br/>
+				<mdb:link mpath="jahr" href="/admin/planung?year=#DATA#">zum Kalender</mdb:link>
+				<br/>
+			</mform:group>
+		
+		
+
+
+			<switch key="Seminar:id">
+				<case value="#empty"></case>
+				<case value="*">
+					<mform:group label="Export">
+						<mdb:link mpath="Seminar:id" href="download:/admin/pdf/teilnehmerliste/#DATA#;pdf"  value="Anwesenheitsliste als PDF"/>
+						<br/>
+						<mdb:link mpath="Seminar:id" href="download:/admin/pdf/tischbeschilderung/#DATA#;pdf"  value="Tischbeschilderung als PDF"/>
+						<br/>
+						<mdb:link mpath="Seminar:id" href="download:/admin/csv/teilnehmerliste/#DATA#;csv"  value="Teilnehmerliste als CSV"/>
+						<br/>
+						<mdb:link mpath="Seminar:id" href="#"  value="Kursinformationen / Top" />
+						<br/>
+						<mdb:link mpath="Seminar:id" href="#"  value="Zertifikate"/>
+					</mform:group>
+				</case>
+			</switch>
+			
+			<mform:group label="Mailversand">
+				<mdb:link mpath="Seminar:id" href="#" value="Mail an Referenten" id="linkReferentenMail"/>
+				<br/>
+				<mdb:link mpath="Seminar:id" href="#" value="Mail an Teilnehmer" id="linkTeilnehmerMail"/>
+				<br/>
+			</mform:group>
+		</div>
+		<div class="cclear">
+			<hr />
+		</div>
+		<div class="c100" id="table-container">
+			<dbbuttons buttons="edit" basehref="/admin/buchungen/" tooltipEdit="Buchung bearbeiten" tooltipTermin="Termin anzeigen" tooltipDelete="Buchung l&ouml;schen"/>
+			<widget:itable2 src="/admin/json/terminBuchungen/#DATA#"  mpath="Seminar:id"/>
+			
+			<!--
+			<mdb:quicklistContainer>
+				<foreach fromArray="Seminar:Buchungen" style="width: 700px; height:100px;">
+					<mdb:quicklistItem
+					 mpathField1="datum"
+					 mpathField2="status"
+					 offsetField3="120"
+					 mpathField3="Person:name"
+					 mpathField4="Person:vorname"
+					 mpathField5="Person:Kontakt:firma"
+					 checkbox1="teilgenommen"
+					 checkbox1Id="id"
+					 converterField1="mysqlDateToLocal"
+					 converterField2="statusToStr" >
+						<mdb:link href="/admin/buchungen/#DATA#?edit" mpath="id">
+							<img src="/img/admin/icon_quicklist_edit.png" border="0" alt="Buchung bearbeiten"/>
+						</mdb:link>
+					</mdb:quicklistItem>
+				</foreach>
+			</mdb:quicklistContainer>-->
+		</div>
+	</dbform>
+</content>

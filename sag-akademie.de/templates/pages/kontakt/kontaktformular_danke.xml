@@ -1,0 +1,66 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+<img src="/img/hotline.png" alt="" border="0" width="239" height="161" style="position: absolute; left:705px; top:6px;" usemap="#formulare" /><map name="formulare"><area shape="RECT" coords="90,80,230,120" href="/kontakt/callbackformular" /></map>
+<img src="/img/image_kontaktformular.png" alt="" border="0" width="537" height="124" style="position: absolute; left:90px; top:25px;" usemap="#formulare2"/>
+<map name="formulare2"><area shape="RECT" coords="360,70,540,100" href="mailto:info@sag-akademie.de" /></map>
+</infoboxSmall>
+
+<content>
+
+
+<img src="/img/title_kontaktformular.png" alt="" border="0" width="180" height="22" style="position: absolute; left:0px; top:0px;"/>
+
+<span style="text-align:center;color:#ff0000;position:absolute; top:25px;"><b>Danke! Wir haben Ihre Nachricht erhalten und werden schnellstmöglich antworten.</b></span><br/>&nbsp;<br/>
+
+<div style="position: absolute; left:0px; top:45px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+<form method="POST" action="/form/kontakt" class="form">
+
+<table border="0" cellspacing="5" cellpadding="5" style="font-family:Arial,Helvetica;font-size:11px; position: absolute; left:0px; top:0px;">
+
+<tr><td valign="bottom" align="right">Firma</td><td><input type="Text" name="Firma" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;"></td></tr>
+<tr><td valign="bottom" align="right">Anrede</td><td><select name="Anrede" size="" style="width:270px;background-color:#eeeeee;"><option value="Herr">Herr</option><option value="Frau">Frau</option></select></td></tr>
+<tr><td valign="bottom" align="right">Vorname*</td><td><input type="Text" name="Vorname" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;" class="required"></td></tr>
+<tr><td valign="bottom" align="right">Name*</td><td><input type="Text" name="Name" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;" class="required"></td></tr>
+<tr><td valign="bottom" align="right">Stra&szlig;e, Nummer</td><td><input type="Text" name="Stra&szlig;e" value="" size="40" maxlength="100" style="width:217px;background-color:#eeeeee;">&nbsp;&nbsp;<input type="Text" name="Nummer" value="" size="40" maxlength="100" style="width:38px;background-color:#eeeeee;"></td></tr>
+<tr><td valign="bottom" align="right">PLZ, Ort</td><td><input type="Text" name="PLZ" value="" size="40" maxlength="100" style="width:60px;background-color:#eeeeee;">&nbsp;&nbsp;<input type="Text" name="Ort" value="" size="40" maxlength="100" style="width:195px;background-color:#eeeeee;"></td></tr>
+<tr><td valign="bottom" align="right">Bundesland</td><td>
+<select style="width:269px;background-color:#eeeeee;" name="Bundesland">
+<option>-</option>
+<option>Baden-W&uuml;rttemberg</option>
+<option>Bayern</option>
+<option>Berlin</option>
+<option>Brandenburg</option>
+<option>Bremen</option>
+<option>Hamburg</option>
+<option>Hessen</option>
+<option>Mecklenburg-Vorpommern</option>
+<option>Niedersachsen</option>
+<option>Nordrhein-Westfalen</option>
+<option>Rheinland-Pfalz</option>
+<option>Saarland</option>
+<option>Sachsen</option>
+<option>Sachsen-Anhalt</option>
+<option>Schleswig-Holstein</option>
+<option>Th&uuml;ringen</option></select>
+</td></tr>
+<tr><td valign="bottom" align="right">Land</td><td>
+<select style="width:269px;background-color:#eeeeee;" name="Land">
+<option>Deutschland</option>
+<option>Schweiz</option>
+<option>Österreich</option>
+<option>Luxembourg</option>
+</select>
+</td></tr>
+</table>
+
+<table border="0" cellspacing="5" cellpadding="5" style="font-family:Arial,Helvetica;font-size:11px; position: absolute; left:400px; top:0px;">
+<tr><td valign="bottom" align="right">Telefon</td><td><input type="Text" name="Telefon" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;"></td></tr>
+<tr><td valign="bottom" align="right" name="email">Email*</td><td><input type="Text" name="email" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;" class="required"></td></tr>
+<tr><td valign="bottom" align="right">Thema*</td><td><select name="Thema" size="" style="width:268px;background-color:#eeeeee;"><option value="Seminare">Seminare</option><option value="Rechnungen">Rechnungen</option><option value="Buchhaltung">Buchhaltung</option><option value="Lob">Lob</option><option value="Beschwerde">Beschwerde</option><option value="Sonstiges">Sonstiges</option></select></td></tr>
+<tr><td valign="top" align="right">Nachricht*</td><td><textarea name="Nachricht" cols="31" rows="4" style="width:265px;background-color:#eeeeee;" class="required"></textarea></td></tr>
+<tr><td colspan="2" align="right"><input type="image" name="Nachricht senden" src="/img/button_form_senden.png" width="126" height="37" alt="Nachricht senden" border="0" style="position:absolute;right:60px;top:170px;"/></td></tr>
+</table>
+</form>
+</div>
+</content>

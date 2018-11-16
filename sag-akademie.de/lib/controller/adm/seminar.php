@@ -1,0 +1,82 @@
+<?php
+
+include("adm/dbcontent.php");
+
+class SeminarPdfStore extends MosaikFileStore {
+	var $fieldname = "image_upload";
+	var $filestore = "/pdf/";
+	var $fileprefix = "pdf_";
+	var $allowedExtensions = array("pdf");
+	var $defaultset = false;
+	var $defaultvalue = "";
+
+}
+
+class ADM_Seminar extends ADM_DBContent {
+
+	function map($name) {
+		return "ADM_Seminar";
+	}
+
+	function onEdit(& $pr, & $ds) {
+		$standorte = Doctrine::getTable("Standort")->findAll(Doctrine::HYDRATE_ARRAY);
+
+		foreach ($standorte as $key => $x) {
+			$standorte[$key]['seminar_art_id'] = $this->entryId; // quickbugfix
+		}
+		$ds->add("Standort", $standorte);
+
+		$fn = $this->name() . "/edit.xml";
+		$pr->loadPage($fn);
+	}
+
+	function onSave(&$pr, &$ds) {
+		$result = $this->getOneClass($this->entryId);
+		$data = $_POST[$this->entryTable];
+
+		if (empty($data['sichtbar_planung'])) {
+			$data['sichtbar_planung'] = 0;
+		}
+
+		if ($this->next() != "new" && $data['id'] != $result->id) {
+			// termine mit der neuen SeminarArtId ausstatten
+			$termine = $result->Seminare;
+			foreach ($termine as $termin) {
+				$termin->seminar_art_id = $data['id'];
+				$termin->save();
+			}
+
+			// nummerierung beibehalten
+			$nummern = $result->SeminarArtNummern;
+			foreach ($nummern as $nummer) {
+				$nummer->seminar_art_id = $data['id'];
+				$nummer->save();
+			}
+
+			$referenten = Doctrine::getTable("SeminarArtReferent")->findBySeminar_art_id($result->id);
+			foreach ($referenten as $referent) {
+				$referent->seminar_art_id = $data['id'];
+				$referent->save();
+			}
+		}
+		$st = new SeminarPdfStore();
+
+		$data['info_link'] = $st->uploadFile(basename($result->info_link), 'info_upload_1');
+		$data['info_link2'] = $st->uploadFile(basename($result->info_link2), 'info_upload_2');
+		$data['info_link3'] = $st->uploadFile(basename($result->info_link3), 'info_upload_3');
+		$data['textfarbe'] = str_replace("#", "0x", $data['textfarbe']);
+		$data['farbe'] = str_replace("#", "0x", $data['farbe']);
+		$data["geaendert_von"] = Mosaik_ObjectStore::init()->get("/current/identity")->uid();
+		$data["geaendert"] = currentMysqlDatetime();
+		$result->merge($data);
+		$result->save();
+		$result->refresh();
+		instantRedirect("/admin/" . urlencode($this->name()) . "/" . urlencode($result->id) . ";iframe?edit");
+	}
+
+	function fetchOne($id, $refresh=false) {
+		$result = Doctrine::getTable("SeminarArt")->detailed()->fetchOne(array($id), Doctrine::HYDRATE_ARRAY);
+		return $result;
+	}
+
+}

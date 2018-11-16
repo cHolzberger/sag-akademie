@@ -1,0 +1,52 @@
+<content>
+
+		<dbform >
+			<js:export name="geb_mail_text" mpath="geb_mail" />
+			<js:export name="geb_mail_betreff" mpath="geb_mail_betreff" />
+			<js:export name="warnung1_mail_text" mpath="warnung1_mail" />
+			<js:export name="warnung1_mail_betreff" mpath="warnung1_mail_betreff" />
+			<js:export name="warnung1_mail_check" mpath="warnung1_mail_check" />
+
+
+			<js:export name="warnung2_mail_text" mpath="warnung2_mail" />
+			<js:export name="warnung2_mail_betreff" mpath="warnung2_mail_betreff" />
+			<js:export name="warnung2_mail_check" mpath="warnung2_mail_check" />
+
+
+			<js:export name="warnung3_mail_text" mpath="warnung3_mail" />
+			<js:export name="warnung3_mail_betreff" mpath="warnung3_mail_betreff" />
+			<js:export name="warnung3_mail_check" mpath="warnung3_mail_check" />
+
+
+			<mform:label label="Betreff:">
+				<input id="betreff" />
+			</mform:label>
+			
+			<widget:vorlEditor >
+				<div id="warnung_mail_einstellung">
+					<h2>Einstellungen</h2>
+					<div style="padding-left: 10px;">
+						<input type="text" style="width: 20px;" id="tage" /> Tage vor dem Seminar benachrichtigen.
+					</div>
+					<br/>
+				</div>
+				<h2>Test</h2>
+					<div style="padding-left: 10px;">
+
+						<button onclick=" return false;">Testmail senden</button>
+						<button onclick="$.mosaikRuntime.openWindow('/resources/popup/VorlagenInfo.html'); return false;">Hilfe anzeigen</button>
+						</div>
+			</widget:vorlEditor>
+		</dbform>
+		<ribbon:dynamicGroupRight forId="verwaltungTab">
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+
+		<ribbon:dynamicGroupRight forId="verwaltungTab" offset="100px" class="ui-ribbon-group-reset">
+			<ribbonButton icon="icon_reset" href="javascript:$.mosaikRuntime.resetForm();">
+				Reset
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+</content>

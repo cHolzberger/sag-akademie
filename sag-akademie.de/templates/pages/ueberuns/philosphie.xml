@@ -1,0 +1,32 @@
+﻿<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+     	 <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167"
+                style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+        <img src="/img/image_philosophie.png" alt="" border="0" width="498"
+                height="41" style="position: absolute; left:120px; top:70px;" />
+
+</infoboxSmall>
+
+<content>
+	
+        <img src="../img/title_philosophie.png" alt="" border="0" width="180"
+                height="22" style="position: absolute; left:0px; top:0px;" />
+        <div style="position: relative; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+       <p><b>&quot;Die Kommunikation ist die Quelle der Entwicklung&quot;</b></p>
+
+<p>Mit diesem Gedanken wurde die SAG-Akademie GmbH für berufliche Weiterbildung im Jahr 2004 gegründet.</p>
+
+<p>Eine Plattform für Informationsfluss, Wissens-, Gedanken- und Interessenaustausch zwischen und unter Auftraggebern und Auftragnehmern.</p>
+<p>Wir befassen uns mit der Durchführung und Organisation diverser Veranstaltungsarten, vorwiegend im Umweltbereich. Ihr Interesse mit<br/>Spannung und Kompetenz zu steigern und Ihnen abwechslungsreiche Themen anzubieten ist unser Ziel. Dabei spielen die Erfahrungswerte<br/>unserer Referenten eine zentrale Rolle. Nutzen Sie die Vorteile des Praxisbezugs!</p>
+<p>Die Erfahrung - ein sehr kostbares Gut, dass bei allen Seminaren der SAG-Akademie GmbH im Vordergrund steht.</p>
+<p>Der stetige Kundenkontakt sowie Ihr Feedback auf unsere Veranstaltungen und Themen ist die Basis für unser Veranstaltungsprogramm. Die für<br/>Sie relevanten Interessensgebiete sowie Wünsche abzudecken ist unsere Aufgabe.</p>
+<p>Zögern Sie nicht mit uns Kontakt aufzunehmen!</p>
+<p><i>Ihr Team der SAG-Akademie GmbH</i></p>
+
+</div>
+	<div style="clear: both;">
+		&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
+	</div>
+</content>

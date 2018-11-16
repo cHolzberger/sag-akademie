@@ -1,0 +1,22 @@
+<content>
+
+<set name="page_background" value="/admin/img/header_bg.jpg" />
+
+<dbpager />
+
+
+	<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_hotels_neu" href="/admin/hotels/new">
+			Neues Hotel
+		</ribbonButton>
+	</ribbonDynamicGroup>
+	
+<dbbuttons basehref="/admin/hotels/" label="Aktionen" buttons="edit, preise, show, delete" tooltipPreise="Preise bearbeiten" tooltipEdit="Hotel bearbeiten" tooltipDelete="Hotel löschen" tooltipShow="Buchungen anzeigen" noheader="true"/>
+<widget:itable mpath="/hotel" />
+
+
+</content>
+
+<dialog type="confirmation" target=".dbbuttons .delete" title="Hotel löschen?">
+	Wollen Sie das Hotel wirklich l&ouml;schen?
+</dialog>

@@ -1,0 +1,1 @@
+ CREATE or REPLACE VIEW mailing_abgleich as SELECT mailing_kontakt062010.* FROM `mailing_kontakt062010`, kontakt, akquise_kontakt,person WHERE mailing_kontakt062010.email NOT IN (select kontakt.email from kontakt) AND mailing_kontakt062010.email NOT IN (SELECT person.email from person) AND mailing_kontakt062010.email NOT IN (SELECT akquise_kontakt.email FROM akquise_kontakt)

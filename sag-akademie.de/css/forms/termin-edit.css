@@ -1,0 +1,159 @@
+/* 
+    Document   : termin-edit
+    Created on : Oct 19, 2010, 10:49:54 AM
+    Author     : cholzberger
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/** nur termin - muss ausgelagert werden **/
+.termin-edit .wym_skin_compact .wym_iframe iframe {
+	height: 25px;
+	width: 99.5%;
+}
+
+.termin-edit .wym_skin_compact .fsexpand iframe {
+	height: 100%;
+	width: 99.5%;
+}
+
+.termin-edit .wym_skin_compact {
+	padding: 0px;
+}
+
+.termin-edit .wym_section {
+	margin-bottom: 0px !important;
+}
+
+.termin-edit .wym_box {
+	width: 100%;
+	margin-top: -3px;
+	
+}
+
+.termin-edit .wym_status {
+	display: none;
+}
+
+.termin-edit .itable2 {
+	position: fixed;
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+}
+
+
+
+/** seminar form
+am besten in eigene css auslagern **/
+.termin-edit .wym_skin_compact .wym_buttons {
+	height: 22px;
+	margin-top: -5px;
+	overflow: hidden;
+}
+
+
+#seminardauer .datepicker {
+	float: left;
+	clear: none;
+}
+
+#seminardauer label {
+	width: 30px !important;
+	min-width: 30px !important;
+}
+#input_Seminar_datum_ende,
+#input_Seminar_datum_begin {
+	width: 75px;
+	clear: none;
+}
+#input_Seminar_teilnehmer_max,
+#input_Seminar_teilnehmer_min {
+	min-width: 20px;
+	width: 20px;
+	clear: none;
+	margin-right: 4px;
+}
+
+#input_Seminar_freigabe_status {
+	float: left;
+	width: 100px !important;
+	margin-right: 5px;
+}
+
+#container_tn-stand-label,
+#container_mform_umgebucht-label,
+#container_mform_storniert-label,
+#container_mform_nicht-teilg-label  {
+	clear: none;
+	float: left;
+}
+#input_mform_tn-stand-label,
+#input_mform_storniert-label,
+#input_mform_umgebucht-label,
+#input_mform_nicht-teilg-label {
+	clear: none;
+	float: left;
+	width: 30px;
+}
+
+.float-left {
+	float: left;
+	clear: none;
+}
+
+
+
+#kosten-und-umsatz .align-right .mform-content {
+	text-align: right;
+}
+
+#kosten-und-umsatz input {
+	text-align: right;
+}
+
+#input_Seminar_kosten_unterlagen,
+#input_Seminar_kosten_verpflegung,
+#input_Seminar_kosten_pruefung,
+#input_Seminar_kosten_allg,
+#input_Seminar_kosten_refer
+{
+	width: 82px;
+	min-width: 82px;
+}
+#input_Seminar_pause_pro_tag,
+#input_Seminar_stunden_pro_tag {
+	width: 78px;
+	min-width: 78px;
+	text-align: right;
+}
+#seminardauer .mform-content, 
+#kosten-und-umsatz .mform-content {
+	height: 16px !important;
+}
+
+.termin-edit .wym_skin_compact {
+	border: none !important;
+}
+
+.termin-edit .dbinput {
+	position: relative;
+}
+
+#gesamtStundenLabel {
+	float: left;
+}
+
+.align-right .mform-content {
+	text-align: right;
+}
+
+#gesamtStunden,
+#gesamtUe {
+	margin-right: -4px;
+}

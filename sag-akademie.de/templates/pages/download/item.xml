@@ -1,0 +1,57 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+	<!-- siehe resources/taglib/infoboxDownload.php-->
+
+	<infoboxDownload />
+</infoboxSmall>
+<content>
+
+	<span style="font-family:Arial,Helvetica;color:darkblue;">
+		<b>
+			<mdb:value mpath="kategorieName" />
+		</b>
+	</span>
+	<div
+	style="position: absolute; left:0px; top:25px; width:750px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<table border="0" cellspacing="0" cellpadding="0" width="750"
+		style="position: absolute; left:0px; top:0px;width:750px;">
+			<tr>
+				<td colspan="2">&nbsp;</td>
+			</tr>
+			<foreach fromArray="Downloads">
+				<tr>
+					<td valign="top" width="70">
+						<nobr />
+						<mdb:link href="#DATA#" mpath="file" urlencode="false" target="_blank">
+							<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+						</mdb:link>&nbsp;&nbsp;
+					</td>
+					<td valign="top">
+						<span style="font-size:11px;">
+							<mdb:link href="#DATA#" mpath="file" urlencode="false" target="_blank">
+								<b>
+									<mdb:value mpath="name" />
+								</b>
+							</mdb:link>
+							<br />
+							&nbsp;
+							<br/>
+							<mdb:var mpath="text"/>
+						</span>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						&nbsp;
+						<br/>
+						<hr/>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">&nbsp;</td>
+				</tr>
+			</foreach>
+		</table>
+	</div>
+</content>

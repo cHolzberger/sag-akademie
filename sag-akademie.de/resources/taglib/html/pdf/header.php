@@ -1,0 +1,1 @@
+<div style="position: fixed; width: 97%; top: <?=getAttribute("top", $attributes, "20");?>mm;"><?=$value?></div>

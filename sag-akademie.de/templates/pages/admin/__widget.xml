@@ -1,0 +1,14 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+	<title>
+		Widget Container
+	</title>
+	
+	<google:gears />
+	
+</head>
+<body>
+	<container datasource="content" />
+	</body>
+</html>

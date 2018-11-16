@@ -1,0 +1,65 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+ <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167"
+                style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+<img src="/img/image_bildungscheck.png" alt="" border="0" width="258" height="128" style="position: absolute; left:90px; top:25px;" />
+
+		</infoboxSmall>
+
+<content>
+
+
+<img src="/img/bildungsscheck1_link.png" alt="" border="0" width="262" height="117" style="position: absolute; left:600px; top:20px;" usemap="#bs1_link"/><map name="bs1_link"><area shape="RECT" coords="130,50,230,90" href="http://www.bildungsscheck.nrw.de" target="_blank"/></map>
+
+<img src="/img/bildungsscheck2_link.png" alt="" border="0" width="262" height="117" style="position: absolute; left:600px; top:280px;" usemap="#bs2_link"/><map name="bs2_link"><area shape="RECT" coords="130,50,230,90" href="http://www.callnrw.de/beratungsstellen/index.php" target="_blank" /></map>
+
+<img src="/img/bildungsscheck3_link.png" alt="" border="0" width="262" height="117" style="position: absolute; left:600px; top:150px;" usemap="#bs3_link"/><map name="bs3_link"><area shape="RECT" coords="130,50,230,90" href="http://www.mags.nrw.de/08_PDF/001/FAQ_Bildungsscheck.pdf" target="_blank" /></map>
+
+	<img src="/img/title_bildungscheck.png" alt="" border="0" width="209" height="22" style="position: absolute; left:0px; top:0px;" />
+
+	<div style="position: absolute; left:0px; top:35px; width:550px; font-family:Arial,Helvetica;font-size:11px;">
+
+		Die SAG-Akademie GmbH für berufliche Weiterbildung wurde von der Wirtschafts- und Beschäftigungsförderung Dortmund, Regionalagentur Westfälisches Ruhrgebiet, als Weiterbildungsanbieter, im Rahmen der Umsetzung des neuen Förderinstruments „Bildungsscheck“ des Landes NRW, anerkannt. Somit werden die von der SAG-Akademie angebotenen Seminare und Kurse für Teilnehmer im Bildungsscheckverfahren zu 50 % bezuschusst.<br/>&nbsp;<br/>
+<b>Kurzinformation:</b>
+<ul style="margin-left: 8px; padding-left: 8px;">
+<li>
+Im Folgenden sowie unter dem Internetlink <a href="http://www.bildungsscheck.nrw.de" target="_blank">www.bildungsscheck.nrw.de</a> finden Sie weitere Informationen zum Bildungsscheck sowie eine nach Regionen unterteilte Aufstellung der Bildungsberatungsstellen. Unter diesem Link können Sie eine Beratungsstelle in Ihrer Nähe auswählen und einen Termin vereinbaren.
+</li>
+<li>
+Der Bildungsscheck wird im Rahmen Ihres Termins bei der Beratungsstelle direkt bewilligt, insofern Sie für das Bildungsscheck-Verfahren in Frage kommen).
+</li>
+<li>
+Mit dem Bildungsscheck kommen Sie zur SAG-Akademie. Wir erledigen alle weiteren Anmeldeformalitäten für Sie.
+</li>
+</ul>
+Der Zuschuss bezieht sich auf die reinen Schulungsgebühren. Für Verpflegung sowie die Schulungsunterlagen muss der Teilnehmer selbst aufkommen. D.h. der 50%-Zuschuss (maximal bis zu 500,- € pro Bildungsscheck) wird nur auf die reine Kursgebühr angerechnet.<br/>&nbsp;<br/>
+
+Ab dem 01.07.2009 ist die Gültigkeit des Bildungsscheck auf 3 Monate begrenzt. Innerhalb dieser Frist muss der Bildungsscheck bei einem Anbieter eingelöst werden.<br/>&nbsp;<br/>
+
+
+<b>Information des Ministeriums für Wirtschaft und Arbeit:<br/>Förderung von Weiterbildungsmaßnahmen (Bildungsscheck)</b><br/>&nbsp;<br/>
+
+
+Als Anreiz dafür, dass mehr Arbeitnehmerinnen und Arbeitnehmer, aber auch mehr Unternehmen Weiterbildungsmaßnahmen in Anspruch nehmen, bietet der Bildungsscheck Weiterbildung zum halben Preis: Das Land NRW übernimmt mit Mitteln des Europäischen Sozialfonds die Hälfte der Weiterbildungskosten (maximal bis zu 500,- € pro Bildungsscheck). Angesprochen werden sollen Beschäftigte kleinerer und mittlerer Unternehmen, die länger als zwei Jahre an keiner vom Betrieb veranlassten beruflichen Weiterbildung mehr teilgenommen haben.<br/>&nbsp;<br/>
+
+
+
+<i>Kompetenzentwicklung von Beschäftigten durch Bildungsschecks</i><br/>
+Durch berufliche Weiterbildung werden Kenntnisse und Fertigkeiten erlernt, die für die berufliche Tätigkeit genutzt werden können. Auf diese Weise wird die Beschäftigungsfähigkeit von Arbeitnehmerinnen und Arbeitnehmern gefördert.
+Bildungsschecks decken einen Teil der Kosten für die berufliche Weiterbildung ab. Zielgruppe sind Beschäftigte in kleinen und mittleren Unternehmen. Insbesondere folgende Ausgaben können gefördert werden:
+<ul>
+<li>Gebühren für Bildungsangebote von Anbietern der beruflichen Weiterbildung</li>
+<li>Gebühren für Prüfungen.</li>
+</ul>
+Beschäftigte können einen Bildungsscheck entweder selbst beantragen oder sich an ihren Betrieb wenden. Wer an einem Bildungsscheck interessiert ist, kann sich auch von einer Bildungsberatungsstelle dazu beraten lassen. Die Bildungsberatungsstelle kann dann auch den Scheck ausstellen.<br/>&nbsp;<br/>
+
+<i>Wer kann einen Bildungsscheck erhalten?</i><br/>
+Beschäftigte in Unternehmen mit höchstens 250 Beschäftigten, die ihren 1. Wohnsitz in NRW haben oder in einer Arbeitsstätte in NRW beschäftigt sind und im laufenden sowie vorangegangenem Jahr an keiner betrieblich veranlassten beruflichen Weiterbildung außer im Rahmen des Bildungsscheckverfahrens teilgenommen haben. Ausgenommen sind Beschäftigte im öffentlichen Dienst.<br/>
+Alternativ: Mitarbeitende/r Inhaberin/Inhaber bzw. mitarbeitende/r Teilhaberin/Teilhaber eines Unternehmens, das nicht länger als fünf Jahre besteht und nicht mehr als 250 Beschäftige hat.<br/>&nbsp;<br/>
+
+<i>Wie kann gefördert werden?</i><br/>
+Nach einer Beratung in einer der mehr als 175 Beratungsstellen in NRW können Interessierte oder Betriebe dort Bildungsschecks erhalten.<br/>&nbsp;<br/>
+
+	</div>
+</content>

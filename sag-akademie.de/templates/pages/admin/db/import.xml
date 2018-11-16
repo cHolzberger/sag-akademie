@@ -1,0 +1,38 @@
+<content>
+<h1>Kontakte per CSV importieren</h1>
+<mform:form class="no-reload">
+	<div style="width: 600px; float:left;">
+		<div style="width:33%; float: left;">
+		<input type="radio" name="import" value="kontakte" /> nur Kontakte<br/><br/>
+		</div><div style="width:33%; float: left;">
+				
+		<input type="radio" name="import" value="personen" /> nur Personen<br/><br/>
+		<input type="checkbox" name="ansprechpartner" /> Alle als Ansprechpartner markieren<br/>
+
+		<input type="checkbox" name="splitNames" checked="checked"/> Namen automatisch umwandeln<br/>
+		<input type="checkbox" name="detectSex" checked="checked"/> Geschlecht erkennen<br/>
+		<input type="checkbox" name="detectDegree" checked="checked"/> "Grad" automatisch erkennen<br/><br/>
+		</div><div style="width:33%; float: left;">
+		<input type="radio" name="import" value="beides" checked="checked" /> beides<br/><br/>
+		</div>
+		
+		<div style="clear: both;"></div>
+		<br/>
+		<div style="width: 33%; float: left;">
+		<input type="radio" name="import" value="buchungen" />Hotel und Seminar buchungen<br/>
+		</div>
+		<div style="width: 33%; float: left;">
+		<input type="radio" name="import" value="termine" />Termine<br/>
+		</div>
+		<div style="width: 100%; clear: both;">
+		<br/>
+		<input type="file" name="csv" /><br/><br/><br/>
+		<input type="checkbox" name="nichtSpeichern" value="true"> Daten nicht speichern.<br/><br/>
+		<input type="submit" value="Importieren" style="clear: left;" />
+		</div>
+	</div>
+	<div style="clear: left;">
+		
+	</div>
+</mform:form>
+</content>

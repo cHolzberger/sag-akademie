@@ -1,0 +1,15 @@
+<infoboxSmall>
+	<set name="page_background" value="/img/blue_box_klein.jpg"/>
+
+	<img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167" style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons"/>
+	<map name="direkt_buttons">
+		<area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/>
+	</map>
+
+<img src="/img/image_uebersicht.png" alt="" border="0" style="position: absolute; left:90px; top:45px;" />
+</infoboxSmall>
+<content>
+	
+Das Zertifikat wurde erneut angefordert.<br/><br/>
+<js:redirect url="/kunde" />
+</content>

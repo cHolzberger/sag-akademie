@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init();">
+	<mx:Script>
+		<![CDATA[
+			//
+			// Author: Wayne IV Mike
+			// Project:	JSwoof - The Flex JSON library.
+			// Description: Decoding example.
+			// Date: 22nd March 2009.
+			// Contact: wayne.ivor@googlemail.com , dappa2000@blueyonder.co.uk
+			//
+			
+			import json.*;
+			import mx.controls.Alert;
+			
+			/***********************************************************************/
+			
+			private function init():void
+			{
+				var simpleJSON:String = "{\"name\":\"wayne\",\"value\":1000.0}";
+				
+				var jObj:Object = JParser.decode(simpleJSON);
+				
+				if(jObj == null)
+				{
+					var errObj:Object = JParser.getLastError();
+					Alert.show(errObj.errorStr);			
+				}
+			}
+			
+			/***********************************************************************/
+		]]>
+	</mx:Script>
+</mx:Application>

@@ -1,0 +1,13 @@
+{
+	"default": {
+		"namespace": "Pages",
+		"rpcClasses": [
+			"Pages_Startseite",
+			"Pages_TermineSeminare"
+		]
+	},
+
+	"production": {
+		"_extends": "default"
+	}
+}

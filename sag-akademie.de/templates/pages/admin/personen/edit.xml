@@ -1,0 +1,169 @@
+
+<content width="98%" top="30px" left="30px">
+	<!-- kommunikation mit dem js framework -->
+	
+
+	<!-- dynamische ribbons / buttons -->
+	<ribbon:dynamicGroupRight forId="verwaltungTab">
+		<ribbonButton icon="icon_print" href="javascript:$.mosaikRuntime.extPrint();">
+			Drucken
+		</ribbonButton>
+		
+		<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+			Speichern
+		</ribbonButton>
+	</ribbon:dynamicGroupRight>
+
+	<!-- inhalt -->
+	<h1>
+		<img src="/css/theme/icons/person.png" border="0" style="margin-right: 5px; float: left;"/>
+
+		<switch key="Person:name">
+			<case value="#empty">
+				 Neue Person
+			</case>
+			<case value="*">
+				<mdb:value mpath="Person:name"/>,&nbsp;
+				<mdb:value mpath="Person:vorname"/>
+			</case>
+		</switch>
+	</h1>
+	
+	<dbform class="no-reload">
+		<div class="c33">
+			<h2>Angaben zur Firma</h2>
+			<!-- firma kann nur eingegeben werden wenn es sich um eine neue Person handelt -->
+			<switch key="Person:name">
+					<!-- neue person: -->
+				<case value="#empty">
+					<mform:combobox target="input_kontakt_id" displayTarget="input_kontaktInfo" template="kontaktTemplate" json="/admin/json/autocomplete/kontakt;json" filter="Kontakt">
+						<dbinput name="kontaktInfo" label="Firma" default="Kontakt:firma"/>
+						<dbinput name="kontakt_id" type="hidden"/>
+
+						<div class="mCompleteElement" style="display: none;" id="kontaktTemplate">
+							<span class="label" style="font-size: small; width: 250px;">
+								<b>{firma}</b>
+								<br/>{ort}
+							</span>
+							<div style="clear: both; height: 1px; width: 1px;">&nbsp;</div>
+						</div>
+					</mform:combobox>
+				</case>
+			<!-- person exisitiert und ist einem kontakt zugeordnet -->
+				<case value="*">
+					<mform:label label="Firma:">
+						<mdb:link mpath="Person:Kontakt:id" href="/admin/kontakte/#DATA#?edit">
+							<mdb:value mpath="Person:Kontakt:firma" />
+						</mdb:link>
+					</mform:label>
+					
+				</case>
+			</switch>
+			<div style="clear: both;" />
+			<h2>
+				Angaben zur Person
+			</h2>
+			<!--<dbselect name="kontakt_id" label="Firma" fromTable="Kontakt" fromTableKey="id" fromTableDisplay="firma"/>-->
+			<dbselect name="geschlecht" label="Anrede" fromTable="XAnrede" fromTableKey="id" fromTableDisplay="anrede"/>
+			<dbinput name="vorname" label="Vorname"/>
+			<dbinput name="name" label="Name"/>
+			<dbinput name="grad" label="Grad"/>
+			<dbinput class="datepicker" name="geburtstag" label="Geburtstag" converter="mysqlDateToLocal"/>
+				
+
+			<h2>
+				Angaben zur Position im Unternehmen
+			</h2>
+			<dbinput name="ausgeschieden" value="1" type="checkbox" label=" Mitarbeiter ausgeschieden"/>
+			<dbinput name="funktion" label="Funktion"/>
+			<dbinput name="abteilung" label="Abteilung"/>
+			<dbinput name="ansprechpartner" value="1" type="checkbox" label="Ansprechpartner"/>
+			<dbinput name="geschaeftsfuehrer" value="1" type="checkbox" label="Geschäftsführer"/>
+			
+			<h2>
+				Notizen
+			</h2>
+			<dbtextarea label="interne Notiz zu dieser Person" name="notiz" style="width: 225px; height: 100px;">
+			</dbtextarea>
+		</div>
+		<div class="c33">
+			<h2>
+				Adressinformationen
+			</h2>
+			<dbinput name="strasse" label="Stra&szlig;e, Nr."/>
+			<dbinput name="plz" label="PLZ" converter="plz"/>
+			<dbinput name="ort" label="Ort"/>
+			<dbselect name="bundesland_id" label="Bundesland" fromTable="XBundesland" dbtable="person" fromTableKey="id" fromTableDisplay="name"/>
+			<dbselect name="land_id" label="Land" fromTable="XLand" dbtable="person" fromTableKey="id" fromTableDisplay="name"/>
+			<h2>
+				Kontaktinformationen
+			</h2>
+			<dbinput name="tel" label="Telefon"/>
+			<dbinput name="fax" label="Fax"/>
+			<dbinput name="mobil" label="Mobil"/>
+			<dbinput name="email" label="EMail"/>
+			<br/>
+			<dbinput name="newsletter" value="1" type="checkbox" label="Newsletter"/>
+			<dbinput class="datepicker" name="newsletter_anmeldedatum" label="Anmeldedatum" converter="mysqlDateToLocal"/>
+			<dbinput class="datepicker" name="newsletter_abmeldedatum" label="Abmeldedatum" converter="mysqlDateToLocal"/>
+		</div>
+		
+		<div class="c33">
+			<h2>
+				Buchungen
+			</h2>
+			<mdb:quicklistContainer>
+				
+				<foreach fromArray="Person:Buchungen" style="width: 700px; height:100px;" sortOn="Seminar:datum_begin" sortOrder="DESC">
+					<mdb:quicklistItem mpathField1="Seminar:datum_begin" mpathField2="status" mpathField3="Seminar:kursnr" converterField1="mysqlDateToLocal" converterField2="statusToStr">
+						<mdb:link href="/admin/buchungen/#DATA#?edit" mpath="id">
+							<img src="/img/admin/icon_quicklist_edit.png" border="0" alt="Buchung bearbeiten"/>
+						</mdb:link>
+					</mdb:quicklistItem>
+				</foreach>
+				
+			</mdb:quicklistContainer>
+			
+			<js:hyperlink href="/admin/buchungen/new?person_id=#personId#">
+				Neue Buchung anlegen
+			</js:hyperlink>
+			
+			<h2>
+				Weitere Informationen
+			</h2>
+			<dbinput type="checkbox" value="1" name="wiedervorlage" label="Wiedervorlage"/>
+
+			<dbinput readonly="readonly" name="GeaendertVon:name" label="Geändert von"/>
+			<dbinput readonly="readonly" name="geaendert" label="Geändert" converter="mysqlDateTimeToLocal" />
+			<mform:label label="Angelegt von:">
+				<switch key="Buchung:angelegt_user_id">
+					<case value="#empty">
+					System / Online - Buchung
+					</case>
+					<case value="*">
+						<mdb:value mpath="Buchung:AngelegtVon:name"/>
+					</case>
+				</switch>
+			</mform:label>
+			<br/>
+			<br/>
+			<h2>
+				Login Informationen
+			</h2>
+			<dbinput name="login_name" label="Username"/>
+			<dbinput name="login_password" label="Password"/>
+			<dbinput type="checkbox" value="1" name="gesperrt" label="Gesperrt"/>
+			<div style="width:150px;">&nbsp;
+				<br/>Hinweis, der dem Kunden bei gesperrtem Kundenbereich angezeigt wird
+				<br/>&nbsp;
+			</div>
+			<dbtextarea label="" name="gesperrt_info" style="width: 225px; height: 100px;"></dbtextarea>
+			
+			
+		</div>
+		
+	</dbform>
+
+	<js:replaceUrl mpath="Person:id" base="/admin/personen/" suffix="?edit"/>
+	<js:setVar name="personId" mpath="Person:id" />
+</content>

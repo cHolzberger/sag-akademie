@@ -1,0 +1,30 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+<img src="/img/image_callbackformular.png" alt="" border="0" width="250" height="128" style="position: absolute; left:90px; top:25px;"/>
+
+</infoboxSmall>
+
+<content>
+
+<img src="/img/title_callbackformular.png" alt="" border="0" width="180" height="22" style="position: absolute; left:0px; top:0px;"/>
+<div style="position: absolute; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+<form method="POST" action="/form/kontakt">
+
+<table border="0" cellspacing="0" cellpadding="5" style="font-family:Arial,Helvetica;font-size:11px; position: absolute; left:0px; top:0px;">
+<tr><td valign="bottom" align="right">Anrede</td><td><select name="Anrede" size="" style="width:270px;background-color:#eeeeee;"><option value="Herr">Herr</option><option value="Frau">Frau</option><option value="Firma">Firma</option></select></td></tr>
+
+<tr><td valign="bottom" align="right">Vorname</td><td><input type="Text" name="vorname" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;"></td></tr>
+<tr><td valign="bottom" align="right">Name</td><td><input type="Text" name="name" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;"></td></tr>
+<tr><td valign="bottom" align="right">Termin Wunsch</td><td><input type="Text" name="termin" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;"></td></tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="5" style="font-family:Arial,Helvetica;font-size:11px; position: absolute; left:400px; top:0px;">
+<tr><td valign="bottom" align="right">Telefon</td><td><input type="Text" name="telefon" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;"></td></tr>
+<tr><td valign="bottom" align="right" name="mobil">Mobil</td><td><input type="Text" name="mobil" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;"></td></tr>
+<tr><td valign="top" align="right">Nachricht</td><td><textarea name="nachricht" cols="31" rows="4" style="width:265px;background-color:#eeeeee;"></textarea></td></tr>
+<tr><td colspan="2" align="right"><input type="image" name="Nachricht senden" src="/img/button_form_senden.png" width="126" height="37" alt="Nachricht senden" border="0" /></td></tr>
+</table>
+</form>
+</div>
+</content>

@@ -1,0 +1,143 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<title>
+			SAG Schulungsakademie GmbH - <dbfield name="version" table="content" notable="true"/>
+		</title>
+
+		<googlescript/>
+		<!-- everything in sitescript tags will get loaded at the bottom -->
+		<sitescript dir="/resources/scripts/jquery/ui/"/>
+		<sitescript dir="/resources/scripts/settings/"/>
+		<sitescript src="/resources/scripts/jquery/jquery.selectboxes.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.metadata.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.tablesorter.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.htmlClean.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.htmlInput.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.bgiframe.min.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.validate.min.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.dimensions.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.tooltip.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.clickmenu.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.columnmanager.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.mtable.js"/>
+
+		<sitescript src="/resources/scripts/jquery/jquery.tablescroller.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.form.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.mosaik.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.mousewheel.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.ribbon.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.event.drag.js"/>
+		<sitescript src="/resources/scripts/jquery/jquery.mtable.colsizeable.js"/>
+
+		<sitescript dir="/resources/scripts/i18n/de/"/>
+		<sitescript src="/resources/scripts/site.js"/>
+		<sitescript src="/resources/scripts/admin.js"/>
+		
+		<link rel="stylesheet" type="text/css" href="/css/css.php?admin=1" media="screen"/>
+		
+		<sitecss src="/css/table.css" media="screen"/>
+		<sitecss src="/css/Standard.css" media="screen"/>
+		<sitecss src="/css/style.css" media="screen"/>
+		<sitecss src="/css/admin.css" media="screen"/>
+		<sitecss src="/css/jquery.tooltip.css" media="screen"/>
+		<sitecss src="/css/theme/jquery.tablesorter.css" media="screen"/>
+		<sitecss src="/css/theme/jquery.tablescroller.css" media="screen"/>
+		<sitecss src="/css/theme/ui.all.css" media="screen"/>
+		<sitecss src="/css/theme/ui.theme.css" media="screen"/>
+		<sitecss src="/css/ui-ribbon.css" media="screen"/>
+		<sitecss src="/css/table/table.css" media="screen"/>
+		<sitecss src="/css/table/jquery.kiketable.colsizable.css" media="screen"/>
+
+		
+		<sitecss loadnow="true" key="admin"/>
+	</head>
+	<!-- keine gueltigen xhtml angaben!!!! text="#000000" bgcolor="#FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000" topmargin="0" marginheight="0" * -->
+	<body>
+		<div style="top:0px; margin-left:auto; margin-right:auto; width:98%">
+			<div style="position: fixed; height:auto; top:0px; left:0px; right:0px;" id="navigation">
+				<ribbon>
+					<ribbonTabLabels>
+						<ribbonTabLabel forId="verwaltungTab">Verwaltung</ribbonTabLabel>
+						<ribbonTabLabel forId="administrationTab">Administration</ribbonTabLabel>
+						<ribbonTabLabel forId="statistikTab">Statistik</ribbonTabLabel>
+						<ribbonTabLabel forId="hiddenTab"><span class="ui-icon ui-icon-arrowreturnthick-1-n"/></ribbonTabLabel>
+					</ribbonTabLabels>
+					
+					<ribbonTab id="verwaltungTab">
+						<ribbonGroup>
+							<ribbonButton icon="icon_startseite" href="/admin">
+								Startseite
+							</ribbonButton>
+						</ribbonGroup>
+						
+						<ribbonGroup>
+							<ribbonButton icon="icon_termine" href="/admin/termine">
+								Termine
+							</ribbonButton>
+							
+							<ribbonButton icon="icon_seminare" href="/admin/seminare">
+								Seminare
+							</ribbonButton>
+							<ribbonButton icon="icon_kontakte" href="/admin/kontakte">
+								Kontakte
+							</ribbonButton>
+							
+							
+						</ribbonGroup>
+						
+						<ribbonGroup>
+							<ribbonButton icon="icon_standorte" href="/admin/standorte">
+								Standorte
+							</ribbonButton>
+							<ribbonButton icon="icon_hotels" href="/admin/hotels">
+								Hotels
+							</ribbonButton>
+						</ribbonGroup>
+						<ribbonGroup>
+							<ribbonButton icon="icon_rechnungen" href="/admin/rechnungen">
+								Rechnungen
+							</ribbonButton>
+						</ribbonGroup>
+					</ribbonTab>
+					
+					<ribbonTab id="administrationTab">
+						<ribbonGroup>
+							<ribbonButton icon="icon_db" href="/admin/db"> 
+								Wartung
+							</ribbonButton>
+							<ribbonButton icon="icon_user" href="/admin/user"> 
+								Benutzer
+							</ribbonButton>
+						</ribbonGroup>
+					</ribbonTab>
+					
+					<ribbonTab id="statistikTab">
+						<ribbonGroup>
+							<ribbonButton icon="icon_stats" href="/admin/stats/web">
+								Web-Zugriffe
+							</ribbonButton>
+						</ribbonGroup>
+					</ribbonTab>
+					<ribbonTab id="hiddenTab">
+					</ribbonTab>
+				</ribbon>
+				<breadcrumbs/>
+				<userinfo/>			
+				
+			</div>
+			
+			<iframeContent >
+				<div id="imain" class="ui-corner-all"></div>
+			</iframeContent>
+			<loadscreen message="Daten werden geladen..." />
+			<pageFooter/>
+		</div>
+		<sitescript loadnow="true" key="admin"/>
+		
+	<dialog type="notification" title="Gespeichert" id="saved">
+	Ihre Eingaben wurden gespeichert.
+	</dialog>
+	
+	</body>
+</html>

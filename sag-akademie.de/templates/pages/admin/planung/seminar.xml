@@ -1,0 +1,19 @@
+<content>
+	<ribbonDynamicRemove />
+	<h1>Seminarplanung</h1>
+	<div style="float: left;">Anderer Standort:</div>
+	<foreach fromArray="Standort">
+		<switch key="sichtbar_planung">
+						<case value="1">
+							<mdb:link mpath="id" mpath1="seminar_art_id" href="/admin/planung/seminar/?standort_id=#DATA#&amp;seminar_art_id=#DATA1#">
+							<div style="border-left: 1px solid black; padding-left: 4px; border-right: 1px solid black; padding-right: 4px; float: left;">
+								<mdb:value mpath="name" />
+							</div>
+							</mdb:link>
+						</case>
+		</switch>
+	</foreach>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<mdb:link mpath="GET:seminar_art_id" href="/admin/seminare/#DATA#?edit">Zur&uuml;ck zum Seminar</mdb:link>
+	<br/>
+	<widget:planungSeminar />
+</content>

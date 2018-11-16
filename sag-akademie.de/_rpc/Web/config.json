@@ -1,0 +1,14 @@
+{
+	"default": {
+		"namespace": "Web",
+		"rpcClasses": [
+			"Web_Template",
+			"Web_Text"
+
+		]
+	},
+
+	"production": {
+		"_extends": "default"
+	}
+}

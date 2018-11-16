@@ -1,0 +1,248 @@
+  td,
+ div,
+ body > *,
+ * {
+	font-family: Arial,Helvetica,Sans;
+	
+}
+
+body > * {
+	font-size: 11px;
+	font-family: Arial,Helvetica,Sans;
+	font-size: 11px;
+} .error {
+	font-size: 11px;
+	color: #000000;
+	display: inline;
+}
+
+
+
+body {
+	margin-bottom: 25px;
+	background-repeat: repeat-x;
+}
+
+
+
+a.blau {
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.blau:link {
+	text-decoration: none;
+	font-weight: bold;
+	color: #000099;
+}
+
+a.blau:visited {
+	text-decoration: none;
+	font-weight: bold;
+	color: #000099;
+}
+
+a.blau:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: #1c1cc2;
+}
+
+a.blau:active {
+	text-decoration: none;
+	font-weight: bold;
+	color: #1c1cc2;
+} 
+
+a.schwarz {
+	text-decoration: none;
+	font-weight: normal;
+}
+
+a.schwarz:link {
+	text-decoration: none;
+	color: #000000;
+	font-weight: normal;
+}
+
+a.schwarz:visited {
+	text-decoration: none;
+	color: #000000;
+	font-weight: normal;
+}
+
+a.schwarz:hover {
+	text-decoration: none;
+	color: #444444;
+	font-weight: normal;
+}
+
+a.schwarz:active {
+	text-decoration: none;
+	color: #000000;
+	font-weight: normal;
+}
+
+
+
+/* Buchen Formular */ .bfTdLabel {
+	width: 220px;
+	font-size: 11px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-top: 10px;
+	text-align: left;
+	vertical-align: middle;
+	background-image: url(/img/bfTdBg.jpg);
+	border-bottom-width: 1px;
+	border-bottom-color: #bbbbbb;
+	border-bottom-style: solid;
+} .bfTdInput {
+	width: 170px;
+	font-size: 11px;
+	padding-left: 20px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-right: 5px;
+	vertical-align: middle;
+	background-image: url(/img/bfTdBg.jpg);
+	border-bottom-width: 1px;
+	border-bottom-color: #bbbbbb;
+	border-bottom-style: solid;
+} .bfTdBig {
+	font-size: 11px;
+	padding-left: 10px;
+	padding-bottom: 15px;
+	padding-top: 10px;
+	padding-right: 10px;
+	background-image: url(/img/bfTdBgBig.jpg);
+	border-bottom-width: 1px;
+	border-bottom-color: #bbbbbb;
+	border-bottom-style: solid;
+} .bfTdInput input {
+	font-size: 11px !important;
+	vertical-align: middle;
+} .bfTdHeader {
+	background-image: url(/img/bfTdBgHeader.jpg);
+	color: white;
+	padding-left: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	vertical-align: middle;
+} .bfTableHotelAuswahl {
+	width: 485px;
+	border-collapse: collapse;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #444444;
+	text-align: left;
+} .bfTableHotelAuswahl td {
+	padding: 3px !important;
+}
+
+/* Buchen Best. Seite */ .bbTdLabel {
+	width: 175px;
+	font-size: 11px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-top: 10px;
+	text-align: left;
+	vertical-align: middle;
+	background-image: url(/img/bfTdBg.jpg);
+	border-bottom-width: 1px;
+	border-bottom-color: #bbbbbb;
+	border-bottom-style: solid;
+} .bbTdInput {
+	width: 175px;
+	font-size: 11px;
+	padding-left: 20px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-right: 5px;
+	vertical-align: middle;
+	background-image: url(/img/bfTdBg.jpg);
+	border-bottom-width: 1px;
+	border-bottom-color: #bbbbbb;
+	border-bottom-style: solid;
+}
+
+/* Kontakt und Callback Formular */ .fTdLabel {
+	font-size: 11px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-top: 10px;
+	background-image: url(/img/bfTdBg.jpg);
+	border-bottom-width: 1px;
+	border-bottom-color: #bbbbbb;
+	border-bottom-style: solid;
+} .fTdInput {
+	font-size: 11px;
+	padding-left: 20px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-right: 5px;
+	background-image: url(/img/bfTdBg.jpg);
+	border-bottom-width: 1px;
+	border-bottom-color: #bbbbbb;
+	border-bottom-style: solid;
+} .suTdBig {
+	font-size: 12px !important;
+	padding-left: 15px;
+	padding-bottom: 15px;
+	padding-top: 15px;
+	padding-right: 15px;
+	background-image: url(/img/bfTdBgBig.jpg);
+	border-bottom-width: 1px;
+	border-bottom-color: #bbbbbb;
+	border-bottom-style: solid;
+}
+
+
+
+div.vmenu, div.hmenu, .adminmenu {
+	padding: 0px;
+	margin: 0px;
+	text-decoration: none;
+}
+
+div.hmenu > * {
+	text-decoration: none;
+	background-repeat: no-repeat;
+	display: block;
+	float: left;
+}
+
+div.vmenu > * {
+	text-decoration: none;
+	background-repeat: no-repeat;
+	display: block;
+}
+
+div.vmenu .menuItem {
+	clear: both;
+} 
+
+.dbtable td {
+	padding-left: 5px;
+	padding-bottom: 0px;
+	padding-top: 0px;
+	padding-right: 5px;
+	vertical-align: middle;
+}
+
+span.newheadline{
+font-size:12px !important;
+color:#444444;
+}
+
+table.restplatz {
+width:520px;
+}
+
+table.restplatz td {
+padding:5px;
+border-style:solid;
+border-width:1px;
+border-color:grey;
+border-collapse:collapse;
+}

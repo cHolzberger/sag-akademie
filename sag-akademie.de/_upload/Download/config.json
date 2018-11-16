@@ -1,0 +1,16 @@
+{
+	"default": {
+		"class": "Download_Download",
+		"name": "Download",
+		"fieldname": "Filedata",
+		"filestore": "/downloads/",
+		"fileprefix": "download_",
+		"allowedExtensions": ["pdf"],
+		"defaultset": false,
+		"defaultvalue": null
+	},
+
+	"production": {
+		"_extends": "default"
+	}
+}

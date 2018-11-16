@@ -1,0 +1,9 @@
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+<content>
+Seminar: <br/>
+	<dbfield name="id" label="" /><br/>
+	<dbfield name="rubrik" label="Rubrik" /><br/>
+	<dbfield name="bezeichnung" label="Bezeichnung" /><br/>
+	
+</content>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="init();">
+
+<mx:Script>
+	<![CDATA[
+		//
+		// Author: Wayne IV Mike
+		// Project:	JSwoof - The Flex JSON library.
+		// Description: Formated JSON loaded from txt file.
+		// Date: 31st March 2009.
+		// Contact: wayne.ivor@googlemail.com , dappa2000@blueyonder.co.uk
+		//
+			
+		import json.*;
+		
+		/***********************************************************************************/
+		
+		public function loadFile(urlLink:String):void 
+		{
+			var request:URLRequest = new URLRequest(urlLink);
+			var urlLoad:URLLoader = new URLLoader();
+			
+			urlLoad.addEventListener(Event.COMPLETE, fileLoaded);
+			urlLoad.load(request);
+		}
+		
+		/***********************************************************************************/
+		
+		private function fileLoaded(event:Event):void
+		{
+			var jObj:Object = JParser.decode(event.target.data);
+			
+			if(jObj == null)
+			{
+				var jErr:Object = JParser.getLastError();
+			}
+		}
+		
+		/***********************************************************************************/
+		
+		private function init():void
+		{
+			loadFile("json.txt");
+		}
+		
+		/***********************************************************************************/
+			
+	]]>
+</mx:Script>
+	
+</mx:Application>

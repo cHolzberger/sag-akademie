@@ -1,0 +1,60 @@
+.widget-container {
+	margin-top: 8px;
+	background: #FFFFFF url(/img/admin/box_bg.jpg) repeat-x scroll left top !important;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #999999;
+	padding: 15px;
+	padding-top: 10px;
+	float:left;
+	margin-right:10px;
+	height:120px;
+	width:200px;
+	position:relative;
+	padding-top:19px;
+} .widget-container .headline {
+	font-size:14px !important;
+	padding-left:0px;margin-top: 35px; padding-bottom:10px;
+}
+
+.widget-big,
+.widget-alphabet {
+	margin-top: 8px;
+	background: #FFFFFF url(/img/admin/box_bg.jpg) repeat-x scroll left top !important;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #999999;
+	padding: 15px;
+	padding-top: 10px;
+	float:left;
+	margin-right:10px;
+	height:120px;
+	width:140px;
+	position:relative;
+	padding-top:19px;
+} .widget-big {
+    background: #FFFFFF url(/img/admin/box_bg_big.jpg) repeat-x scroll left top !important;
+
+} .widget-alphabet .headline {
+	font-size:14px !important;
+	padding-left:0px;margin-top: 35px; padding-bottom:10px;
+}
+
+.widget-searchbox {
+	margin-top: 8px;
+	background: #FFFFFF url(/img/admin/box_bg.jpg) repeat-x scroll left top !important;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #999999;
+	padding: 15px;
+	padding-top: 10px;
+	float:left;
+	margin-right:10px;
+	height:120px;
+	width:220px;
+	position:relative;
+	padding-top:19px;
+} .widget-searchbox .headline {
+	font-size:14px !important;
+	padding-left:0px;margin-top: 35px; padding-bottom:10px;
+}

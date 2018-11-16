@@ -1,0 +1,34 @@
+﻿<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+<img src="/img/image_callbackformular.png" alt="" border="0" width="250" height="128" style="position: absolute; left:90px; top:25px;"/>
+<img src="/img/image_callback.png" alt="" border="0" width="319" height="124" style="position: absolute; left:360px; top:25px;" usemap="#formulare" />
+<map name="formulare"><area shape="RECT" coords="150,60,315,95" href="mailto:info@sag-akademie.de" /></map>
+</infoboxSmall>
+<content>
+
+
+<img src="/img/title_callbackformular.png" alt="" border="0" width="180" height="22" style="position: absolute; left:0px; top:0px;"/>
+<div style="position: absolute; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+<form method="POST" action="/form/callback" class="form">
+
+<table border="0" cellspacing="5" cellpadding="5" style="font-family:Arial,Helvetica;font-size:11px; position: absolute; left:0px; top:0px;">
+<tr><td valign="bottom" align="right">Firma</td><td><input type="Text" name="Firma" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;"></td></tr>
+<tr><td valign="bottom" align="right">Anrede</td><td><select name="Anrede" size="" style="width:270px;background-color:#eeeeee;"><option value="Herr">Herr</option><option value="Frau">Frau</option></select></td></tr>
+
+<tr><td valign="bottom" align="right">Vorname*</td><td><input type="Text" name="Vorname" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;" class="required"></td></tr>
+<tr><td valign="bottom" align="right">Name*</td><td><input type="Text" name="Name" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;" class="required"></td></tr>
+<tr><td valign="bottom" align="right">Rückruf durch*</td><td><select name="Rückruf durch" size="" style="width:270px;background-color:#eeeeee;"><option value="Lünen">Lünen</option><option value="Darmstadt">Darmstadt</option><option value="Geschäftsführung">Geschäftsführung</option></select></td></tr>
+<tr><td valign="bottom" align="right">Termin Wunsch*</td><td><select name="Termin Wunsch" size="" style="width:270px;background-color:#eeeeee;"><option value="bei Gelegenheit">bei Gelegenheit</option><option value="schnellstmoeglich">schnellstmöglich</option><option value="im Laufe der Woche">im Laufe der Woche</option></select></td></tr>
+<tr><td colspan="2" align="right" valign="middle" style="font-size:9px;">&nbsp;<br/>Die mit * markierten Felder müssen ausgefüllt sein, um die Nachricht zu senden.</td></tr>
+</table>
+
+<table border="0" cellspacing="5" cellpadding="5" style="font-family:Arial,Helvetica;font-size:11px; position: absolute; left:400px; top:0px;">
+<tr><td valign="bottom" align="right">Telefon*</td><td><input type="Text" name="Telefon" value="" size="40" maxlength="100" style="width:265px;background-color:#eeeeee;" class="required"></td></tr>
+<tr><td valign="bottom" align="right">Thema*</td><td><select name="Thema" size="" style="width:268px;background-color:#eeeeee;"><option value="Seminare">Seminare</option><option value="Rechnungen">Rechnungen</option><option value="Buchhaltung">Buchhaltung</option><option value="Lob">Lob</option><option value="Beschwerde">Beschwerde</option><option value="Sonstiges">Sonstiges</option></select></td></tr>
+<tr><td valign="top" align="right">Nachricht</td><td><textarea name="Nachricht" cols="31" rows="4" style="width:265px;background-color:#eeeeee;"></textarea></td></tr>
+<tr><td colspan="2" align="right"><input type="image" name="Nachricht senden" src="/img/button_form_senden.png" width="126" height="37" alt="Nachricht senden" border="0" style="position:absolute;right:60px;top:170px;" /></td></tr>
+</table>
+</form>
+</div>
+</content>

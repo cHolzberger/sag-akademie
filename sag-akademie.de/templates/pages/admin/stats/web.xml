@@ -1,0 +1,4 @@
+<content>
+	Statistik<br/>
+	<dbiframe base="/resources/stats/awstats.www.sag-akademie.de.xml"/>
+</content>

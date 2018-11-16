@@ -1,0 +1,238 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+	<!-- siehe resources/taglib/infoboxDownload.php-->
+
+	<infoboxDownload />
+
+	</infoboxSmall>
+
+<content>
+
+<span style="font-family:Arial,Helvetica;color:darkblue;"><b>Pressemitteilungen</b></span>
+
+	<div
+		style="position: absolute; left:0px; top:25px; width:750px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<table border="0" cellspacing="0" cellpadding="0" width="750"
+			style="position: absolute; left:0px; top:0px;width:750px;">
+				<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="top" width="70">
+					<nobr />
+					<a href="/pdf/SAG_Pressemitteilung_61a.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Pressemitteilung_61a.pdf" target="_blank" class="blau">
+							<b>Sachkundelehrgang Dichtheitsprüfung gemäß § 61a LWG
+NRW - Überarbeitetes Seminarangebot der SAG-Akademie GmbH ab 2011</b>
+						</a>
+						<br />&nbsp;<br/>
+Ab Januar 2011 bietet die SAG-Akademie ein überarbeitetes Seminarkonzept für
+Sachkundelehrgänge zur Dichtheitsprüfung privater Abwasserleitungen gemäß
+§ 61a LWG NRW in Lünen an. Neben einer deutlichen Kostensenkung können Interessenten
+nun aus 4 Seminaren ihren individuellen Lehrgang auswählen...
+					</span>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;<br/><hr/></td></tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="top" width="70">
+					<nobr />
+					<a href="/pdf/SAG_Pressemitteilung_Kodiersysteme.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Pressemitteilung_Kodiersysteme.pdf" target="_blank" class="blau">
+							<b>Kodiersysteme zur Kanalinspektion - Die Europanorm und das „alte“ Kürzelsystem</b>
+						</a>
+						<br />&nbsp;<br/>
+Ungeachtet der persönlichen Meinungen verschiedener Fachleute muss heute für die
+optische Inspektion das „neue“ Kodiersystem nach Europanorm DIN EN 13508, Teil 2, i.d.R.
+in Verbindung mit dem nationalen Regelwerk DWA-M 149, Teil 2, verwendet werden. - Und
+dies bereits seit dem Jahr 2006. Diese Verpflichtung gilt nicht nur für die Inspektion der
+öffentlichen Kanäle, sondern auch für die Inspektion von privaten Abwasserleitungen, zu
+denen auch industrielle und gewerbliche Kanäle zählen...
+					</span>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;<br/><hr/></td></tr>
+			<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="top" width="70">
+					<nobr />
+					<a href="/pdf/SAG_Pressemitteilung_MA-GE.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Pressemitteilung_MA-GE.pdf" target="_blank" class="blau">
+							<b>Dienstleistungs-Management Grundstücksentwässerung
+(MA-GE) - Neues Seminar für Existenzgründer und Neueinsteiger im Bereich GE</b>
+						</a>
+						<br />&nbsp;<br/>
+Der Orientierungs- und Optimierungs-Lehrgang richtet sich an angehende Unternehmer
+(Existenzgründer) und Betriebe, die in den Dienstleistungsbereich
+Grundstücksentwässerung einsteigen oder mit neuen Ideen und Möglichkeiten ihr
+Dienstleistungsangebot und ihre Marktpräsenz erweitern oder optimieren wollen.
+Neben unternehmerischen Möglichkeiten werden der kundenorientierte Aufbau und die
+erfolgreiche Umsetzung der Dienstleistungsangebote vom qualifizierten Angebot bis zur
+Rechnungsstellung behandelt und anhand von praktischen Beispielen dargestellt...
+					</span>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;<br/><hr/></td></tr>
+						<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="top" width="70">
+					<nobr />
+					<a href="/pdf/SAG_Pressemitteilung_Forum.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Pressemitteilung_Forum.pdf" target="_blank" class="blau">
+							<b>Verlängerung der Gültigkeit von Zertifikaten für Sach- und
+Fachkundige - Erfahrungsaustausch zur Zertifikatverlängerung</b>
+						</a>
+						<br />&nbsp;<br/>
+Gewonnenes Wissen muss in regelmäßigen Abständen „aufgefrischt“ und auch erweitert
+werden. Dies gilt insbesondere für Wissen, das im Rahmen von Sach- und
+Fachkundelehrgängen mit entsprechenden Zertifikaten erlangt wurde.
+Diese Sach- und Fachkundenachweise sind in der heutigen Zeit marktüblicher Weise
+Voraussetzung um entsprechende Leistungen für Auftraggeber in den entsprechenden
+Fachbereichen durchführen zu können...
+					</span>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;<br/><hr/></td></tr>
+						<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="top" width="70">
+					<nobr />
+					<a href="/pdf/SAG_Pressemitteilung_ZFKD-GE.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Pressemitteilung_ZFKD-GE.pdf" target="_blank" class="blau">
+							<b>Neuer Fachkundelehrgang Grundstücksentwässerung
+(ZFKD-GE) - Überbetriebliche Weiterbildung bei der SAG-Akademie GmbH</b>
+						</a>
+						<br />&nbsp;<br/>
+Ab Januar 2011 bietet die SAG-Akademie in Kooperation mit dem
+Güteschutz Kanalbau den neuen Fachkunde-Lehrgang „Zertifizierter
+Fachkundiger für Kanaldienstleistungen – Fachrichtung
+Grundstücksentwässerung“ an.
+Der Fachkundelehrgang ZFKD-GE vermittelt umfassend die
+notwendigen theoretischen und handwerklichen Kenntnisse zur
+fachgerechten Durchführung der Arbeiten rund um die Inspektion bzw.
+physikalischen Dichtheitsprüfung an privaten
+Grundstücksentwässerungsanlagen (GEA) im Hinblick auf
+Landeswassergesetze, die Eigenkontrollverordnungen der Länder und die DIN 1986, Teil 30...
+					</span>
+				</td>
+			</tr>	
+			<tr><td colspan="2">&nbsp;<br/><hr/></td></tr>
+			
+			
+									<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="top" width="70">
+					<nobr />
+					<a href="/pdf/SAG_Pressemitteilung_Weiterbildung_Hessen.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Pressemitteilung_Weiterbildung_Hessen.pdf" target="_blank" class="blau">
+							<b>Verleihung des Gütesiegels an die SAG-Akademie GmbH - Vergabe des Qualitätssiegels durch die Weiterbildung Hessen e.V.</b>
+						</a>
+						<br />&nbsp;<br/>
+Nach der Zertifizierung als Zugelassener Bildungsträger nach AZWV (§ 84 SGB III) im Jahr 2009 durch den TÜV Hessen, erhielt die SAG-Akademie GmbH für berufliche Weiterbildung nach umfangreichem Audit nun auch das Gütesiegel der Weiterbildung Hessen e.V.
+Weiterbildung Hessen e.V. sorgt für Transparenz und Orientierung...
+					</span>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;<br/><hr/></td></tr>
+			
+						<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="top" width="70">
+					<nobr />
+					<a href="/pdf/SAG_Pressemitteilung_Kanalreinigung.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Pressemitteilung_Kanalreinigung.pdf" target="_blank" class="blau">
+							<b>Reinigung von Grundstücksentwässerungsleitungen - Neues Seminar vervollständigt das Kursangebot der SAG-Akademie GmbH</b>
+						</a>
+						<br />&nbsp;<br/>
+Die Dichtheitsprüfung von Grundstücksentwässerungsleitungen, ob im Rahmen der Kanalinspektion oder im Zuge der Prüfung mit Luft und Wasser, nimmt bundesweit einen immer größeren Stellenwert ein. Bis zum 31.12.2015 sind gemäß DIN 1986, Teil 30 private Abwasserleitungen auf Dichtheit zu prüfen, wenn nicht andere Rahmenbedingungen, wie Lage in Wasserschutzgebieten, die Prüfung bereits früher fordern...
+					</span>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;<br/><hr/></td></tr>
+			
+			
+			<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="top" width="70">
+					<nobr />
+					<a href="/pdf/SAG_Pressemitteilung_Ausbildungsoffensive.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Pressemitteilung_Ausbildungsoffensive.pdf" target="_blank" class="blau">
+							<b>SAG-Ausbildungsoffensive startet 2010 - Ermäßigte Weiterbildung für Azubis</b>
+						</a>
+						<br />&nbsp;<br/>
+Bereits im Jahr 2009 nahmen zahlreiche Auszubildende an Lehrgängen, insbesondere Sachkundelehrgängen der SAG-Akademie teil.
+Um die berufliche Qualifikation der Auszubildenden zu unterstützen, bietet die SAG-Akademie ab 2010 alle Lehrgänge für Auszubildende wie z.B. des Ausbildungsberufs „Fachkraft für Rohr- Kanal- und Industrieservice“ mit einer 50 %igen Ermäßigung an...
+					</span>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;<br/><hr/></td></tr>
+					
+<tr><td colspan="2">&nbsp;</td></tr>
+						<tr>
+				<td valign="top" width="70">
+					<nobr />
+					<a href="/pdf/SAG_Pressemitteilung_Arbeitssicherheit.pdf" target="_blank">
+						<img src="/img/pdf.png" alt="" border="0" width="53" height="53" />
+					</a>&nbsp;&nbsp;
+				</td>
+				<td valign="top">
+					<span style="font-size:11px;">
+						<a href="/pdf/SAG_Pressemitteilung_Arbeitssicherheit.pdf" target="_blank" class="blau">
+							<b>Arbeitssicherheit bei Kanalarbeiten gewinnt an Bedeutung</b>
+						</a>
+						<br />&nbsp;<br/>
+Immer mehr Kommunen und erfreulicherweise auch Unternehmen der abwassertechnischen Branche nehmen die Angebote der SAG-Akademie für Sicherheitsunterweisung bei Arbeiten in und an umschlossenen Räumen von abwassertechnischen Anlagen in Anspruch.
+Dies zeigt, dass die Arbeitgeber immer mehr Verantwortung zeigen und dem Recht der Angestellten auf Arbeitssicherheit nachkommen...
+					</span>
+				</td>
+			</tr>
+			<tr><td colspan="2">&nbsp;<br/><hr/></td></tr>		
+
+
+
+		</table>
+		
+		
+
+	</div>
+</content>

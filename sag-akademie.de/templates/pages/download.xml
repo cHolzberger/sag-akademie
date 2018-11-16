@@ -1,0 +1,47 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+
+ <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167"
+                style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+	<infoboxDownload />
+
+</infoboxSmall>
+
+<content>
+
+	<img src="/img/title_download.png" alt="" border="0" width="185"
+		height="22" style="position: absolute; left:0px; top:0px;" />
+
+	<div
+		style="position: relative; left:0px; top:35px; width:700px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<table border="0" celspacing="0" cellpadding="0" style="font-size:12px important!;">
+		     <tr>
+  <td class="suTdBig">
+<mdb:link  href="/download/kursinformationen" mpath="name" >Kursinformationen</mdb:link>
+</td>
+  <td class="suTdBig">
+Alle Infos zu unseren Seminaren 
+</td>    
+  </tr>
+  <foreach fromArray="Kategorien">
+     <tr>
+  <td class="suTdBig">
+<mdb:link  href="/download/#DATA#" mpath="name" ><mdb:value mpath="name" /></mdb:link>
+</td>
+  <td class="suTdBig">
+<mdb:value mpath="beschreibung" />
+</td>    
+  </tr>
+  </foreach> 
+   
+</table>  
+  
+  <br/>&nbsp;<br/>
+
+	</div>
+		<div style="clear: both;">
+		&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
+	</div>
+</content>

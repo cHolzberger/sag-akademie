@@ -1,0 +1,50 @@
+
+{
+
+		"BuchungService": {
+			"BuchungNotificationHandler": [
+				"BuchungEditEvent",
+				"BuchungNewEvent",
+				"BuchungStornoEvent",
+				"BuchungUmgebuchtEvent",
+				"BuchungInfoEvent",
+				"BuchungTeilnehmerChangeEvent",
+				"HotelBuchungStornoEvent"
+			]
+		},
+
+		"SystemService": {
+			"SystemPlanungHandler": [
+				"SystemRequestEvent",
+				"KeepAliveEvent"
+			],
+			"SystemUserHandler": [
+				"SystemRequestEvent"
+			]
+		},
+
+		"PlanungService": {
+			"SystemPlanungHandler": [
+				"SeminarUpdateEvent"
+			]
+		},
+		
+		"SeminarService": {
+
+			"SeminarKursHandler": [
+				"SeminarUpdateEvent",
+				"SeminarNewEvent"
+			]
+		},
+
+		"TerminService": {
+			"SystemPlanungHandler": [
+				"TerminNewEvent"
+			],
+			"BuchungNotificationHandler": [
+				"TerminAbgesagtEvent"
+			]
+
+		}
+
+}

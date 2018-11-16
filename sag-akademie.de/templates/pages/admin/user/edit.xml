@@ -1,0 +1,30 @@
+<content>
+
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+	<h1>User</h1>
+<br/>&nbsp;<br/>
+<dbform table="XUser">
+	<div style="width: 33%; float:left;">
+	<dbinput name="vorname" label="Vorname" />
+	<dbinput name="nachname" label="Nachname" />
+	<dbinput name="name" label="Username" />
+	<dbinput name="email" label="E-Mail" />
+
+	<dbinput name="password" label="Password" />
+	<input name="xuser[class]" type="hidden" value="admin" />
+	</div>
+	<div style="clear: left;"></div>
+		<ribbon:dynamicGroupRight forId="administrationTab">
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();" >
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+		
+		<ribbon:dynamicGroupRight forId="administrationTab" offset="100px" class="ui-ribbon-group-reset">
+			<ribbonButton icon="icon_reset" href="javascript:$.mosaikRuntime.resetForm();" >
+				Reset
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+		
+</dbform>
+</content>

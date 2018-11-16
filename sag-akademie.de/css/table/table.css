@@ -1,0 +1,226 @@
+.tsTh {
+background-image:url(/css/table/img/bgTheader.png) !important;
+background-repeat:repeat !important;
+padding-left: 8px;
+padding-right: 0px;
+
+}
+
+.tsTh:hover {
+background-image:url(/css/table/img/bgTheaderHover.png) !important;
+background-repeat:repeat !important;
+}
+
+.tsTh .ui-state-hover {
+background-image:url(/css/table/img/tableTheaderButton.png) !important;
+background-repeat: repeat-x;
+background-color:transparent;
+border-style:none;
+border-width:0px;
+width:16px;
+height:17px !important;
+vertical-align:middle;
+position:absolute;
+top:5px;
+right:4px;
+}
+
+.tsTh .ui-state-hover:hover {
+background-image:url(/css/table/img/tableTheaderButtonHover.png) !important;
+}
+
+.tableMenu {
+display:none;
+position:absolute;
+background-image:url(/css/table/img/bgTableMenu.png) !important;
+background-repeat:repeat;
+top:58px;
+left:310px;
+border-style:solid;
+border-width:1px;
+border-color:#718bb7;
+background-color:transparent;
+padding:5px;
+width:115px;
+height:95px;
+z-index:100;
+}
+
+.contextMenu {
+display:none;
+position:fixed;
+background-image:url(/css/table/img/bgTableMenu.png) !important;
+background-repeat:repeat;
+top:150px;
+left:150px;
+border-style:solid;
+border-width:1px;
+border-color:#718bb7;
+background-color:transparent;
+padding:5px;
+width: auto;
+height:auto;
+z-index:100;
+}
+
+.tableSpaltenMenu {
+display:none;
+position:absolute;
+background-image:url(/css/table/img/bgTableMenuBig.png) !important;
+background-repeat:repeat;
+top:0px;
+left:110px;
+border-style:solid;
+border-width:1px;
+border-color:#718bb7;
+background-color:transparent;
+padding:5px;
+padding-right:8px;
+width:150px !important;
+z-index: 9999;
+}
+
+#tableMenuObj {
+	z-index: 9999;
+}
+
+.tableFilterMenu {
+display:none;
+position:absolute;
+background-image:url(/css/table/img/bgTableMenuSmall.png) !important;
+background-repeat:repeat;
+top:0px;
+left:110px;
+border-style:solid;
+border-width:1px;
+border-color:#718bb7;
+background-color:transparent;
+padding:5px;
+padding-right:8px;
+width: 350px !important;
+}
+
+.buttonText{
+font-weight:normal !important;
+font-size:9px !important;
+position:relative;
+left:29px;
+top:3px;
+
+}
+
+.buttonAufsteigend{
+	cursor: pointer;
+background-image:url(/css/table/img/bgAufsteigend.png) !important;
+background-repeat: none;
+width:103px;
+height:20px;
+font-weight:normal !important;
+font-size:9px !important;
+position:relative;
+margin-bottom:5px;
+}
+
+.buttonAufsteigend:hover{
+background-image:url(/css/table/img/bgAufsteigendHover.png) !important;
+background-repeat: none;
+width:103px;
+height:20px;
+font-weight:normal !important;
+font-size:9px !important;
+position:relative;
+margin-bottom:5px;
+}
+
+.buttonAbsteigend{
+	cursor: pointer;
+background-image:url(/css/table/img/bgAbsteigend.png) !important;
+width:103px;
+height:20px;
+font-weight:normal !important;
+font-size:9px !important;
+position:relative;
+margin-bottom:5px;
+}
+
+.buttonAbsteigend:hover{
+background-image:url(/css/table/img/bgAbsteigendHover.png) !important;
+width:103px;
+height:20px;
+font-weight:normal !important;
+font-size:9px !important;
+position:relative;
+margin-bottom:5px;
+}
+
+.buttonSpalten{
+	cursor: pointer;
+background-image:url(/css/table/img/bgSpalten.png) !important;
+width:103px;
+height:20px;
+font-weight:normal !important;
+font-size:9px !important;
+position:relative;
+margin-bottom:5px;
+}
+
+.buttonSpalten:hover{
+background-image:url(/css/table/img/bgSpaltenHover.png) !important;
+width:103px;
+height:20px;
+font-weight:normal !important;
+font-size:9px !important;
+position:relative;
+margin-bottom:5px;
+}
+
+.buttonFilter{
+	cursor: pointer;
+background-image:url(/css/table/img/bgFilter.png) !important;
+width:103px;
+height:20px;
+font-weight:normal !important;
+font-size:9px !important;
+position:relative;
+margin-bottom:0px;
+}
+
+.buttonFilter:hover{
+background-image:url(/css/table/img/bgFilterHover.png) !important;
+width:103px;
+height:20px;
+font-weight:normal !important;
+font-size:9px !important;
+position:relative;
+margin-bottom:0px;
+}
+
+.contextMenuItem {
+	position: relative;
+width: 150px !important;
+height:20px;
+font-weight:normal !important;
+font-size:9px !important;
+position:relative;
+margin-bottom:5px;
+vertical-align: middle;
+border: 1px solid #aaaaaa;
+padding-right: 2px;
+}
+
+.contextMenuItem a {
+	font-size:9px !important;
+	font-weight:normal !important;
+}
+.contextMenuItem a img {
+	vertical-align: middle;
+}
+
+.tsWrapper {
+	background-image: url("/css/table/img/table_bg.png");
+	background-repeat: repeat-x;
+	background-position: bottom;
+} .tsWrapper a {
+	color: blue;
+	text-decoration: underline;
+}

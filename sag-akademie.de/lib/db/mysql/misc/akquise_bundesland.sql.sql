@@ -1,0 +1,2 @@
+UPDATE akquise_kontakt, x_bundesland SET akquise_kontakt.bundesland_id=x_bundesland.id WHERE akquise_kontakt.bundesland = x_bundesland.name;
+UPDATE akquise_kontakt SET bundesland_id=-1 WHERE bundesland_id = 0;

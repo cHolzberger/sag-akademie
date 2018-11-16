@@ -1,0 +1,11 @@
+<content>
+	<h1>Aufgaben Übersicht</h1>
+	<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_termine_neu" href="/admin/todo/new">
+			Neue Aufgabe
+		</ribbonButton>
+	</ribbonDynamicGroup>
+    <dbbuttons basehref="/admin/todo/" buttons="edit" tooltipEdit="Bearbeiten" noheader="true"/>
+
+	<widget:itable mpath="/todo" />
+</content>

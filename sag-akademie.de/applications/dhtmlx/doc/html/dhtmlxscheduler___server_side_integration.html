@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8" /><link rel="stylesheet" href="./_default/default.css" type="text/css" media="screen" title="no title" charset="utf-8"><title>
+    dhtmlxscheduler:server_side_integration    []
+  </title></head>
+
+<body>
+<div class="dokuwiki">
+  
+  <div class="page">
+    <!-- wikipage start -->
+    <!-- TOC START -->
+<div class="toc">
+<div class="tocheader toctoggle" id="toc__header">Table of Contents</div>
+<div id="toc__inside">
+
+<ul class="toc">
+<li class="clear">
+
+<ul class="toc">
+<li class="level2"><div class="li"><span class="li"><a href="#server_side_integration" class="toc">Server side integration</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#data_loading" class="toc">Data loading</a></span></div></li>
+<li class="level2"><div class="li"><span class="li"><a href="#connector" class="toc">Connector</a></span></div></li></ul>
+</li></ul>
+</div>
+</div>
+<!-- TOC END -->
+
+
+
+<h2><a name="server_side_integration" id="server_side_integration">Server side integration</a></h2>
+<div class="level2">
+
+</div>
+<div class="secedit"><form class="button btn_secedit" method="post" action="/dokuwiki/doku.php"><div class="no"><input type="hidden" name="do" value="edit" /><input type="hidden" name="lines" value="1-37" /><input type="hidden" name="rev" value="1242744836" /><input type="hidden" name="id" value="dhtmlxscheduler:server_side_integration" /><input type="submit" value="Edit" class="button" title="Server side integration" /></div></form></div>
+<h2><a name="data_loading" id="data_loading">Data loading</a></h2>
+<div class="level2">
+
+<p>
+Scheduler can load data as in <acronym title="Extensible Markup Language">XML</acronym> or iCal format 
+</p>
+
+</div>
+
+<h4><a name="xml" id="xml">XML</a></h4>
+<div class="level4">
+<pre class="code javascript">     <span class="co1">//scheduler.load(url,callback);</span>
+     scheduler.<span class="me1">load</span><span class="br0">&#40;</span><span class="st0">&quot;data.php&quot;</span><span class="br0">&#41;</span>;</pre><pre class="code xml"><span class="sc3"><span class="re1">&lt;data<span class="re2">&gt;</span></span></span>
+	<span class="sc3"><span class="re1">&lt;event</span> <span class="re0">id</span>=<span class="st0">&quot;2&quot;</span><span class="re2">&gt;</span></span>
+		<span class="sc3"><span class="re1">&lt;start_date<span class="re2">&gt;</span></span></span>2009-05-24 00:00:00<span class="sc3"><span class="re1">&lt;/start_date<span class="re2">&gt;</span></span></span>
+		<span class="sc3"><span class="re1">&lt;end_date<span class="re2">&gt;</span></span></span>2009-06-08 00:00:00<span class="sc3"><span class="re1">&lt;/end_date<span class="re2">&gt;</span></span></span>
+		<span class="sc3"><span class="re1">&lt;text<span class="re2">&gt;</span></span></span><span class="sc2">&lt;![CDATA[French Open]]&gt;</span><span class="sc3"><span class="re1">&lt;/text<span class="re2">&gt;</span></span></span>
+		<span class="sc3"><span class="re1">&lt;details<span class="re2">&gt;</span></span></span><span class="sc2">&lt;![CDATA[Philippe-Chatrier Court Paris, FRA]]&gt;</span><span class="sc3"><span class="re1">&lt;/details<span class="re2">&gt;</span></span></span>
+	<span class="sc3"><span class="re1">&lt;/event<span class="re2">&gt;</span></span></span>
+	<span class="sc3"><span class="re1">&lt;event</span> <span class="re0">id</span>=<span class="st0">&quot;3&quot;</span><span class="re2">&gt;</span></span>
+		<span class="sc3"><span class="re1">&lt;start_date<span class="re2">&gt;</span></span></span>2009-06-10 00:00:00<span class="sc3"><span class="re1">&lt;/start_date<span class="re2">&gt;</span></span></span>
+		<span class="sc3"><span class="re1">&lt;end_date<span class="re2">&gt;</span></span></span>2009-06-13 00:00:00<span class="sc3"><span class="re1">&lt;/end_date<span class="re2">&gt;</span></span></span>
+		<span class="sc3"><span class="re1">&lt;text<span class="re2">&gt;</span></span></span><span class="sc2">&lt;![CDATA[Aegon Championship]]&gt;</span><span class="sc3"><span class="re1">&lt;/text<span class="re2">&gt;</span></span></span>
+		<span class="sc3"><span class="re1">&lt;details<span class="re2">&gt;</span></span></span><span class="sc2">&lt;![CDATA[The Queens Club London, ENG]]&gt;</span><span class="sc3"><span class="re1">&lt;/details<span class="re2">&gt;</span></span></span>
+	<span class="sc3"><span class="re1">&lt;/event<span class="re2">&gt;</span></span></span>
+<span class="sc3"><span class="re1">&lt;/data<span class="re2">&gt;</span></span></span></pre>
+<p>
+Mandatory values:
+</p>
+<ul>
+<li class="level1"><div class="li"> start_date - format defined by scheduler.config.xml_date</div>
+</li>
+<li class="level1"><div class="li"> end_date</div>
+</li>
+<li class="level1"><div class="li"> text</div>
+</li>
+</ul>
+
+<p>
+Any other optional elements can present , they will be mapped to related event properties.
+</p>
+
+</div>
+
+<h4><a name="ical" id="ical">iCal</a></h4>
+<div class="level4">
+
+<p>
+
+Only events with fixed start and end date supported.
+</p>
+<pre class="code javascript">     <span class="co1">//scheduler.load(url,&quot;ical&quot;,callback);</span>
+     scheduler.<span class="me1">load</span><span class="br0">&#40;</span><span class="st0">&quot;data.php&quot;</span><span class="sy0">,</span><span class="st0">&quot;ical&quot;</span><span class="br0">&#41;</span>;</pre><pre class="code ini">BEGIN:VCALENDAR
+PRODID:-//Last.fm Limited Event Feeds//NONSGML//EN
+VERSION:<span class="nu0">2.0</span>
+X-WR-CALNAME:Last.fm Events
+X-WR-CALDESC:Event listing - supplied by http://www.Last.fm
+&nbsp;
+BEGIN:VEVENT
+UID:LFMEVENT-<span class="nu0">1043574</span>
+URL<span class="co0">;VALUE=URI:http://www.last.fm/event/1043574</span>
+DTSTAMP:20090507T190000
+DTSTART:20090507T190000
+DTEND<span class="co0">;VALUE=DATE:20090507</span>
+SUMMARY:Cross.B.Band
+DESCRIPTION:Cross.B.Band 
+END:VEVENT
+&nbsp;
+BEGIN:VEVENT
+UID:LFMEVENT-<span class="nu0">965499</span>
+URL<span class="co0">;VALUE=URI:http://www.last.fm/event/965499</span>
+DTSTAMP:20090507T200000
+DTSTART:20090507T200000
+DTEND<span class="co0">;VALUE=DATE:20090507</span>
+DESCRIPTION:some content here
+END:VEVENT
+&nbsp;
+END:VCALENDAR</pre>
+<p>
+DTSTART, DTEND - used as start and end of event
+DESCRIPTION - used as text of event
+all attriubutes of event from iCal structure mapped to the properties of event with the same name
+</p>
+
+</div>
+<div class="secedit"><form class="button btn_secedit" method="post" action="/dokuwiki/doku.php"><div class="no"><input type="hidden" name="do" value="edit" /><input type="hidden" name="lines" value="38-1869" /><input type="hidden" name="rev" value="1242744836" /><input type="hidden" name="id" value="dhtmlxscheduler:server_side_integration" /><input type="submit" value="Edit" class="button" title="Data loading" /></div></form></div>
+<h2><a name="connector" id="connector">Connector</a></h2>
+<div class="level2">
+
+<p>
+Scheduller includes dataProcessor and can use it to sync. with server ( if you want to implement custom server side logic you can check <a href="./_default/dummy.html" class="wikilink1" title="dhtmlxdataprocessor:toc">dataProcessor</a> article )
+
+</p>
+<pre class="code javascript">		scheduler.<span class="me1">init</span><span class="br0">&#40;</span><span class="st0">'scheduler_here'</span><span class="sy0">,</span><span class="kw2">null</span><span class="sy0">,</span><span class="st0">&quot;month&quot;</span><span class="br0">&#41;</span>;
+		scheduler.<span class="me1">load</span><span class="br0">&#40;</span><span class="st0">&quot;events.php?uid=&quot;</span><span class="sy0">+</span>scheduler.<span class="me1">uid</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;
+&nbsp;
+		<span class="kw2">var</span> dp <span class="sy0">=</span> <span class="kw2">new</span> dataProcessor<span class="br0">&#40;</span><span class="st0">&quot;events.php&quot;</span><span class="br0">&#41;</span>;
+		dp.<span class="me1">init</span><span class="br0">&#40;</span>scheduler<span class="br0">&#41;</span>;</pre><pre class="code php">	<span class="kw1">include</span> <span class="br0">&#40;</span><span class="st_h">'dhtmlxConnector/codebase/scheduler_connector.php'</span><span class="br0">&#41;</span>;
+&nbsp;
+	<span class="re0">$res</span><span class="sy0">=</span><a href="http://www.php.net/mysql_connect"><span class="kw3">mysql_connect</span></a><span class="br0">&#40;</span><span class="st0">&quot;localhost&quot;</span><span class="sy0">,</span><span class="st0">&quot;root&quot;</span><span class="sy0">,</span><span class="st0">&quot;&quot;</span><span class="br0">&#41;</span>;
+	<a href="http://www.php.net/mysql_select_db"><span class="kw3">mysql_select_db</span></a><span class="br0">&#40;</span><span class="st0">&quot;sampleDB&quot;</span><span class="br0">&#41;</span>;
+&nbsp;
+	<span class="re0">$calendar</span> <span class="sy0">=</span> <span class="kw2">new</span> SchedulerConnector<span class="br0">&#40;</span><span class="re0">$res</span><span class="br0">&#41;</span>;
+	<span class="re0">$calendar</span><span class="sy0">-&gt;</span><span class="me1">render_table</span><span class="br0">&#40;</span><span class="st0">&quot;events&quot;</span><span class="sy0">,</span><span class="st0">&quot;id&quot;</span><span class="sy0">,</span><span class="st0">&quot;event_start,event_end,event_text&quot;</span><span class="sy0">,</span><span class="st0">&quot;type&quot;</span><span class="br0">&#41;</span>;</pre>
+<p>
+The third parameter must have 3 mandatory fields:
+</p>
+<ul>
+<li class="level1"><div class="li"> event field mapped to start date;</div>
+</li>
+<li class="level1"><div class="li"> event field mapped to end date;</div>
+</li>
+<li class="level1"><div class="li"> event field mapped to event text.</div>
+</li>
+</ul>
+
+<p>
+
+For more details about connector usage - you can check <a href="./_default/dummy.html" class="wikilink1" title="dhtmlxconnector:toc">Connectors</a> documentation
+</p>
+
+</div>
+<div class="secedit"><form class="button btn_secedit" method="post" action="/dokuwiki/doku.php"><div class="no"><input type="hidden" name="do" value="edit" /><input type="hidden" name="lines" value="1870-" /><input type="hidden" name="rev" value="1242744836" /><input type="hidden" name="id" value="dhtmlxscheduler:server_side_integration" /><input type="submit" value="Edit" class="button" title="Connector" /></div></form></div>
+    <!-- wikipage stop -->
+  </div>
+
+  <div class="clearer">&nbsp;</div>
+
+  
+  <div class="copyright">&copy; DHTMLX</div></body>
+</html>

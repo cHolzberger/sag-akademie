@@ -1,0 +1,53 @@
+﻿<infobox>
+	<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+  <div class="aSlideshow"  style="position:absolute; left:84px; top:20px; background-image:url(/img/slideshow/real_bg.png);">  
+        <div style="background-image:url(/img/slideshow/bg.png);"><img src="/img/slideshow/01.png" /></div>
+        <div style="background-image:url(/img/slideshow/bg.png);display:none;"><img src="/img/slideshow/02.png" /></div>
+		<div style="position:absolute; background-image:url(/img/slideshow/bg.png);display:none;"><div style="position:absolute; left:35px; width:300px;"><br/>&nbsp;<br/><b>Wir suchen bundesweit Referenten!</b><br/>&nbsp;<br/>Haben Sie das entsprechende theoretische Hintergrundwissen und langjährige praktische Erfahrung?<br/><br/><a href="/ueberuns/referenten"><img src="/img/slideshow/button.png" border="0" style="position:absolute; left:-10px;bottom:30px; top:130px;"/></a></div></div>
+		<div style="position:absolute; background-image:url(/img/slideshow/bg.png);display:none;"><div style="position:absolute; left:35px; width:300px;"><br/>&nbsp;<br/><b>Stellenausschreibung der SAG-Akademie:</b><br/>&nbsp;<br/>Wir suchen für unseren Standort Darmstadt einen Bereichsleiter für den Bereich Arbeitssicherheit<br/><br/><a href="/stellenangebote/stellenangebote_sag"><img src="/img/slideshow/button.png" border="0" style="position:absolute; left:-10px;bottom:30px; top:130px;"/></a></div></div>
+			<div style="position:absolute; background-image:url(/img/slideshow/bg.png);display:none;"><div style="position:absolute; left:35px; width:300px;"><br/>&nbsp;<br/><b>Stellenausschreibung der SAG-Akademie:</b><br/>&nbsp;<br/>Wir suchen für unseren Standort Lünen eine Niederlassungsbetreuung<br/><br/><a href="/stellenangebote/stellenangebote_sag"><img src="/img/slideshow/button.png" border="0" style="position:absolute; left:-10px;bottom:30px; top:130px;"/></a></div></div>
+		<div style="position:absolute; background-image:url(/img/slideshow/bg.png);display:none;"><div style="position:absolute; left:35px; width:300px;"><br/>&nbsp;<br/><b>Für Mitglieder des VDRK:</b><br/>&nbsp;<br/>Als VDRK-Mitglied erhalten Sie auf alle Seminare der SAG-Akademie 5% Rabatt.<br/><br/><a href="/ueberuns/partner"><img src="/img/slideshow/button.png" border="0" style="position:absolute; left:-10px;top:130px;"/></a></div></div>
+    </div>
+		
+<img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167" usemap="#direkt_buttons2" style="position: absolute; left:486px; top:37px;"/><map name="direkt_buttons2"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+
+<img src="/img/xnews2_infobox_startseite.png" alt="" border="0" width="259" height="201" style="position: absolute; left:690px; top:12px;" usemap="#news_infobox_startseite"/><map name="news_infobox_startseite"><area shape="RECT" coords="1,1,250,90" href="/zfkd"/><area shape="RECT" coords="1,100,250,200" href="/sachkunde" /></map>
+
+</infobox>
+
+<content>
+		
+<img src="img/title_willkommen.png" alt="" border="0" width="204" height="17" style="position: absolute; left:0px; top:0px;" />
+<img src="/img/newsx2_content_startseite.png" alt="" border="0" width="272" height="96" style="position: absolute; left:600px; top:-15px;" usemap="#news_content_startseite"/><map name="news_content_startseite"><area shape="RECT" coords="1,1,250,100" href="/bildungscheck" /></map> 
+<img src="/img/news_content_startseite_new.png" alt="" border="0" width="272" height="116" style="position: absolute; left:600px; top:75px;" usemap="#news_content_startseite2"/><map name="news_content_startseite2"><area shape="RECT" coords="1,1,250,90" href="http://www.ikbaunrw.de/232.0.html" target="_blank" /></map>
+
+<div style="position: absolute; left:0px; top:37px; width:325px; font-family:Arial,Helvetica;font-size:11px;">
+<div class="c33">
+Ihre Buchungen
+</div>
+<div class="c33">
+	Ihre Mitarbeiter
+	<mdb:quicklistContainer>
+<foreach fromArray="Personen">
+					<mdb:quicklistItem
+					 mpathField1="name"
+					 mpathField2="vorname">
+						<mdb:link href="/kunde/person/#DATA#?edit" mpath="id">
+							<img src="/img/admin/icon_quicklist_edit.png" border="0" alt="Person bearbeiten"/>
+						</mdb:link>
+					</mdb:quicklistItem>
+</foreach>
+</mdb:quicklistContainer>
+
+</div>
+<div class="c33">
+Ihr Unternehmen<br/>
+
+<mform:label label="Firma:">
+	<mdb:value mpath="Kontakt:firma" />
+</mform:label>
+</div>
+
+</div>
+</content>

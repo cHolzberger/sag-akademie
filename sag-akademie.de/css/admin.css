@@ -1,0 +1,276 @@
+body *, * {
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10px;
+} form {
+	padding-bottom: 25px;
+} .dbColumnManager li {
+	font-weight: bold;
+} .dbColumnManager ul {
+	list-style-type: none;
+	margin-left: -8px;
+} .dbColumnOn {
+	color: #000099;
+} .dbColumnOff {
+	color: #999999;
+} .dbinput {
+	clear: both;
+	text-align: left;
+	padding-top: 1px;
+} .dbinput .label, .dbinput input[type = text] {
+	margin-top: 1px;
+	margin-bottom: 1px;
+	height: 12px;
+	min-width: 100px;
+	width: 200px;
+	max-width: 215px;
+	height: auto;
+}  .dbinput input[type = radio] {
+	margin-top: 1px;
+	margin-bottom: 1px;
+	height: 15px;
+	width: 10px;
+} .label {
+	display: block;
+	float: left;
+	width: 140px !important;
+} .dbtable {
+	width: 100%;
+} .dbtextarea textarea, .widget-content input, .dbinput input, .ui-input, .dbselect select {
+	border: 1px solid #bfbfbf !important;
+	background: #FFFFFF url(/img/inputbg.png) repeat-x scroll left top !important;
+	padding-top: 1px !important;
+	padding-bottom: 1px !important;
+	padding-left: 5px !important;
+	line-height: normal;
+	vertical-align: middle;
+	margin-top: 1px;
+	margin-bottom: 1px;
+	width: 230px;
+} .dbinput input.error {
+	border: 1px solid red !important;
+} .dbinput input.error:hover {
+	border: 1px solid red !important;
+} .dbtextarea textarea:hover, .dbinput input:hover, .ui-input:hover, .widget-content input {
+	border: 1px solid #7bb9e1 !important;
+} .content {
+	vertical-align: top;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	height: 97%;
+	position: absolute;
+	overflow: visible;
+	margin: 0px;
+} #imain {
+	padding-top: 0px;
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	top: 130px;
+	bottom: 0px;
+	vertical-align: top;
+	margin-left: auto;
+	margin-right: auto;
+	width: auto;
+	height: auto;
+	overflow: hidden;
+} #iscript {
+	display: none;
+} #imain,
+#icontent {
+	bottom: 0px;
+	left: 0px;
+	right: 0px;
+	height: auto;
+	width: auto;
+	position: absolute;
+	display: block;
+	overflow: visible;
+} #imain {
+	overflow: auto;
+	border: 0px solid #AAAAAA;
+	background: #FFFFFF url(/img/admin/content_bg.jpg) repeat-x scroll left top !important;
+} #sizeTester {
+	word-break: keep-all;
+	word-wrap: normal;
+	white-space: nowrap;
+}
+
+iframe {
+	background-color: white;
+	border: 0px solid transparent;
+}
+
+h1, h2 {
+	font-style: normal;
+	font-weight: bold;
+	font-size: 11px;
+	border-bottom: 1px solid #666666 !important;
+	color: #666666;
+	margin-bottom: 2px;
+	margin-right: 5px;
+	padding-left: 2px;
+	padding-bottom: 2px;
+	padding-top: 0px;
+	clear: both;
+	text-shadow: 1px 2px 3px #9E9E9E;
+	letter-spacing: 2px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+h2 {
+	margin-top: 3px;
+	font-size: 9px;
+	padding-left: 4px;
+	margin-bottom: 5px;
+	letter-spacing: 1px;
+	background-color: #0000ff;
+	color: #ffffff;
+	text-shadow: 1px 2px 3px #0000ee;
+	vertical-align: middle;
+} h2 a:link, h2 a:visited {
+	color: #efefef;
+	vertical-align: middle;
+} h2 a:after {
+	content: "»";
+} h2 a:hover, h2 a:focus, h2 a:active {
+	color: #ffffff !important;
+	text-decoration: underline;
+	vertical-align: middle;
+} .cclear {
+	clear: both;
+	height: 1px;
+	overflow: hidden;
+} .c33 {
+	padding-right: 1%;
+	width: 31%;
+	float: left;
+} .c50 {
+	padding-right: 1%;
+	width: 49%;
+	float: left
+} .c66 {
+	padding-right: 1%;
+	width: 65%;
+	float: left
+}
+
+
+.breadcrumb {
+	padding-left: 18px;
+	padding-top: 5px;
+	vertical-align: middle;
+	color: #000000;
+	font-weight: bold;
+} .breadcrumb a:link {
+	text-decoration: none;
+	font-weight: bold;
+	color: #000000;
+} .breadcrumb a:visited {
+	text-decoration: none;
+	font-weight: bold;
+	color: #000000;
+} .breadcrumb a:hover {
+	text-decoration: none;
+	font-weight: bold;
+	color: #000000;
+} .breadcrumb a:active {
+	text-decoration: none;
+	font-weight: bold;
+	color: #000000;
+}
+
+.dbtable td {
+	padding-left: 5px;
+	padding-bottom: 2px;
+	padding-top: 2px;
+	padding-right: 5px;
+	vertical-align: middle;
+}
+
+ table.sag_stats {
+	border-style:solid;
+	border-width:1px;
+	border-color:black;
+	width:100% !important;
+}
+
+.sag_stats th {
+	padding:3px;
+	color:white;
+	background-color:blue;
+}
+
+.sag_stats td {
+	padding:3px;
+	text-align:right;
+	background-color:white;
+}
+
+/** corret the datepicker **/
+.ui-datepicker-trigger {
+	margin-left: -20px;
+	margin-top: -10px;
+	top: 9px;
+	position: relative;
+}
+
+.dbselect select {
+	width: 207px;
+	height: 15px;
+	margin-bottom: 1px;
+	margin-top: 1px;
+	padding-bottom: 0px !important;
+	padding-top: 0px !important;
+}
+
+input[type="checkbox"] {
+	width: 15px;
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+#table-container {
+	margin-left: -10px;
+	width: 100%;
+}
+
+.tag-label {
+	width: 30px;
+	vertical-align: top;
+	color: #888;
+	font-weight: bold;
+	padding: 0px;
+}
+
+/** links **/
+a {
+	text-decoration:  underline;
+	font-weight: normal;
+	outline: none;
+}
+
+a:link {
+	text-decoration:  underline;
+	font-weight: normal;
+	color: #000099;
+}
+
+a:visited {
+	text-decoration:  underline;
+	font-weight: normal;
+	color: #000099;
+}
+
+a:focus, a:hover {
+	text-decoration:  underline;
+	font-weight: normal;
+	color: #1c1cc2;
+}
+
+a:active {
+	text-decoration:  underline;
+	font-weight: normal;
+	color: #1c1cc2;
+}

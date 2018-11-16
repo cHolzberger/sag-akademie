@@ -1,0 +1,14 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+
+global
+{
+	font-family: Verdana;
+	font-size: 9;
+	vertical-align: middle;
+	text-align: left;
+	content-background-color: #FFFFFF;
+}
+	

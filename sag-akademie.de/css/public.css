@@ -1,0 +1,70 @@
+.content {
+	position: relative;
+	top: 50px;
+	left: 90px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 950px;
+	margin-bottom: 50px;
+	overflow: visible !important;
+	!overflow: visible; /* ie 6 fix */
+} .contentScrolled {
+	padding: 0px;
+	margin: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	top: 115px;
+	overflow-y: scroll !important;
+	overflow-x: hidden !important;
+	position: absolute;
+	!overflow-y: visible; /* ie 6 fix */
+} .contentBackground {
+	background-repeat: repeat-x;
+	background-position: top;
+	padding: 0px;
+	margin: 0px;
+	height: 500px;
+	position: relative;
+	!overflow: visible; /* ie 6 fix */
+}
+
+.vmenu {
+	padding: 0px;
+	margin-top: -2px;
+}
+.vmenu .menuItem a img, 
+.vmenu .menuItem a,
+.vmenu  .menuItem {
+	padding: 0px;
+	margin: 0px;
+	
+	
+	display: block;
+}
+
+table {
+	width: auto;
+}
+
+div.seminarBuchungInfo {
+	left: 530px;
+	position: absolute;
+} .seminarBuchungTable {
+	border-collapse: collapse;
+	width: 300px;
+} .seminarBuchungTable td {
+	border-color: #444444;
+	color: #444444;
+	border-style: solid;
+	border-width: 1px;
+	padding: 3px;
+	vertical-align: top;
+}
+.cursorHand{
+    cursor: pointer !important;
+}
+
+.dbinput input.text {
+	width: 125px;
+}

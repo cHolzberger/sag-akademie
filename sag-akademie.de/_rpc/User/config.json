@@ -1,0 +1,12 @@
+{
+	"default": {
+		"namespace": "User",
+		"rpcClasses": [
+			"User_Settings"
+		]
+	},
+
+	"production": {
+		"_extends": "default"
+	}
+}

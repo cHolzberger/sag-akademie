@@ -1,0 +1,30 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+
+ <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167"
+                style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+<img src="/img/image_zfkd.png" alt="" border="0" width="633" height="160" style="position: absolute; left:70px; top:5px;" />
+
+	
+	
+	</infoboxSmall>
+
+<content>
+
+	<div style="position: absolute; left:0px; top:20px; width:370px; font-family:Arial,Helvetica;font-size:11px;">
+
+		<b>Zertifizierte Fachkundige für Kanaldienstleistungen (ZFKD)<br/>Die erste Generation</b><br/>&nbsp;<br/>
+		
+Die RoKaTech 2009 in Kassel war nicht nur eine exzellent besetzte und besuchte Fachmesse rund um den Abwasserkanal, sondern der erste offizielle Höhepunkt für die "zertifizierten Fachkundigen für Kanaldienstleistungen".<br/><br/>
+<b><a href="/pdf/bi_zfkd.pdf" target="_blank">Lesen Sie den kompletten Presseartikel in der Fachzeitschrift bi Umweltbau Nr. 3 / Juni 09 (PDF)</a></b>
+</div>
+<div style="position: absolute; left:460px; top:20px; width:370px; font-family:Arial,Helvetica;font-size:11px;">
+<img src="/img/image_bi_zfkd.jpg" alt="" border="0" width="295" height="210" style="margin-bottom:10px;" /><br/>
+<div style="font-size:9px;">
+SAG-Geschäftsführer Andreas Koch (links) und der VDRK-Vorsitzende<br/>
+Friedhelm de la Motte (2. v. l.) beglückwünschen einen der erfolgreichen<br/>
+Absolventen zu seiner neuen Qualifikation.
+</div><br/>
+</div>
+</content>

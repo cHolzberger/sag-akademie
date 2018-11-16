@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml" xmlns:Mosaik="com.mosaik.*" width="200" height="100%" creationComplete="componentInit();">
+	<mx:Script><![CDATA[
+	import flash.ui.ContextMenu;
+	import mx.rpc.events.ResultEvent;
+	import mx.rpc.events.FaultEvent;
+	import mx.collections.ArrayCollection;
+	import mx.controls.Alert;
+	import mx.controls.dataGridClasses.DataGridColumn;
+	import bridge.FABridge;
+	import com.mosaik.JsonProxy;
+	import com.mosaik.MosaikConfig;
+	import com.sag.models.Referent;
+	
+	[Bindable]
+	public var dataArray:ArrayCollection = new ArrayCollection();
+	
+	private function componentInit():void {
+		var jsonUrl:String = "/admin/json/referent;json?all=1";
+		var req:JsonProxy = new JsonProxy(jsonUrl);
+		req.request(onJsonResult);
+	}
+	
+	private function onJsonResult(jsonData:Object):void {
+		dataArray = new ArrayCollection (jsonData.data);
+		
+   }
+]]></mx:Script>
+	
+	<mx:Component className="ImageCellRenderer" >
+		<mx:Image height="45" explicitHeight="45" source="{listData.label}" />
+	</mx:Component>
+
+	<mx:Label opaqueBackground="0xffffff" width="200" textAlign="center" text="Referenten" />
+
+	<mx:DataGrid horizontalScrollPolicy="off" x="0" y="0" width="200" height="100%" editable="true" minColumnWidth="10"  sortableColumns="false" dataProvider="{dataArray}" dropEnabled="false" dragEnabled="true" dragMoveEnabled="false" showHeaders="false">
+		<mx:columns>
+			<mx:DataGridColumn dataField="image" editable="false" resizable="false" width="60" itemRenderer="com.sag.view.ImageCellRenderer" />
+			<mx:DataGridColumn dataField="name" editable="false" resizable="false" width="60" />
+			<mx:DataGridColumn dataField="vorname" editable="false" resizable="false" width="80" />
+			
+		</mx:columns>
+	</mx:DataGrid>
+</mx:VBox>

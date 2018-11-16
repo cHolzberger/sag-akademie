@@ -1,0 +1,269 @@
+﻿<set name="subject" value="Ihre Seminar-Buchung auf www.sag-akademie.de"/>
+<content>
+	<div style="font-family:Arial,Helvetica; font-size:12px;">
+		<img src="https://www.sag-akademie.de/img/logo_ci.png" alt="Logo SAG-Akademie" border="0" align="right"/>
+<switch key="Ansprechpartner:geschlecht">
+			<case value="0">
+				<b>Sehr geehrter Herr
+					<dbfield name="Ansprechpartner:name" notable="true"/>,
+				</b>
+			</case>
+			<case value="1">
+				<b>Sehr geehrte Frau
+					<dbfield name="Ansprechpartner:name" notable="true"/>,
+				</b>
+			</case>
+		</switch>
+		<br/>&nbsp;
+		<br/>
+		vielen Dank für Ihre verbindliche Seminar-Buchung auf www.sag-akademie.de .<br/>&nbsp;
+		<br/> 
+Die Allgemeinen Geschäftsbedingungen der SAG-Akademie finden Sie <a href="https://www.sag-akademie.de/pdf/agb.pdf" target="_blank">hier</a>. 
+		<br/>&nbsp;<br/>
+		Eine Anfahrtsbeschreibung und einen Routenplaner zu den Standorten der SAG-Akademie finden Sie
+		<a href="https://www.sag-akademie.de/kontakt/anfahrt" target="_blank">
+			hier
+		</a>
+		.<br/>
+		<br/>&nbsp;<br/>
+		Einige Hinweise zum Seminar:<br/>&nbsp;<br/>
+Seminarbeginn für alle Seminare ist 8.00 Uhr. Wir bitten um ein rechtzeitiges Erscheinen um Verzögerungen zu vermeiden. Die angegebenen Zeiten für das Ende eines Seminars sind Mindestzeiten.<br/>&nbsp;<br/> 
+  
+Neben dem Seminarordner mit den Schulungsunterlagen werden Kugelschreiber und Blöcke kostenlos zur Verfügung gestellt.<br/>&nbsp;<br/> 
+  
+Während des gesamten Seminars stehen Kaffee, Tee und Kaltgetränke zur Verfügung.   
+Jedes Seminar beinhaltet ein Frühstück mit belegten Brötchen und ein warmes Mittagessen.   
+Zusätzlich gibt es kurze Pausen während Seminars. Ein Raucherbereich steht zur Verfügung.<br/>&nbsp;<br/>
+Zusammenfassung der Buchungsdaten:<br/>&nbsp;<br/>
+
+		<table border="1" cellspacing="0" cellpadding="3" style="border-style:solid;border-width:1px;border-color:#dddddd;font-family:Arial,Helvetica; font-size:11px;">
+			
+			<tbody>
+				
+			
+				
+				<foreach fromArray="Buchungen">
+				
+								
+					
+					<switch key="Person:teilnehmer">
+						<case value="0">
+							
+						</case>
+						<case value="*">
+						
+											<tr>
+						<td>
+							Teilnehmer
+						</td>
+						<td>
+							<dbfield name="Person:name" notable="true"/>,&nbsp;<dbfield name="Person:vorname" notable="true"/>
+						</td>
+					</tr>	
+							
+							<tr>
+								<td>
+									Seminar
+								</td>
+								<td>
+									<dbfield name="Seminar:SeminarArt:bezeichnung" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Kurs-Nr.
+								</td>
+								<td>
+									<dbfield name="Seminar:kursnr" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Zeitraum
+								</td>
+								<td>
+									<dbfield name="Seminar:datum_begin" converter="mysqlDateToLocal" notable="1"/>-<dbfield name="Seminar:datum_ende" converter="mysqlDateToLocal" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Ort
+								</td>
+								<td>
+									<dbfield name="Seminar:Standort:Ort:ort" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									Kosten (zzgl. MwSt.)
+								</td>
+								<td>
+									<dbfield name="kursgebuehr" converter="euroPreis" notable="1"/>&nbsp;&euro;
+								</td>
+							</tr>
+							<switch key="zustaendige_arbeitsagentur">
+			<case value="">
+			</case>
+			<case value="*">
+							<tr>
+								<td>
+									zuständige Arbeitsagentur
+								</td>
+								<td>
+									<dbfield name="zustaendige_arbeitsagentur" notable="1"/>
+								</td>
+							</tr>
+			</case>
+</switch>			
+	<switch key="bildungscheck_ausstellung_ort">
+			<case value="">
+			</case>
+			<case value="*">
+			<tr>
+								<td>
+									ESF Förderung Art
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_art" notable="1"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									ESF Förderung Ausstellung Bundesland
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_bundesland" notable="1"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									ESF Förderung Ausstellung Ort
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_ort" notable="1"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									ESF Förderung Ausstellung Datum
+								</td>
+								<td>
+									<dbfield name="bildungscheck_ausstellung_datum" notable="1"/>
+								</td>
+							</tr>
+							</case>
+</switch>	
+	<switch key="HotelBuchung:Hotel:name">
+			<case value="">
+			</case>
+			<case value="*">			
+							<tr>
+								<td valign="top">
+									Hotel
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:Hotel:name" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:strasse" notable="true"/>&nbsp;<dbfield name="HotelBuchung:Hotel:nr" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:plz" notable="true"/>&nbsp;<dbfield name="HotelBuchung:Hotel:ort" notable="true"/><br/>
+									<dbfield name="HotelBuchung:Hotel:tel" notable="true"/>
+								</td>
+							</tr>
+							
+							
+							<tr>
+								<td>
+									Anzahl Übernachtungen
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:uebernachtungen" notable="true"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Anreisedatum
+								</td>
+								<td>
+									<dbfield name="HotelBuchung:anreise_datum" notable="true"/>
+								</td>
+							</tr>
+							
+							<tr>
+								<td>
+									Zimmerpreis EZ in &euro; pro Übernachtung
+								</td>
+								<td>
+									<mdb:value mpath="HotelBuchung:verkaufspreis_ez" converter="euroPreis" suffix="€"/>
+								</td>
+							</tr>
+							</case>
+</switch>						
+							
+						</case>
+					</switch>
+					
+					<tr>
+						<td colspan="2">
+							&nbsp;
+						</td>
+					</tr>
+					
+				</foreach>
+					<switch key="bemerkung">
+			<case value="">
+			</case>
+			<case value="*">	
+				<tr>
+					<td>
+						Bemerkung
+					</td>
+					<td>
+						<dbfield name="bemerkung" notable="true"/>
+					</td>
+				</tr>
+</case>
+</switch>												
+			</tbody>
+		</table><br/>&nbsp;
+		
+		
+		
+		<br/>
+		Wir freuen uns auf Ihre Teilnahme am Seminar.<br/>&nbsp;
+		
+		
+		<br/>
+		Hinweis: Dies ist eine automatisch generierte Email. Bitte antworten Sie nicht auf diese Email.
+		<br/>
+		<br/>
+		
+		<br/>
+		Mit freundlichen Grüßen
+		<br/>
+		<i>Ihr Team der SAG-Akademie</i>
+		<br/>&nbsp;
+		<br/>
+--
+		<br/>&nbsp;
+		<br/>
+SAG-Akademie GmbH
+		<br/>
+für berufliche Weiterbildung
+		<br/> 
+Otto-Hesse-Str. 19/T9
+		<br/>
+64293 Darmstadt
+		<br/>&nbsp;
+		<br/>
+  
+Telefon: +49 [0] 61 51.101 55-0
+		<br/>
+Fax:       +49 [0] 61 51.101 55-155
+		<br/>
+Email:      info@sag-akademie.de
+		<br/>&nbsp;
+		
+	</div>
+</content>

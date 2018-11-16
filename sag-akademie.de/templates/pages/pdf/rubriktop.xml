@@ -1,0 +1,334 @@
+﻿<pdf:content>
+
+    <set name="margin-top" value="2"/>
+    <set name="margin-bottom" value="5"/>
+    <set name="margin-left" value="5"/>
+    <set name="margin-right" value="5"/>
+
+    <style type="text/css">
+        .rubrik {
+        color:<mdb:var mpath="Farbe"/>;
+        }
+        @font-face {
+        font-family: Jolly;
+        src: url('/resources/font/Constantia.ttf');
+        font-weight: normal;
+        font-style:normal;
+        }
+        @font-face {
+        font-family: Jolly;
+        src: url('/resources/font/Constantia_Bold.ttf');
+        font-weight: 100;
+        font-style:normal;
+
+        }
+
+        @font-face {
+        font-family: Polly;
+        src: url('/resources/font/calibri.ttf');
+        font-weight: normal;
+        font-style:normal;
+        }
+
+        @font-face {
+        font-family: Jolly;
+        src: url('/resources/font/Constantia_Italic.ttf');
+        font-style: italic,oblique;
+
+        }
+
+        * {
+        font-family: Jolly;
+        line-height: 140%;
+        letter-spacing: 120%;
+        }
+
+        div {
+        font-family: Jolly;
+        }
+
+        .titlediv {
+        padding:2mm;
+        padding-bottom:0;
+        color:#999999;
+        font-size:9pt;
+        }
+
+        .valuediv {
+        padding:2mm;
+        padding-top:0;
+        padding-bottom:5mm;
+        color:#444444;
+        }
+
+        ul{
+        margin: 0;
+        padding-left: 4mm;
+        }
+
+        .pageGroup {
+            page-break-after: always;
+        }
+    </style>
+
+    <foreach fromArray="SeminarArten">
+        <div class="pageGroup">
+        <div style="position:relative; width:200mm;height:90mm;">
+
+            <img src="http://www.sag-akademie.de/files/top2_standorte.jpg" border="0" alt=""
+                 style="position:absolute;left:2mm;top:0mm;width:200mm; height:12mm;z-index:2;"/>
+            <img src="http://www.sag-akademie.de/files/top2_zukunft2.jpg" border="0" alt=""
+                 style="position:absolute;left:0mm;top:9mm;width:60mm; height:28mm;"/>
+            <img src="http://www.sag-akademie.de/files/top2_sag.jpg" border="0" alt=""
+                 style="position:absolute;right:0mm;top:13mm;width:60mm; height:28mm;"/>
+
+            <div style="position:absolute;left:2mm;top:40mm;width:200mm;font-size:8pt;">
+                <img src="http://www.sag-akademie.de/files/top2_line.jpg" border="0" alt=""
+                     style="width:195mm; height:1px;"/>
+                <p style="margin-bottom:1mm;">
+                    <span style="color:blue;font-size:13pt;font-family:Polly;">SEMINARINFORMATION</span>
+                </p>
+
+                <p style="margin-bottom:1mm;">Bitte nutzen Sie unsere kompetente Beratung, telefonisch oder persönlich -
+                    am besten vor der Buchung!
+                </p>
+                <p style="margin-bottom:2mm;">Unsere Mitarbeiter in Darmstadt (0 61 51 . 101 55 111) und Lünen (02 31 . 225 11-62)
+ beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten
+  auf.
+                </p>
+                <br/>
+
+
+                <switch key="RubrikName">
+                    <case value="Kanalinspektion">
+                        <span style="color:#999999;">
+                            <b>
+                                <mdb:var mpath="RubrikName"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <span style="font-size:13pt;color:#fc0d1b;">
+                            <b>
+                                <mdb:var mpath="SeminarArt:bezeichnung"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <b>
+                            <mdb:var mpath="SeminarArt:id"/>
+                        </b>
+                    </case>
+                    <case value="Kanalreinigung">
+                        <span style="color:#999999;">
+                            <b>
+                                <mdb:var mpath="RubrikName"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <span style="font-size:13pt;color:#071ac8;">
+                            <b>
+                                <mdb:var mpath="SeminarArt:bezeichnung"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <b>
+                            <mdb:var mpath="SeminarArt:id"/>
+                        </b>
+                    </case>
+                    <case value="Kanalsanierung">
+                        <span style="color:#999999;">
+                            <b>
+                                <mdb:var mpath="RubrikName"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <span style="font-size:13pt;color:#1aaf54;">
+                            <b>
+                                <mdb:var mpath="SeminarArt:bezeichnung"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <b>
+                            <mdb:var mpath="SeminarArt:id"/>
+                        </b>
+                    </case>
+                    <case value="Abscheidetechnik">
+                        <span style="color:#999999;">
+                            <b>
+                                <mdb:var mpath="RubrikName"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <span style="font-size:13pt;color:#653308;">
+                            <b>
+                                <mdb:var mpath="SeminarArt:bezeichnung"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <b>
+                            <mdb:var mpath="SeminarArt:id"/>
+                        </b>
+                    </case>
+                    <case value="Arbeitssicherheit">
+                        <span style="color:#999999;">
+                            <b>
+                                <mdb:var mpath="RubrikName"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <span style="font-size:13pt;color:#7f7f7f;">
+                            <b>
+                                <mdb:var mpath="SeminarArt:bezeichnung"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <b>
+                            <mdb:var mpath="SeminarArt:id"/>
+                        </b>
+                    </case>
+                    <case value="Dichtheitsprüfung">
+                        <span style="color:#999999;">
+                            <b>
+                                <mdb:var mpath="RubrikName"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <span style="font-size:13pt;color:#fdbf2d;">
+                            <b>
+                                <mdb:var mpath="SeminarArt:bezeichnung"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <b>
+                            <mdb:var mpath="SeminarArt:id"/>
+                        </b>
+                    </case>
+                    <case value="Grundstücksentwässerung">
+                        <span style="color:#999999;">
+                            <b>
+                                <mdb:var mpath="RubrikName"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <span style="font-size:13pt;color:#fd9827;">
+                            <b>
+                                <mdb:var mpath="SeminarArt:bezeichnung"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <b>
+                            <mdb:var mpath="SeminarArt:id"/>
+                        </b>
+                    </case>
+                    <case value="*">
+                        <span style="color:#999999;">
+                            <b>
+                                <mdb:var mpath="RubrikName"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <span style="font-size:13pt;">
+                            <b>
+                                <mdb:var mpath="SeminarArt:bezeichnung"/>
+                            </b>
+                        </span>
+                        <br/>
+                        <b>
+                            <mdb:var mpath="SeminarArt:id"/>
+                        </b>
+                    </case>
+                </switch>
+
+
+            </div>
+
+        </div>
+
+
+        <div style="position:relative;float:left;width:50mm;font-size:8pt; ">
+
+            <br/>
+
+            <switch key="Seminar">
+                <case value="#empty">
+                    <div class="titlediv" style="padding-top:2mm;">
+                        <b>Termine</b>
+                    </div>
+                    <div class="valuediv">
+                        Termine auf Anfrage
+                    </div>
+                </case>
+                <case value="*">
+                    <div class="titlediv" style="padding-top:2mm;">
+                        <b>Termine</b>
+                    </div>
+                    <div class="valuediv">
+                        <foreach fromArray="Seminar">
+                            <mdb:var mpath="datum_begin" converter="mysqlDateToLocal"/>&nbsp;|
+                            <mdb:var mpath="Standort:Ort:ort"/>
+                            <br/>
+
+                        </foreach>
+                    </div>
+                </case>
+            </switch>
+
+            <div class="titlediv">
+                <b>Dauer</b>
+            </div>
+            <div class="valuediv">
+                <mdb:var mpath="SeminarArt:dauer"/>&nbsp;<switch key="SeminarArt:dauer"><case value="1">Tag</case><case value="*">Tage</case></switch>
+                <br/>
+            </div>
+
+            <div class="titlediv">
+                <b>Seminargebühr</b>
+            </div>
+            <div class="valuediv">
+                <mdb:var mpath="SeminarArt:kursgebuehr"/>,00&nbsp;&euro; (zzgl. MwSt.)
+                <br/>
+                <div style="font-size:7pt; padding-top:3mm;">
+                    incl. hochwertige Seminarordner mit Inhaltsverzeichnis und Farbdrucken, Frühstück, Mittagessen und
+                    Snacks, Kalt- und Warmgetränke zu jeder Zeit, Schreibutensilien, Willkommensgeschenk
+                </div>
+            </div>
+
+            <div class="titlediv">
+                <b>Zielgruppe</b>
+            </div>
+            <div class="valuediv">
+                <mdb:var mpath="SeminarArt:zielgruppe"/>
+
+            </div>
+
+
+        </div>
+
+        <div style="position:relative;float:right; width:130mm;">
+
+            <br/>
+
+            <div style="padding:2mm; padding-top:0; width:130mm; font-size:8pt;">
+               <switch key="SeminarArt:seminar_hinweis">
+    <case value="#empty">
+	</case>
+	<case value="*">
+ <span style="color:#999999; font-size:9pt;"><b>Seminarinfo</b></span><br/>
+    <mdb:var mpath="SeminarArt:seminar_hinweis" /><br/>&nbsp;<br/>
+</case>
+</switch>	
+   <span style="color:#999999; font-size:9pt;"><b>Kurzbeschreibung</b></span><br/>
+    <mdb:var mpath="SeminarArt:kurzbeschreibung" /><br/>&nbsp;<br/> 	
+	<span style="color:#999999; font-size:9pt;"><b>Seminarinhalte</b></span><br/>
+    <mdb:var mpath="SeminarArt:langbeschreibung" /><br/>&nbsp;<br/>  
+	<span style="color:#999999; font-size:9pt;"><b>Teilnahmevoraussetzungen</b></span><br/>
+    <mdb:var mpath="SeminarArt:voraussetzungen"/><br/>&nbsp;<br/> 
+	<span style="color:#999999; font-size:9pt;"><b>Nachweise</b></span><br/>
+    <mdb:var mpath="SeminarArt:nachweise" /><br/>&nbsp;<br/> 
+            </div>
+        </div>
+            <div style="clear: both;">&nbsp;</div>
+        </div>
+    </foreach>
+
+
+</pdf:content>

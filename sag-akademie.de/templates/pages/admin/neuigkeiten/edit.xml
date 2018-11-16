@@ -1,0 +1,41 @@
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+<content>
+	<div style="clear: right;">
+		<ribbon:dynamicGroupRight forId="verwaltungTab">
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+
+		<ribbon:dynamicGroupRight forId="verwaltungTab" offset="100px" class="ui-ribbon-group-reset">
+			<ribbonButton icon="icon_print" href="javascript:$.mosaikRuntime.print();">
+				Drucken
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+	</div>
+
+	<h1>
+		Neuigkeit
+	</h1>
+	<dbform table="Neuigkeit"  class="no-reload">
+		<div class="c33">
+			<h2>Artikel</h2>
+			<mdb:input mpath="Neuigkeit:datum" class="datepicker" label="Datum"  converter="mysqlDateToLocal" />
+			<mdb:input mpath="Neuigkeit:titel" label="Titel" />
+			<mdb:textarea style="width: 300px; height: 250px;" mpath="Neuigkeit:text" label="Inhalt" rte="true"/>
+
+		</div>
+		<div class="c33">
+			<h2>PDF</h2>
+			<mdb:link href="#DATA#" mpath="Neuigkeit:pdf" target="_blank" label="Link" >
+				Pdf - Anzeigen
+			</mdb:link>
+			<mform:upload name="pdf_upload" label="Upload:" />
+		</div>
+		<div class="c33">
+			<h2>Weitere Informationen</h2>
+			<mdb:input readonly="readonly" mpath="Neuigkeit:GeaendertVon:name" label="Ge&auml;ndert von"/>
+			<mdb:input readonly="readonly" mpath="Neuigkeit:geaendert" label="Ge&auml;ndert" converter="mysqlDateTimeToLocal" />
+		</div>
+	</dbform>
+</content>

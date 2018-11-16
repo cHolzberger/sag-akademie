@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<!-- template designed by Marco Von Ballmoos -->
+			<title>Docs for page charset.inc.php</title>
+			<link rel="stylesheet" href="styles/phpdoc.css" />
+			<meta http-equiv='Content-Type' content='text/html; charset=iso-8859-1'/>
+		</head>
+		<body>
+			<div class="page-body">			
+<h2 class="file-name"><img src="images/Page_logo.png" alt="File" style="vertical-align: middle">/export/home/molle/Data/wrk/SAG-Akademie-GmbH/SAG-Akademie.de/applications/phpdoc/phpDocumentor/lib/konstrukt/charset.inc.php</h2>
+
+<a name="sec-description"></a>
+<div class="info-box">
+	<div class="info-box-title">Description</div>
+	<div class="nav-bar">
+					<span class="disabled">Description</span> |
+							<a href="#sec-classes">Classes</a>
+														</div>
+	<div class="info-box-body">	
+		<!-- ========== Info from phpDoc block ========= -->
+		
+			</div>
+</div>
+		
+	<a name="sec-classes"></a>	
+	<div class="info-box">
+		<div class="info-box-title">Classes</div>
+		<div class="nav-bar">
+			<a href="#sec-description">Description</a> |
+			<span class="disabled">Classes</span>
+																	</div>
+		<div class="info-box-body">	
+			<table cellpadding="2" cellspacing="0" class="class-table">
+				<tr>
+					<th class="class-table-header">Class</th>
+					<th class="class-table-header">Description</th>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top; white-space: nowrap">
+						<img src="images/Class.png"
+								 alt=" class"
+								 title=" class"/>
+						<a href="default/k_charset_ResponseCharset.html">k_charset_ResponseCharset</a>
+					</td>
+					<td>
+											A responsecharset governs how the response is sent back to the client.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top; white-space: nowrap">
+						<img src="images/Class.png"
+								 alt=" class"
+								 title=" class"/>
+						<a href="default/k_charset_Utf8.html">k_charset_Utf8</a>
+					</td>
+					<td>
+											
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top; white-space: nowrap">
+						<img src="images/Class.png"
+								 alt=" class"
+								 title=" class"/>
+						<a href="default/k_charset_Latin1.html">k_charset_Latin1</a>
+					</td>
+					<td>
+											
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top; white-space: nowrap">
+						<img src="images/Class.png"
+								 alt=" class"
+								 title=" class"/>
+						<a href="default/k_charset_CharsetStrategy.html">k_charset_CharsetStrategy</a>
+					</td>
+					<td>
+											A strategy for encoding/decoding charsets
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top; white-space: nowrap">
+						<img src="images/Class.png"
+								 alt=" class"
+								 title=" class"/>
+						<a href="default/k_charset_Utf8CharsetStrategy.html">k_charset_Utf8CharsetStrategy</a>
+					</td>
+					<td>
+											Full UTF-8  This is the preferred configuration  If you're using PHP &lt; 6  You should use the [mb-string extension](http://docs.php.net/manual/en/mbstring.overload.php) to replace the built-ins. This is not crucial, but a good idea none the less.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top; white-space: nowrap">
+						<img src="images/Class.png"
+								 alt=" class"
+								 title=" class"/>
+						<a href="default/k_charset_Latin1CharsetStrategy.html">k_charset_Latin1CharsetStrategy</a>
+					</td>
+					<td>
+											Full latin1, throughout the application  While this is the native solution for PHP &lt; 6, it isn't recommended for new applications. Use FauxUtf8 or preferably Utf8.
+										</td>
+				</tr>
+								<tr>
+					<td style="padding-right: 2em; vertical-align: top; white-space: nowrap">
+						<img src="images/Class.png"
+								 alt=" class"
+								 title=" class"/>
+						<a href="default/k_charset_FauxUtf8CharsetStrategy.html">k_charset_FauxUtf8CharsetStrategy</a>
+					</td>
+					<td>
+											All input/output as UTF-8, but latin1 on the inside  This was the default charset handling of Konstrukt v. 1 - It is now deprecated in favour of full UTF-8  It offers few benefits over a simple latin1 strategy, but forms a lowest dommon denominator when using Ajax (javascript defaults to UTF-8)  It expects everything within PHP (files and strings) to be latin1. This includes any data received from the database.
+										</td>
+				</tr>
+							</table>
+		</div>
+	</div>
+
+	
+	
+	
+	
+	<p class="notes" id="credit">
+		Documentation generated on Sat, 27 Feb 2010 06:44:56 +0000 by <a href="http://www.phpdoc.org" target="_blank">phpDocumentor 1.4.3</a>
+	</p>
+	</div></body>
+</html>

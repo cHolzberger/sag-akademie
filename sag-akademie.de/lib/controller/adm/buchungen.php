@@ -1,0 +1,382 @@
+<?php
+
+include("adm/dbcontent.php");
+include_once("Events/BuchungEditEvent.php");
+include_once("Events/BuchungInfoEvent.php");
+include_once("Events/BuchungNewEvent.php");
+include_once("Events/BuchungStornoEvent.php");
+include_once("Events/BuchungUmgebuchtEvent.php");
+include_once("services/BuchungService.php");
+
+class ADM_Buchungen extends ADM_DBContent {
+
+	var $defaultIntention = "onIndex";
+
+	function map($name) {
+		return "ADM_Buchungen";
+	}
+
+	function onTrash(&$pr, &$ds) {
+		/* $trash = Doctrine::getTable("ViewBuchungenPapierkorb")->trash()->fetcharray();
+		 * ds->add("Buchungen", $trash); */
+		$_GET['trash'] = 1;
+		$fn = $this->name() . "/trash.xml";
+		$pr->loadPage($fn);
+	}
+
+	function onSearch(&$pr, &$ds) {
+		$fn = $this->name() . "/search.xml";
+		$pr->loadPage($fn);
+	}
+
+	function onRecover() {
+		$data = Doctrine::getTable("Buchung")->find($this->entryId);
+		$data->deleted_at = "0000-00-00 00:00:00";
+		$data->save();
+
+		instantRedirect("/admin/buchungen/" . $this->entryId . ";iframe?edit");
+	}
+
+	function onEdit(&$pr, &$ds) {
+		$arr = $this->fetchOne($this->entryId);
+
+		$this->dsDb->add("Buchung", $arr);
+
+		$arr = Doctrine::getTable("HotelBuchung")->detailedByBuchungId($this->entryId)->execute();
+
+		if ($arr->count() > 0 && $arr[0]->hotel_id != 0) {
+			$ds->add("HotelGebucht", "1");
+			$ds->add("HotelBuchung", $arr->getFirst()->toArray());
+		} else {
+			$ds->add("HotelGebucht", "0");
+		}
+
+		$seminarArtId = Doctrine::getTable("Buchung")->find($this->entryId)->Seminar->seminar_art_id;
+		$seminare = Doctrine::getTable("Seminar")->findByDql("seminar_art_id = ?",$seminarArtId);
+
+		foreach ($seminare as $seminar) {
+			$seminar['datum_begin'] = mysqlDateToLocal($seminar['datum_begin']);
+			$seminar['datum_ende'] = mysqlDateToLocal($seminar['datum_ende']);
+		}
+
+		$this->dsDb->add("SeminarTermine", $seminare->toArray());
+		$this->dsDb->add("SeminarTerminID", $this->getOneClass($this->entryId)->Seminar->id);
+
+		//$this->dsDb->log();
+		$fn = $this->name() . "/edit.xml";
+		$pr->loadPage($fn);
+
+		// Dispatch Event
+		/* $event = new BuchungEditEvent();
+		  $event->targetId = $uuid;
+		  $event->sendMail = $this->query("sendEmail", false);
+
+		  BuchungService::dispatchEvent( $event ); */
+		//$this->sendAdminEmail($arr['uuid']);
+		//$this->sendPublicEmail($arr['uuid']);
+	}
+
+	function onPrint(& $pr, & $ds) {
+		$arr = $this->fetchOne($this->entryId);
+
+		$this->dsDb->add("Buchung", $arr);
+
+		$arr = Doctrine::getTable("HotelBuchung")->detailedByBuchungId($this->entryId)->execute();
+
+		if ($arr->count() > 0 && $arr[0]->hotel_id != 0) {
+			$ds->add("HotelGebucht", "1");
+			$ds->add("HotelBuchung", $arr->getFirst()->toArray());
+		} else {
+			$ds->add("HotelGebucht", "0");
+		}
+
+		$seminare = Doctrine::getTable("Seminar")->findBySeminar_art_id($this->getOneClass($this->entryId)->Seminar->seminar_art_id);
+
+		foreach ($seminare as $seminar) {
+			$seminar['datum_begin'] = mysqlDateToLocal($seminar['datum_begin']);
+			$seminar['datum_ende'] = mysqlDateToLocal($seminar['datum_ende']);
+		}
+
+		$this->dsDb->add("SeminarTermine", $seminare->toArray());
+		$this->dsDb->add("SeminarTerminID", $this->getOneClass($this->entryId)->Seminar->id);
+
+		$fn = $this->name() . "/print.xml";
+		$pr->loadPage($fn);
+	}
+
+	function onOk(&$pr, &$ds) {
+		$result = $this->getOneClass($this->entryId);
+
+		$result->bestaetigt = 1;
+		$result->bestaetigungs_datum = currentMysqlDate();
+		$result->save();
+
+		$fn = $this->name() . "/saved.xml";
+		$pr->loadPage($fn);
+
+		// FIXME: zur vorherigen seite springen
+		instantRedirect("/admin/;iframe");
+	}
+
+	function onNew(&$pr, &$ds) {
+		$fn = $this->name() . "/new.xml";
+		if (!empty($_GET['person_id'])) {
+			$person = Doctrine::getTable("Person")->find($_GET['person_id'], Doctrine::HYDRATE_ARRAY);
+			$ds->add("Person", $person);
+		} else {
+			$ds->add("Person", array());
+		}
+
+		$pr->loadPage($fn);
+	}
+
+	function onIndex(&$pr, &$ds) {
+		//$GLOBALS['dbtableDataFetch'] = $this;
+		$data = Doctrine::getTable("ViewAnzahlBuchungen")->findAll(Doctrine::HYDRATE_ARRAY);
+		$count = array();
+
+
+		foreach ($data as $monat) {
+
+
+			if (!isset($count[$monat['jahr']]))
+				$count[$monat['jahr']] = 0;
+			$count[$monat['jahr']] += $monat['anzahl'];
+			$ds->add($monat['jahr'] . "_" . ($monat['monat'] - 1), $monat['anzahl']);
+		}
+		//$ds->log();
+		for ($i = 2004; $i <= 2011; $i++) {
+
+
+			$ds->add($i, $count[$i]);
+		}
+		$pr->loadPage($this->name() . ".xml");
+	}
+
+	function onShowList(&$pr, &$ds) {
+		MosaikDebug::msg("x", "call");
+		//$GLOBALS['dbtableDataFetch'] = $this;
+		$pr->loadPage($this->name() . "/list.xml");
+	}
+
+	function onTermin(&$pr, &$ds) {
+		//$result = $this->getOneClass($this->entryId);
+		instantRedirect("/admin/termine/" . $result->seminar_id . ";iframe?edit");
+	}
+
+	function onSendInfo(&$pr, &$ds) {
+		qlog("sending info ... buchung id: " . $this->entryId);
+
+		// !!! EVENT SENDEN
+		$event = new BuchungInfoEvent();
+		$event->sendMail = true;
+		$event->targetId = $this->entryId;
+
+		BuchungService::getInstance()->dispatchEvent($event);
+
+		instantRedirect("/admin/buchungen/" . $this->entryId . ";iframe?edit");
+	}
+
+	function onSave(&$pr, &$ds) {
+		$uid = Mosaik_ObjectStore::init()->get("/current/identity")->uid();
+		/* WORKAROUND */
+		$emitAfterSend = array();
+
+		$alteBuchung = Doctrine::getTable("ViewBuchungPreis")->detailed()->execute($this->entryId)->getFirst();
+		$result = $this->getOneClass($this->entryId);
+
+		if ($result->id == 0) {
+			$result->angelegt_user_id = $uid;
+		}
+
+		if (empty($result->uuid)) {
+			$result->uuid = md5(uniqid(rand(), true));
+		}
+
+		if (isset($_GET['umbuchenAuf'])) {
+			$neueBuchung = new Buchung();
+
+			$alteBuchung = $result;
+			$alteBuchung->Seminar;
+
+			$neueBuchung->merge($result->toArray());
+			$neueBuchung->id = 0;
+			$neueBuchung->seminar_id = $_GET['umbuchenAuf'];
+			$neueBuchung->uuid = $result->uuid;
+			$neueBuchung->angelegt_user_id = $uid;
+
+			$result->rechnungsbetrag = 0;
+			$result->rechnunggestellt = "0000-00-00";
+			$result->zahlungseingang_betrag = 0;
+			$result->zahlungseingang_datum = "0000-00-00";
+
+			$result->umbuchungs_datum = currentMysqlDate();
+
+			//$neueBuchung->bestaetigt = 0;
+			//$neueBuchung->bestaetigt_datum = "0000-00-00";
+			$neueBuchung->info_kunde = nl2br(urldecode($_GET['umbuchenHinweis']));
+			$neueBuchung->save();
+
+			$result->umgebucht_id = $neueBuchung->id;
+			$result->save();
+			/* !!! EVENT SENDEN ** */
+			$event = new BuchungUmgebuchtEvent();
+			$event->newTargetId = $neueBuchung->uuid;
+			$event->oldTargetId = $alteBuchung->id;
+			$event->sendMail = true;
+			BuchungService::dispatchEvent($event);
+			//$this->sendMail($neueBuchung->uuid, $alteBuchung->toArray(true),  $neueBuchung->info_kunde);
+			instantRedirect('/admin/' . $this->name() . '/' . $neueBuchung->id . ';iframe?edit');
+		}
+
+
+		/* hotelbuchung */
+		if (@$_POST['hotelbuchen'] == 1) {
+			$hbData = $_POST['HotelBuchung'];
+			unset($hbData['Hotel']);
+			unset($hbData['id']);
+			$hbData['zimmerpreis_ez'] = priceToDouble($hbData['zimmerpreis_ez']);
+			$hbData['zimmerpreis_dz'] = priceToDouble($hbData['zimmerpreis_dz']);
+			$hbData['marge'] = priceToDouble($hbData['marge']);
+			$hbData['fruehstuecks_preis'] = priceToDouble($hbData['fruehstuecks_preis']);
+			$hbData['storno_datum'] = mysqlDateFromLocal($hbData["storno_datum"]);
+
+			$hbData['buchung_id'] = $result->id;
+
+
+			if (is_object($result->NHotelBuchung)) {
+				$result->NHotelBuchung->merge($hbData);
+			} else {
+				$result->NHotelBuchung = new HotelBuchung();
+				$result->NHotelBuchung->merge($hbData);
+				$result->NHotelBuchung->id = NULL;
+			}
+
+			$result->NHotelBuchung->save();
+			/* keine hotelbuchung */
+		} else if ($result->NHotelBuchung->id != 0) {
+			if ($result->NHotelBuchung) {
+				$result->NHotelBuchung->storno_datum = currentMysqlDate();
+			}
+		}
+
+		/* buchung verarbeiten */
+		$data = $_POST[$this->entryTable];
+		// gibt es diese buchung schon?
+		if ($this->entryId == "new") {
+			if (Doctrine::getTable("Buchung")->buchungExists( $data['person_id'], $data['seminar_id'])) {
+				instantRedirect('/admin/' . $this->name() . '/' . $buchungen[0]->id . ';iframe?edit');
+			}
+		}
+
+
+		$data['bestaetigt'] = isset($data['bestaetigt']) && $data['bestaetigt'] == 1 ? "1" : "0";
+		if (!isset($data['teilgenommen'])) {
+			$data['teilgenommen'] = 0;
+		}
+		if (!empty($data['datum'])) {
+			$data['datum'] = mysqlDatetimeFromLocal($data['datum']);
+		} else {
+			$data['datum'] = currentMysqlDatetime();
+		}
+		$data["geaendert_von"] = Mosaik_ObjectStore::init()->get("/current/identity")->uid();
+		$data["geaendert"] = currentMysqlDatetime();
+
+		if (!empty($data['rechnunggestellt']))
+			$data['rechnunggestellt'] = mysqlDateFromLocal($data['rechnunggestellt']);
+		if (!empty($data['zahlungseingang_datum']))
+			$data['zahlungseingang_datum'] = mysqlDateFromLocal($data['zahlungseingang_datum']);
+
+		if (!empty($data['storno_datum'])) {
+			$data['storno_datum'] = mysqlDateFromLocal($data['storno_datum']);
+			// ggf. storno mail versenden
+			if ($data['storno_datum'] != $result->storno_datum) {
+
+				$event = new BuchungStornoEvent();
+				$event->sendMail = true;
+				$event->targetId = $result->uuid;
+				$event->personId = $result->person_id;
+				array_push($emitAfterSend, $event);
+			}
+		}
+
+		if (!empty($data['umgebuchtAuf']))
+			$data['umgebuchtAuf'] = mysqlDateFromLocal($data['umgebuchtAuf']);
+		//if ( !empty ( $data['bestaetigungs_datum'] ) ) $data['bestaetigungs_datum'] = mysqlDateFromLocal( $data['bestaetigungs_datum']);
+		if (!empty($data['umbuchungs_datum']))
+			$data['umbuchungs_datum'] = mysqlDateFromLocal($data['umbuchungs_datum']);
+
+		$data['gutschrift'] = priceToDouble($data['gutschrift']);
+
+		/* aenderung vom 02.11.2009 */
+		//$data['rechnungsbetrag'] = priceToDouble($data['rechnungsbetrag']);
+		//$data['zahlungseingang_betrag'] = priceToDouble($data['zahlungseingang_betrag']);
+
+		$data['gutschrift'] = priceToDouble($data['gutschrift']);
+
+		$data['arbeitsagenturanteil'] = priceToDouble($data['arbeitsagenturanteil']);
+		@$data['anteilvdrk'] = priceToDouble($data['anteilvdrk']);
+		//$data['nettoep'] = priceToDouble($data['nettoep']);
+		$data['kursgebuehr'] = priceToDouble($data['kursgebuehr']);
+		@$data['kosten_allg'] = priceToDouble($data['kosten_allg']);
+		@$data['kosten_refer'] = priceToDouble($data['kosten_refer']);
+		$data['kosten_unterlagen'] = priceToDouble($data['kosten_unterlagen']);
+		$data['kosten_verpflegung'] = priceToDouble($data['kosten_verpflegung']);
+		@$data['versorgungsamtanteil'] = priceToDouble($data['versorgungsamtanteil']);
+		unset($data['kursnr']);
+		unset($data['personInfo']);
+		unset($data['hotel_name']);
+		unset($data['hotel_id']);
+
+
+		$result->merge($data);
+		$result->save();
+		$result->refresh();
+
+		// send events
+		for ($i = 0; $i < count($emitAfterSend); $i++) {
+			BuchungService::dispatchEvent($emitAfterSend[$i]);
+		}
+
+		// seit apr. 2010 nurnoch eine buchung pro uuid
+		/** if ( !empty ($result->uuid) ) {
+		 * gleicheBuchung = Doctrine::getTable("Buchung")->findByUuid($result->uuid);
+		 * oreach ( $gleicheBuchung as $b) {
+		 * /$b->bemerkung = $result->bemerkung;
+		 * /$b->info_kunde = $result->info_kunde;
+		 * b->save();
+		  }
+		  } */
+		$this->entryId = $result->id;
+
+		instantRedirect('/admin/' . $this->name() . '/' . $result->id . ';iframe?edit');
+	}
+
+	/** Data fetcher function * */
+	function fetchOne($id, $res=false) {
+		MosaikDebug::msg($id, "SAG_ADM_Buchung:fetchOne");
+		$info = Doctrine::getTable("ViewBuchungPreis")->detailed()->fetchOne(array($id), Doctrine::HYDRATE_ARRAY);
+		return $info;
+	}
+
+	/*	 * * filters new or editable data ** */
+
+	function filterData($result) {
+
+		return $result;
+	}
+
+	/*	 * *
+	 * misc funktions
+	 */
+
+	function delete() {
+		$row = $this->dTable->find($this->entryId);
+		//$row->storno_datum = currentMysqlDate();
+		$row->NHotelBuchung->delete();
+		$row->delete();
+	}
+
+}
+
+?>

@@ -1,0 +1,120 @@
+/* Quicklist f�r Kundenbereich */
+
+div.quicklistContainer {
+	background-color: white;
+	border: 1px solid #666666;
+	width: 96%;
+	left: 10px;
+	position: relative;
+	max-height: 400px;
+	overflow: auto;
+}
+
+div.quicklistItem {
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position: relative;
+	height: 32px;
+	overflow: hidden;
+}
+
+div.quicklistItem48 {
+	padding-left: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	position: relative;
+	height: 48px;
+	overflow: hidden;
+}
+
+dic.quicklicstItem48 img,
+div.quicklistItem img {
+	opacity: 0.75;
+	height: 24px;
+	cursor: pointer;
+
+}
+div.quicklistItem48-content,
+div.quicklistItem-content {
+	right: 10px;
+	top: 6px;
+	position: absolute;
+}
+
+div.quicklistItem48:hover,
+div.quicklistItem:hover {
+	background-color: #d3d6f2 !important;
+}
+
+div.quicklistItem48:hover img,
+div.quicklistItem:hover img {
+	opacity: 1;
+	height: 32px;
+}
+
+div.quicklistItem48-odd,
+div.quicklistItem-odd {
+	background-color: #efefed;
+}
+
+div.quicklistItem48-even,
+div.quicklistItem-even {
+	background-color: white;
+}
+
+
+/* Login Form */
+.labelInputStart span,
+.labelInput span {
+	font-weight: normal;
+}
+
+
+.labelInput {
+	font-size: 11px;
+	padding-bottom: 4px;
+	padding-left: 10px;
+	padding-top: 4px;
+	height:22px;
+	text-align: left;
+	vertical-align: middle;
+	font-weight: bold;
+
+}
+
+.labelInputStart {
+	font-size: 11px;
+	padding-bottom: 7px;
+	padding-left: 10px;
+	padding-top: 5px;
+	width:224px;
+	text-align: left;
+	vertical-align: middle;
+	font-weight: bold;
+}
+
+
+
+.headerLabel {
+	font-size: 1.2em;
+	font-weight: bold;
+	padding-left:10px;
+	padding-top:5px;
+	padding-bottom:10px;
+	vertical-align:middle;
+}
+
+/* Form MA Edit KD-Bereich */
+
+.dbinput label {
+	display:block;
+	float:left;
+	width:110px;
+}
+
+.dbselect label {
+	display:block;
+	float:left;
+	width:110px;
+}

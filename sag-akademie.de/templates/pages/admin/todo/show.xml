@@ -1,0 +1,18 @@
+﻿<content>
+	<dbform>
+	<h1>TodoDetail</h1>
+		<mdb:value mpath="Todo:id" />
+		
+		<ribbon:dynamicGroupRight forId="verwaltungTab">
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm()();">
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+		
+		<ribbon:dynamicGroupRight forId="verwaltungTab" offset="100px" class="ui-ribbon-group-reset">
+			<ribbonButton icon="icon_reset" href="javascript:$.mosaikRuntime.resetForm()Form();">
+				Reset
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+	</dbform>
+</content>

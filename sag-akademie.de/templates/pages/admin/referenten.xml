@@ -1,0 +1,9 @@
+<content>
+<dbbuttons basehref="/admin/referenten/" label="Aktionen" buttons="edit" tooltipEdit="Bearbeiten" noheader="true"/>
+<widget:itable mpath="/referent" getvars="&showInactive=1"/>
+<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_seminare_neu" href="/admin/referenten/new">
+			Neuer Referent
+		</ribbonButton>
+	</ribbonDynamicGroup>
+</content>

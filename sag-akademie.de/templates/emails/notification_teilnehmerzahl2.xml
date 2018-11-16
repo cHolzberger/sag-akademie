@@ -1,0 +1,34 @@
+<content>
+
+
+<div style="font-family: Arial,Helvetica; font-size: 11px;">
+	<img align="right" alt="Logo SAG-Akademie" border="0" src="https://www.sag-akademie.de/img/logo_ci.png" />
+	<p>
+		Sehr geehrte(r) <mdb:value mpath="Person:anrede" /> <mdb:value mpath="Person:name" />,</p>
+	<p>
+		wir möchten Sie darüber informieren, das bei dem von Ihnen gebuchten Seminar</p>
+	<p>
+		Kurs-Nr.: <mdb:value mpath="Seminar:kursnr" /><br />
+		Zeitraum: Von <mdb:value mpath="Seminar:datum_beginn_de" /> bis <mdb:value mpath="Seminar:datum_ende_de" /></p>
+	<p>
+		die Mindestteilnehmerzahl bisher noch nicht erreicht wurde.</p>
+	<p>
+		Sollte bis zum morgigen Tag keine weitere Anmeldung erfolgen, müssen wir das Seminar zu diesem Termin leider absagen.</p>
+	<p>
+		In diesem Fall erhalten Sie hierzu eine gesonderte Mail.</p>
+	<p>
+		 </p>
+	<p>
+		Mit freundlichen Grüßen</p>
+	<p>
+		Ihr Team der SAG-Akademie</p>
+	<p>
+		___________________________________________________________________________________________________<br />
+		SAG-Akademie GmbH für berufliche Weiterbildung<br />
+		Otto-Hesse-Str. 19/T9<br />
+		64293 Darmstadt<br />
+		Telefon:   +49 <mdb:value mpath="0" /> 61 51.101 55-0<br />
+		Fax:         +49 <mdb:value mpath="0" /> 61 51.101 55-155<br />
+		Email:       info@sag-akademie.de</p>
+</div>
+</content>

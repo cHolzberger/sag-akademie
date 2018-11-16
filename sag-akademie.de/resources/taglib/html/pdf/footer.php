@@ -1,0 +1,1 @@
+<div style="bottom: <?=getAttribute("bottom", $attributes, "20");?>mm; left: 0px; position: fixed; width: 97%; text-align: right;"><?=$value?></div>

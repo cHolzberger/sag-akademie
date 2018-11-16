@@ -1,0 +1,13 @@
+<set name="subject" value="SAG-Akademie.de Newsletter" />
+<content>
+	<div style="font-family:Arial,Helvetica; font-size:11px;">
+        <b>
+            Vielen Dank für Ihre Anmeldung beim SAG - Akademie Newsletter.
+        </b>
+        <br/>&nbsp;<br/>
+        Klick auf: {DEAKTIVLINK}<br/>&nbsp;<br/>
+		TEST:<dbfield name="link" notable="true"/>
+        <b>
+	</div>
+</content>
+

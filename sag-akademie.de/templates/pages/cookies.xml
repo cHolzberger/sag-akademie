@@ -1,0 +1,24 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+
+ <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167"
+                style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+<img src="/img/image_impressum.png" alt="" border="0" width="258" height="128" style="position: absolute; left:90px; top:25px;" />
+	<img src="/img/direkt_buttons_impressum.png" alt="" border="0"
+		width="174" height="122" style="position: absolute; left:450px; top:25px;"
+		usemap="#impressum" />
+	<map name="impressum">
+			<area shape="RECT" coords="1,1,165,110" href="/download/AGB" />
+	</map>
+</infoboxSmall>
+
+<content>
+<h1>Hinweis zur Nutzung von Cookies auf www.SAG-Akademie.de</h1>
+<p>
+Damit dieses Internetportal ordnungsgemäß funktioniert, legen wir kleine Dateien – sogenannte Cookies – auf Ihrem Gerät ab. Das ist bei den meisten großen Websites üblich.
+Ein Cookie ist eine kleine Textdatei, die ein Webportal auf Ihrem Rechner, Tablet-Computer oder Smartphone hinterlässt, wenn Sie es besuchen. So kann sich das Portal bestimmte Eingaben und Einstellungen (z. B. Login, Sprache, Schriftgröße und andere Anzeigepräferenzen) über einen bestimmten Zeitraum „merken“, und Sie brauchen diese nicht bei jedem weiteren Besuch und beim Navigieren im Portal erneut vorzunehmen.
+Wenn Sie diese Webseite weiter nutzen möchten, stimmen Sie bitte der Verwendung der Cookies zu!
+</p>
+
+</content>

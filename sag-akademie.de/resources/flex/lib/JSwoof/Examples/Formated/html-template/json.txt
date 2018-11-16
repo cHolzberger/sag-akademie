@@ -1,0 +1,10 @@
+{
+	"firstname"	:	"wayne",
+	"lastname"	:	"mike",
+	"age"		:	27,
+	"alive"		:	true,
+	"extradata"	:	null,
+	"myarray"	:	[
+					{"name1" : "junior" , "state" : true}
+				]
+}

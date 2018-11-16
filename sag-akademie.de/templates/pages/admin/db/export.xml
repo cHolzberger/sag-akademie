@@ -1,0 +1,9 @@
+<content>
+<h1>Export</h1>
+<div class="c33">
+<h2>Personen Daten downloaden</h2>
+  1.) <a href="download:/admin/csv/personenliste;csv">Als CSV</a>
+<h2>Referenten Daten</h2>
+  1.) <a href="download:/admin/csv/seminarreferent;csv">Als CSV</a>
+</div>
+</content>

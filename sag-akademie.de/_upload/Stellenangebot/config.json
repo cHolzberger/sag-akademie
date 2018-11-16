@@ -1,0 +1,16 @@
+{
+	"default": {
+		"class": "Stellenangebot_Stellenangebot",
+		"name": "Stellenangebot",
+		"fieldname": "Filedata",
+		"filestore": "/img/",
+		"fileprefix": "stellenangebot_",
+		"allowedExtensions": ["pdf"],
+		"defaultset": true,
+		"defaultvalue": ""
+	},
+
+	"production": {
+		"_extends": "default"
+	}
+}

@@ -1,0 +1,16 @@
+{
+	"default": {
+		"class": "ReferentImage_ReferentImage",
+		"name": "ReferentImage",
+		"fieldname": "Filedata",
+		"filestore": "/img/",
+		"fileprefix": "referent_",
+		"allowedExtensions": ["jpg", "jpeg", "png"],
+		"defaultset": true,
+		"defaultvalue": "/img/referent_keinfoto.jpg"
+	},
+
+	"production": {
+		"_extends": "default"
+	}
+}

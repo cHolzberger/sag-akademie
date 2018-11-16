@@ -1,0 +1,71 @@
+<content>	
+	<ribbonDynamicGroup forId="verwaltungTab">
+		<ribbonButton icon="icon_seminare_neu" href="/admin/buchungen/new">
+			Neue Buchung
+		</ribbonButton>
+		
+
+	</ribbonDynamicGroup>
+	<ribbon:dynamicGroupRight forId="verwaltungTab">
+		<ribbonButton icon="icon_trashcan" href="/admin/buchungen/trash">
+			Papierkorb
+		</ribbonButton>
+	</ribbon:dynamicGroupRight>
+
+	<h1>
+	Buchungen
+	</h1>
+
+	<div class="c50">
+			<h2> Nach Buchungsdatum:</h2>
+			<widget:monthlist year="2011" href="/admin/buchungen/"/>
+			<widget:monthlist year="2010" href="/admin/buchungen/"/>
+			<widget:monthlist year="2009" href="/admin/buchungen/"/>
+			<widget:monthlist year="2008" href="/admin/buchungen/"/>
+			<widget:monthlist year="2007" href="/admin/buchungen/"/>
+			<widget:monthlist year="2006" href="/admin/buchungen/"/>
+			<widget:monthlist year="2005" href="/admin/buchungen/"/>
+			<widget:monthlist year="2004" href="/admin/buchungen/"/>
+	</div>
+	
+	<div class="c50">
+			<h2> Suche:</h2>
+	<div style="width:auto;float:left; padding:10px; padding-bottom: 20px;">
+	<widget:searchbox label="Suche nach KursNr" icon="/img/admin/icon_widget_b_search.png" queryparm="list=1&kursnr" href="/admin/buchungen/"/>
+	</div>
+	<div style="width:auto;float:left; padding:10px; padding-bottom: 20px;">
+	<widget:searchbox label="Suche nach Seminar" icon="/img/admin/icon_widget_b_search.png" queryparm="list=1&seminar" href="/admin/buchungen/"/>
+	</div>
+	<div style="width:auto;float:left; padding:10px; padding-bottom: 20px;">
+
+	<widget:container headline="Buchungen verwalten" icon="/img/admin/icon_buchungen.png">
+				<div style="position:relative;padding-left:22px;padding-top:5px;">
+					<js:hyperlink href="/admin/buchungen/?list=1&lastweek=1">
+						<img src="/img/admin/mini_icon_show.png" border="0" style="position:absolute; top:2px; left:-3px;"/>7 Tage Rückblick
+					</js:hyperlink>
+				</div>
+				
+				<div style="position:relative;padding-left:22px;padding-top:5px;">
+					<js:hyperlink href="/admin/buchungen/new">
+						<img src="/img/admin/mini_icon_new.png" border="0" style="position:absolute; top:2px; left:-3px;"/>neue Buchung anlegen
+					</js:hyperlink>
+				</div>
+				
+			</widget:container>
+	</div>
+	<div style="width:auto;float:left; padding:10px; padding-bottom: 20px;">
+		<widget:datesearchbox label="Suche nach Seminar-Datum" icon="/img/admin/icon_widget_t_search.png" href="/admin/buchungen/" queryparm="list=1&seminar"/>
+	</div>
+<!--
+	<div style="width:auto;float:left; padding:10px; padding-bottom: 20px;">
+	<widget:searchbox label="Suche nach Kontakt" icon="/img/admin/icon_widget_b_search.png" querypam="kontakt" href="/admin/buchungen/"/>
+	</div>
+	<div style="width:auto;float:left; padding:10px; padding-bottom: 20px;">
+	<widget:searchbox label="Suche nach Person" icon="/img/admin/icon_widget_b_search.png" querypam="person" href="/admin/buchungen/"/>
+	</div>
+	-->	
+
+	
+	</div>
+
+</content>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Simple custom MXML TitleWindow component.
+     The TitleWindowApp application displays this component. 
+     You cannot run it independently. -->
+     
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+    title="Laden Daten vom Server" status="" showCloseButton="false" borderAlpha="0.75">
+		<mx:Script><![CDATA[
+		[Bindable]
+		public var text:String = "Wird geladen...";
+		]]></mx:Script>
+	   	<mx:Spacer width="200" height="50" />
+		<mx:Label text="{text}" width="350" textAlign="center" />
+		<mx:Spacer width="200" height="50" />
+</mx:TitleWindow>

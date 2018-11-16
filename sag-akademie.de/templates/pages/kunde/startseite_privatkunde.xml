@@ -1,0 +1,82 @@
+﻿
+ <infoboxSmall>
+ <set name="page_background" value="/img/blue_box_klein.jpg" />
+
+ <img src="/img/direkt_buttons_startseite.png" alt="" border="0" width="189" height="167" style="position: absolute; left:756px; top:9px;" usemap="#direkt_buttons" />
+<map name="direkt_buttons"><area shape="RECT" coords="30,1,175,25" href="/seminar/termin/Arbeitssicherheit"/><area shape="RECT" coords="30,50,175,75" href="/kontakt/kontaktformular"/><area shape="RECT" coords="30,130,175,155" href="/kontakt/callbackformular"/></map>
+
+<switch key="Person:kontakt_id">
+<case value="1">
+<img src="/img/image_uebersicht_privat.png" alt="" border="0" style="position: absolute; left:90px; top:45px;" />
+</case>
+<case value="*">
+<img src="/img/image_uebersicht.png" alt="" border="0" style="position: absolute; left:90px; top:45px;" />
+</case>
+</switch>
+		
+</infoboxSmall>
+
+<content>
+	
+<div style="position: absolute; left:0px; top:0px; width:830px; font-family:Arial,Helvetica;font-size:11px;">
+
+<div style="width:260px;float:left;padding-left:0px;padding-top:0px;height:100%;">
+
+<div style="position:relative;width:224px;height:15px;" class="headerLabel"><b>Ihre Daten</b><mdb:link href="/kunde/person/#DATA#?edit" type="button" mpath="Person:id" style="position:absolute;top:2px;right:2px;">Bearbeiten</mdb:link><br/>&nbsp;</div>
+<mform:label label="Name:" class="labelInputStart">
+	<mdb:value mpath="Person:vorname" /> <mdb:value mpath="Person:name" />
+</mform:label>
+<mform:label label="Straße, Nr.:" class="labelInputStart">
+	<mdb:value mpath="Person:strasse" /> <mdb:value mpath="Person:nr" />
+</mform:label>
+<mform:label label="PLZ, Ort:" class="labelInputStart">
+	<mdb:value mpath="Person:plz" /> <mdb:value mpath="Person:ort" />
+</mform:label>
+<mform:label label="Bundesland:" class="labelInputStart">
+<mdb:value mpath="Person:bundesland" />
+</mform:label>
+<mform:label label="Land:" class="labelInputStart">
+<mdb:value mpath="Person:land" />
+</mform:label>
+<mform:label label="Tel.:" class="labelInputStart">
+<mdb:value mpath="Person:tel" />
+</mform:label>
+<mform:label label="Fax:" class="labelInputStart">
+<mdb:value mpath="Person:fax" />
+</mform:label>
+<mform:label label="Mobil:" class="labelInputStart">
+<mdb:value mpath="Person:mobil" />
+</mform:label>
+<mform:label label="Email:" class="labelInputStart">
+<mdb:value mpath="Person:email" />
+</mform:label>
+<mform:label label="Newsletter:" class="labelInputStart">
+<mdb:value mpath="Person:newsletter" converter="BoolToString"/>
+</mform:label>
+
+</div>
+
+<div style="width:260px;float:left;padding-left:25px;padding-top:0px;">
+
+<div style="position:relative;width:224px;height:15px;" class="headerLabel"><b>Buchungen</b><br/>&nbsp;</div>
+<mdb:quicklistContainer>
+<foreach fromArray="Buchungen">
+					<mdb:quicklistItem
+					 mpathField1="Seminar:kursnr"
+					 mpathField2="Seminar:SeminarArt:bezeichnung">
+						<mdb:link href="/kunde/buchung/#DATA#?edit" mpath="uuid">
+							<img src="/img/admin/icon_quicklist_edit.png" border="0" alt="Person bearbeiten"/>
+						</mdb:link>
+					</mdb:quicklistItem>
+</foreach>
+</mdb:quicklistContainer><br/>&nbsp;
+
+
+
+</div>
+
+</div>
+	<div style="clear: both;">
+		&nbsp;<br/>&nbsp;<br/>&nbsp;<br/>&nbsp;
+	</div>
+</content>

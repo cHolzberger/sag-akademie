@@ -1,0 +1,19 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+
+<infoboxSmall>
+<img src="/img/hotline.png" alt="" border="0" width="239" height="161" style="position: absolute; left:705px; top:6px;" usemap="#formulare" /><map name="formulare"><area shape="RECT" coords="90,80,230,120" href="#" /></map>
+<img src="/img/image_seminare_overview.png" alt="" border="0" width="253" height="129" style="position: absolute; left:90px; top:25px;"/>
+<img src="/img/nav_seminare_uebersicht.png" alt="" border="0" width="291" height="108" style="position: absolute; left:370px; top:32px;"/>
+</infoboxSmall>
+
+<content>
+
+<image key="title" style="position: absolute; left:0px; top:0px;" />
+
+	<div style="position: absolute; margin-left:0px; margin-top:30px; ">
+
+
+		In dieser Rubrik ist leider kein Seminar vorhanden.
+
+	</div>
+</content>

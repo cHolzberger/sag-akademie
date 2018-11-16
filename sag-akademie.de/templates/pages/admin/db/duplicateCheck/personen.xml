@@ -1,0 +1,89 @@
+<content>
+	<h1 style="position: fixed; top: 135px; z-index: 9999;">
+		Duplikate in den Personen finden (<mdb:value mpath="PersonCurrent"/>von<mdb:value mpath="PersonCount"/>) <mdb:link href="#DATA#" mpath="nextLink" urlencode="false">&Uuml;berspringen &gt;&gt;</mdb:link>
+	</h1>
+	
+	<mform:form class="no-reload">
+		<foreach fromArray="PersonDuplikate">
+			<div style="width: 95%; height: 160px;" id='topspacer'/>
+		    <foreach fromArray="duplicates">
+				<merger/>
+			</foreach>
+                        
+                        <h2>Eintrag</h2>
+		<div style="width: 33%; float:left;">
+					<h2>
+				Angaben zur Person
+			</h2>
+			<!--<dbselect readonly="true" name="kontakt_id" label="Firma" fromTable="Kontakt" fromTableKey="id" fromTableDisplay="firma"/>-->
+			<dbselect readonly="true" name="geschlecht" label="Anrede" fromTable="XAnrede" fromTableKey="id" fromTableDisplay="anrede"/>
+			<dbinput readonly="true" name="vorname" label="Vorname"/>
+			<dbinput readonly="true" name="name" label="Name"/>
+			<dbinput readonly="true" name="grad" label="Grad"/>
+			<dbinput readonly="true" name="geburtstag" label="Geburtstag" converter="mysqlDateToLocal"/>
+
+			<h2>
+				Angaben zur Position im Unternehmen
+			</h2>
+			<dbinput readonly="true" name="funktion" label="Funktion"/>
+			<dbinput readonly="true" name="abteilung" label="Abteilung"/>
+			<dbinput readonly="true" name="ansprechpartner" value="1" type="checkbox" label="Ansprechpartner"/>
+			<dbinput readonly="true" name="geschaeftsfuehrer" value="1" type="checkbox" label="Geschäftsführer"/>
+
+			<h2>
+				Notizen
+			</h2>
+			<dbtextarea readonly="true" label="interne Notiz zu dieser Person" name="notiz" style="width: 225px; height: 100px;">
+			</dbtextarea>
+		</div>
+		<div style="width: 33%; float:left;">
+			<h2>
+				Adressinformationen
+			</h2>
+			<dbinput readonly="true" name="strasse" label="Stra&szlig;e"/>
+			<dbinput readonly="true" name="nr" label="Nr"/>
+			<dbinput readonly="true" name="plz" label="PLZ" converter="plz"/>
+			<dbinput readonly="true" name="ort" label="Ort"/>
+			<dbselect readonly="true" name="bundesland_id" label="Bundesland" fromTable="XBundesland" dbtable="person" fromTableKey="id" fromTableDisplay="name"/>
+			<dbselect readonly="true" name="land_id" label="Land" fromTable="XLand" dbtable="person" fromTableKey="id" fromTableDisplay="name"/>
+			<h2>
+				Kontaktinformationen
+			</h2>
+			<dbinput readonly="true" name="tel" label="Telefon"/>
+			<dbinput readonly="true" name="fax" label="Fax"/>
+			<dbinput readonly="true" name="mobil" label="Mobil"/>
+			<dbinput readonly="true" name="email" label="EMail"/>
+			<br/>
+			<dbinput readonly="true" name="newsletter" value="1" type="checkbox" label="Newsletter"/>
+			<dbinput readonly="true" name="newsletter_anmeldedatum" label="Anmeldedatum" converter="mysqlDateToLocal"/>
+			<dbinput readonly="true" name="newsletter_abmeldedatum" label="Abmeldedatum" converter="mysqlDateToLocal"/>
+		</div>
+
+		<div style="width: 33%; float:left; height: 95%;">
+						
+			<h2>
+				Login Informationen
+			</h2>
+			<dbinput readonly="true" name="login_name" label="Username"/>
+			<dbinput readonly="true" name="login_password" label="Password"/>
+			<dbinput readonly="true" type="checkbox" value="1" name="gesperrt" label="Gesperrt"/>
+			<div style="width:150px;">&nbsp;<br/>Hinweis, der dem Kunden bei gesperrtem Kundenbereich angezeigt wird<br/>&nbsp;</div>
+			<dbtextarea readonly="true" label="" name="gesperrt_info" style="width: 225px; height: 100px;"></dbtextarea>
+
+
+		</div>
+			
+		</foreach>
+		<ribbon:dynamicGroupRight forId="administrationTab">
+			<ribbonButton icon="icon_reset" href="javascript:$.mosaikRuntime.resetForm();">
+				Reset
+			</ribbonButton>
+			<ribbonButton icon="icon_save" href="javascript:$.mosaikRuntime.submitForm();">
+				Speichern
+			</ribbonButton>
+		</ribbon:dynamicGroupRight>
+		
+		
+	</mform:form>
+	
+</content>

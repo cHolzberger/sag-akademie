@@ -1,0 +1,37 @@
+<content>
+	 <style type="text/css">
+         	tr, td {
+				height: 20px;
+				overflow: hidden;
+				white-space: nowrap;
+			}
+						
+			tr:hover {
+				color: red;
+				overflow: hidden;
+			}
+        </style>
+	<table cellspacing="0" cellpadding="0" style="width: 100%;  background-color: white; z-index: 100; position: fixed; table-layout: fixed;  top: 0px; left: 0px; height: 32px;  border: 1px solid black;">
+		<colgroup></colgroup>
+		<tbody id="head"></tbody>
+	</table>
+	<table cellspacing="0" cellpadding="0" style="width: 100%; position: absolute; top: 32px; bottom: 64px; table-layout: fixed;  z-index: 0; background-color: white;">
+		<colgroup id="colg">
+			<col width="300" />
+		</colgroup>
+		<tbody id="body">
+		</tbody>
+	</table>
+	
+	<table cellspacing="0" cellpadding="0"  style="background-color: white; z-index: 100; position: fixed; table-layout: fixed; width: 100%; table-layout: fixed; width: 100%;  bottom: 0px; left: 0px; height: 32px; border: 1px solid black;" >
+		<colgroup />
+		<tbody id="foot"></tbody>
+	</table>
+	
+	<div id="viewport" style="overflow: auto; position: fixed; right: 0px; left: 0px; top: 32px; bottom: 32px; z-index: 99; width: auto; height: auto; border: 1px solid red;">
+		<div id="sizeProxy" style="position: absolute; z-index: 20; top:0px; left: 0px;">&nbsp;</div>
+	</div>
+	
+	
+	<script type="text/javascript" src="/resources/scripts/widget/mtable.js"></script>
+</content>

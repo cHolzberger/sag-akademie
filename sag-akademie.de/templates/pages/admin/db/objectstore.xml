@@ -1,0 +1,7 @@
+<content>
+<set name="page_background" value="/img/admin/header_bg.jpg" />
+
+<h1>ObjectStore Contents:</h1>
+<mdb:objectstore />
+
+</content>

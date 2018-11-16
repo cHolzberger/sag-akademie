@@ -1,0 +1,3 @@
+<?php
+
+$tidy = new tidy();

@@ -1,0 +1,11 @@
+<content>
+<h1>Felder</h1>
+<div style="width: 98%; height: 95%;">
+<foreach fromArray="Field">
+   <mdb:value mpath="name" /> (<mdb:value mpath="type" />) <input/> <input type="checkbox" /><br/>
+
+</foreach>
+<input type="submit" value="Speichern"/>
+</div>
+
+</content>
