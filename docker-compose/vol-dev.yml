@@ -1,0 +1,18 @@
+version: "3"
+
+services: 
+  web:
+    volumes: 
+      - webroot:/var/www
+  mysqldb:
+    volumes: 
+      - mysql:/var/lib/mysql
+volumes:
+    webroot: 
+      driver: local
+      driver_opts: 
+        type: nfs
+        o: addr=192.168.254.10,rw,nolock,hard,nointr,nfsvers=3
+        device: ":/mnt/op/home/MSDOM/cholzberger/Projekte/SAG-Akademie-GmbH/sag-new/sag-akademie.de"
+    mysql: 
+      driver: local

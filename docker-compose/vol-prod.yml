@@ -1,0 +1,54 @@
+version: "3"
+
+services: 
+  web:
+    volumes:
+      - files:/var/www/files
+      - pdf:/var/www/pdf
+      - resources_pdf:/var/www/resources/pdf
+      - downloads:/var/www/downloads
+      - img:/var/www/img
+      - apache_logs:/var/log/apache2
+      - templates:/var/www/templates
+  mysqldb:
+    volumes: 
+      - mysql:/var/lib/mysql
+  sftp:
+    volumes:
+      - "templates:/chroot/home/sag"
+      - "templates:/chroot/home/ms"
+
+volumes:
+    mysql: 
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/$RELEASE_BRANCH/mysql
+    files:
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/$RELEASE_BRANCH/files
+    pdf:
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/$RELEASE_BRANCH/pdf
+    resources_pdf:
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/$RELEASE_BRANCH/resources_pdf
+    downloads:
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/$RELEASE_BRANCH/downloads
+    img: 
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/$RELEASE_BRANCH/img
+    templates: 
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/$RELEASE_BRANCH/templates
+    apache_logs:
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/$RELEASE_BRANCH/apache-logs
+

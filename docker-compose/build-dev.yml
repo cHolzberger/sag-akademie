@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  proxy:
+    image: mitmproxy/mitmproxy
+    command: "mitmweb --mode reverse:http://web:80 --set web_debug=true --set web_iface='' --set keep_host_header=true"
+    ports: 
+      - "8085:8080"
+      - "8087:8081"
+    networks:
+      sag:
+        aliases:
+          - proxy
+  mysqldb:
+    ports:
+      - "3309:3306"
+  web:
+    hostname: bremse.mosaiksoftware.local
+    environment:
+      PHP_MCM_DEBUG_CONFIG: molle
+      PHP_MEMORY_LIMIT: 0
+      PHP_MAX_EXECUTION_TIME: 360
