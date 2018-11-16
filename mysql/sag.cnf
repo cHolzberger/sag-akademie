@@ -1,0 +1,24 @@
+[mysqld_safe]
+innodb_buffer_pool_size=2M
+innodb_additional_mem_pool_size=500K
+innodb_log_buffer_size=500K
+innodb_thread_concurrency=2
+
+[mysqld]
+# * Fine Tuning
+#
+key_buffer              = 16M
+max_allowed_packet      = 16M
+thread_stack            = 192K
+thread_cache_size       = 8
+# This replaces the startup script and checks MyISAM tables if needed
+# the first time they are touched
+myisam-recover         = BACKUP
+#max_connections        = 100
+#table_cache            = 64
+#thread_concurrency     = 10
+#
+# * Query Cache Configuration
+#
+query_cache_limit       = 1M
+query_cache_size        = 16M
