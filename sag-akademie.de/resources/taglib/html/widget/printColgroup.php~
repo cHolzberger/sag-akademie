@@ -1,0 +1,13 @@
+<?
+$mpath = (getRequiredAttribute ("mpath", $attributes));
+$inputvalue = $dsl->get("dbtable", $mpath);
+/*
+ * 
+ */
+?>
+<tr>
+<td style="width:5mm;text-align:center; border: 1px solid black; font-size: 8px;">T</td>
+<? foreach ($inputvalue as $value ): ?>
+<td style="width:30mm; text-align: center; border: 1px solid black; font-size: 8px;"><?=$value['name']?></td>
+<? endforeach; ?>
+</tr>

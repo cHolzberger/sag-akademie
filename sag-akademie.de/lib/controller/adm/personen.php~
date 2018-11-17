@@ -1,0 +1,99 @@
+<?php
+include("adm/dbcontent.php");
+
+class ADM_Personen extends ADM_DBContent {
+	function map($name) {
+		return "ADM_Personen";
+	}
+	
+	function onNew(&$pr, &$ds) {
+		$fn =  $this->name() . "/new.xml";
+		if ( !empty ( $_GET['kontakt_id']) ) {
+		    $kontakt = Doctrine::getTable("Kontakt")->find($_GET['kontakt_id'], Doctrine::HYDRATE_ARRAY);
+		    $ds->add("Kontakt", $kontakt);
+		} else {
+		    $ds->add("Kontakt", array());
+		}
+
+		$pr->loadPage( $fn );
+	}
+	
+	function mapIntention ( $intention ) {
+		if ( $intention == "person") return "edit";
+		return $intention;
+	}
+
+	/*function onShowList(&$pr, &$ds) {
+		throw new k_SeeOther("/admin/kontakte". ";iframe");
+	}*/
+
+
+
+	function fetchOne($id, $refresh=false) {
+		MosaikDebug::msg($id, "fetchOne");
+		$result = PersonTable::detailed()->fetchOne(array($id), Doctrine::HYDRATE_ARRAY);
+		// fix doctrine
+		if ( count($result['Buchungen']) == 0) {
+			$result['Buchungen']=array();
+		}
+		//MosaikDebug::msg ($result, "Result");
+		return $result;
+	}
+	function onSave(&$pr, &$ds) {
+		$result = $this->getOneClass($this->entryId);
+		//if ($result->id==0) {
+		//
+		//}
+		
+		$data = $_POST[$this->entryTable];
+		$data['geburtstag'] = mysqlDateFromLocal($data['geburtstag']);
+		
+		
+		if ( @ $data['newsletter'] != "1") {
+			$data['newsletter'] = 0;
+		}
+		
+		if ( @ $data['gesperrt'] != "1") {
+			$data['gesperrt'] = 0;
+		}
+		
+		if ( @ $data['wiedervorlage'] != "1") {
+			$data['wiedervorlage'] = 0;
+		}
+
+		if ( @ $data['ausgeschieden'] != "1") {
+			$data['ausgeschieden'] = 0;
+		}
+		
+		$data['newsletter_anmeldedatum'] = mysqlDateFromLocal($data['newsletter_anmeldedatum']);
+		$data['newsletter_abmeldedatum'] = mysqlDateFromLocal($data['newsletter_abmeldedatum']);
+		
+		if ( @$data['newsletter']=="1" && $result->newsletter == 0) {
+			$data['newsletter_anmeldedatum'] = currentMysqlDate();
+		} else if ( @ $data['newsletter'] != "1" && $result->newsletter==1 ){ 
+			$data['newsletter']=0;
+			$data['newsletter_abmeldedatum'] = currentMysqlDate();
+		}
+		
+		$data['newsletter'] = isset($data['newsletter']) && $data['newsletter'] == 1 ? "1": "0";
+		$data['geschaeftsfuehrer'] = isset($data['geschaeftsfuehrer']) && $data['geschaeftsfuehrer'] == 1 ? "1": "0";
+		$data['ansprechpartner'] = isset($data['ansprechpartner']) && $data['ansprechpartner'] == 1 ? "1": "0";
+	//	$data["geaendert_von"] = Mosaik_ObjectStore::init()->get("/current/identity")->uid();
+      //          $data["geaendert"] = currentMysqlDatetime();
+                $result->merge($data);
+		$result->save();
+		$result->refresh(true);
+
+		//$fn =  $this->name() . "/saved.xml";
+		//$pr->loadPage( $fn );
+		instantRedirect("/admin/".$this->name()."/". $result->id . ";iframe"."?edit");
+	}
+	
+	function onKontakt(&$pr, &$ds) {
+		$buchung = Doctrine::getTable("Person")->find($this->entryId);
+		MosaikDebug::msg($this->entryId, "Entry:");
+		$id = $buchung['kontakt_id'];
+		instantRedirect("/admin/kontakte/$id;iframe?edit");
+	}
+}
+

@@ -1,0 +1,109 @@
+<?php
+/* 
+ * Use without written License forbidden
+ * Copyright 2010 by MOSAIK Software - Christian Holzberger <ch@mosaik-software.de>
+*/
+require_once("controller/json//_tableHeaders.php" );
+/**
+ * Description of JsonResult
+ *
+ * @author molle
+ */
+class MosaikJsonResult {
+    public $q;
+    public $headers;
+    public $perPage = 1000;
+    public $headline = "Unbekannt";
+    /**
+     * speichert eine gruppe von filtern die auf die daten angewendet werden
+     * um diese zu erweitern oder abzuaendern
+     * @var
+     */
+    public $filter = null;
+/**
+ *
+ * rendert genau einen treffer
+ */
+    function renderSingle() {
+	$data = array();
+	
+	$info = array();
+	
+	$count = $this->q->count();
+	if ( $count == 0) return json_encode ( array ( "error"=>true, "message"=>"JsonResult count is zero"));
+
+	$info['headline'] = $this->headline;
+	$info['pages'] = ceil ( $count / $this->perPage);
+	$info['count'] =  $count;
+	$info['mode'] =  "single";
+	$info['headers'] = $this->headers;
+	$info['data'] = $this->q->fetchArray();
+	$info['data'] = $info['data'][0];
+	if ( $this->filter)
+		$this->filter->extend($info['data']);
+	
+	return json_encode( $info );
+    
+    }
+
+    /**
+     * rendert alle ergebnisse sofort
+     */
+    function renderAll () {
+	$data = array();
+	$info = array();
+
+	$count = $this->q->count();
+	$info['headline'] = $this->headline;
+	$info['pages'] = ceil ( $count / $this->perPage);
+	$info['count'] =  $count;
+	$info['mode'] =  "all";
+	$info['headers'] = $this->headers;
+	$info['data'] = $this->q->fetchArray();
+	
+	if ( $this->filter )   for ( $i = 0; $i<count($info['data']); $i++) {
+		$this->filter->extend($info['data'][$i]);
+	}
+
+	return json_encode( $info );
+    }
+
+    /**
+     *
+     * paging modus rendert bei der ersten anfrage nur info wie viele ergebnisse vorhanden sind
+     * wenn $_GET['page'] gesetzt ist wird die seite mit daten ausgegeben
+     */
+    function render() {
+	
+	$data = array();
+	$page = 0;
+	
+	if ( MosaikConfig::getEnv ( 'page') ) {
+	    $page = MosaikConfig::getEnv('page');
+	}
+	$info = array();
+	$count = -1;
+	$info['mode'] = "paged";
+	if ( $page != 0) {
+	    $this->q->limit($this->perPage);
+	    $this->q->offset ( ($page-1) * $this->perPage);
+	    $info['data'] = $this->q->fetchArray();
+
+	    if ( $this->filter )   for ( $i = 0; $i<count($info['data']); $i++) {
+		$this->filter->extend($info['data'][$i]);
+	    }
+	    
+	    $info['page'] = intval($page);
+	} else {
+	    $count = $this->q->count();
+	    $info['headline'] = $this->headline;
+	    $info['pages'] = ceil ( $count / $this->perPage);
+	    $info['count'] =  $count;
+	    $info['headers'] = $this->headers;
+	}
+
+	return json_encode( $info );
+    }
+
+}
+?>

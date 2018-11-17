@@ -1,0 +1,7 @@
+<?php
+/**
+ */
+class XTodoTable extends Doctrine_Table
+{
+
+}

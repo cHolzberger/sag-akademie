@@ -1,0 +1,294 @@
+<?php
+
+/* * **************************************************************************************
+ * Use without written License forbidden                                                *
+ * Copyright 2010 by MOSAIK Software - Christian Holzberger <ch@mosaik-software.de>     *
+ * ************************************************************************************** */
+
+/**
+ * Dieser Handler kuemmert sich um alle Benachrichtigungen die nach aenderung oder neuanlegen einer buchung passieren muessen.
+ * 
+ *
+ * @author molle
+ */
+include_once("lib/Mosaik/Email.php");
+include_once ("EventHandler/GenericEventHandler.php");
+
+class BuchungNotificationHandler extends GenericEventHandler {
+
+	var $event;
+
+	function handle(&$event) {
+		if (!$event->sendMail)
+			return;
+
+		$this->event = &$event;
+
+		MosaikDebug::msg($event, "Catched event:");
+
+		switch ($event->name) {
+			case "BuchungEditEvent":
+			case "BuchungInfoEvent":
+				$uuid = $this->event->targetId;
+				// fixme: hier pruefen
+				$this->sendChangeMail($uuid);
+				break;
+			case "BuchungUmgebuchtEvent":
+				$oldId = $this->event->oldTargetId;
+				$uuid = $this->event->newTargetId;
+				$this->sendUmgebuchtMail($uuid, $oldId);
+				break;
+			case "BuchungStornoEvent":
+				$uuid = $this->event->targetId;
+				$tnId = $this->event->personId;
+				$this->sendStornoEmail($uuid, $tnId);
+				break;
+			case "BuchungNewEvent":
+				// uuid ist ein array von uuids
+				$uuid = $this->event->targetId;
+				$this->sendNewMail($uuid);
+				break;
+			case "TerminAbgesagtEvent":
+				$id = $this->event->seminarId;
+				//$this->sendTerminAbgesagtEMail($id);
+				break;
+			case "BuchungTeilnehmerChangeEvent":
+				$tnVon = $this->event->teilnehmerFrom;
+				$tnZu = $this->event->teilnehmerTo;
+				$buchung_id = $this->event->buchungId;
+
+				$this->sendTeilnehmerChangeMail($tnVon, $tnZu, $buchung_id);
+				break;
+			case "HotelBuchungStornoEvent":
+				//FIXME: was ist zu tun wenn eine HotelBuchung storniert wird?
+				break;
+		}
+	}
+
+	function sendUmgebuchtMail($uuid, $oldUuid) {
+		MosaikDebug::msg($uuid, "Sende Mail fuer:");
+
+		$this->sendPublicEmail($uuid, $oldUuid);
+	}
+
+	function sendNewMail($uuid) {
+		MosaikDebug::msg($uuid, "Sende New-mail fuer:");
+
+		$this->sendPublicNewEmail(array($uuid));
+	}
+
+	// setzt benoetigte felder fuer die email templates
+	// und liefert den ansprechpartner zurueck
+	function provideStornoData($uuid, $tnId, &$email) {
+		$ansprechpartner = Doctrine::getTable("ViewBuchungAnsprechpartner")->find($uuid);
+		$buchungen = Doctrine::getTable("ViewBuchungPreis")->tnByUuid()->execute(array($uuid, $tnId));
+
+		$email->addData("Buchungen", $buchungen->toArray(true));
+		$email->addData("Buchung", $buchungen[0]->toArray(true));
+
+		$email->addData("GeaendertVon", $buchungen[0]->GeaendertVon);
+		$email->addData("bemerkung", $buchungen[0]->bemerkung);
+		$email->addData("info_kunde", $buchungen[0]->info_kunde);
+		$email->addData("Ansprechpartner", $ansprechpartner->toArray(true));
+		$email->addData("Person", $buchungen[0]->Person->toArray(true));
+		$email->addData("Seminar", $buchungen[0]->Seminar->toArray(true));
+
+		$email->addData("Kontakt", $buchungen[0]->Person->Kontakt->toArray(true));
+		$email->addData("link", MosaikConfig::getVar("webUrl") . "kunde/buchung/$uuid");
+		$email->addData("Uuid", $uuid);
+
+		$email->addData("extSubject", " - " . $buchungen[0]->firma . " - " . $buchungen[0]->kursnr . " - " . mysqlDateToLocal($buchungen[0]->datum_begin));
+
+		return $ansprechpartner;
+	}
+
+	/** aus buchung.php * */
+	function sendStornoEmail($uuid, $tnId) {
+		$email = new MosaikEmail();
+		$email->setContainer("__engine");
+		$email->setPage("admin/storno", true);
+		$ansprechpartner = $this->provideStornoData($uuid, $tnId, $email);
+
+		$email->send($ansprechpartner->email, SMTP_ADMIN_SENDER, $email->getData("extSubject"), SMTP_ADMIN_RECIVER);
+	}
+
+	/**
+	 * sendet eine mail raus wenn sich jmd. im oeffentlichen bereich zu einem seminar anmeldet
+	 * achtung! teilt sich das Template mit den Info-Mails aus dem Admin
+	 * siehe sendChangeMail()
+	 */
+	function sendPublicNewEmail($uuidArr) {
+		$ansprechpartner = Doctrine::getTable("ViewBuchungAnsprechpartner")->find( $uuidArr[0] );
+		
+		
+		$buchungen = array();
+		$buchung = null;
+		
+		foreach ($uuidArr as $uuid) {
+			$buchung = Doctrine::getTable("ViewBuchungPreis")->detailedByUuid()->execute($uuid);
+			$buchung = $buchung[0];
+			array_push($buchungen, $buchung->toArray(true));
+		}
+
+		$email = new MosaikEmail();
+		$email->setContainer("__engine");
+		$email->setPage("buchung_bestandskunde");
+		
+		if ( is_object($ansprechpartner)) {
+			$email->addData("Ansprechpartner", $ansprechpartner->toArray(true));
+		} else {
+			// FIXME: exception schmeissen und im app drauf eingehen
+			qlog("Kein ansprechpartner gesetzt!");
+		}
+
+		$email->addData("Buchungen", $buchungen);
+		$email->addData("bemerkung", $buchung->bemerkung);
+		$email->addData("info_kunde", $buchung->info_kunde);
+
+		$email->addData("Kontakt", $buchung->Person->Kontakt->toArray());
+		$email->addData("link", MosaikConfig::getVar("webUrl") . "kunde/buchung/$uuid");
+		$email->addData("Uuid", $uuid);
+		$extSubject = " - " . $buchung->firma . " - " . $buchung->kursnr . " - " . mysqlDateToLocal($buchung->datum_begin);
+		
+		if ( is_object ( $ansprechpartner ) && !empty($ansprechpartner->email)) {
+			$email->send($ansprechpartner->email, SMTP_SENDER, $extSubject, SMTP_ADMIN_RECIVER);
+		} else {
+			$email->send(SMTP_ADMIN_RECIVER, SMTP_SENDER, $extSubject, SMTP_ADMIN_SENDER);
+		}
+	}
+
+	/* umbuchung durch sag */
+
+	function sendPublicEmail($uuid, $oldId) { // nur geänderte daten
+		MosaikDebug::msg($uuid, "===SENDE PUBLIC EMAIL===");
+		$ansprechpartner = Doctrine::getTable("ViewBuchungAnsprechpartner")->find($uuid);
+		$buchungen = Doctrine::getTable("ViewBuchungPreis")->detailedByUuid()->execute(array($uuid));
+		$alteBuchung = Doctrine::getTable("ViewBuchungPreis")->detailed()->execute(array($oldId))->getFirst();
+
+		for ($i = 0; $i < count($buchungen); $i++) {
+			$buchungen[$i]->Person->Kontakt->Bundesland->name;
+			$buchungen[$i]->Person->Kontakt->Land->name;
+		}
+
+		// email subject an kunden erweitern
+		$extSubject = " - " . $buchungen[0]->firma . " - " . $buchungen[0]->kursnr . " - " . mysqlDateToLocal($buchungen[0]->datum_begin);
+
+		MosaikDebug::msg($buchungen->toArray(true), "Buchungen");
+
+		$email = new MosaikEmail();
+		$email->setContainer("__engine");
+		$email->setPage("buchung_geaendert");
+
+		$barr = $buchungen->toArray(true);
+
+
+		$barr[0]['AlteBuchung'] = $alteBuchung->toArray(true);
+
+		$email->addData("Buchungen", $barr);
+		$email->addData("Kontakt", $buchungen[0]->Person->Kontakt->toArray(true));
+		$email->addData("bemerkung", $buchungen[0]->bemerkung);
+		// FIXME _POST MUSS HIER WEG!
+		$email->addData("info_kunde", MosaikConfig::getEnv("umbuchenHinweis"));
+		$email->addData("Ansprechpartner", $ansprechpartner->toArray(true));
+
+
+		$email->addData("link", MosaikConfig::getVar("webUrl") . "kunde/buchung/$uuid");
+		$email->addData("Uuid", $uuid);
+		$email->addData("AlteBuchung", $alteBuchung);
+
+		$email->send($ansprechpartner->email, SMTP_SENDER, $extSubject, SMTP_ADMIN_RECIVER);
+	}
+
+	/**
+	 * sende eine mail wenn im admin eine änderung an einer buchung vorgenommen wurde
+	 * und durch sag eine neue bestätigung verschickt wird
+	 *
+	 * siehe sendPublicNewEmail()
+	 */
+	function sendChangeMail($id,$format="uuid") {
+		$email = new MosaikEmail();
+		$email->setContainer("__engine");
+		$email->setPage("buchung_bestandskunde");
+
+		$buchung = Doctrine::getTable("ViewBuchungPreis")->detailed()->execute($id)->getFirst();
+
+		$uuid = $buchung['uuid'];
+		
+		$ansprechpartner = Doctrine::getTable("ViewBuchungAnsprechpartner")->find($uuid);
+
+		$extSubject = " - " . $buchung->firma . " - " . $buchung->kursnr . " - " . mysqlDateToLocal($buchung->datum_begin);
+
+		if ( !is_object ( $ansprechpartner ) ) {
+			qlog(__CLASS__.":" . __FUNCTION__ . ": $uuid kein Ansprechpartner hinterlegt.");
+			return;
+			
+		}
+		qlog("Sending change mail for $uuid");
+
+		$buchungArr = $buchung->toArray(true); // HotelBuchung wird im Template als Array behandelt
+		
+		if ( isset ( $buchungArr['HotelBuchung'])) {
+			if ( $buchungArr['HotelBuchung']['storno_datum'] != "0000-00-00") {
+				$buchungArr['HotelBuchung'] = null;
+			} 
+		}
+
+		
+		$email->addData("Buchungen", array($buchungArr));
+		$email->addData("bemerkung", $buchung->bemerkung);
+		$email->addData("info_kunde", $buchung->info_kunde);
+		
+		if ( is_object ( $ansprechpartner ) ) {
+			$email->addData("Ansprechpartner", $ansprechpartner->toArray(true));
+		} else {
+			$email->addData("Ansprechpartner", array());
+		}
+
+		$email->addData("Kontakt", $buchung->Person->Kontakt->toArray());
+		$email->addData("link", MosaikConfig::getVar("webUrl") . "kunde/buchung/$uuid");
+		$email->addData("Uuid", $uuid);
+
+		$email->send($ansprechpartner->email, SMTP_SENDER, $extSubject, SMTP_ADMIN_RECIVER);
+	}
+
+	function sendTerminAbgesagtEMail($seminar_id) {
+		$email = new MosaikEmail();
+		$email->setContainer("__engine");
+		$email->setPage("termin_abgesagt");
+
+		$buchungen = Doctrine::getTable("ViewBuchungPreis")->findBySeminar_id($seminar_id);
+
+		foreach ($buchungen as $buchung) {
+			$ansprechpartner = Doctrine::getTable("ViewBuchungAnsprechpartner")->find($buchung->uuid);
+
+			$email->addData("Buchung", array($buchung->toArray(true)));
+			$email->addData("Ansprechpartner", $ansprechpartner->toArray(true));
+			$email->addData("Kontakt", $buchung->Person->Kontakt->toArray());
+
+			$extSubject = " - " . $buchung->firma . " - " . $buchung->kursnr . " - " . mysqlDateToLocal($buchung->datum_begin);
+
+			$email->send($ansprechpartner->email, SMTP_SENDER, $extSubject, SMTP_ADMIN_RECIVER);
+		}
+	}
+
+	function sendTeilnehmerChangeMail($tnVon, $tnZu, $buchung_id) {
+		$email = new MosaikEmail();
+		$email->setContainer("__engine");
+		$email->setPage("buchung_teilnehmer_geaendert");
+
+		$buchung = Doctrine::getTable("ViewBuchungPreis")->detailed()->execute($buchung_id)->getFirst();
+		$ansprechpartner = Doctrine::getTable("ViewBuchungAnsprechpartner")->find($buchung->uuid);
+
+		$personVon = Doctrine::getTable("Person")->find($tnVon);
+		$personZu = Doctrine::getTable("Person")->find($tnZu);
+
+		$email->addData("Buchung", $buchung->toArray(true));
+		$email->addData("Ansprechpartner", $ansprechpartner->toArray(true));
+		$email->addData("PersonVon", $personVon->toArray(true));
+		$email->addData("PersonZu", $personZu->toArray(true));
+
+		$extSubject = " - " . $buchung->firma . " - " . $buchung->kursnr . " - " . mysqlDateToLocal($buchung->datum_begin);
+		$email->send($ansprechpartner->email, SMTP_SENDER, $extSubject, SMTP_ADMIN_RECIVER);
+	}
+
+}

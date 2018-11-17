@@ -19,3 +19,6 @@ sag-akademie.de/settings/org.eclipse.mylyn.tasks.ui.prefs
 sag-akademie.de/.idea/
 mysql/tmp
 mysql/*.tar.gz
+
+/bin/need.ym
+/bin/beta-20181116.yml

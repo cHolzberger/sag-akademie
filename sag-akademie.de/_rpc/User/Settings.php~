@@ -1,0 +1,104 @@
+<?php
+
+/*
+ * 07.06.2009 by Christian Holzberger <ch@mosaik-software.de>
+ * use without written license not permitted
+ *
+ * liefert alle infos die fuer die neue startseite gebraucht werden zurueck
+ */
+include_once ("helpers.php");
+
+/**
+ * Stores user settings in the database
+ */
+class User_Settings {
+	
+	/**
+	 * fetches all objects at once
+	 * 
+	 * @param string $name 
+	 * 
+	 * @return object
+	 */
+	function fetchNs ( $ns ) {
+		qlog(__CLASS__ . "::" . __FUNCTION__  .": namespace => $ns");
+		
+		try {
+			$u = Identity::get();
+
+			$s = Doctrine::getTable("XSettings")->findByDql ("(user_id = ? OR user_id = -1 ) AND namespace = ?", array($u->getId(), $ns))->toArray();
+
+			$ret = array();
+			$c = count($s) ;
+			qlog("Found $c settings to transfer");
+
+			for ( $i =0; $i<$c; $i++) {
+				$name = $s[$i]['name'];
+
+				if ( ! array_key_exists ( $name, $ret )) {
+					$ret[ $name ] = array();
+				}
+
+				$ret[$name] = $s[$i]['value'];
+			}
+
+			qlog($ret);
+		} catch ( Exception $e) {
+			qdir("Exception:");
+			qdir($e->getMessage());
+		}
+		
+		
+		return $ret;
+	}
+
+	function getUserSettings($table) {
+		$data = $this->fetchNs("UserSettings");
+		foreach ( $data as $key=>$val ) {
+			$data[$key] = json_decode($val);
+		}
+
+		return array( "table_name"=>$table, "data" => $data);
+	}
+
+	function setUserSettings($data) {
+		qlog(__CLASS__ . "::" . __FUNCTION__  . ":"  . $data);
+		for ( $i=0; $i <count($data); $i++) {
+			$set = $data[$i];
+			qlog("NS: UserSettings Key: " . $set['key']);
+				//qlog($data);
+				$this->update("UserSettings", $set['key'], json_encode($set['data']));
+			
+		}
+
+		
+		return "done";
+	}
+
+	/**
+	 * updates a single setting
+	 */
+	function update($ns, $name, $value) {
+		qlog(__CLASS__ . "::" . __FUNCTION__  . ":  $ns/$name = $value"  );
+		
+		$u = Identity::get();
+		
+		$obj = Doctrine::getTable("XSettings")->findByDql("user_id = ? AND namespace = ? AND name = ?", array($u->getId(), $ns, $name))->getFirst();
+		
+		// create new setting if it doesnt exist
+		if (! is_object ( $obj )) {
+			qlog("creating new setting object");
+			$obj = new XSettings();
+			$obj->id =null;
+		}
+		
+		$obj->name = $name; 
+		$obj->namespace=$ns;
+		$obj->value = $value;
+		$obj->changed = currentMysqlDatetime();
+		$obj->user_id = $u->getId();
+		
+		$obj->save();
+	} 
+
+}

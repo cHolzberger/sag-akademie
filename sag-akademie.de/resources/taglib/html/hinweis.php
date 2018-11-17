@@ -1,0 +1,1 @@
+<?= file_get_contents(MosaikConfig::getVar("srvPagePath") . "/hinweis.xml"); ?>

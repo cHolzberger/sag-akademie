@@ -34,14 +34,16 @@ class MCase extends MosaikElement {
 		//$GLOBALS['firephp']->log($innervalue,"no matched");
 		if ( is_array( $attributes) && array_key_exists("value", $attributes)) {
 			$match = $attributes['value'];
-			$match = str_replace("#empty","", $match);
+			$match = str_replace("#empty","", trim($match));
+
 		} else { 
 			$match = "";
 		}
 		
 		$value = $this->datasourceList->get("switch", "value");
-		
-		if ( $value == $match || $match == "*" || (is_array($value) && count ($value) == 0)) {
+		$nobrvalue = trim(str_replace("<br>","", trim($value)));
+
+		if ( $nobrvalue == $match || $value == $match || $match == "*" || (is_array($value) && count ($value) == 0)) {
 			$this->datasourceList->get("switch")->add("matched", TRUE);
 		
 			$tv = trim( $innervalue );

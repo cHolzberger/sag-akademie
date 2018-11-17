@@ -1,0 +1,119 @@
+<?php
+
+/*
+ * 07.06.2009 by Christian Holzberger <ch@mosaik-software.de>
+ * use without written license not permitted
+ *
+ * liefert alle infos die fuer die neue startseite gebraucht werden zurueck
+ */
+include_once ("helpers.php");
+
+class Pages_Startseite {
+
+	/**
+	 * Statistiken fuer die Startseite
+	 * formated for DataSource.js
+	 *
+	 * @return array
+	 */
+	function getStatistics($table) {
+		$data = array();
+
+		$startPM = date("Y-m-01 00:00:00", mktime(0, 0, 0, date("m") - 1, date("d"), date("Y")));
+		$endPM = date("Y-m-t 00:00:00", mktime(0, 0, 0, date("m") - 1, date("d"), date("Y")));
+
+		$startPY = date("Y-m-01 00:00:00", mktime(0, 0, 0, 1, 1, date("Y") - 1));
+		$endPY = date("Y-m-t 00:00:00", mktime(0, 0, 0, 31, 12, date("Y") - 1));
+
+		$startTY = date("Y-m-01 00:00:00", mktime(0, 0, 0, 1, 1, date("Y")));
+		$endTY = date("Y-m-t 00:00:00", mktime(0, 0, 0, date("m"), date("d"), date("Y")));
+
+		$startTM = date("Y-m-01 00:00:00");
+		$endTM = date("Y-m-t 00:00:00");
+
+		//  derzeitiger Monat
+		$data['currentMonth']['buchungen'] = Doctrine::getTable("Buchung")->countByDate($startTM, $endTM);
+		$data['currentMonth']['storno'] = Doctrine::getTable("Buchung")->countStornoByDate($startTM, $endTM);
+		$data['currentMonth']['umbuchungen'] = Doctrine::getTable("Buchung")->countUmbuchungenByDate($startTM, $endTM);
+
+		// letzter Monat
+		$data['currentYear']['buchungen'] = Doctrine::getTable("Buchung")->countByDate($startTY, $endTY);
+		$data['currentYear']['storno'] = Doctrine::getTable("Buchung")->countStornoByDate($startTY, $endTY);
+		$data['currentYear']['umbuchungen'] = Doctrine::getTable("Buchung")->countUmbuchungenByDate($startTY, $endTY);
+
+		// diese Jahr
+		$data['lastMonth']['buchungen'] = Doctrine::getTable("Buchung")->countByDate($startPM, $endPM);
+		$data['lastMonth']['storno'] = Doctrine::getTable("Buchung")->countStornoByDate($startPM, $endPM);
+		$data['lastMonth']['umbuchungen'] = Doctrine::getTable("Buchung")->countUmbuchungenByDate($startPM, $endPM);
+
+		// letztes Jahr
+		$data['lastYear']['buchungen'] = Doctrine::getTable("Buchung")->countByDate($startPY, $endPY);
+		$data['lastYear']['storno'] = Doctrine::getTable("Buchung")->countStornoByDate($startPY, $endPY);
+		$data['lastYear']['umbuchungen'] = Doctrine::getTable("Buchung")->countUmbuchungenByDate($startPY, $endPY);
+
+		return array ( "table_name"=> $table , "data" => $data );
+	}
+
+	/**
+	 * Naechsten 4 Termine fuer Luenen und Darmstadt
+	 *
+	 * formated for DataSource.js
+	 * @return array
+	 */
+	function getNextTermine($table) {
+		$count = 4;
+		$array = array_merge(
+		 $this->_getTermine(2, $count),
+		 $this->_getTermine(1, $count)
+		);
+
+		return array ( "table_name"=> $table , "data" => $array );
+	}
+
+	private function _getTermine($standort_id, $count) {
+		$q = Doctrine::getTable("Seminar")->getNext($standort_id, $count);
+		$data = $q->fetchArray();
+
+		foreach ($data as $k => $d) {
+			$data[$k]['datum'] = mysqlDateToLocal ( $d['datum_begin'] );
+		}
+		return $data;
+	}
+
+	/**
+	 * nicht erledigte aufgaben fuer den user auslesen und fuer darstellung auf der startseite bereitstellen
+	 * @param int $userId
+	 * @return array
+	 */
+	function getUserTodo($table) {
+		$todo = array();
+		$identity = Identity::getIdentity();
+		$userId = $identity->getId();
+
+		$_todo = Doctrine::getTable("XTodo")->getUserTodo($userId)->execute()->toArray(true);
+		$count = count($_todo);
+
+		for ( $i=0 ; $i < $count; $i++) {
+			$todo[$i] = $_todo[$i];//->toArray();
+			$todo[$i]['erstellt'] = mysqlDateToLocal ( $_todo[$i]['erstellt'] );
+			$todo[$i]['kategorie'] = $_todo[$i]->Kategorie->name;
+		}
+		return array ( "table_name"=> $table , "data" => $todo );
+	}
+
+	function getTermineToday($table) {
+		$now = currentMysqlDate();
+		qlog(__CLASS__ . "::" . __FUNCTION__ .": ". $now);
+
+		
+		$results = Doctrine::getTable("Seminar")->findByDql("datum_begin <= ? AND datum_ende >= ?", array( $now, $now) ); 		
+
+		if ( is_object($results) && $results->count() > 0) {
+			$data = $results->toArray();
+			return array("table_name" => $table, "data" => $data);
+		} else {
+			return array("table_name" => $table, "data" => array());
+		}
+	}
+
+}

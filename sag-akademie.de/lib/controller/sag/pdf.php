@@ -54,7 +54,7 @@ class SAG_Pdf extends SAG_Component {
 
 			qlog( "convert_to_pdf ..." );
 
-			$url         = "http://" . $_SERVER['SERVER_NAME'] . str_replace( ";pdf", ";iframe", $_SERVER['REQUEST_URI'] );
+			$url         = "http://localhost" . str_replace( ";pdf", ";iframe", $_SERVER['REQUEST_URI'] );
 			$target      = WEBROOT . "/resources/pdf/$id.pdf";
 			$footerRight = "Ausdruck vom: " . date( "d.m.Y H:i" );
 			if ( $landscape ) {
@@ -68,6 +68,7 @@ class SAG_Pdf extends SAG_Component {
 			$cmd = "wkhtmltopdf --zoom 1 -B {$bm}mm -T {$tm}mm -s {$ps} --orientation $orientation \"$url\" " . $target;
 			$msg = system( $cmd . " 2>&1 " );
 			if ( file_exists( $target ) ) {
+				qlog( "Running \"$cmd\":\n" . $msg );
 				$pdf = file_get_contents( $target );
 				unlink( $target );
 			} else {

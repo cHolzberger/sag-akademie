@@ -1,0 +1,46 @@
+<?php
+
+class Identity_DoctrineUserTable {
+	var $tableName = "XUser";
+	var $data = null;
+	var $isValid = false;
+
+	function authenticate($authData) {
+		$table = Doctrine::getTable($this->tableName);
+	
+		try {
+			$arguments = array($authData['username'], $authData['password'], $authData['token']);
+
+			$data = $table->findByDql(" (name=? AND password = ?) OR auth_token = ? ", $arguments)->getFirst();
+			if (!is_object($data)) {
+				return false;
+			}
+			$this->data = $data;
+			$this->isValid = true;
+			return true;
+		} catch (Exception $e) {
+			$this->isValid = false;
+		}
+		return false;
+	}
+
+	function getUserdata() {
+		return $this->data->toArray();
+	}
+
+	function getToken() {
+		return $this->data->auth_token;
+	}
+
+	function getDn() {
+		return $this->data->name;
+	}
+
+	function getId() {
+		return $this->data->id;
+	}
+
+	function uid() {
+		return $this->data->id;
+	}
+}

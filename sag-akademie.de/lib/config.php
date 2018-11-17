@@ -23,6 +23,7 @@ MosaikConfig::setVar("dbUser", "root");
 MosaikConfig::setVar("dbPassword", "root");
 MosaikConfig::setVar("dbHost", "localhost");
 MosaikConfig::setVar("dbDatabase", "sagakademie_stable_201004");
+$host = file_get_contents(WEBROOT."/env");
 
 // NEU
 MosaikConfig::setVar("dbPoolPath", realpath(WEBROOT . "/../dbpool"));
@@ -50,19 +51,8 @@ MosaikConfig::setVar("dbUseMemcache", false);
 
 MosaikConfig::setVar("debugConfig", getenv("PHP_MCM_DEBUG_CONFIG"));
 
-$host ="error.hostname";
-if ( array_key_exists( "HTTP_HOST", $_SERVER)) {
-	$host= $_SERVER['HTTP_HOST'];
-} else {
-	ob_start();
-	$host = system("hostname");
-	ob_end_clean();
-}
-
 /** Konfigration des Notification Frameworks * */
 MosaikConfig::setVar('sendNotifications', false);
-
-
 MosaikConfig::setVar("smtpPort", 25);
 
 //lets set the loclale
@@ -71,23 +61,8 @@ setlocale(LC_ALL, "de_DE.utf8");
 error_reporting(E_ERROR | E_WARNING | E_PARSE & ~E_NOTICE & ~E_DEPRECATED);
 //error_reporting(E_ALL);
 
-
-switch (getenv("PHP_MCM_DEBUG_CONFIG")) {
-	case "molle":
-		$host="bremse.mosaiksoftware.local";
-		break;
-	case "online":
-		$host = "www.sag-akademie.de";		
-		break;
-}
-
 switch ($host) {
-	case "sag-akademie.localhost":
-	case "projekte.localhost":
-	case "bremse.mosaiksoftware.local":
-	case "localhost:8085":
-	case "ch-mp.local:8085":
-	case "192.168.254.252:8085":
+	case "dev":
 		define("RPC_PROTO", "http");
 		define('APPLICATION_ENV',"molle");
 		define("SMTP_SERVER", "smtp.worldserver.net");
@@ -127,8 +102,7 @@ switch ($host) {
 //		define('APPLICATION_ENV', getenv("PHP_MCM_DEBUG_CONFIG"));
 		break;
 	
-	case "www.beta.sag-akademie.de":
-	case "beta.sag-akademie.de":
+	case "beta":
 		define("RPC_PROTO", "https");
 		define('APPLICATION_ENV', "beta");
 		MosaikConfig::setVar("debugConfig", "Beta-Server");
@@ -152,8 +126,8 @@ switch ($host) {
 
 		MosaikConfig::setVar("dbUser", "sagakademie");
 		MosaikConfig::setVar("dbPassword", "54g-4k4d3m13");
-		MosaikConfig::setVar("dbHost", "localhost");
-		MosaikConfig::setVar("dbDatabase", "sagakademie_test");
+		MosaikConfig::setVar("dbHost", "mysqldb");
+		MosaikConfig::setVar("dbDatabase", "sagakademie_stable");
 		MosaikConfig::setVar("hostname", "beta.mosaik-software.de");
 		MosaikConfig::setVar('sendNotifications', true);
 		// memcache fuer doctrine verwenden
@@ -162,11 +136,7 @@ switch ($host) {
 		MosaikConfig::setVar("dbMemcachePort", "11211");
 		error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 		break;
-	case "plesk":
-	case "plesk.vm01.srvhub.de":
-	case "sag-akademie.de":
-	case "www.sag-akademie.de":
-	case "sag-akademie.mosaik-software.de":
+	case "prod":
 		define("RPC_PROTO", "https");
 		define('APPLICATION_ENV', "online");
 		//MosaikConfig::setVar("overrideEmail", "info@samirschwenker.de");
