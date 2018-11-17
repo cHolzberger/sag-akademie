@@ -306,10 +306,10 @@
 			<dbinput type="hidden" name="id"/>
 			<div class="breadcrumb-container">
 				<div class="breadcrumb-item" id="buchungTeilnehmerCrumb" onclick="buchenForm.goTo('buchungTeilnehmer');">
-			1. Teilnehmer auswählen<img src="/img/nextstep.png" border="0"/>
+			1. Teilnehmer<img src="/img/nextstep.png" border="0"/>
 				</div>
 				<div class="breadcrumb-item" id="buchungHotelCrumb" onclick="buchenForm.goTo('buchungHotel');">
-			2. Hotel auswählen<img src="/img/nextstep.png" border="0"/>
+			2. Hotel<img src="/img/nextstep.png" border="0"/>
 				</div>
 				<div class="breadcrumb-item" id="buchungUnterlagenCrumb" onclick="buchenForm.goTo('buchungUnterlagen');">
 			3. Seminarunterlagen<img src="/img/nextstep.png" border="0"/>
@@ -421,11 +421,12 @@
 			</div>
 
 			<div class="step" id="buchungUnterlagen">
-				<div>Die Seminarunterlagen werden ab 01.01.2019 Digital auf einem USB-Stick ausgegeben. Benötigen sie die Unterlagen zusätzlich in gedruckter Form wählen Sie dies bitte hier aus.</div>
+				<div style="width:500px;"><label  class="label">
+				Die Seminarunterlagen werden ab dem 01.01.2019 digital auf einem USB-Stick ausgegeben. Benötigen Sie die Unterlagen zusätzlich in gedruckter Form, wählen Sie dies bitte hier aus.
+				</label></div>
 				<div class="dbinput">
 					<label  class="label">
-						Möchten Sie die Unterlagen in gedruckter Form Ihrer Buchung hinzufügen? (Es entstehen Zusatzkosten in Höhe von 80,- &euro; zzgl. MwSt. pro Teilnehmer)
-					</label>
+Möchten Sie für diese Person die Unterlagen in gedruckter Form Ihrer Buchung hinzufügen? (Es entstehen Zusatzkosten in Höhe von 60,- € zzgl. MwSt.)					</label>
 					<minput name="personTmpl[seminar_unterlagen]" id="buchungUnterlagenJa" value="1" type="radio" label="ja" nospan="true" />
 					<minput name="personTmpl[seminar_unterlagen]" id="buchungUnterlagenNein" value="0" type="radio" label="nein" nospan="true" checked="checked"/>
 				</div>

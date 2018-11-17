@@ -47,8 +47,6 @@
 
 
     </style>
-
-   
 	
 	 <div style="position:relative; width:200mm;height:90mm;">   
    
@@ -64,9 +62,10 @@
 <p style="margin-bottom:2mm;">Unsere Mitarbeiter in Darmstadt (0 61 51 . 101 55 111) und Lünen (02 31 . 225 11-62) beantworten gerne Ihre Fragen, geben Ihnen detaillierte fachliche und organisatorische Informationen zu unseren Seminaren und zeigen Ihnen Bezuschussungs-, Optimierungs- und Qualifikationsmöglichkeiten auf.</p><br/>
 
 </div>
-	
+
 	 <div style="position:relative;width:198mm;font-size:8pt; padding-top:70mm; padding-left:2mm;">
-		
+	 <hinweis></hinweis>
+
 	 <p style="margin-bottom:5mm;">
             <span style="color:#7f7f7f;font-size:11pt;"><b>Arbeitssicherheit</b></span><br/>
             <foreach fromArray="Arbeitssicherheit:SeminarArten" >

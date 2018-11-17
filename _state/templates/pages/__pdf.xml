@@ -2,8 +2,8 @@
 <head>
 	<title>Mosaik PDF Engine</title>
 </head>
-
+<body class="pdf">
 <container datasource="content" />
-
+</body>
 
 </pdf>

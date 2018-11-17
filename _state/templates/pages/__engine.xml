@@ -54,7 +54,7 @@
 	<!--<sitescript dir="/resources/scripts/sifr/sifr.css" type="text/javascript"/>-->
 <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 </head>
-<body text="#000000" bgcolor="#FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000" scroll="auto" topmargin="0" marginheight="0" marginwidth="0" style="padding:0px; margin:0px; overflow-x: hidden;">
+<body class="screen" text="#000000" bgcolor="#FFFFFF" link="#FF0000" alink="#FF0000" vlink="#FF0000" scroll="auto" topmargin="0" marginheight="0" marginwidth="0" style="padding:0px; margin:0px; overflow-x: hidden;">
 
 	<div style="width: 100%; background-image: url(/img/nav_top.jpg); margin: 0px; padding:0px;">
 

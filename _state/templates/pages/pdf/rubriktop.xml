@@ -98,6 +98,7 @@
                 </p>
                 <br/>
 
+	            <hinweis></hinweis>
 
                 <switch key="RubrikName">
                     <case value="Kanalinspektion">
@@ -287,8 +288,10 @@
                 <mdb:var mpath="SeminarArt:kursgebuehr"/>,00&nbsp;&euro; (zzgl. MwSt.)
                 <br/>
                 <div style="font-size:7pt; padding-top:3mm;">
-                    incl. hochwertige Seminarordner mit Inhaltsverzeichnis und Farbdrucken, Frühstück, Mittagessen und
-                    Snacks, Kalt- und Warmgetränke zu jeder Zeit, Schreibutensilien, Willkommensgeschenk
+                    Inklusive Seminarunterlagen auf USB-Stick (2.0),
+                    Frühstück, Mittagessen und Snacks, 
+                    Kalt- und Warmgetränke am gesamten Seminartag,
+                    Schreibutensilien, Willkommensgeschenk
                 </div>
             </div>
 
@@ -312,9 +315,9 @@
     <case value="#empty">
 	</case>
 	<case value="*">
- <span style="color:#999999; font-size:9pt;"><b>Seminarinfo</b></span><br/>
-    <mdb:var mpath="SeminarArt:seminar_hinweis" /><br/>&nbsp;<br/>
-</case>
+        <span style="color:#999999; font-size:9pt;"><b>Seminarinfo</b></span><br/>
+        <mdb:var mpath="SeminarArt:seminar_hinweis" /><br/>&nbsp;<br/>
+    </case>
 </switch>	
    <span style="color:#999999; font-size:9pt;"><b>Kurzbeschreibung</b></span><br/>
     <mdb:var mpath="SeminarArt:kurzbeschreibung" /><br/>&nbsp;<br/> 	

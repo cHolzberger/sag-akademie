@@ -176,6 +176,7 @@ ul
 					<set name="subject" value="Buchung " />
 				</span>
 			</p>
+	
 			<p class="MsoNormal">
 				<span style="font-size:9pt;color:#0000FF;">Dies ist eine automatisch generierte E-mail, die Sie nicht beantworten können!</span>
 			</p>
@@ -189,6 +190,14 @@ ul
 			<p class="MsoNormal" style="margin-bottom:.0001pt;">
 				<span style="font-size:9pt;">&nbsp;</span>
 			</p>
+
+		<p class="MsoNormal">
+
+
+
+
+			</p>
+
 			<p class="MsoNormal" style="margin-bottom:.0001pt;">
 				<span style="font-size:9pt;">Sehr geehrte Damen und Herren,</span>
 			</p>
@@ -199,7 +208,15 @@ Nachfolgend erhalten Sie wichtige und nützliche Informationen zu Ihrer Buchung 
 				</span>
 			</p>
 			<p class="MsoNormal" style="margin-top:3pt;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;">
-				<span style="font-size:9pt;">Bitte überprüfen Sie die Buchungsdaten nochmals!</span>
+							<span style="font-size:9pt;">herzlichen Dank für Ihre verbindliche Anmeldung zum Seminar auf www.sag-akademie.de. Hiermit bestätigen wir Ihre Buchung!
+				Ca. 1. Woche vor Seminarbeginn erhalten Sie die verbindliche Seminarbestätigung per E-Mail. 
+				Wir informieren Sie natürlich auch, wenn das Seminar nicht stattfinden kann.
+</span>
+			</p>
+
+			<p class="MsoNormal" style="margin-top:3pt;margin-right:0cm;margin-bottom:.0001pt;margin-left:0cm;">
+				<span style="font-size:9pt;">Bitte überprüfen Sie nochmals die nachfolgenden Buchungsdaten auf Richtigkeit (alle Preise zzgl. MwSt.)! </span>
+</span>
 			</p>
 			<div style="border:none;border-bottom:solid 1pt;padding:0cm 0cm 1pt 0cm;">
 				<p class="MsoNormal" style="margin-top:6pt;border:none;padding:0cm;">
@@ -342,7 +359,7 @@ Nachfolgend erhalten Sie wichtige und nützliche Informationen zu Ihrer Buchung 
 					<tr>
 						<td style="padding:2.25pt 2.25pt 2.25pt 2.25pt;">
 							<p class="MsoNormal" style="margin-bottom:.0001pt;">
-								<span style="font-size:9pt;">Kosten (zzgl. MwSt.)</span>
+								<span style="font-size:9pt;">Seminargebühr</span>
 							</p>
 						</td>
 						<td width="494" style="width:370.75pt;padding:2.25pt 2.25pt 2.25pt 2.25pt;">
@@ -491,9 +508,7 @@ Nachfolgend erhalten Sie wichtige und nützliche Informationen zu Ihrer Buchung 
 							</tr>
 						</case>
 					</switch>
-							
-				</case>
-				  <tr>
+					 <tr>
                         <td colspan="2">
                             &nbsp;
                         </td>
@@ -501,12 +516,24 @@ Nachfolgend erhalten Sie wichtige und nützliche Informationen zu Ihrer Buchung 
                     <tr>
                         <td style="padding:2.25pt 2.25pt 2.25pt 2.25pt;">
 							<p class="MsoNormal" style="margin-bottom:.0001pt;">
-                            Seminarunterlagen
+                            	<span style="font-size:9pt;">Zusätzlicher
+Seminarordner, gedruckt 
+</span>
 							</p>
                         </td>
                         <td width="494" style="width:370.75pt;padding:2.25pt 2.25pt 2.25pt 2.25pt;">
 							<p class="MsoNormal" style="margin-bottom:.0001pt;">
-                            <mdb:value mpath="seminar_unterlagen" converter="jaNeinToStr" />
+								<switch key="seminar_unterlagen">
+									<case value="#empty">
+                            			<span style="font-size:9pt;"><mdb:value mpath="seminar_unterlagen" converter="jaNeinToStr" /></span>
+									</case>
+									<case value="1">
+																<p class="MsoNormal" style="margin-bottom:.0001pt;">
+
+										Es entstehen Kosten in Höhe von 60,- &euro; (zzgl. MwSt.) zzgl. zu den Seminargebühren.
+										</p>
+									</case>
+								</switch>
 							</p>
                         </td>
                     </tr>		
