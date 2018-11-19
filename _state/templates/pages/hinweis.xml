@@ -7,28 +7,37 @@ padding-top:5mm;
 padding-left:0mm;
 padding-bottom:10mm;
 }
-
 .screen .important {
-position: relative;width:650px;margin-left: auto;margin-right: auto;margin-top: 25px;
+	width:585px;
+}
+.screen .content .important {
+	padding-bottom: 15px;
+}
+
+.screen .important .hinweis-content {
+padding:8px;border-style:solid;border-width:1px;border-color:darkgray;border-top-style:none;
+}
+.screen .important .title {
+	padding:4px;padding-left:8px;background:url('/img/newheadlinebg.jpg');border-style:solid;border-width:1px;border-color:darkgray;
 }
 </style>
-	<table border="0" cellspacing="0" cellpadding="0" width="585" style="width:585px;" class="important">				
+	<table border="0" cellspacing="0" cellpadding="0" class="important">				
 				<tr>
-						<td colspan="3" style="padding:4px;padding-left:8px;background:url('/img/newheadlinebg.jpg');border-style:solid;border-width:1px;border-color:darkgray;">
+						<td colspan="3" class="title">
 							<span class="newheadline">
 <strong>Papierlose Seminarunterlagen ab 01.01.2019… </strong>
 							</span>
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3" bgcolor="#f8f8f8" style="padding:8px;border-style:solid;border-width:1px;border-color:darkgray;border-top-style:none;">Sehr geehrte Kunden, Kollegen und Besucher,
+						<td colspan="3" class="hinweis-content">Sehr geehrte Kunden, Kollegen und Besucher,
 					<p>
 Sehr verehrte Kundinnen und Kunden, liebe Seminarteilnehmerinnen und Seminarteilnehmer!
 Als Bildungsträger verwenden wir im Rahmen von Weiterbildungen eine unglaubliche Menge an Papier und belasten somit die <strong>Umwelt!</strong>  - 
 Das wollen wir nun ändern und gehen ab 01.01.2019 einen neuen, zukunftsweisenden Weg!
 </p>
 <p>
-Zukünftig übergeben wir bei unseren Seminaren die <strong>Unterlagen<strong> in digitaler Form <strong>per USB-Stick</strong>. 
+Zukünftig übergeben wir bei unseren Seminaren die <strong>Unterlagen</strong> in digitaler Form <strong>per USB-Stick</strong>. 
 Dies ermöglicht uns, zusätzliche, interessante Informationen wie Filme, Bilder, Gesetzestexte und Links an den Seminarteilnehmer weiterzugeben!
 </p>
 <p>

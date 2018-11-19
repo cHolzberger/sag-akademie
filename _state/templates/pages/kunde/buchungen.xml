@@ -83,13 +83,21 @@
 										</tr>
 										<tr>
 											<td style="padding:5px !important;">
-											Kosten (zzgl. MwSt.)
+											Seminargebühr
 											</td>
 											<td style="padding:5px !important;">
 												<dbfield name="kursgebuehr" converter="euroPreis" notable="1"/>&nbsp;&euro;
 											</td>
 										</tr>
-									
+										<tr>
+											<td style="padding:5px !important;">
+												Zusätzlicher Seminarordner, gedruckt (zzgl. 60,00 &euro;)
+											</td>
+											<td style="padding:5px !important;">
+											
+											<dbfield name="seminar_unterlagen" converter="jaNeinToStr" notable="1" />
+								
+											</td>
 									</tr>
 									
 									

@@ -8,7 +8,7 @@ if (!defined("E_DEPRECATED"))
 	define("E_DEPRECATED", 8192);
 
 include_once("Zend/Loader/Autoloader.php");
-ini_set('display_errors','Off');
+ini_set('display_errors','off');
 ini_set("html_errors", "Off");
 // path for cookies
 $cookie_path = "/";

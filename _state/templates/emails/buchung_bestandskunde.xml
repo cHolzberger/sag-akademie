@@ -525,13 +525,14 @@ Seminarordner, gedruckt
 							<p class="MsoNormal" style="margin-bottom:.0001pt;">
 								<switch key="seminar_unterlagen">
 									<case value="#empty">
-                            			<span style="font-size:9pt;"><mdb:value mpath="seminar_unterlagen" converter="jaNeinToStr" /></span>
+                            			<span style="font-size:9pt;">
+											<mdb:value mpath="seminar_unterlagen" converter="jaNeinToStr" />
+										</span>
 									</case>
 									<case value="1">
-																<p class="MsoNormal" style="margin-bottom:.0001pt;">
-
-										Es entstehen Kosten in Höhe von 60,- &euro; (zzgl. MwSt.) zzgl. zu den Seminargebühren.
-										</p>
+										<span style="font-size:9pt;">
+											Es entstehen Kosten in Höhe von 60,00 &euro; (zzgl. MwSt.) zzgl. zu den Seminargebühren.
+										</span>
 									</case>
 								</switch>
 							</p>

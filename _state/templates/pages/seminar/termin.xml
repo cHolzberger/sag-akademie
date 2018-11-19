@@ -26,7 +26,7 @@
 </infoboxSmall>
 
 <content>
-
+	<hinweis></hinweis>
 	<div style="width:840px; font-size:12px; line-height:140%;">
 	
 	<mdb:ifEmpty mpath="SeminarArten">

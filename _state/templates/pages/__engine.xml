@@ -122,7 +122,7 @@
 </div>
 
 <div id="navContainer2" class="noprint">
-<a href="https://www.sag-akademie.de/pdf/seminarprogramm;pdf" target="_blank"><img src="/img/seminarprogramm.jpg" border="0" alt="Seminarprogramm"/></a><br/>
+<a href="/pdf/seminarprogramm;pdf" target="_blank"><img src="/img/seminarprogramm.jpg" border="0" alt="Seminarprogramm"/></a><br/>
 		<seminar:navContainer>
 			<seminar:navItem target="neue Seminare" />
 			<div style="height:4px;width:2px;"></div>
