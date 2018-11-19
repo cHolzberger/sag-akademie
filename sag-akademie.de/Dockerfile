@@ -9,6 +9,7 @@ RUN cp /usr/local/bin/wkhtmltopdf /usr/bin/
 COPY --chown=www-data:www-data . /var/www
 COPY ./_cron.daily/geb.sh /etc/periodic/daily/01-geb.sh
 COPY ./_conf/php.ini /etc/php5/apache2/conf.d/mem.ini
+COPY ./_conf/alias.conf /etc/apache2/conf.d
 
 
 EXPOSE 80

@@ -64,7 +64,7 @@ error_reporting(E_ERROR | E_WARNING | E_PARSE & ~E_NOTICE & ~E_DEPRECATED);
 switch ($host) {
 	case "dev":
 		define("RPC_PROTO", "http");
-		define('APPLICATION_ENV',"molle");
+		define('APPLICATION_ENV',"dev");
 		define("SMTP_SERVER", "smtp.worldserver.net");
 		MosaikConfig::setVar("smtpUser", "www@sag-akademie.de");
 		MosaikConfig::setVar("smtpPassword", "Akademie_SAG-Akademie");
@@ -138,7 +138,7 @@ switch ($host) {
 		break;
 	case "prod":
 		define("RPC_PROTO", "https");
-		define('APPLICATION_ENV', "online");
+		define('APPLICATION_ENV', "prod");
 		//MosaikConfig::setVar("overrideEmail", "info@samirschwenker.de");
 		define("SMTP_SERVER", "smtp.worldserver.net");
 		MosaikConfig::setVar("smtpUser", "www@sag-akademie.de");

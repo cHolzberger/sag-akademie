@@ -24,12 +24,8 @@
 			"_lib"
 		]
 	},
-
-	"production": {
-		"_extends": "default"
-	},
-
-	"online": {
+	
+	"prod": {
 		"_extends": "default",
 		"db": {
 			"dsn": "mysql:dbname=sag-akademie_de_stable;host=mysqldb",
@@ -46,7 +42,7 @@
 		}
 	},
 
-	"molle": {
+	"dev": {
 		"_extends": "default",
 		"db": {
 			"dsn": "mysql:dbname=sag-akademie_de_stable;host=mysqldb",
