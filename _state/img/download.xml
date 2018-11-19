@@ -1,0 +1,10 @@
+<set name="page_background" value="/img/blue_box_klein.jpg" />
+<infoboxSmall>
+<img src="/img/hotline.png" alt="" border="0" width="239" height="161" style="position: absolute; left:705px; top:6px;" usemap="#formulare" /><map name="formulare"><area shape="RECT" coords="90,80,230,120" href="#" /></map>
+<img src="/img/image_download.png" alt="" border="0" width="211" height="128" style="position: absolute; left:90px; top:25px;"/>
+
+</infoboxSmall>
+
+<content>
+
+</content>
