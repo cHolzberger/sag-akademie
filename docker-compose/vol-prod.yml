@@ -10,6 +10,7 @@ services:
       - img:/var/www/img
       - apache_logs:/var/log/apache2
       - templates:/var/www/templates
+      - img:/static/img
   mysqldb:
     volumes: 
       - mysql:/var/lib/mysql

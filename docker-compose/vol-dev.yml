@@ -3,11 +3,19 @@ version: "3"
 services: 
   web:
     volumes: 
+      - img:/static/img
       - webroot:/var/www
   mysqldb:
     volumes: 
       - mysql:/var/lib/mysql
 volumes:
+    img: 
+      driver: local
+      driver_opts: 
+        type: nfs
+        o: addr=192.168.254.10,rw,nolock,hard,nointr,nfsvers=3
+        device: ":/mnt/op/home/MSDOM/cholzberger/Projekte/SAG-Akademie-GmbH/sag-new/_state/img"
+
     webroot: 
       driver: local
       driver_opts: 
