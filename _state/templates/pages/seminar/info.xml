@@ -49,6 +49,8 @@ text-decoration: none;
 display:none;
 }
 </style>
+	<hinweis></hinweis>
+
 	<!--<image key="title" style="position: absolute; left:0px; top:0px;" />-->
 	<div style="text-align:right;padding-bottom:3px;width:840px;" class="noprint">
 		<a href="javascript:print();" class="schwarz">

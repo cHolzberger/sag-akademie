@@ -43,7 +43,7 @@ class MCase extends MosaikElement {
 		$value = $this->datasourceList->get("switch", "value");
 		$nobrvalue = trim(str_replace("<br>","", trim($value)));
 
-		if ( $nobrvalue == $match || $value == $match || $match == "*" || (is_array($value) && count ($value) == 0)) {
+		if ( (is_string($value) && $nobrvalue == $match) || $value == $match || $match == "*" || (is_array($value) && count ($value) == 0)) {
 			$this->datasourceList->get("switch")->add("matched", TRUE);
 		
 			$tv = trim( $innervalue );
