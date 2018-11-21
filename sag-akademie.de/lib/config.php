@@ -23,7 +23,7 @@ MosaikConfig::setVar("dbUser", "root");
 MosaikConfig::setVar("dbPassword", "root");
 MosaikConfig::setVar("dbHost", "localhost");
 MosaikConfig::setVar("dbDatabase", "sagakademie_stable_201004");
-$host = file_get_contents(WEBROOT."/env");
+$host = trim(file_get_contents(WEBROOT."/env"));
 
 // NEU
 MosaikConfig::setVar("dbPoolPath", realpath(WEBROOT . "/../dbpool"));
