@@ -1,3 +1,3 @@
-export BUILD_VERSION="20181119"
-export BUILD_BRANCH="prod"
-export RELEASE_BRANCH="prod"
+export BUILD_VERSION="20181121"
+export BUILD_BRANCH="dev"
+export RELEASE_BRANCH="dev"

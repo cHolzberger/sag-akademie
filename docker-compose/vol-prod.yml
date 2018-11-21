@@ -23,33 +23,33 @@ volumes:
     mysql: 
       driver: local-persist
       driver_opts:
-        mountpoint: /srv/datastore/$RELEASE_BRANCH/mysql
+        mountpoint: /srv/datastore/sag_$RELEASE_BRANCH/mysql
     files:
       driver: local-persist
       driver_opts:
-        mountpoint: /srv/datastore/$RELEASE_BRANCH/files
+        mountpoint: /srv/datastore/sag_$RELEASE_BRANCH/files
     pdf:
       driver: local-persist
       driver_opts:
-        mountpoint: /srv/datastore/$RELEASE_BRANCH/pdf
+        mountpoint: /srv/datastore/sag_$RELEASE_BRANCH/pdf
     resources_pdf:
       driver: local-persist
       driver_opts:
-        mountpoint: /srv/datastore/$RELEASE_BRANCH/resources_pdf
+        mountpoint: /srv/datastore/sag_$RELEASE_BRANCH/resources_pdf
     downloads:
       driver: local-persist
       driver_opts:
-        mountpoint: /srv/datastore/$RELEASE_BRANCH/downloads
+        mountpoint: /srv/datastore/sag_$RELEASE_BRANCH/downloads
     img: 
       driver: local-persist
       driver_opts:
-        mountpoint: /srv/datastore/$RELEASE_BRANCH/img
+        mountpoint: /srv/datastore/sag_$RELEASE_BRANCH/img
     templates: 
       driver: local-persist
       driver_opts:
-        mountpoint: /srv/datastore/$RELEASE_BRANCH/templates
+        mountpoint: /srv/datastore/sag_$RELEASE_BRANCH/templates
     apache_logs:
       driver: local-persist
       driver_opts:
-        mountpoint: /srv/datastore/$RELEASE_BRANCH/apache-logs
+        mountpoint: /srv/datastore/sag_$RELEASE_BRANCH/apache-logs
 
