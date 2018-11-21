@@ -23,3 +23,6 @@ mysql/*.tar.gz
 
 /bin/need.ym
 /bin/beta-20181116.yml
+/sag-akademie.de/templates/emails/buchung_bestandskunde.xml
+/administration/.hgtags
+/administration/.project
