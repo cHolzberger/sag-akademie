@@ -1,0 +1,83 @@
+/** and containers which give the size **/
+.box {
+   -webkit-box-sizing: border-box;
+	min-width: 5px;
+	max-widht: 100%;
+}
+
+.box.-verySmall {
+   width: 130px;
+}
+
+.box.-small {
+   width: 190px;
+}
+
+.box.-mediumSmall {
+	width: 290px;
+}
+
+.box.-medium {
+	width: 370px;
+}
+
+.box.huge {
+	width: 640px;
+}
+
+.box.-veryHuge {
+   width: 1000px;
+}
+
+.box.-expand {
+   width: 100%;
+}
+
+.textView {
+	max-height: 75px;
+	overflow-y: auto;
+}
+
+.colorBox {
+	width: 19px; 
+	height: 19px;
+	float: right;
+	border: 1px solid #8e8e8e;
+	padding: 2px;
+	cursor: pointer;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+.colorBox div {
+	width: 19px;
+	height: 19px;
+	border-radius: 2px;
+	-webkit-border-radius: 2px;
+}
+
+/** CHOOSER **/
+.chooserResultFrame {
+	border: 1px solid #e8e8e8;
+	background-color: #efefef;
+}
+
+.chooserResult {
+	padding: 3px;
+	margin: 1px;
+	border-bottom: 1px solid #8e8e8e;
+}
+
+.chooserResultSelected,
+.chooserResult:hover {
+	color: blue;
+	background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+	border-top: 1px solid blue;
+	border-bottom: 1px solid blue;
+	padding-left: 8px;
+	margin: 0px;
+}
+
+.normal-padding {
+	margin-bottom: 2px; margin-top: 2px; padding-top: 2px; padding-bottom: 2px; padding-left: 2px;
+}

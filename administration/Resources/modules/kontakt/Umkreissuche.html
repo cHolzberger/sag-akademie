@@ -1,0 +1,50 @@
+<fieldset class="box -expand outer msForm">
+	<legend>Umkreissuche</legend>
+	<div style="width: 200px; float: left; margin-right: 10px;">
+		<label class="formLabel">
+			<span>Standort:</span>
+			<input dojoType="dijit.form.Select" dojoAttachPoint="umkreisStandort" style="width: 140px;"/>
+		</label>
+		<label class="formLabel">
+			<span>Umkreis</span>
+			<input dojoType="dijit.form.Select" dojoAttachPoint="radiusStandort" style="width: 70px;"/>
+		</label>
+	</div>
+	<div style="width: 175px; float: left;">
+		<label class="formLabel">
+			<span>Datenbanken</span>
+		</label>
+		<div>
+			<input dojoType="dijit.form.CheckBox" dojoAttachPoint="cbPersonen" value="person"/> Personen<br/>
+			<input dojoType="dijit.form.CheckBox" dojoAttachPoint="cbFirmen" value="kontakt"/> Firmen<br/>
+			<input dojoType="dijit.form.CheckBox" dojoAttachPoint="cbAkquise" value="akquise_kontakt"/> Akquise-Kontakte<br/><br/>
+			<input dojoType="dijit.form.CheckBox" dojoAttachPoint="cbNewsletter" value="1"/> Newsletter Feld berücksichtigen<br/>
+			<input dojoType="dijit.form.CheckBox" dojoAttachPoint="cbEMail" value="1"/> E-Mail berücksichtigen
+		</div>
+	</div>
+	<div style="width: 150px; float: left;">
+		<label class="formLabel">
+			<span>Kategorie</span>
+		</label>
+		<div dojoAttachPoint="kategorieSelect">
+		</div>
+	</div>
+	<div style="width: 150px; float: left;">
+		<label class="formLabel">
+			<span>Branche</span>
+		</label>
+		<div dojoAttachPoint="brancheSelect">
+		</div>
+	</div>
+	<div style="width: 150px; float: left;">
+		<label class="formLabel">
+			<span>T&auml;tigkeitsbereich</span>
+		</label>
+		<div dojoAttachPoint="taetigkeitsbereichSelect">
+		</div>
+	</div>
+	<div class="clear">&nbsp;</div>
+	<footer>
+		<button dojoType="dijit.form.Button" dojoAttachPoint="searchButtonNode" dojoAttachEvent="onClick: _onSearchButtonClick">suchen</button>
+	</footer>
+</fieldset>

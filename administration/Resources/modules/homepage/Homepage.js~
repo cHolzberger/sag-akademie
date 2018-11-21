@@ -1,0 +1,168 @@
+dojo.provide("module.homepage.Homepage");
+dojo.require("mosaik.core.Module");
+dojo.require("dijit.form.Button");
+dojo.require("dijit.layout.BorderContainer");
+dojo.require("dijit.layout.StackContainer");
+dojo.require("dijit.layout.ContentPane");
+dojo.require("mosaik.ui.FlexTable");
+dojo.require("mosaik.ui.PageEditor");
+
+dojo.declare("module.homepage.Homepage", [mosaik.core.Module], {
+	run: function () {
+		this._suspendable.push(this.widgets.flexTable);
+		this.flexTable = this.widgets.flexTable;
+		
+		this.subscribeTo("flextable/editAktuelles", "_editAktuelles");
+		this.subscribeTo("flextable/deleteAktuelles", "_deleteAktuelles");
+		this.subscribeTo("flextable/editReferent", "_editReferent");
+		this.subscribeTo("flextable/editStellenangebot","_editStellenangebot");
+		this.subscribeTo("flextable/editKooperationspartner","_editKooperationspartner");
+		this.subscribeTo("flextable/editDownload", "_editDownload");
+		
+		this.select("aktuelles");
+
+	},
+	
+	toggleButtons: function ( section ) {
+		dojo.query(".dyn").forEach( function ( item ) {
+			item.style.display = "none";
+		});
+		
+		dojo.query("."+section).forEach( function ( item ) {
+			item.style.display = "inline-block";
+		});
+		
+	},
+
+	_editAktuelles: function (data) {
+		sandbox.loadShellModule( "aktuellesBearbeiten", {
+			id: data.id,
+			results: this.flexTable.getAllRows(["id"])
+			});
+	},
+	
+	_deleteAktuelles: function ( data ) {
+		console.log("delete");
+	},
+	
+	
+	_editReferent: function (data) {
+		sandbox.loadShellModule( "referentBearbeiten", {
+			id: data.id,
+			results: this.flexTable.getAllRows(["id"])
+			});
+	},
+	
+	
+	_editKooperationspartner: function ( data ) {
+		sandbox.loadShellModule("kooperationspartnerBearbeiten", {
+			id: data.id,
+			results: this.flexTable.getAllRows(["id"])
+			})
+	},
+	
+	
+
+	_editStellenangebot: function ( data ) {
+		sandbox.loadShellModule("stellenangebotBearbeiten", {
+			id: data.id,
+			results: this.flexTable.getAllRows(["id"])
+			})
+	},
+	
+	
+	
+	// **** Liste von eintraegen ****
+	select: function ( name ) {
+		this.flexTable.show();
+		
+		this.widgets.switchContainer.selectChild(this.widgets.borderContainer);
+		var pane = this.widgets.stackContainer;
+		pane.selectChild(this.widgets[name+"Pane"]);
+
+		var service = this.sandbox.getServiceUrl ( "homepage/"+name );
+
+		this.toggleButtons(name);
+		this.flexTable.queryService(service, {});	
+		this.updateKategorie(name);
+
+		this.flexTable.clearContextMenu();
+		this.flexTable.addContextMenuItem("Bearbeiten", "flextable/edit"+ucfirst(name));
+		this.flexTable.addContextMenuItem("Löschen", "flextable/delete"+ucfirst(name));
+		
+		var ref = dojo.connect( this.flexTable, "onReady", this, function ( ) { 
+			this.widgets.borderContainer.layout();
+			this.widgets.stackContainer.layout();
+			dojo.disconnect(ref);
+		});
+		
+
+	},
+	
+	_editDownload: function ( data ) {
+		sandbox.loadShellModule("downloadBearbeiten", {
+			id: data.id,
+			results: this.flexTable.getAllRows(["id"])
+			})
+	},
+	
+	_handlers: [],
+	_currentKategorie: "",
+	
+	updateKategorie: function(name) {
+		// Summary:
+		// syncs the "rubrik" table with the view
+	
+		var rubricInfo = [];
+		var target = this.nodes[name+"Kategorien"];
+		if ( typeof ( target) === "undefined") return;
+		var kategorieStore = sandbox.getSelectArray(ucfirst(name) + "Kategorie");
+		
+		var _rm = null;
+		var _seminare = null;
+
+		target.innerHTML="";
+
+		dojo.forEach ( this._handlers, dojo.disconnect);
+
+		this._handlers = [];
+		
+		dojo.forEach ( kategorieStore, dojo.hitch( this, function ( item ) {
+			var div = dojo.create("div", {
+				style: "float: left; width: 100px;",
+				"class": "hoverBtn"
+			}, target);
+			var link = dojo.create("a", {
+				innerHTML: item.label,
+				href: "#"
+			}, div);
+			
+			this._handlers.push( dojo.connect(link, "onclick", this, function ( e ) {
+				this._currentDownloadKategorie = e.currentTarget.innerHTML;
+				var service = this.sandbox.getServiceUrl ( "homepage/"+name );
+
+				this.flexTable.queryService(service, {
+					kategorie: item.value
+				});	
+			}));
+		}));
+	},
+	
+	// **** ALLGEMEINE INFOS ****
+	selectAllgemeineInfos: function () {
+		this.flexTable.hide();
+		this.toggleButtons("allgmeineInfos");
+		var pane = this.widgets.switchContainer;
+		
+		pane.selectChild(this.widgets.allgemeineInfosPane);
+	},
+	
+	// **** FRUEHBUCHER ****
+	selectFruehbucher: function () {
+		this.flexTable.hide();
+		this.toggleButtons("fruehbucher");
+		var pane = this.widgets.switchContainer;
+		
+		pane.selectChild(this.widgets.fruehbucherPane);
+	}
+});

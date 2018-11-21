@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+        
+    <meta charset="utf-8">
+        <title>Tutorial: Hello dgrid!</title>
+        <!-- this configuration assumes that the dgrid package is located
+         on the filesystem as a sibling to the dojo package -->
+    <link rel="stylesheet" href="lib/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="lib/gridx/resources/claro/Gridx.css">
+
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+
+            font-size: 75%;
+        }
+        #gridContainer,
+        #grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+    </style>
+        
+    <script src="lib/dojo/dojo.js" data-dojo-config="async: true, isDebug: true, parseOnLoad: true"></script>
+
+    <script>
+        var currentUrl=null;
+        var editable = true;
+        var parameters = {};
+        var loadUrlFn = null;
+        var grid;
+
+        var externApi = {
+            addContextMenuItem: function ( label, event) { // adds an context menu item
+
+            },
+
+            clearContextMenu: function () {
+
+            },
+
+            getCurrentId: function () {// gets current select rows id
+
+            },
+
+            getCurrentRow: function () { // gets the current selected row
+
+            },
+
+            setParameter: function(name, value) {// sets an parameter
+                parameters[name] = value;
+            },
+
+            resetParameters: function () { // resets an parameter
+                parameters={};
+            },
+
+            lock: function () { // lock editing
+
+            },
+
+            unlock: function () { // unlocks editing
+
+            },
+
+            isReady: function () { // external sources poll this variable
+                if ( loadUrlFn != null) {
+                    return true;
+                }
+                return false;
+            },
+
+            setInteractive: function ( isInteractive) { // legacy -> sets if this node should be displayed at high framerate
+
+            },
+
+            getAllRows: function() { // returns all rows in this table
+
+            },
+
+            getAllRowsWithKeys: function (keys) { //returns rows with keys specified by keys
+
+            },
+
+            exportCsv: function( ) { // exports this tables data to csv
+                var csv="";
+                function showResult(result){
+                    csv=result;
+                }
+                grid.exporter.toCSV({
+
+                }).then(showResult);
+                return csv;
+            },
+
+            getCol: function(colName) { // returns the data in all columns of name colName
+
+            },
+            loadUrl: function (url) {
+                currentUrl = url ;
+                if ( loadUrlFn != null) {
+                    console.log("Loading: " + currentUrl);
+                    loadUrlFn(currentUrl,parameters);
+                }
+            }
+        }
+
+        for ( key in externApi) {
+            window[key] = externApi[key];
+        }
+
+        var layout = [
+            {field:"Daten", name:"Daten"}
+        ];
+
+        require([
+            "dojox/widget/Standby",
+            "dojo/on",
+            "cellformat",
+            "dojo/request",
+            "dojo/store/Memory",
+            'gridx/Grid',
+            'gridx/core/model/cache/Sync',
+            'gridx/core/model/cache/Async',
+            'dijit/form/ComboButton',
+            'dijit/Menu',
+            'dijit/MenuItem',
+            'dijit/ProgressBar',
+            'dijit/form/Button',
+            'dijit/form/CheckBox',
+            'dijit/form/DropDownButton',
+            'dijit/TooltipDialog',
+            "gridx/modules/Focus",
+            "gridx/modules/CellWidget",
+            "gridx/modules/ColumnResizer",
+            "gridx/modules/RowHeader",
+            'gridx/modules/VirtualVScroller',
+            'gridx/modules/SummaryBar',
+            "gridx/modules/Edit",
+            'gridx/modules/SingleSort',
+            'gridx/modules/exporter/CSV',
+            'gridx/modules/select/Row',
+            'dojo/domReady!'
+
+        ], function (Standby, on, cellFormat, request, Memory, Grid) {
+            var standby = new Standby({target: "gridContainer"});
+            document.body.appendChild(standby.domNode);
+
+            standby.startup();
+            standby.show();
+            store = new Memory({data:[
+                {}
+            ]});
+
+            options = {
+                cacheClass:"gridx/core/model/cache/Async",
+                store: store,
+                structure:layout,
+
+                modules:[
+                    "gridx/modules/Focus",
+                    "gridx/modules/CellWidget",
+                    "gridx/modules/ColumnResizer",
+                    "gridx/modules/VirtualVScroller",
+                    "gridx/modules/Edit",
+                    'gridx/modules/SummaryBar',
+                    'gridx/modules/SingleSort',
+                    'gridx/modules/select/Row',
+                    'gridx/modules/exporter/CSV'
+
+                ]};
+            grid = new Grid(options, "grid");
+
+            on(window, "resize", function () {
+                grid.resize();
+            })
+
+            grid.setColumns(layout);
+
+
+            grid.startup();
+
+
+            function _loadUrl(url, parameters) {
+                standby.show();
+                request.get(url, {
+                    handleAs:"json",
+                    query: parameters
+                }).then(function (response) {
+                            console.dir(response);
+
+                            var columnHeaders = [];
+                            var columns = response.headers;
+                            dojo.forEach(columns, function (item) {
+                                if (!item.hide) {
+                                    if (item.format != "default") {
+
+                                        // set the cell formatters
+                                        if (cellFormat.formatter[item.format]) {
+                                            item.formatter = cellFormat.formatter[item.format];
+                                        }
+
+                                        // set cell style
+                                        if (cellFormat.style[item.format]) {
+                                            item.style = cellFormat.style[item.format];
+                                        }
+                                    }
+
+                                    item.name = item.label;
+                                    item.width = "100px";
+                                    columnHeaders.push(item);
+                                }
+
+                                if (editable && item.editable == "true") {
+                                    item.editable = true;
+                                    item.editor = "dijit/form/TextBox";
+                                }
+                            });
+
+                            grid.setColumns(columnHeaders);
+                            store = new Memory({idAttribute:'id', data:response.data, size:response.count});
+                            grid.setStore(store);
+                            standby.hide();
+                        }, function (error) {
+                        });
+            }
+            loadUrlFn = _loadUrl;
+            if (currentUrl) {
+                _loadUrl(url,parameters);
+            }
+        });
+
+
+    </script>
+
+</head>
+<body class="claro">
+    <div id="gridContainer">
+        <div id="grid"></div>
+    </div>
+</body>
+</html>

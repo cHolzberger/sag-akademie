@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Ferien / Feiertag bearbeiten</title>
+		<link rel="stylesheet" href="feiertagBearbeiten.css" />
+	</head>
+	<body class="tundra">
+		<!-- dialogs -->
+		<div dojoType="dijit.Dialog" id="chooserFrame"  title="Neuen Benutzer anlegen" style="display: none; ">
+			<div dojoType="dijit.layout.StackContainer" id="chooserStack" style="height: 150; width: 450px; ">
+				<div dojoType="dijit.layout.ContentPane" id="todoPane">
+					<div style="width: 300px;">
+						<label class="formLabel">
+							<span>Datum</span>
+							<input type="text" id="newDatum" dojoType="dijit.form.DateTextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Name</span>
+							<input type="text" id="newName" dojoType="dijit.form.TextBox" />
+						</label>
+					</div>
+				</div>
+			</div>
+			<!-- navbar -->
+			<div style="height: 20px; text-align: right; padding:5px;" class="gradient1">
+				<div dojoType="dijit.form.Button" style="display: none; float: left;" id="prevButton">&lt; Zur&uuml;ck</div>
+
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="nextButton">Weiter &gt;</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="createButton">Ferien / Feiertag anlegen</div>
+			</div>
+		</div>
+
+
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left"><span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('administration',{});">Administration</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Ferien / Feiertage</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Ferien-/Feiertag bearbeiten</span></span>
+				<div id="dnav" dojoType="mosaik.ui.DatasetNavigator" ></div>
+			</div>
+			<div class="-right">
+				<button dojoType="dijit.form.Button" id="speichernBtn">Speichern</button>
+			</div>
+		</div>
+		
+		<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="true" liveSplitters="false" persist="true">
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="true" region="top" style="overflow: auto;">
+				<div class="box -mediumSmall" style="" >
+
+					<fieldset class="box -mediumSmall outer">
+						<legend>Ferien / Feiertag</legend>
+						<label class="formLabel">
+							<span>Datum</span>
+							<input type="text" id="Feiertag:datum" dojoType="dijit.form.DateTextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Name</span>
+							<input type="text" id="Feiertag:name" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

@@ -1,0 +1,136 @@
+dojo.provide("module.kategorieEditor.KategorieEditor");
+dojo.require("mosaik.core.Module");
+dojo.require("dijit.form.Button");
+dojo.require("dijit.layout.AccordionContainer");
+dojo.require("dijit.layout.ContentPane");
+dojo.require("dijit.form.TextBox");
+dojo.require("dijit.Editor");
+dojo.require("dijit.Menu");
+dojo.require("dijit.MenuItem");
+
+dojo.declare("module.kategorieEditor.KategorieEditor", [mosaik.core.Module], {
+	_options: null,
+	_sections: null,
+	_templates: null,
+	_panes: {},
+	currentTable: null,
+	currentItem: null,
+	
+	
+	service: null,
+	
+	
+	constructor: function ( sandbox ) {
+		console.log ("setting sandbox");
+		this.sandbox = sandbox;
+	},
+	
+	run: function (options) {
+		this._options = options;
+		console.dir(options);
+		this.service = this.sandbox.getRpcService("database/kategorie");
+		
+		this.service.getSections().addCallback(this, "onSections");
+		dojo.connect ( this.widgets.saveBtn, "onClick", this, "onSave");
+	},
+	
+	onSections: function ( data ) {
+		console.dir(data);
+		
+		dojo.forEach ( data, function ( item ) {
+			var pane = dijit.layout.ContentPane({
+				title: item
+				
+			});
+			
+			currentModule._panes[item] = pane;
+			currentModule.widgets.accordeonContainer.addChild(pane);
+			
+			currentModule.loadTables(item);
+		});
+	},
+	
+	loadTables: function ( section ) {
+		this.service.getTables( section ).addCallback(this, "onTables");
+	},
+	
+	onTables: function ( data ) {
+		
+		console.dir(data);
+		var _t = currentModule._panes[data.section];
+
+		dojo.forEach ( data.tables, function ( item) { 
+
+			var cnt = dojo.create("div", {
+				innerHTML: item.title, 
+				"class": "hoverButton"
+			},_t.domNode);
+			
+			dojo.connect(cnt, "onclick", this, function () {
+				currentModule.currentTable = item.table;
+				currentModule.loadValues (item.table);
+			});
+			
+		});
+		
+		
+	},
+	
+	loadValues: function (tbl) {
+		currentModule.service.getValues( tbl ).addCallback(this, "onValues");
+	},
+	
+	onValues: function (data) {
+		console.dir(data);
+		var _t = this.widgets.valuesContainer;
+		dojo.style ( _t.domNode, "display", "block");
+		
+		dojo.style(this.widgets.addBtn.domNode, "display", "block");
+		_t.domNode.innerHTML = "";
+		
+		dojo.forEach ( data , function ( item ) {
+			var cnt = dojo.create("div", {
+				innerHTML: item.name, 
+				"class": "hoverButton"
+			}, _t.domNode );
+			
+			dojo.connect(cnt, "onclick", this, function () {
+				currentModule.editKategorie( item);
+			});
+		});
+		
+	},
+	
+	editKategorie: function ( data ) {
+		var _t = this.widgets.editorPane;
+		dojo.style ( _t.domNode, "display", "block");
+		dojo.style ( this.widgets.saveBtn.domNode, "display", "block" );
+		this.currentItem = data;
+		this.widgets.name.set("value", data.name);
+	},
+	
+	addKategorie: function ( ) {
+		console.log("Create");
+		sandbox.showLoadingScreen("Daten speichern...");
+		this.service.createKategorie ( this.currentTable, "#NEU#").addCallback( this, "saveDone" );
+	},
+	
+	onSave: function () {
+		console.log("Save");
+		sandbox.showLoadingScreen("Daten speichern...");
+		
+		var name = currentModule.widgets.name.get("value");
+		
+		this.currentItem.name = name;
+		this.service.saveKategorie ( this.currentTable, this.currentItem.id, name ).addCallback( this, "saveDone");
+		
+	}, 
+	
+	saveDone: function (data) {
+		this.loadValues( this.currentTable );
+		sandbox.hideLoadingScreen();
+		
+		this.editKategorie ( data );
+	}
+
+});

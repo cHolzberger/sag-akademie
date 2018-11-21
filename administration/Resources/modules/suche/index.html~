@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Suche</title>
+
+		<!-- end boilerplate -->
+		<link rel="stylesheet" href="suche.css" type="text/css" />
+	</head>
+	<body class="tundra">
+			<div id="toolbar">
+			<div class="-left">
+			<span class="breadcrumb-container"><span class="breadcrumb">Suche</span></span>
+			<button dojoType="dijit.form.Button" onClick="currentModule.showUmkreissuche()">Umkreissuche</button>
+			<button dojoType="dijit.form.Button" onClick="currentModule.showErweiterteSuche()">Erweiterte-Suche</button>
+			
+					</div>
+			
+		</div>
+		<div  id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="true" liveSplitters="false">
+			<div id="centerPane" dojoType="dijit.layout.ContentPane" splitter="true" region="top" >
+				<div class="contentPane -left">
+					<fieldset class="box -verySmall  outer msForm">
+						<legend>Kontaktsuche</legend>
+						<input type="text" dojoType="dijit.form.TextBox" id="kontaktSucheName" placeHolder="Suche nach Name..." />
+						<br/>
+						<label class="checkBoxLabel">
+							<input type="checkbox" dojoType="dijit.form.CheckBox" id="ksAlleAnzeigen" />
+							<span>alle</span>
+						</label><br/><br/>
+
+						<label  class="checkBoxLabel">
+							<input type="checkbox" dojoType="dijit.form.CheckBox" id="ksKundenAnzeigen" />
+							<span>Kunden</span>
+						</label><br/>
+
+						<label  class="checkBoxLabel">
+							<input type="checkbox" dojoType="dijit.form.CheckBox" id="ksAkquiseKontakteAnzeigen" />
+							<span>Akquise-Kontakte</span>
+						</label><br/>
+
+						<footer>
+							<button dojoType="dijit.form.Button" id="ksKontakteSuchen">suchen</button>
+						</footer>
+					</fieldset>
+					<fieldset class="box -verySmall outer msForm">
+						<legend>Personensuche</legend>
+						<input type="text" dojoType="dijit.form.TextBox" id="personSucheName" placeHolder="Suche nach Name..." />
+						<footer>
+							<button dojoType="dijit.form.Button" id="personSucheBtn">suchen</button>
+						</footer>
+					</fieldset>
+				</div>
+				
+				<div class="contentPane -expand">
+					<div dojoType="module.kontakt.Umkreissuche" id="umkreissuche"></div>
+					<div dojoType="module.suche.ErweiterteSuche" id="erweiterteSuche">Erweiterte Suche</div>
+				</div>
+				
+			</div>
+
+			<div dojoType="dijit.layout.BorderContainer" gutters="false" splitter="false" region="center" minSize="50" id="flexTableContainer" persist="true">
+				<div dojoType="dijit.layout.ContentPane" region="top" class="flexTableToolbar">
+					<div class="-left">
+						<label style="float: left;">
+							<span>Suchergebnisse:</span>
+							</label>
+						
+						<label style="float: left;">
+							
+							<span id="searchTarget"></span>
+						</label>
+					</div>
+					<div class="-right">
+						<button dojoType="dijit.form.Button" id="editTable">Tabelle bearbeiten</button>
+						<button dojoType="dijit.form.Button" id="editColumns">Spalten</button>
+						<button dojoType="dijit.form.Button" id="editExport">Export (.csv)</button>
+					</div>
+				</div>
+				<div dojoType="dijit.layout.ContentPane" region="center">
+					<div id="flexTable" dojoType="mosaik.ui.FlexTable"></div>
+				</div>
+			</div>
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

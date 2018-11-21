@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Anmeldung am System</title>
+		<link rel="stylesheet" href="login.css" type="text/css" />
+		
+	</head>
+	<body class="loginWindow tundra" >
+		
+		<div id="logoContainer">
+			<img src="/app/shared/images/logo.jpg" id="logo" />
+			<h2 id="versionString"> </h2>
+
+			<h1 id="headline">Anmeldung</h1><br/>
+		</div>
+		<div id="separator"></div>
+		<div dojoType="dijit.layout.StackContainer" id="stackContainer">
+			<div id="updateContainer"  dojoType="dijit.layout.ContentPane">
+				<center>
+					<img src="/app/shared/icons/ajax-loader.gif" />
+					<br/><span id="updateStatus">Prüfe auf Updates...</span><br/>
+					<div id="downloadStatus">&nbsp;</div>
+					<div id="updateText">&nbsp;</div>
+				</center>
+			</div>
+			<div id="airVersionFailed"  dojoType="dijit.layout.ContentPane">
+				<p>Ihre <b>Adobe-AIR</b> Version (<span id="airVersion"></span>) ist veraltet.<p>
+					Bitte Installieren Sie die neuste Version von: <a href="http://get.adobe.com/de/air/">http://get.adobe.com/de/air/</a></p>
+			</div>
+			
+			<div id="loginContainer" dojoType="dijit.layout.ContentPane" style="display: none;">
+				<label class="formLabel">Benutzername
+					<input type="text" id="username" required="required" placeHolder="Benutzername" dojoType="dijit.form.TextBox" /></label>
+				<label class="formLabel">Password
+					<input type="password" id="password" required="required" placeHolder="Password" dojoType="dijit.form.TextBox" /></label>
+				<label class="formLabel">Datenbank
+					<select id="database" dojoType="dijit.form.Select" style="width: 170px;">
+						<option value="https://www.sag-akademie.de">Produktiv</option>
+						<option value="https://beta.sag-akademie.de">Test</option>
+						<option value="http://192.168.254.252:8085">Lokal (Entwickler)</option>
+					</select></label>
+				<div id="loginNowContainer">
+					<button id="loginNow" dojoType="dijit.form.Button">Anmelden</button>
+				</div>
+			</div>
+			<div id="logonOk" dojoType="dijit.layout.ContentPane" style="display: none;">Erfolgreich angemeldet</div>
+			<div id="syncRunning" dojoType="dijit.layout.ContentPane" style="display: none;">Lade: <span id="currentTable">#TABLE#</span></div>
+			<div id="logonRunning" dojoType="dijit.layout.ContentPane"  style="display: none;">
+				<img src="/app/shared/icons/ajax-loader.gif" />
+				<br />Anmeldung ...
+			</div>
+		</div>
+		<span id="scripts">
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/AIRAliases.js" type="text/javascript"></script>
+
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		
+
+		<!-- end boilerplate -->
+		</span>
+	</body>
+</html>

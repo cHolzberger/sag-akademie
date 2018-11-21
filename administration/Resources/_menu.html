@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link rel="stylesheet" href="/shared/css-core/iframe-main.css" />
+		<link rel="stylesheet" href="/shared/css-lib/all.css" />
+						<script src="/shared/js-core/AIRAliases.js" type="text/javascript"></script>
+
+		<script src="/shared/dojo/dojo/dojo.js" type="text/javascript" ></script>
+		<script type="text/javascript">
+			menu = null;
+			function hide () {
+				if (! nativeWindow.visible ) return;
+				nativeWindow.visible=false;
+				nativeWindow.alwaysInFront =false;
+				this.app.publish("menu/hide");
+				
+			}
+			
+			function show (pos) {
+				if ( nativeWindow.visible ) return;
+				
+				console.log("show: ");
+				console.dir(pos);
+				nativeWindow.x = pos.x;
+				nativeWindow.y = pos.y;
+				nativeWindow.visible=true;
+				nativeWindow.alwaysInFront =true;
+				nativeWindow.activate();
+				updateSize();
+				
+				this.app.publish("menu/show");
+			}
+			dojo.ready(function ( ) {
+				dojo.require("dair.AIR");
+				dojo.require("dair.Aliases");
+				dojo.require("dijit.Menu");
+				dojo.require("dijit.MenuItem");
+				dojo.require("dijit.MenuSeparator");
+
+				dojo.require("dijit.layout.ContentPane");
+				dojo.require("dojo.parser");
+				dojo.ready(function ( ) { 
+					console.log("<---> MENUFRAME::READY <--->");
+					clear();
+					addItem("abc","a");
+					addItem("--");
+					
+					setTimeout(updateSize, 250);
+					
+					dojo.connect(window, "onmouseout", function(e) {
+						if ( e.relatedTarget.id == "menuBody" ) {	
+							console.dir(e);
+						}
+					})
+					
+					nativeWindow.addEventListener(air.Event.DEACTIVATE,function () {
+						if ( air.NativeApplication.nativeApplication.activeWindow == null ) {
+							hide(); 
+						}});
+				});
+				hide();
+			});
+			
+			function addItems( obj) {
+				dojo.forEach ( obj , function(item) {
+					addItem(item.label, item.signal);
+				});
+				updateSize();
+			}
+			
+			function addItem( label, signal) {
+				this.app.publish("menu/addItem");
+				if ( label == "--" ) {
+					menu.addChild(new dijit.MenuSeparator());
+				} else {
+					var item = new dijit.MenuItem({label: label});
+					menu.addChild( item );
+					item.set("signal", signal);
+					dojo.connect(item,"onClick", window, "itemClick");
+				}
+			}
+			
+			function clear() {
+				this.app.publish("menu/clear");
+				
+				if ( menu != null ) {
+					menu.destroyRecursive();
+				}
+				
+				menu = new dijit.Menu();
+				menu.placeAt(dojo.byId("menuContainer"));
+			}
+			
+			function itemClick( evt ) {
+				var item = dijit.byNode(evt.currentTarget);
+				this.app.publish("menu/click",[ item.get("signal") ]);
+				this.hide();
+				
+			}
+			
+			function updateSize () {
+				var mb = dojo.marginBox (dojo.byId("menuContainer"));
+				console.dir(mb);
+				
+				var mb2 = dojo.marginBox(menu.domNode);
+				console.dir(mb2);
+				
+				
+				nativeWindow.height = ( mb.h > mb2.h ? mb.h : mb2.h );
+				nativeWindow.width = ( mb.w > mb2.w ? mb.w: mb2.w);
+			}
+			
+
+		</script>
+		<style type="text/css">
+			html,
+			body {
+				padding: 0;
+				margin: 0;
+			}
+		</style>
+		<link rel="stylesheet" href="shared/dojo/dijit/themes/tundra/tundra.css" />
+
+	</head>
+	<body class="tundra"  style="overflow: hidden; padding: 2px;" id="menuBody">
+		<div id="menuContainer" style="border: 0px solid red; min-width: 1px; min-height: 1px;">
+
+		</div>
+	</body>
+</html>

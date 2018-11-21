@@ -1,0 +1,22 @@
+/** restyle some dojo widgets **/
+.dijitTextBox,
+.dijitSelect {
+	width: 150px;
+}
+dijitDateTextBox,
+.dijitNumberTextBox {
+	width: 75px;
+}
+ .dijitSelect .dijitButtonContents {
+	width: 100% !important;
+	max-width: 125px;
+	z-index: 40;
+	overflow: hidden;
+
+}
+
+/** widgets inside containers **/
+.box .-small .dijitTextBox,
+.box .-small .dijitSelect {
+	width: 75px;
+}

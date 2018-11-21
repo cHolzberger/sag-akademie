@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Download bearbeiten</title>
+		<link rel="stylesheet" href="stellenausschreibungBearbeiten.css" />
+	</head>
+	<body class="tundra" >
+		<!-- dialogs -->
+		<div dojoType="dijit.Dialog" id="chooserFrame"  title="Neuen Download anlegen" style="display: none; ">
+			<div dojoType="dijit.layout.StackContainer" id="chooserStack" style="height: 150; width: 650px; ">
+				<div dojoType="dijit.layout.ContentPane" id="todoPane" style="width: 650px;">
+					<div style="width: 650px;">
+						<label class="formLabel">
+							<span>Name</span>
+							<input dojoType="dijit.form.TextBox" id="newName" class="neuerDownloadInput" />
+						</label>
+					
+						<label class="formLabel">
+							<span>Kategorie</span>
+							<input dojoType="dijit.form.Select" id="newKategorie" class="neuerDownloadInput" />
+						</label>
+					</div>
+				</div>
+			</div>
+			<!-- navbar -->
+			<div style="height: 20px; text-align: right; padding:5px;" class="gradient1">
+				<div dojoType="dijit.form.Button" style="display: none; float: left;" id="prevButton">&lt; Zur&uuml;ck</div>
+
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="nextButton">Weiter &gt;</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="createButton">Download anlegen</div>
+			</div>
+		</div>
+
+
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left"><span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('homepage',{});">Homepage</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Downloads</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Download bearbeiten</span></span>
+				<div id="dnav" dojoType="mosaik.ui.DatasetNavigator" ></div>
+			</div>
+			<div class="-right">
+                <button dojoType="dijit.form.Button" id="deleteBtn" iconClass="dijitIconDelete">Löschen</button>
+                <button dojoType="dijit.form.Button" id="saveBtn" iconClass="dijitIconSave">Speichern</button>
+			</div>
+		</div>
+		<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="true" liveSplitters="false" persist="true">
+				<div dojoType="dijit.layout.ContentPane" layoutPriority="1" region="top" style="overflow: auto;">
+					<div style="float: left; padding-left: 10px;">
+					Name:
+					</div>
+					<div style="position: absolute; left: 80px; right: 180px;">
+						<input dojoType="dijit.form.TextBox" style="width: 100%;" id="Download:name"/>
+					</div>
+					<div style="position: absolute; float: left; padding-left: 10px; right: 120px;">
+					Kategorie:
+					</div>
+					<div style="position: absolute; right: 10px; top: 0px;">
+						<input dojoType="dijit.form.Select" style="width: 100px; top: 0px;" id="Download:kategorie"/>
+					</div>
+				</div>
+				
+				<div dojoType="dijit.layout.ContentPane" layoutPriority="3"  region="top">
+					<div style="float: left; padding-left: 10px;">
+					Datei: 
+					</div>
+					<div id="Download:file" service="Download" dojoType="mosaik.ui.FileUpload" dojoAttachPoint="uploaderNode" style="position: absolute; left: 80px; width: 190px;">&nbsp;DIV</div>
+					
+				</div>
+				<div dojoType="dijit.layout.ContentPane" layoutPriority="3" region="center" style="padding:0;">
+					<div dojoType="dijit.Editor" layoutPriority="4" style="position: absolute; top: 0; bottom: 0; left: 0; right: 0;" id="Download:text"></div>
+				</div>
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

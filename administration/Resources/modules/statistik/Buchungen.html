@@ -1,0 +1,72 @@
+<div>
+	<h2 dojoAttachPoint="headline">
+		Buchungen #YEAR#
+	</h2>	
+	<table border="1" class="sag_stats" width="300">
+		<colgroup>
+			<col width="100" />
+			<col width="45" />
+			<col width="45" />
+			<col width="45" />
+			<col width="45" />
+			<col width="45" />
+			<col width="45" />
+		</colgroup>
+		<thead>
+			<tr>
+				<th nowrap class='statHeader'>
+					Monat
+				</th>
+				<th nowrap class='statHeader'>
+					teilg.
+				</th>
+				<th nowrap class='statHeader'>
+					n. teilg.
+				</th>
+				<th nowrap class='statHeader'>
+					umgeb.
+				</th>
+				<th nowrap class='statHeader'>
+					abgesagt
+				</th>
+				<th nowrap class='statHeader'>
+					storn.
+				</th>
+				<th nowrap class='statHeader'>
+					gesamt
+				</th>
+
+			</tr>
+		</thead>
+		<tbody dojoAttachPoint="tbody">
+			<tr><td colspan="7" ><center><br/><img src="/app/shared/icons/ajax-loader.gif" /></center><br/></td>	</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td dojoAttachPoint="footLabel" nowrap  class='monthLabel'>
+					${year} gesamt
+				</td>
+				<td class='numericValue'>
+					<span dojoAttachPoint="tfoot_bestaetigt"  ></span>
+				</td>
+				<td class='numericValue'>
+					<span dojoAttachPoint="tfoot_teilgenommen"  class='numericValue'></span>
+				</td class='numericValue'>
+
+				<td class='numericValue'>
+					<span dojoAttachPoint="tfoot_umgebucht"  class='numericValue'></span>
+					
+				</td>
+				<td class='numericValue'>
+					<span dojoAttachPoint="tfoot_abgesagt"  class='numericValue'></span>
+				</td>
+				<td class='numericValue'>
+					<span dojoAttachPoint="tfoot_storno" class='numericValue'></span>
+				</td>
+				<td class='numericValue'>
+					<span dojoAttachPoint="tfoot_gesamt" class='numericValue'></span>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+</div>

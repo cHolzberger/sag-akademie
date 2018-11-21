@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="df96a627-e21f-4f13-9353-24920a2d655c" kpf_version="5" name="MyProject.komodoproject">
+<preference-set idref="df96a627-e21f-4f13-9353-24920a2d655c">
+  <string relative="path" id="import_dirname"></string>
+  <string id="import_exclude_matches">*.*~;*.bak;*.tmp;CVS;.#*;*.pyo;*.pyc;.svn;.git;.hg;.bzr;*%*;tmp*.html;.DS_Store;*.swp;*.kpf;*.komodoproject;*.komodotools</string>
+  <string id="import_include_matches"></string>
+  <boolean id="import_live">1</boolean>
+  <string relative="path" id="javascriptExtraPaths">Resources/shared/js-core:/home/cholzberger/Projekte/SAG-Akademie-GmbH/SAG-Adm-UI/Resources/shared/js-drivers:/home/cholzberger/Projekte/SAG-Akademie-GmbH/SAG-Adm-UI/Resources/shared/js-lib</string>
+  <string id="mappedPaths"></string>
+  <string id="phpExtraPaths">/usr/local/zend/share/ZendFramework</string>
+  <string id="pythonExtraPaths"></string>
+  <string id="rubyExtraPaths"></string>
+</preference-set>
+</project>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head><meta/><title>SAG-Akademie GmbH - Verwaltung</title>
+
+<!-- module boilerplate -->
+		<script src="app:/shared/js-core/helpers.js" type="text/javascript"/>
+		<script src="app:/shared/js-lib/jquery-1.4.3.min.js" type="text/javascript"/>
+		<script src="app:/shared/js-lib/swfobject.js" type="text/javascript"/>
+
+		<script type="text/javascript">
+			
+			function initChild () {
+				var moduleName = dojo.attr("modFrame","moduleName");
+				var options = dojo.attr("modFrame","options");
+
+				console.log ("shell/index.html::initChild ( " + moduleName + ") options:" );
+				console.dir(options);
+
+				sandbox.spawnSandbox( moduleName, dojo.byId("modFrame").contentWindow, options);
+			}
+		</script>
+		<script src="app:/shared/js-lib/dojo/dojo.js" type="text/javascript"/>
+		<script src="app:/shared/js-core/djBootstrap.js" type="text/javascript"/>
+
+		<!-- end boilerplate -->
+		<link rel="stylesheet" href="listenVerwaltung.css" />
+</head>
+<body class="tundra" moduleClass="module.listenVerwaltung.ListenVerwaltung" moduleName="listenVerwaltungl">
+</body>
+</html>

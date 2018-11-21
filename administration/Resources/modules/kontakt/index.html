@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Kontakte</title>
+		<link rel="stylesheet" href="kontakt.css" type="text/css" />
+	</head>
+	<body class="tundra" >
+		<div id="toolbar">
+			<div class="-left"><span class="breadcrumb-container"><span class="breadcrumb">Kontakte: </span></span>
+			<!--<span class="breadcrumb-container"><span class="breadcrumb">Kontakte</span></span>
+				<button dojoType="dijit.form.Button" onClick="currentModule.showUmkreissuche()">Umkreissuche</button>-->
+			<!--	<button dojoType="dijit.form.Button" onClick="currentModule.showErweiterteSuche()">Erweiterte Suche</button>-->
+			</div>
+		</div>
+		<div  id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="false" liveSplitters="false" persist="true">
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="false" region="center" >
+				<div class="contentPane -left" style="float: none; -webkit-box-flex: 0;">
+
+					<form id="sucheAnfangsbuchstabe" class="msForm">
+						<fieldset class="box -verySmall outer formReset">
+							<legend>Suche</legend>
+							<fieldset class="inner nofloat">
+								<legend>Anfangsbuchstabe</legend>
+								<table>
+									<tbody id="auswahlAnfangsbuchstabe"></tbody>
+								</table>
+								<button dojoType="dijit.form.Button" onClick="currentModule.showAllKontakte();">Alle anzeigen</button>
+							</fieldset>
+
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="sKundenSuchen" checked="checked"/>
+								<span>Kunden</span>
+							</label><br/>
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="sAkquiseSuchen" />
+								<span>Akquise-Kontakte</span>
+							</label><br/>
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="sPotKunde" />
+								<span>Pot. Kunde</span>
+							</label><br/>
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="sInfo" />
+								<span>Info</span>
+							</label><br/>
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="sReferent" />
+								<span>Referent</span>
+							</label><br/>
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="sHersteller" />
+								<span>Hersteller</span>
+							</label><br/>
+							
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="sUnbekannt" />
+								<span>Unbekannt</span>
+							</label><br/>
+
+							<br />
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="sPersonenSuchen" />
+								<span>Personen</span>
+							</label>
+							<footer>
+								<button dojoType="dijit.form.Button" id="sSuchen" onClick="currentModule.kontakteSuchenClick()">suchen</button>
+							</footer>
+						</fieldset>
+					</form>
+					<div style="clear: both;">	&nbsp;</div>
+				</div>
+				<div class="contentPane -left" style="float: none; -webkit-box-flex: 0;">
+					<fieldset class="box -verySmall  outer msForm">
+						<legend>Kontaktsuche</legend>
+						<input type="text" dojoType="dijit.form.TextBox" id="kontaktSucheName" placeHolder="Suche nach Name..." />
+						<br/>
+						<label class="checkBoxLabel">
+							<input type="checkbox" dojoType="dijit.form.CheckBox" id="ksAlleAnzeigen" />
+							<span>alle</span>
+						</label><br/><br/>
+
+						<label  class="checkBoxLabel">
+							<input type="checkbox" dojoType="dijit.form.CheckBox" id="ksKundenAnzeigen" />
+							<span>Kunden</span>
+						</label><br/>
+
+						<label  class="checkBoxLabel">
+							<input type="checkbox" dojoType="dijit.form.CheckBox" id="ksAkquiseKontakteAnzeigen" />
+							<span>Akquise-Kontakte</span>
+						</label><br/>
+						
+						<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="ksPotKunde" />
+								<span>Pot. Kunde</span>
+							</label><br/>
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="ksInfo" />
+								<span>Info</span>
+							</label><br/>
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="ksReferent" />
+								<span>Referent</span>
+							</label><br/>
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="ksHersteller" />
+								<span>Hersteller</span>
+							</label><br/>
+							
+							<label class="checkBoxLabel">
+								<input type="checkbox" dojoType="dijit.form.CheckBox" value="1" id="ksUnbekannt" />
+								<span>Unbekannt</span>
+							</label><br/>
+
+
+						<footer>
+							<button dojoType="dijit.form.Button" id="ksKontakteSuchen" onClick="currentModule.onKontaktSuchen()">suchen</button>
+						</footer>
+					</fieldset>
+					<fieldset class="box -verySmall outer msForm">
+						<legend>Personensuche</legend>
+						<input type="text" dojoType="dijit.form.TextBox" id="personSucheName" placeHolder="Suche nach Name..." />
+						<footer>
+							<button dojoType="dijit.form.Button" id="personSucheBtn" onClick="currentModule.personSuchenClick()">suchen</button>
+						</footer>
+					</fieldset>
+					<div style="clear: both;">	&nbsp;</div>
+				</div>
+				<!--<div class="contentPane -expand" >
+
+					<div dojoType="mosaik.ui.ErweiterteSuche" id="erweiterteSuche"></div>
+					
+				</div>-->
+					<div style="clear: both;">	&nbsp;</div>
+			</div>
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

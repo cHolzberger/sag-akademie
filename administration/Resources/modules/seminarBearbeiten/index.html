@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Seminar bearbeiten</title>
+		<link rel="stylesheet" href="seminarBearbeiten.css" />
+		<link rel="stylesheet" href="/app/shared/dojo/dojox/widget/ColorPicker/ColorPicker.css" />
+	</head>
+	<body class="tundra" moduleClass="module.seminarBearbeiten.SeminarBearbeiten" moduleName="seminarBearbeiten">
+		<div id="kooperationspartnerDialog" dojoType="dijit.Dialog" title="Kooperationspartner">
+			<!-- fixme widget! -->
+			<div id="kooperationspartnerListeHeader" style="float: left; border: 0px solid black; background-color: white;  margin: 5px; width: 130px;">
+				Partner
+			</div>
+			<div id="kooperationspartnerAuswahlHeader" style="float: left;  margin: 5px; border: 0px solid black; background-color: white; width: 130px;">
+				Ausgewählt
+			</div>
+			<div style="clear: both; height: 1px;"></div>
+			<div id="kooperationspartnerListe" style="float: left; border: 1px solid #efefef; background-color: white;  margin: 5px; width: 130px;">
+				<!--Left-->&nbsp;
+			</div>
+			<div id="kooperationspartnerAuswahl" style="float: left;  margin: 5px; border: 1px solid #efefef; background-color: white; width: 130px;">
+				<!--Right-->&nbsp;
+			</div>
+			<div style="clear: both; height: 1px;"></div>
+			<div style="height: 20px; text-align: right; padding:5px; " class="gradient1">
+				<div dojoType="dijit.form.Button" id="closeKooperationspartnerButton" onClick="dijit.byId('kooperationspartnerDialog').hide();">
+					schließen
+				</div>
+			</div>
+		</div>
+		<!-- dialogs -->
+		<div dojoType="dijit.Dialog" id="chooserFrame"  title="Seminar anlegen" style="display: none;">
+			<!--stack-->
+			<div dojoType="dijit.layout.StackContainer" id="chooserStack" style="width: 450px; height: 80%; ">
+				<div dojoType="dijit.layout.ContentPane" id="seminarDetailPane">
+					<span class="info"> Geben Sie hier die grundlegenden Daten zum Seminar ein.
+						<br/>
+						Detail-Daten k&ouml;nnen Sie eingeben sobald das Seminar angelegt iist. </span>
+					<br/>
+					<div style="width: 300px;">
+						<label class="formLabel"> <span>ID</span>
+							<input dojoType="dijit.form.TextBox" id="newSeminarId" />
+						</label>
+						<label class="formLabel"> <span>Rubrik</span> <select id="newSeminarRubrik" dojoType="dijit.form.Select" ></select> </label>
+						<label class="formLabel"> <span>in Planung anzeigen</span>
+							<input dojoType="dijit.form.CheckBox" id="newSeminarInPlanung" />
+						</label>
+						<label class="formLabel"> <span>Details aus Vorlage kopieren</span>
+							<button dojoType="dijit.form.Button" id="btnSeminarArt" onClick="currentModule.createSeminarArt()">
+								Auswählen
+							</button> <span id="seminarArtName" style="display: none; float: right;"> </span> </label>
+					</div>
+				</div>
+				<div dojoType="dijit.layout.ContentPane" id="seminarArtPane" style="height: 100%;">
+					<div id="seminarArtContainer" style="width: 410px; height:325px;"></div>
+				</div>
+			</div>
+			<!-- navbar -->
+			<div style="height: 20px; text-align: right; padding:5px; " class="gradient1">
+				<div dojoType="dijit.form.Button" style="display: none; float: left;" id="prevButton">
+					&lt; Zur&uuml;ck
+				</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="nextButton">
+					Weiter &gt;
+				</div>
+				<div dojoType="dijit.form.Button" style="display: none;" id="createButton" iconClass="dijitIconSave">
+					Seminar anlegen
+				</div>
+			</div>
+		</div>
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left">
+				<span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('termineSeminare',{});">Termine + Seminare</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Seminar bearbeiten</span></span>
+				<div id="dnav" dojoType="mosaik.ui.DatasetNavigator" ></div>
+			</div>
+			<div class="-right">
+				<button dojoType="dijit.form.Button" id="deleteBtn" iconClass="dijitIconDelete" onClick="currentModule.onDelete()">
+					Löschen
+				</button>
+				<button dojoType="dijit.form.Button" id="druckenBtn" iconClass="dijitIconPrint" onClick="currentModule.doPrint()">
+					Drucken
+				</button>
+				<button dojoType="dijit.form.Button" id="speichernBtn" iconClass="dijitIconSave">
+					Speichern
+				</button>
+			</div>
+		</div>
+		<!-- main container -->
+		<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="false" liveSplitters="false" persist="true" >
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="false" region="center" >
+				<div class="box -mediumSmall" style="float: none; -webkit-box-flex: 0; margin-right: 10px;">
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Angaben zum Seminar
+						</legend>
+						<label class="formLabel"> <span>ID</span>
+							<input id="SeminarArt:id" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Bezeichnung</span>
+							<input id="SeminarArt:bezeichnung" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Rubrik 1.</span> <select id="SeminarArt:rubrik" dojoType="dijit.form.Select" ></select> </label>
+						<label class="formLabel"> <span>Rubrik 2.</span> <select id="SeminarArt:rubrik2" dojoType="dijit.form.Select" ></select> </label>
+						<label class="formLabel"> <span>Rubrik 3.</span> <select id="SeminarArt:rubrik3" dojoType="dijit.form.Select" ></select> </label>
+						<label class="formLabel"> <span>Rubrik 4.</span> <select id="SeminarArt:rubrik4" dojoType="dijit.form.Select" ></select> </label>
+						<label class="formLabel"> <span>Rubrik 5.</span> <select id="SeminarArt:rubrik5" dojoType="dijit.form.Select" ></select> </label>
+						<label class="formLabel"> <span>Status</span>
+							<input id="SeminarArt:status" dojoType="dijit.form.Select" />
+						</label>
+						<label class="formLabel"> <span>Angelegt am</span>
+							<div style="float: right; text-align: left; width:100px;" id="SeminarArt:angelegt_datum"  class="textView"></div>
+						</label>
+						<label class="formLabel"> <span>Deaktiviert am</span>
+							<div style="float: right; text-align: left; width: 100px;" id="SeminarArt:deaktiviert_datum"  class="textView"></div>
+						</label>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Seminardauer
+						</legend>
+						<label class="formLabel"> <span>Dauer / Tage</span>
+							<input id="SeminarArt:dauer" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Stunden pro Tag</span>
+							<div id="stundenGesamt" style="float: right; margin-left: 5px; width: 70px; text-align: right;">
+								XX Std
+							</div>
+							<input id="SeminarArt:stunden_pro_tag" dojoType="dijit.form.CurrencyTextBox" currency="Std" style="width: 75px;"/>
+						</label>
+						<label class="formLabel"> <span>Pause pro Tag</span>
+							<div id="pauseGesamt" style="float: right; margin-left: 5px; width: 70px; text-align: right;">
+								XX Std
+							</div>
+							<input id="SeminarArt:pause_pro_tag" dojoType="dijit.form.CurrencyTextBox" currency="Std"  style="width: 75px;"/>
+						</label>
+						<label class="formLabel"> <span>Gesamt Stunden</span>
+							<div id="stundenOhnePause" style="float: right; font-weight: bold;">
+								&nbsp;
+							</div> </label>
+						<label class="formLabel"> <span>Gesamt UE</span>
+							<div id="ueGesamt" style="float: right; font-weight: bold;">
+								&nbsp;
+							</div> </label>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Telnehmer Informationen
+						</legend>
+						<label class="formLabel"> <span>min. Teilnehmer</span>
+							<input id="SeminarArt:teilnehmer_min_tpl" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>max. Teilnehmer</span>
+							<input id="SeminarArt:teilnehmer_max_tpl" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Gerätschaften
+						</legend>
+						<div id="SeminarArt:geraetschaften"  class="textView"></div>
+						<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('SeminarArt:geraetschaften')">
+							Bearbeiten
+						</button>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Organisatorisches
+						</legend>
+						<div id="SeminarArt:organisatorisches"  class="textView"></div>
+						<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('SeminarArt:organisatorisches')">
+							Bearbeiten
+						</button>
+					</fieldset>
+				</div>
+				<div class="box -mediumSmall" style="margin-right: 10px;">
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Kosten & Umsatz
+						</legend>
+						<label class="formLabel"> <span>TN zur Berechnung</span>
+							<input id="SeminarArt:gewinn_tn" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Kursgebühr</span>
+							<input id="SeminarArt:kursgebuehr" dojoType="dijit.form.CurrencyTextBox" currency="€" />
+						</label>
+						<label class="formLabel"> <span>min. TN-Zahl</span>
+							<div id="tnUmsatzMin" style="float: right;">
+								&nbsp;
+							</div> </label>
+						<label class="formLabel"> <span>max. TN-Zahl</span>
+							<div id="tnUmsatzMax" style="float: right; font-weight: bold;">
+								&nbsp;
+							</div> </label>
+						<label class="formLabel"> <span>TN-Stand / Umsatz</span>
+							<div style="float: right; text-align: right; width: 50px;" id="tnUmsatzStand">
+								#
+							</div> </label>
+						<label class="formLabel"> <span>Verwaltungskosten</span>
+							<div style="float: right; text-align: left; width: 20px;">
+								&nbsp;€
+							</div>
+							<div style="float: right; text-align: right; width: 50px;" id="seminarVerwaltungskosten">
+								#
+							</div>
+							<input id="SeminarArt:kosten_allg" dojoType="dijit.form.CurrencyTextBox" currency="%"   style="width: 50px;"/>
+						</label>
+						<label class="formLabel"> <span>Referentenkosten</span>
+							<div style="float: right; text-align: left; width: 20px;">
+								&nbsp;€
+							</div>
+							<div style="float: right; text-align: right; width: 50px;" id="seminarReferentenkosten">
+								#
+							</div>
+							<input id="SeminarArt:kosten_refer" dojoType="dijit.form.CurrencyTextBox" currency="€" style="width: 50px;"/>
+						</label>
+						<label class="formLabel"> <span>Seminarunterlagen</span>
+							<div style="float: right; text-align: left; width: 20px;">
+								&nbsp;€
+							</div>
+							<div style="float: right; text-align: right; width: 50px;" id="seminarUnterlagen">
+								#
+							</div>
+							<input id="SeminarArt:kosten_unterlagen" dojoType="dijit.form.CurrencyTextBox" currency="€" style="width: 50px;"/>
+						</label>
+						<label class="formLabel"> <span>Verpflegung</span>
+							<div style="float: right; text-align: left; width: 20px;">
+								&nbsp;€
+							</div>
+							<div style="float: right; text-align: right; width: 50px;" id="seminaVerpflegung">
+								#
+							</div>
+							<input id="SeminarArt:kosten_verpflegung" dojoType="dijit.form.CurrencyTextBox" currency="€" style="width: 50px;"/>
+						</label>
+						<label class="formLabel"> <span>Prüfung</span>
+							<div style="float: right; text-align: left; width: 20px;">
+								&nbsp;€
+							</div>
+							<div style="float: right; text-align: right; width: 50px;" id="seminarPruefung">
+								#
+							</div>
+							<input id="SeminarArt:kosten_pruefung" dojoType="dijit.form.CurrencyTextBox" currency="%" style="width: 50px;"/>
+						</label>
+						<label class="formLabel"> <span>Gewinn</span>
+							<div id="gewinn" style="float: right; font-weight: bold;">
+								&nbsp;
+							</div> </label>
+					</fieldset>
+					<div id="top1" linkField="info_link" titleField="info_titel" dojoType="module.seminarBearbeiten.TopDetail" title="TOP 1" service="TopPDF"></div>
+					<div id="top2" linkField="info_link2" titleField="info_titel2" dojoType="module.seminarBearbeiten.TopDetail" title="TOP 2" service="TopPDF"></div>
+					<div id="top3" linkField="info_link3" titleField="info_titel3" dojoType="module.seminarBearbeiten.TopDetail" title="TOP 3" service="TopPDF"></div>
+				</div>
+				<div class="box -mediumSmall" style="margin-right: 10px;">
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Hinweis (veröffentlicht)
+						</legend>
+						<div id="SeminarArt:seminar_hinweis"  class="textView"></div>
+						<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('SeminarArt:seminar_hinweis')">
+							Bearbeiten
+						</button>
+					</fieldset>
+
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Infos (Intern)
+						</legend>
+						<div id="SeminarArt:info"  class="textView"></div>
+						<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('SeminarArt:info')">
+							Bearbeiten
+						</button>
+					</fieldset>
+
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Zielgruppe
+						</legend>
+						<div id="SeminarArt:zielgruppe"  class="textView"></div>
+						<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('SeminarArt:zielgruppe')">
+							Bearbeiten
+						</button>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Teilnahme und Zulassungsvoraussetzungen
+						</legend>
+						<div id="SeminarArt:voraussetzungen" class="textView"></div>
+						<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('SeminarArt:voraussetzungen')">
+							Bearbeiten
+						</button>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Nachweise
+						</legend>
+						<div id="SeminarArt:nachweise"  class="textView"></div>
+						<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('SeminarArt:nachweise')">
+							Bearbeiten
+						</button>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Kurzbeschreibung
+						</legend>
+						<div id="SeminarArt:kurzbeschreibung"  class="textView"></div>
+						<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('SeminarArt:kurzbeschreibung')">
+							Bearbeiten
+						</button>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Langbeschreibung
+						</legend>
+						<div id="SeminarArt:langbeschreibung"  class="textView"></div>
+						<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('SeminarArt:langbeschreibung')">
+							Bearbeiten
+						</button>
+					</fieldset>
+				</div>
+				<div class="box -small" >
+					<fieldset class="box -small outer">
+						<legend>
+							Links zur Homepage
+						</legend>
+						<a href="#startseite" id="startseiteBtn">Startseite</a>
+						<br />
+						<a href="#seminar" id="infoBtn">Seminar</a>
+						<br />
+					</fieldset>
+					<fieldset class="box -small outer">
+						<legend>
+							Interne Links (Admin)
+						</legend>
+						<a href="" id="seminarEditBtn">Termine</a>
+						<br/>
+                        <a href="" id="topBtn">TOP generieren</a>
+
+                        <br />
+					</fieldset>
+					<div dojoType="module.seminarBearbeiten.Standorte" id="standorte"></div>
+					<fieldset class="box -small outer">
+						<legend>
+							Planung
+						</legend>
+						<label class="formLabel"> <span>In Planung anzeigen</span>
+							<input id="SeminarArt:sichtbar_planung" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel"> <span>Textfarbe</span> <div id="SeminarArt:textfarbe" dojoType="mosaik.ui.ColorInput"></div> </label>
+						<label class="formLabel"> <span>Farbe</span> <div id="SeminarArt:farbe" dojoType="mosaik.ui.ColorInput"></div> </label>
+					</fieldset>
+					<fieldset class="box -small outer">
+						<legend>
+							Kooperationspartner
+						</legend>
+						<div>
+							Liste der Kooperationspartner
+						</div>
+						<button dojoType="dijit.form.Button" onClick="currentModule.editKooperationspartner();">
+							bearbeiten
+						</button>
+					</fieldset>
+					
+					<fieldset class="box -small outer">
+						<legend>
+							Aktualisierung
+						</legend>
+						<label class="formLabel"> <span>alle Termine gesperrt</span>
+							<input dojoType="dijit.form.CheckBox" id="SeminarArt:aktualisierung_gesperrt" />
+						</label>
+						<!--<button dojoType="dijit.form.Button" onClick="currentModule.showStandortSperrung()">Standortsperrungen anzeigen</button>-->
+						
+						<br />
+					</fieldset>
+				</div>
+				<div style="clear: both;">&nbsp;</div>
+
+			</div>
+
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

@@ -1,0 +1,13 @@
+<div class="colorBox" >
+	<div dojoAttachPoint="colorNode" style="background-color: ${color} !important;"  dojoAttachEvent="onclick:selectColor">&nbsp;</div>
+	<div dojoType="dijit.Dialog" dojoAttachPoint="popup" draggable="false" >
+			<div style="height: 20px; position: absolute; bottom: 10px; right: 10px; z-index: 999;">
+				<button dojoType="dijit.form.Button" dojoAttachEvent="onClick:_colorSelected">ok</button>
+			</div>			
+			<div dojoType="dojox.widget.ColorPicker" dojoAttachPoint="colorpicker" />
+			
+			
+
+	</div>
+</div>
+	

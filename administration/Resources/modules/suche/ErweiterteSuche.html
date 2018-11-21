@@ -1,0 +1,70 @@
+
+<fieldset class="box outer msForm" >
+	<legend>
+		Erweiterte Suche
+	</legend>
+	<div style="width: 250px; float: left; margin-right: 10px;">
+		<label class="formLabel"> <span>Tabelle:</span>
+			<input dojoType="dijit.form.Select" dojoAttachPoint="tableSelect" style="width: 180px;" dojoAttachEvent="onChange: _updateFields"/>
+		</label>
+		<label class="formLabel"> <span>Feld:</span>
+			<input dojoType="dijit.form.Select" dojoAttachPoint="fieldSelect" style="width: 180px;" maxHeight="150" dojoAttachEvent="onChange: _updateOperator"/>
+		</label>
+		<label class="formLabel"> <span>Vergleich:</span>
+			<input dojoType="dijit.form.Select" dojoAttachPoint="operatorSelect" style="width: 180px;"/>
+		</label>
+		<label class="formLabel"> <span>Wert:</span>
+			<input dojoAttachPoint="valueInput" style="width: 180px;" dojoType="dijit.form.TextBox"/>
+		</label>
+		<div style="height: 60px; bottom: 0; position: absolute;">
+
+		</div>
+	</div>
+
+	<div style="width: 350px; float: left; " >
+		<div style="position: absolute; top: 0; bottom: 50px; width: 350px; overflow-y: auto; border-left: 1px solid gray; border-right: 1px solid gray; border-bottom: 1px solid gray;">
+			<table id="searchTable" style="width: 330px;" class="formTable">
+				<thead>
+					<tr>
+						<td>Verknüpfung</td>
+						<td>Feld</td>
+						<td>Vergleich</td>
+						<td style="width: 100%;">Wert</td>
+					</tr>
+				</thead>
+				<tbody id="searchRules"></tbody>
+				<tfoot>
+					
+				</tfoot>
+			</table>
+		</div>
+	</div>
+
+	<div class="clear">
+		&nbsp;
+	</div>
+	<footer style="height: 50px;">
+		<div style="width: 240px; float: left; margin-right: 10px; text-align: left;">
+			<button dojoType="dijit.form.Button" dojoAttachPoint="andButton"  dojoAttachEvent="onClick: _addRuleAnd">
+				Kreterium hinzufügen (und)
+			</button>
+			<br/>
+			<button dojoType="dijit.form.Button" dojoAttachPoint="orButton" dojoAttachEvent="onClick: _addRuleOr">
+				Kreterium hinzufügen (oder)
+			</button>
+		</div>
+		
+			<button dojoType="dijit.form.Button" dojoAttachPoint="searchButtonNode" dojoAttachEvent="onClick: _onSearchButtonClick">
+				suchen
+			</button>
+			<br/>
+			<button dojoType="dijit.form.Button" dojoAttachPoint="resetButtonNode" dojoAttachEvent="onClick: _reset">
+				zurücksetzen
+			</button>
+		
+		<div class="clear">
+			&nbsp;
+		</div>
+	</footer>
+</fieldset>
+

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Buchung bearbeiten</title>
+		<link rel="stylesheet" href="buchungBearbeiten.css" />
+	</head>
+	<body class="tundra" moduleName="buchungBearbeiten" moduleClass="module.buchungBearbeiten.BuchungBearbeiten">
+		<!-- dialogs -->
+		<div dojoType="dijit.Dialog" id="chooserFrame"  title="Person ausw&auml;hlen" style="display: none; ">
+			<div dojoType="dijit.layout.StackContainer" id="chooserStack" style="height: 350px; width: 450px; ">
+				<div dojoType="dijit.layout.ContentPane" id="teilnehmerPane">
+					<div dojoType="module.dialogs.PersonChooser" id="personChooser" style="width: 430px; height: 99%;">
+					</div>
+				</div>
+				<div dojoType="dijit.layout.ContentPane" id="terminPane">
+					<div dojoType="module.dialogs.TerminChooser" id="terminChooser" style="width: 430px; height: 99%;">
+					</div>
+				</div>
+
+				<div dojoType="dijit.layout.ContentPane" id="hinweisPane">
+                    <label class="formLabel">
+						<span>
+							Buchungsdatum:
+						</span>
+                        <input dojoType="dijit.form.DateTextBox" id="newBuchungsDatum" />
+                    </label>
+                    <label>
+                           <span>
+                            Hinweis der in der Mail an den Kunden eingetragen wird:
+                            </span>
+                    </label>
+                    <center>
+					    <div dojoType="dijit.form.SimpleTextarea" id="createHinweisText" style="width: 410px; height: 250px; margin-top: 10px;"></div>
+                    </center>
+				</div>
+
+				<div dojoType="dijit.layout.ContentPane" id="chooseHotelPane">
+					<br/>
+					<center>
+						<span>Wenn Sie eine Hotel-Buchung anlegen wollen klicken Sie auf "Weiter" andernfalls können Sie die Buchung durch klick auf "Buchung anlegen" anlegen.</span>
+					</center>
+				</div>
+
+				<div dojoType="dijit.layout.ContentPane" id="hotelPane">
+				
+					
+					<div dojoType="module.dialogs.HotelChooser" id="hotelChooser"></div>
+				</div>
+				
+				<div dojoType="dijit.layout.ContentPane" id="hotelDetailPane">
+					<label class="formLabel">
+						<span>
+							&Uuml;bernachtungen
+						</span>
+						<input dojoType="dijit.form.TextBox" id="hotelUebernachtungen" />
+					</label>
+	
+					<label class="formLabel">
+						<span>
+							Anreise
+						</span>
+						<input dojoType="dijit.form.TextBox" id="hotelAnreiseDatum" />
+					</label>	
+				</div>
+				
+			</div>
+			<!-- navbar -->
+			<div style="height: 20px; text-align: right; padding:5px;" class="gradient1">
+				<div dojoType="dijit.form.Button" style="display: none; float: left;" id="prevButton">&lt; Zur&uuml;ck</div>
+
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="nextButton">Weiter &gt;</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="createButton">Buchung anlegen</div>
+			</div>
+		</div>
+
+		<div dojoType="dijit.Dialog" id="hotelBuchungFrame"  title="Hotel buchung" style="display: none; " >
+			<div  style="width: 450px;" id="HBEditForm">
+				<label class="formLabel">
+					<span>
+					Hotel
+					</span>
+					<button  dojoType="dijit.form.Button" onClick="currentModule.hotelBuchungAendern()">&auml;ndern</button>
+					<div  style="float: right; padding-top: 5px; padding-right: 5px;" id="HBEdit:hotelName">#HOTEL#</div>
+				</label>
+				<label class="formLabel">
+					<span>
+						&Uuml;bernachtungen
+					</span>
+					<input dojoType="dijit.form.TextBox" id="HBEdit:uebernachtungen" />
+				</label>
+
+				<label class="formLabel">
+					<span>
+						Anreise
+					</span>
+					<input dojoType="dijit.form.TextBox" id="HBEdit:anreise_datum" />
+				</label>
+
+				<label class="formLabel">
+					<span>
+						Storniert
+					</span>
+					<input dojoType="dijit.form.DateTextBox" id="HBEdit:storno_datum" />
+				</label>
+			</div>
+			<div dojoType="module.dialogs.HotelChooser" id="hotelBuchungChooser" style="width: 450px;  height: 350px; display: none;"></div>
+
+			<div style="height: 20px; text-align: right; padding:5px;" class="gradient1">
+				<div dojoType="dijit.form.Button" style="float: right;" id="saveHotelBuchung" onClick="currentModule.saveHotelBuchung()">Hotel-Buchung speichern</div>
+			</div>
+		</div>
+		<!-- person der buchung aendern -->
+		<div dojoType="dijit.Dialog" id="neuePersonForm"  title="Person ändern" style="display: none; " >
+			<div dojoType="module.dialogs.PersonChooser" id="neuePersonChooser" style="width: 450px;  height: 350px;"></div>
+
+			<div style="height: 20px; text-align: right; padding:5px;" class="gradient1">
+				<div dojoType="dijit.form.Button" style="float: right;" id="saveNeuePerson" onClick="currentModule.saveNeuePerson()">Person ändern</div>
+			</div>
+		</div>
+		
+		<div dojoType="dijit.Dialog" id="umbuchenNotizFrame"  title="Hotel buchung" style="display: none; " >
+			<div  style="width: 450px;" id="umbuchenNotizForm">
+				Die Buchug wird auf <span id="umbuchenKursNr">#kurs#</span> in <span id="umbuchenStandort">#standort#</span> am <span id="umbuchenDatum">#standort#</span> umgebucht. <br/><br/>
+				<strong>Eine eventuell bestehende HotelBuchung wird storniert!</strong>
+				<br/><br/>
+				<label class="formLabel">
+					<span>Hinweis an den Kunden</span><br/>
+					<input type="text" id="umbuchenNotiz" dojoType="dijit.form.SimpleTextarea"  style="width: 95%; height: 100px;" />
+			</div>
+			<div style="height: 20px; text-align: right; padding:5px;" class="gradient1">
+				<button dojoType="dijit.form.Button" style="float: left;" id="abortUmbuchen" onClick="currentModule.widgets.umbuchenNotizFrame.hide()">abbrechen</button>
+				<button dojoType="dijit.form.Button" style="float: right;" id="saveUmbuchen" onClick="currentModule.doRebook()">umbuchen</button>
+			</div>
+		</div>
+
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left"><span class="breadcrumb-container"><span class="breadcrumb">Buchung bearbeiten</span></span>
+				<div id="dnav" dojoType="mosaik.ui.DatasetNavigator" ></div>
+			</div>
+			<div class="-right">
+				<button dojoType="dijit.form.Button" id="sendInfoButton">Info-Mail senden</button>
+				<button dojoType="dijit.form.Button" id="druckenBtn" iconClass="dijitIconPrint">Drucken</button>
+				<button dojoType="dijit.form.Button" id="speichernBtn" iconClass="dijitIconSave">Speichern</button>
+			</div>
+		</div>
+		<!-- main border container -->
+
+		<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="true" liveSplitters="false" persist="true">
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="false" region="center" style="overflow: auto;">
+				<div class="box -medium" style="float: left; margin-right: 10px;">
+					<fieldset class="box -medium outer">
+						<legend>Informationen zur Buchung</legend>
+						<label class="formLabel">
+							<span>Buchungsdatum</span>
+							<input type="text" id="Buchung:datum" dojoType="dijit.form.DateTextBox" style="width: 100px;"/>
+						</label>
+
+						<label class="formLabel">
+							<span>Angelegt von:</span>
+							<div id="angelegt_von" style="float: right;"></div>
+						</label>
+
+						<label class="formLabel">
+							<span>Nicht Teilgenommen</span>
+							<input type="text" id="Buchung:teilgenommen" dojoType="dijit.form.CheckBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>VDRK-Buchung</span>
+							<input type="text" id="Buchung:vdrk_referrer" dojoType="dijit.form.CheckBox" />
+						</label>
+					</fieldset>
+					<fieldset class="box -medium outer">
+						<legend>Rechnung</legend>
+						<label class="formLabel">
+							<span>Rechnungsnummer</span>
+							<input type="text" id="Buchung:rechnungsnummer" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Rechnnung gestellt am</span>
+							<input type="text" id="Buchung:rechnunggestellt" dojoType="dijit.form.DateTextBox" style="width: 100px;"/>
+						</label>
+
+						<label class="formLabel">
+							<span>Gutschrift</span>
+							<input type="text" id="Buchung:gutschrift" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Rechnungsnummer 2</span>
+							<input type="text" id="Buchung:rechnungsnummer1" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Rechnungsnummer 3</span>
+							<input type="text" id="Buchung:rechnungsnummer2" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+					<!-- HOTEL BUCHUNG -->
+					<fieldset class="box -medium outer">
+						<legend>Informationen zur Hotelbuchung</legend>
+						<label class="formLabel">
+							<span>Hotel buchen</span>
+							<button dojoType="dijit.form.Button" id="createHotelBuchung" onClick="currentModule.onCreateHotelBuchung();">anlegen</button>
+							<button dojoType="dijit.form.Button" id="editHotelBuchung" onClick="currentModule.onEditHotelBuchung();">bearbeiten</button>
+							<button dojoType="dijit.form.Button" id="stornoHotelBuchung" onClick="currentModule.onStronoHotelBuchung();">stornieren</button>
+						</label>
+						<div id="HotelBuchungContainer" style="display: none;">
+							<label class="formLabel">
+								<span>Hotel</span>
+								<div  style="float: right; padding-top: 5px; padding-right: 5px;" id="HotelBuchung:hotelName">#HOTEL#</div>
+							</label>
+							<label class="formLabel">
+								<span>Übernachtungen</span>
+								<div  style="float: right; padding-top: 5px; padding-right: 5px;" id="HotelBuchung:uebernachtungen">#HOTEL#</div>
+
+							</label>
+							<label class="formLabel">
+								<span>Anreise</span>
+								<div  style="float: right; padding-top: 5px; padding-right: 5px;" id="HotelBuchung:anreise_datum">#HOTEL#</div>
+
+							</label>
+
+							<label class="formLabel" id="hotelBuchungStorniert">
+								<span><b>Storniert am</b></span>
+								<div  style="float: right; padding-top: 5px; padding-right: 5px;" id="HotelBuchung:storno_datum">#HOTEL#</div>
+
+							</label>
+						</div>
+					</fieldset>
+				</div>
+
+				<div class="box -medium" style="float: left; margin-right: 10px;">
+					<fieldset class="box -medium outer">
+						<legend>Preise</legend>
+						<label class="formLabel">
+							<span>Kursgebühr</span>
+							<input type="text" id="Buchung:kursgebuehr" dojoType="dijit.form.CurrencyTextBox"  currency="€" style="text-align: right;" />
+						</label>
+
+						<label class="formLabel">
+							<span>Unterlagen</span>
+							<input type="text" id="Buchung:kosten_unterlagen" dojoType="dijit.form.CurrencyTextBox"  currency="€" style="text-align: right;"/>
+						</label>
+
+						<label class="formLabel">
+							<span>Verpflegeung</span>
+							<input type="text" id="Buchung:kosten_verpflegung" dojoType="dijit.form.CurrencyTextBox"  currency="€" style="text-align: right;" />
+						</label>
+					</fieldset>
+
+					<fieldset class="box -medium outer">
+						<legend>Rabatt</legend>
+						<label class="formLabel">
+							<span>Rabatt</span>
+							<input type="text" id="Buchung:rabatt" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Frühbucherrabatt</span>
+							<input type="text" id="Buchung:fruehbucherrabatt" dojoType="dijit.form.CheckBox" />
+						</label>
+					</fieldset>
+
+					<fieldset class="box -medium outer">
+						<legend>Förderung</legend>
+						<label class="formLabel">
+							<span>Arbeitsagentur</span>
+							<input type="text" id="Buchung:arbeitsagentur" dojoType="dijit.form.CheckBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>zust. Arbeitsagentur</span>
+							<input type="text" id="Buchung:zustaendige_arbeitsagentur" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Anteil Arbeitsagentur</span>
+							<input type="text" id="Buchung:arbeitsagenturanteil" dojoType="dijit.form.CurrencyTextBox"  currency="€" style="text-align: right;" />
+						</label>
+
+						<label class="formLabel">
+							<span>Anteil Versorgungsamt</span>
+							<input type="text" id="Buchung:versorgungsamtanteil" dojoType="dijit.form.CurrencyTextBox"  currency="€" style="text-align: right;" />
+						</label>
+
+						<label class="formLabel">
+							<span>Anteil VDRK</span>
+							<input type="text" id="Buchung:anteilvdrk" dojoType="dijit.form.CurrencyTextBox"  currency="€" style="text-align: right;"/>
+						</label>
+
+						<label class="formLabel">
+							<span>Investitionsbank</span>
+							<input type="text" id="Buchung:investitionsbank" dojoType="dijit.form.CheckBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>ESF Förderung</span>
+							<input type="text" id="Buchung:bildungscheck" dojoType="dijit.form.CheckBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Förderung Art</span>
+							<input type="text" id="Buchung:bildungscheck_ausstellung_art" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Ausstellungsort</span>
+							<input type="text" id="Buchung:bildungscheck_ausstellung_ort" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Ausstellungsdatum</span>
+							<input type="text" id="Buchung:bildungscheck_ausstellung_datum" dojoType="dijit.form.DateTextBox" style="width: 100px;"/>
+						</label>
+					</fieldset>
+					<fieldset class="box -medium outer">
+						<legend>Stornierung / Umbuchung</legend>
+						<label class="formLabel">
+							<span>Storno Status</span>
+							<input type="text" id="Buchung:storno_status" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Storniert am</span>
+
+							<button dojoType="dijit.form.Button" onClick="currentModule.doStorno()" id="stornoBtn">stornieren</button>
+							<div id="stornoDatum" style="width: 100px; float: right; padding-top: 3px; color:red;">&nbsp;</div>
+							<!--<input type="text" id="Buchung:storno_datum" dojoType="dijit.form.DateTextBox" style="width: 100px;"/>-->
+						</label>
+
+						<label class="formLabel">
+							<span>Umgebucht am</span>
+							<input type="text" id="Buchung:umbuchungs_datum" dojoType="dijit.form.DateTextBox" style="width: 100px;"/>
+						</label>
+						
+						
+					</fieldset>
+				</div>
+				<div class="box -medium" style="float: left; margin-right: 10px;">
+					<fieldset class="box -medium outer">
+						<legend>Person</legend>
+						<label class="formLabel">
+							<span>Name</span>
+							<button id="personUmbuchen" dojoType="dijit.form.Button" onClick="currentModule.personUmbuchen()">ändern</button>
+							<a href="#" id="personName" style="float: right; display: block; padding-right: 10px; padding-top: 3px;"></a>
+						</label>
+
+						<label class="formLabel">
+							<span>Firma</span>
+							<div id="firmaName" style="float: right;"></div>
+						</label>
+						<a href="#" id="personAufrufen" onClick="currentModule.openPerson()">Person aufrufen</a><br/>
+						<a href="#" id="kontaktAufrufen" onClick="currentModule.openKontakt()">Kontakt aufrufen</a><br/>
+					</fieldset>
+					<fieldset class="box -medium outer">
+						<legend>Seminar</legend>
+						<label class="formLabel">
+							<span>Seminar:</span>
+							<div id="seminarArtId" style="float: right;"></div>
+
+						</label>
+
+						<label class="formLabel">
+							<span>Kurs:</span>
+							<div id="seminarKursnr" style="float: right;"></div>
+						</label>
+
+						<label class="formLabel">
+							<span>Von:</span>
+							<div id="terminVon" style="float: right;"></div>
+						</label>
+
+						<label class="formLabel">
+							<span>Bis:</span>
+							<div id="terminBis" style="float: right;"></div>
+						</label>
+						<div id="umbuchenForm">
+							<label class="formLabel">
+								<span>Umbuchen auf:</span>
+								<button dojoType="dijit.form.Button" onClick="currentModule.onUmbuchen()">umbuchen</button>
+								<select id="alternativTermine" dojoType="dijit.form.Select" >
+								</select>
+							</label>
+						</div>
+						
+						<label class="formLabel" id="oldBuchung" style="display:none;">
+							<span>Diese Buchung wurde schon einmal umgebucht!</span>
+							<button dojoType="dijit.form.Button" onClick="currentModule.gotoOldBuchung();">Zur alten Buchung</button>
+						</label>
+						
+						<label class="formLabel" id="newBuchung" style="display:none;">
+							<span>Diese Buchung wurde umgebucht!</span>
+							<button dojoType="dijit.form.Button" onClick="currentModule.gotoNewBuchung();">Zur neuen Buchung</button>
+						</label>
+						<a href="#" onClick="currentModule.openSeminar()">Seminar aufrufen</a><br/>
+						<a href="#" onClick="currentModule.openTermin()">Termin aufrufen</a>
+					</fieldset>
+					
+					
+					
+					<fieldset class="box -medium outer">
+						<legend>Informationen</legend>
+						<label class="formLabel">
+							<span>Notiz</span><br/>
+							<input type="text" id="Buchung:notiz" dojoType="dijit.form.SimpleTextarea"  style="width: 95%; height: 100px;" />
+						</label>
+
+						<label class="formLabel">
+							<span>Bemerkung (des Kunden)</span><br/>
+							<input type="text" id="Buchung:bemerkung" dojoType="dijit.form.SimpleTextarea"  style="width: 95%; height: 100px;" />
+						</label>
+
+						<label class="formLabel">
+							<span>Informationen (für den Kunden)</span><br/>
+							<input type="text" id="Buchung:info_kunde" dojoType="dijit.form.SimpleTextarea"  style="width: 95%; height: 100px;" />
+						</label>
+					</fieldset>
+					
+					
+				</div>
+				
+				<div class="box -medium" style="float: left; margin-right: 10px;">
+					<fieldset class="box -medium outer" dojoType="mosaik.ui.WeitereInformationen" id="weitereInformationen">
+					</fieldset>
+				</div>
+
+
+			</div>
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

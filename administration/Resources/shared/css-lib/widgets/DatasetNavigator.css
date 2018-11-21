@@ -1,0 +1,35 @@
+/* 
+    Document   : DatasetNavigator
+    Created on : Apr 3, 2011, 6:56:03 PM
+    Author     : cholzberger
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+.mosaikDatasetNavigator {
+	height: 20px;
+	padding-top: 3px;
+	vertical-align: middle;
+}
+
+.mosaikDatasetNavigator img {
+	vertical-align: middle;
+	opacity: 0.75;
+	cursor: pointer;
+}
+
+.mosaikDatasetNavigator img:hover {
+	opacity: 1;
+	cursor: pointer;
+}
+
+.mosaikDatasetNavigator span {
+	vertical-align: middle;
+	font-weight: bold;
+	color: #8e8e8e;
+}
+

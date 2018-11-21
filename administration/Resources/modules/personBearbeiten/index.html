@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>SAG Akademie GmbH - Login</title>
+		<link rel="stylesheet" href="personBearbeiten.css" />
+	</head>
+	<body class="tundra" moduleClass="module.personBearbeiten.PersonBearbeiten" moduleName="personBearbeiten">
+		<!-- dialogs -->
+		<div dojoType="dijit.Dialog" id="chooserFrame"  title="Firma ausw&auml;hlen" style="display: none;">
+			<!--stack-->
+			<div dojoType="dijit.layout.StackContainer" id="chooserStack"  style="height: 250px; width: 450px; ">
+				<div dojoType="dijit.layout.ContentPane" id="kontaktPane">
+					<div dojoType="module.dialogs.KontaktChooser" id="kontaktChooser" style="width: 430px; height: 90%;"></div>
+					<div>
+						<button dojoType="dijit.form.Button" onClick="sandbox.loadShellModule('kontaktBearbeiten', {create: true});">
+							Eine neue Firma anlegen
+						</button>
+					</div>
+				</div>
+				<div dojoType="dijit.layout.ContentPane" id="personDetailPane">
+					<span> Geben Sie hier die grundlegenden Daten zur Person ein.
+						<br/>
+						Detail-Daten k&ouml;nnen Sie eingeben sobald die Person angelegt iist. </span>
+					<br/>
+					<div style="width: 250px;">
+						<label class="formLabel"> <span>Firma</span>
+							<div class="formInput" id="kontaktName" style="float: right; overflow: hidden;">
+								&nbsp;
+							</div> </label>
+						<label class="formLabel"> <span>Anrede</span>
+							<input id="newPersonAnrede" dojoType="dijit.form.Select" />
+						</label>
+						<label class="formLabel"> <span>Name:</span>
+							<input dojoType="dijit.form.TextBox" id="newPersonName"/>
+						</label>
+						<label class="formLabel"> <span>Vorname:</span>
+							<input dojoType="dijit.form.TextBox" id="newPersonVorname"/>
+						</label>
+						<label class="formLabel"> <span>E-Mail:</span>
+							<input dojoType="dijit.form.TextBox" id="newPersonEMail"/>
+						</label>
+					</div>
+				</div>
+			</div>
+			<!-- navbar -->
+			<div style="height: 20px; text-align: right; padding:5px;" class="gradient1">
+				<div dojoType="dijit.form.Button" style="display: none; float: left;" id="prevButton">
+					&lt; Zur&uuml;ck
+				</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="nextButton">
+					Weiter &gt;
+				</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="createButton">
+					Person anlegen
+				</div>
+			</div>
+		</div>
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left">
+				<span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('kontakt',{});">Kontakte</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Person bearbeiten</span></span>
+				<div id="dnav" dojoType="mosaik.ui.DatasetNavigator" ></div>
+			</div>
+			<div class="-right">
+				<button dojoType="dijit.form.Button" id="druckenBtn" iconClass="dijitIconPrint" onClick="currentModule.doPrint()">
+					Drucken
+				</button>
+				<button dojoType="dijit.form.Button" id="speichernBtn" iconClass="dijitIconSave">
+					Speichern
+				</button>
+			</div>
+		</div>
+		<!-- form -->
+		<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="false" liveSplitters="false" persist="true">
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="false" region="center" style="overflow: auto;">
+				<div class="box -mediumSmall" style="float: left; margin-right: 10px;">
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Angaben zur Firma
+						</legend>
+						<label class="formLabel"> <span>Firma</span> <a href="#" id="Person:firma" style="float: right; overflow: hidden;">#</a> </label>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Angaben zur Person
+						</legend>
+						<label class="formLabel"> <span>Anrede</span>
+							<input id="Person:geschlecht" dojoType="dijit.form.Select" />
+						</label>
+						<label class="formLabel"> <span>Vorname</span>
+							<input id="Person:vorname" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Name</span>
+							<input id="Person:name" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Grad</span>
+							<input id="Person:grad" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Geburtstag</span>
+							<input id="Person:geburtstag" dojoType="dijit.form.DateTextBox" />
+						</label>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Angaben zur Position im Unternehmen
+						</legend>
+						<label class="formLabel"> <span>Mitarbeiter ausgeschieden</span>
+							<input id="Person:ausgeschieden" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel"> <span>Funktion</span>
+							<input id="Person:funktion" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Abteilung</span>
+							<input id="Person:abteilung" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Ansprechpartner</span>
+							<input id="Person:ansprechpartner" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel"> <span>Geschäftsführer</span>
+							<input id="Person:geschaeftsfuehrer" dojoType="dijit.form.CheckBox" />
+						</label>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Notiz
+						</legend>
+						<label class="formLabel"> <span>interne Notiz zu dieser Person</span>
+							<input id="Person:notiz" dojoType="dijit.form.SimpleTextarea"  style="width: 95%; height: 100px;" />
+						</label>
+					</fieldset>
+				</div>
+				<div class="box -mediumSmall" style="float: left; margin-right: 10px;">
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Adressinformationen
+						</legend>
+						<label class="formLabel"> <span>Straße, Nr.</span>
+							<input id="Person:strasse" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>PLZ</span>
+							<input id="Person:plz" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Ort</span>
+							<input id="Person:ort" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Bundesland</span>
+							<input id="Person:bundesland_id" dojoType="dijit.form.Select" />
+						</label>
+						<label class="formLabel"> <span>Land</span>
+							<input id="Person:land_id" dojoType="dijit.form.Select" />
+						</label>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Kontaktinformationen
+						</legend>
+						<label class="formLabel"> <span>Telefon</span>
+							<input id="Person:tel" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Fax</span>
+							<input id="Person:fax" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Mobil</span>
+							<input id="Person:mobil" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>EMail</span>
+							<input id="Person:email" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Newsletter</span>
+							<input id="Person:newsletter" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel"> <span>Anmeldedatum</span>
+							<input id="Person:newsletter_anmeldedatum" dojoType="dijit.form.DateTextBox" />
+						</label>
+						<label class="formLabel"> <span>Abmeldedatum</span>
+							<input id="Person:newsletter_abmeldedatum" dojoType="dijit.form.DateTextBox" />
+						</label>
+					</fieldset>
+				</div>
+				<div class="box -mediumSmall" style="float: left; margin-right: 10px;">
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Wiedervorlage
+						</legend>
+						<label class="formLabel"> <span>Wiedervorlage</span>
+							<input id="Person:wiedervorlage" dojoType="dijit.form.CheckBox" />
+						</label>
+					</fieldset>
+					<fieldset dojoType="mosaik.ui.WeitereInformationen" id="weitereInformationen" class="box -mediumSmall outer"></fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Login Informationen
+						</legend>
+						<label class="formLabel"> <span>Username</span>
+							<input id="Person:login_name" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Passwort</span>
+							<input id="Person:login_password" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Gesperrt</span>
+							<input id="Person:gesperrt" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel"> <span>Hinweis, der dem Kunden bei gesperrtem Kundenbereich angezeigt wird</span>
+							<input id="Person:gesperrt_info" dojoType="dijit.form.SimpleTextarea"  style="width: 95%; height: 100px;" />
+						</label>
+					</fieldset>
+				</div>
+			</div>
+
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

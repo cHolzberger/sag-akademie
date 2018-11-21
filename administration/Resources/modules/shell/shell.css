@@ -1,0 +1,93 @@
+@import url(/app/shared/css-core/iframe-main.css);
+@import url(/app/shared/css-lib/all.css);
+
+#logo {
+	float: left;
+	margin-right: 10px;
+	margin-top: 5px;
+	width: 146px;
+	height: 56px;
+}
+
+#contentAreax {
+	position: absolute;
+	top: 58px;
+	left: 1px;
+	bottom: 1px;
+	right: 1px;
+}
+
+#borderContainer {
+    padding-top: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+#modFrame {
+	width: 100%;
+	height: 100%;
+}
+
+#trContainer {
+	position: fixed;
+	top: 2px;
+	right: 5px;
+	height: 60px;
+	overflow: hidden;
+	background-color: white;
+}
+
+#iconContainer {
+	position: relative;
+	float: left;
+	width: 60px;
+	height: 25px;
+	text-align: right;
+}
+
+#heuteContainer {
+	position: relative;
+	float: left;
+	width: 120px;
+	height: 60px;
+	padding-top: 5px;
+}
+
+#termineHeuteListe {
+	position: relative;
+	width: 140px;
+	height: 60px;
+	padding-top: 5px;
+	font-weight: bold;
+}
+
+#usernameContainer {
+	position: relative;
+	float: left;
+	width: 150px;
+	padding-top: 5px;
+}
+
+#tlContainer {
+	position: fixed;
+	top: 2px;
+	left: 170px;
+	height: 25px;
+	overflow: hidden;
+}
+
+#secondRow {
+	position: fixed;
+	top: 25px;
+	left: 168px;
+	height: 25px;
+	overflow: hidden;
+}
+
+#openNewWindow {
+	cursor: pointer;
+}
+
+#closeWindow {
+	cursor: pointer;
+}

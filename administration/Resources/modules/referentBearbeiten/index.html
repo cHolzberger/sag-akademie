@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Referent bearbeiten</title>
+		<link rel="stylesheet" href="referentBearbeiten.css" />
+	</head>
+	<body class="tundra" moduleClass="module.referentBearbeiten.ReferentBearbeiten" moduleName="referentBearbeiten">
+		<!-- dialogs -->
+		<div dojoType="dijit.Dialog" id="chooserFrame"  title="Firma ausw&auml;hlen" style="display: none;">
+			<!--stack-->
+			<div dojoType="dijit.layout.StackContainer" id="chooserStack" style="width: 450px; height: 80%; ">
+				<div dojoType="dijit.layout.ContentPane" id="referentDetailPane">
+					<span> Geben Sie hier die grundlegenden Daten zum Referenten ein.
+						<br/>
+						Detail-Daten k&ouml;nnen Sie eingeben sobald der Referent angelegt iist. </span>
+					<br/>
+					<div style="width: 250px;">
+						<label class="formLabel"> <span>Vorname</span>
+							<input dojoType="dijit.form.TextBox" id="newReferentVorname" />
+						</label>
+						<label class="formLabel"> <span>Name</span>
+							<input dojoType="dijit.form.TextBox" id="newReferentName" />
+						</label>
+						<label class="formLabel"> <span>Firma</span>
+							<input dojoType="dijit.form.TextBox" id="newReferentFirma" />
+						</label>
+					</div>
+				</div>
+			</div>
+			<!-- navbar -->
+			<div style="height: 20px; text-align: right; padding:5px; " class="gradient1">
+				<div dojoType="dijit.form.Button" style="display: none; float: left;" id="prevButton">
+					&lt; Zur&uuml;ck
+				</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="nextButton">
+					Weiter &gt;
+				</div>
+				<div dojoType="dijit.form.Button" style="display: none;" id="createButton">
+					Referent anlegen
+				</div>
+			</div>
+		</div>
+
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left">
+				<span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('referenten',{});">Referenten</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Referent bearbeiten</span></span>
+				<div id="dnav" dojoType="mosaik.ui.DatasetNavigator" ></div>
+			</div>
+			<div class="-right">
+				<button dojoType="dijit.form.Button" id="speichernBtn" iconClass="dijitIconSave">
+					Speichern
+				</button>
+			</div>
+		</div>
+		<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="false" liveSplitters="false" persist="true">
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="false" region="center" style="overflow: auto;">
+				<div class="box -medium" style="float: left; margin-right: 10px;">
+					<!-- mform:group -->
+					<fieldset class="box -medium outer">
+						<!-- label der group -->
+						<legend>
+							Stammdaten
+						</legend>
+						<label class="formLabel"> <span>Status</span>
+							<input id="Referent:status" dojoType="dijit.form.Select" />
+						</label>
+						<label class="formLabel"> <span>Anrede</span>
+							<input id="Referent:anrede_id" dojoType="dijit.form.Select" />
+						</label>
+						<label class="formLabel"> <span>Firma</span>
+							<input id="Referent:firma" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Grad</span>
+							<input id="Referent:grad" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Vorname</span>
+							<input id="Referent:vorname" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Name</span>
+							<input id="Referent:name" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Kürzel</span>
+							<input id="Referent:kuerzel" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Geburtstag</span>
+							<input id="Referent:geburtstag" dojoType="dijit.form.DateTextBox" />
+						</label>
+						<label class="formLabel"> <span>Tätig seit</span>
+							<input id="Referent:taetig_seit" dojoType="dijit.form.DateTextBox" />
+						</label>
+						<label class="formLabel"> <span>Vertragsdatum</span>
+							<input id="Referent:vertragsdatum" dojoType="dijit.form.DateTextBox" />
+						</label>
+					</fieldset>
+					<fieldset class="box -medium outer">
+						<legend>
+							Adresse
+						</legend>
+						<label class="formLabel"> <span>Straße</span>
+							<input id="Referent:strasse" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>PLZ</span>
+							<input id="Referent:plz" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Ort</span>
+							<input id="Referent:ort" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+					<fieldset class="box -medium outer">
+						<legend>
+							Adresse Privat
+						</legend>
+						<label class="formLabel"> <span>Straße</span>
+							<input id="Referent:privat_strasse" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>PLZ</span>
+							<input id="Referent:privat_plz" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Ort</span>
+							<input id="Referent:privat_ort" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+				</div>
+				<div class="box -medium" style="float: left; margin-right: 10px;">
+					<fieldset class="box -medium outer">
+						<legend>
+							Kontakt
+						</legend>
+						<label class="formLabel"> <span>E-Mail</span>
+							<input id="Referent:email" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>E-Mail 2</span>
+							<input id="Referent:email2" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Telefon</span>
+							<input id="Referent:telefon" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Telefon Privat</span>
+							<input id="Referent:privat_telefon" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Mobil</span>
+							<input id="Referent:mobil" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Fax</span>
+							<input id="Referent:fax" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Fax Privat</span>
+							<input id="Referent:privat_fax" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+					<fieldset class="box -medium outer">
+						<legend>
+							Informationen
+						</legend>
+						<label class="formLabel"> <span>Veröffentlicht</span>
+							<input id="Referent:veroeffentlicht" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel"> <span>Beschreibung</span>
+							<input id="Referent:beschreibung" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Bild</span>
+							<div id="Referent:image" dojoType="mosaik.ui.FileUpload" service="ReferentImage" emptyValue="/img/referent_keinfoto.jpg">
+								&nbsp;
+							</div> </label>
+					</fieldset>
+				</div>
+				<div class="box -medium" style="float: left; margin-right: 10px;">
+					<fieldset class="box -medium outer">
+						<legend>
+							Kosten
+						</legend>
+						<label class="formLabel"> <span>Kosten ganzer Tag</span>
+							<input id="Referent:kosten_ganzertag" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Kosten halber Tag</span>
+							<input id="Referent:kosten_halbertag" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Kosten Übernachtung</span>
+							<input id="Referent:kosten_uebernachtung" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Kilometerpauschale</span>
+							<input id="Referent:kilometerpauschale" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Kilometer (Lünen)</span>
+							<input id="Referent:kosten_anfahrt_lünen" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Kilometer (Darmstadt)</span>
+							<input id="Referent:kosten_anfahrt_darmstadt" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+					<fieldset class="box -medium outer">
+						<legend>
+							Notiz
+						</legend>
+						<div id="Referent:notiz"></div>
+						<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('Referent:notiz')">
+							Bearbeiten
+						</button>
+					</fieldset>
+					<fieldset class="box -medium outer" dojoType="mosaik.fieldset.WeitereInformationen" id="weitereInformationen"></fieldset>
+				</div>
+				<div class="box -medium" style="float: left; margin-right: 10px;">
+					<fieldset class="box -medium outer" >
+						<legend>
+							Export
+						</legend>
+						<div id="referentExport">
+						
+						</div>
+					</fieldset>
+					<fieldset class="box -medium outer">
+						<legend>
+							E-Mail
+						</legend>
+						<a href="#" id="sendMail"  >E-Mail senden</a>
+						<br />
+					</fieldset>
+				</div>
+			</div>
+
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

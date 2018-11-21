@@ -1,0 +1,120 @@
+/** require dependencies **/
+dojo.require("mosaik.ui.FlexKalender");
+dojo.require("mosaik.ui.TemplateBox");
+
+dojo.require("mosaik.core.Module");
+
+dojo.provide("module.kalender.Kalender");
+
+var d=dojo;
+var _$=dojo.byId;
+var $=dojo.query;
+
+dojo.declare("module.kalender.Kalender", [mosaik.core.Module], {
+	flexKalender: null,
+	container: null,
+	_currentYear: 0,
+	_dataStoreUrl: "",
+
+	run: function (/* Object[] */ options) {
+		// Summary:
+		// module execution starts here
+		this.flexKalender = dijit.byId("flexKalender");
+		this.flexKalenderContainer = dijit.byId("borderContainer");
+		
+		var now = new Date();
+		this._currentYear = now.getFullYear();
+		
+
+		this._dataStoreURL = this.sandbox.getServiceUrl("seminar/kalender");
+
+		
+		dojo.query(".fkYear").connect ("click", this, function (e ) {
+			
+			this._currentYear = e.currentTarget.innerHTML;
+			dojo.byId("jahr").innerHTML = this._currentYear;
+			this.updateFlexKalender();
+		});
+		
+		this.updateFlexKalender();
+	
+		this.flexKalenderContainer.layout();
+
+		dojo.subscribe("kalender/gotoTermin", this, this.gotoTermin);
+		dojo.subscribe("kalender/gotoSeminar", this, this.gotoSeminar);
+		dojo.subscribe("kalender/gotoReferenten", this, this.gotoReferenten);
+		this.hidePrintbar();
+	}, 
+	
+	updateFlexKalender: function () {
+		this.flexKalender.setURL(this._dataStoreURL );
+		this.flexKalender.setYear(this._currentYear.toString());
+		dojo.byId("jahr").innerHTML = this._currentYear;
+		console.log("Datastore URL: " + this._dataStoreURL + "/"+ this._currentYear);
+	},
+
+	gotoToday: function() {
+		this.flexKalender.gotoToday();
+	},
+
+	fullscreen: function() {
+		this.flexKalender.toggleFullscreen();
+	},
+
+	gotoTermin: function ( data ) {
+		console.log("gotoTermin");
+		console.dir(data);
+		if ( data.inhouse == 1) {
+			sandbox.loadShellModule("inhouseTerminBearbeiten", data);
+		} else {
+			sandbox.loadShellModule("terminBearbeiten", data);
+		}
+	},
+
+	gotoSeminar: function ( data ) {
+		console.log("gotoSeminar");
+		console.dir(data);
+		if ( data.inhouse == 1 ) {
+			data.seminarId = data.seminarId.replace("(I) ", "");
+			sandbox.loadShellModule("inhouseSeminarBearbeiten", data);
+		} else {
+			sandbox.loadShellModule("seminarBearbeiten", data);
+		}
+	},
+
+	gotoReferenten: function ( data ) {
+		console.log("gotoReferenten");
+		console.dir(data);
+		data.terminId = data.seminarId; //FIXME: im flex berichtigen
+		sandbox.loadShellModule("terminReferentenEditor", data);
+	},
+
+	save: function () {
+		this.flexKalender.save();
+	},
+
+	doPrint: function(month) {
+		var token = sandbox.getUserinfo().auth_token;
+		
+		
+		var pdfurl = this.sandbox.getServiceUrl ( "print/kalender" ) + this._currentYear + "-"+month+"?token=" + token;
+		
+		app.openPdf(pdfurl);
+	},
+
+	showPrintbar: function () {
+		dojo.byId("printBar").style.display="block";
+		dojo.byId("saveBar").style.display="none";
+		dojo.byId("centerBar").style.display="none";
+		
+	},
+
+	hidePrintbar: function() {
+		dojo.byId("printBar").style.display="none";
+		dojo.byId("saveBar").style.display="block";
+		dojo.byId("centerBar").style.display="block";
+	}
+
+	
+
+});

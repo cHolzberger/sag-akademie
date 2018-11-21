@@ -1,0 +1,39 @@
+# Was ist zu testen?
+
+## Startseite
+Neu > Seminar
+Neu > Termin 
+Nächste Termine aufrufen
+
+
+## Seminar bearbeiten
+Vergabe #PL# Nummer
+Feldinhalte testen 
+Upload v. PDF Dateien
+Wenn Freigegeben dann Ausgabe auf Homepage
+Wenn Planung dann keine Ausgabe auf Homepage
+
+### Referentenplanung
+neue Referenten zuordnen - Felder...
+
+
+## Termin bearbeiten 
+Feldinhalte testen
+Wenn Freigegeben dann Ausgabe auf Homepage
+Wenn Planung dann keine Ausgabe auf Homepage
+
+
+### Referentenplanung
+neue Referenten zuordnen - Felder...
+
+## Kalender
+Termin anlegen
+Overlays testen
+
+## Referenten
+Eingabe neuer Referent
+Bearbeiten
+
+# Issues
+Im Bitbucket eintragen :-D
+

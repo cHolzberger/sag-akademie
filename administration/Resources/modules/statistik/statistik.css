@@ -1,0 +1,20 @@
+@import url(/app/shared/css-core/iframe-main.css);
+@import url(/app/shared/css-lib/all.css);
+
+#borderContainer {
+	width: 100%;
+	height: 100%;
+	padding-top: 28px;
+}
+
+.numericValue, 
+.monthLabel {
+	text-align: right;
+}
+
+.statHeader {
+	font-weight: bold;
+	text-align: left; 
+	background: blue;
+	color: white;
+}

@@ -1,0 +1,55 @@
+/* 
+    Document   : toolbar.css
+    Created on : Apr 3, 2011, 5:46:54 PM
+    Author     : cholzberger
+    Description:
+		Style the save / forward backward toolbar on each form
+*/
+
+#toolbar {
+	position: absolute;
+	top: 0;
+	left: 5px;
+	right: 5px;
+	height: 25px;
+	background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+	border: 1px solid #afb3b2;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	z-index: 9999;
+}
+
+#toolbar .-left {
+	padding-top: 1px;
+	position: absolute;
+	left: 0;
+	padding-left: 3px;
+	top: 0;
+	vertical-align: middle;
+}
+
+#toolbar .-right {
+	padding-top: 1px;
+	position: absolute;
+	right: 0;
+	padding-right: 3px;
+	top: 0;
+	vertical-align: middle;
+}
+
+.breadcrumb-container{
+display: inline-block;
+margin-left: 10px;
+margin-right: 10px;
+margin-top: 5px;
+}
+
+.breadcrumb-container .breadcrumb{
+font-weight: bold;
+}
+
+.breadcrumb-container .breadcrumb.link{
+text-decoration: underline;
+cursor: pointer;
+}
+

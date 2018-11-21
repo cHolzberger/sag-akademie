@@ -1,0 +1,40 @@
+@import url(/app/shared/css-core/iframe-main.css);
+@import url(/app/shared/css-lib/all.css);
+#statistiken,
+#nextTermine {
+	width: 440px;
+}
+
+#nextTermine .inner {
+	width: 49%;
+}
+#statistiken .inner {
+	width: 49%;
+}
+
+#loaderImage {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+#borderContainer {
+	padding-top: 28px;
+	width: 100%;
+	height: 100%;
+}
+
+td.kursnr {
+	font-weight: bold;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.todo-viewport {
+	overflow: auto;
+	max-height: 330px;
+}
+
+#iconContainer img {
+	cursor: pointer;
+}

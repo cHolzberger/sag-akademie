@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>_EMPTY</title>
+	</head>
+	<body>
+				<script src="/shared/js-core/AIRAliases.js" type="text/javascript"></script>
+
+	<script src="/shared/dojo/dojo/dojo.js" type="text/javascript"></script>
+	<script src="/shared/js-lib/mosaik/util/Mailto.js" type="text/javascript" ></script>
+	<!--<script src="/shared/dojo/dojo/custom_sag_air.js" type="text/javascript"></script>-->
+	<script>
+		//dojo.require("dair.AIR");
+		//dojo.require("dair.Aliases");
+		//dojo.require("dair.Console");
+		//dojo.require("mosaik.core.helpers");
+		air.HTMLUncaughtScriptExceptionEvent = window.runtime.flash.events.HTMLUncaughtScriptExceptionEvent;
+		
+		var bridgeInterface = {};
+		console.log( "[_empty] Module: " + window.module );
+
+		dojo.addOnLoad( function () {
+			bridgeInterface.module_name = window.module;
+			bridgeInterface.module_class = "module." + window.module+"." +ucfirst(window.module);
+
+			bridgeInterface.window_maximize = dojo.hitch ( window, window.maximize );
+			bridgeInterface.window_close = dojo.hitch ( window, window.close );
+			bridgeInterface.window_setTitle = dojo.hitch ( window, window.setTitle );
+			bridgeInterface.djConfig = window.moduleDjConfig;
+			bridgeInterface.djConfig.dojoURL = "/app/shared/dojo/dojo/dojo.js";
+			bridgeInterface.console_log= dojo.hitch( console, console.log);
+			bridgeInterface.console_info= dojo.hitch( console, console.info);
+			bridgeInterface.console_debug = dojo.hitch( console, console.debug);
+			bridgeInterface.console_dir= dojo.hitch( console, console.dir);
+
+			bridgeInterface.app_generateId = dojo.hitch(app, app.generateId);
+			bridgeInterface.app_spawnShell = dojo.hitch(app, app.spawnShell);
+			bridgeInterface.app_exit = dojo.hitch (app, app.exit);
+			bridgeInterface.app_setVar = dojo.hitch (app, app.setVar);
+			bridgeInterface.app_getVar = dojo.hitch (app, app.getVar);
+			bridgeInterface.app_publish = dojo.hitch (app, app.publish);
+			bridgeInterface.app_moduleReady = dojo.hitch (window, window.isReady);
+			bridgeInterface.app_getUserinfo = dojo.hitch ( app, app.getUserinfo);
+			bridgeInterface.app_navigateToUrl = dojo.hitch( app, app.navigateToUrl);
+			bridgeInterface.app_exportToFile = dojo.hitch( app, app.exportToFile);
+			bridgeInterface.app_bridgeReady =  dojo.hitch( window, window.bridgeIsReady);
+			bridgeInterface.app_uploadFile =  dojo.hitch( app, app.uploadFile);
+			bridgeInterface.app_openPdf =  dojo.hitch( app, app.openPdf);
+			bridgeInterface.app_setUserVars =  dojo.hitch( app, app.setUserVars);
+			bridgeInterface.app_getUserVars =  dojo.hitch( app, app.getUserVars);
+			bridgeInterface.app_getUserVarsVersion =  dojo.hitch( app, app.getUserVarsVersion);
+			bridgeInterface.app_reportError =  dojo.hitch( window, window.reportError);
+
+			
+			bridgeInterface.app_contextMenu_show = dojo.hitch(app, function (pos) { this.contextMenu.show(pos)} );
+			bridgeInterface.app_contextMenu_hide =dojo.hitch(app, function () { this.contextMenu.hide() });
+			bridgeInterface.app_contextMenu_clear =dojo.hitch(app, function () {this.contextMenu.clear() });
+			bridgeInterface.app_contextMenu_addItems=dojo.hitch(app, function(x) { this.contextMenu.addItems(x)});			
+
+			bridgeInterface.ds_getSmd = dojo.hitch ( app.datastore, app.datastore.getSmd);
+			bridgeInterface.ds_setServiceBaseURL = dojo.hitch(app.datastore, app.datastore.setServiceBaseURL);
+			bridgeInterface.ds_getServiceURL = dojo.hitch(app.datastore, app.datastore.getServiceURL);
+			bridgeInterface.ds_storeObject = dojo.hitch ( app.datastore, app.datastore.storeObject);
+			bridgeInterface.ds_loadObject = dojo.hitch ( app.datastore, app.datastore.loadObject);
+			bridgeInterface.ds_loadArray = dojo.hitch ( app.datastore, app.datastore.loadArray);
+
+			addIframe(app.databaseUrl, window.module);
+		});
+
+		window.maximize = function () {
+			window.nativeWindow.maximize();
+		}
+
+		window.close = function () {
+			window.app.windowCount --;
+			window.nativeWindow.close();
+		}
+
+		window.publish = dojo.hitch ( document, function (name, data) {
+			if (this.iface) {
+				this.iface.publishFromApp(name, JSON.stringify( data ));
+			} else {
+				console.log("cant reach client window");
+			}
+
+		});
+		window.message = "Kommentar: \n\n";
+		window.interval = null;
+		window.newError = false;
+		
+		window.reportError = function (component, message) {
+			window.message += "Modul: "+component+"\n\nFehlerbericht:\n------------------\n" + message+"\n---------------\n";
+			if ( window.intervall == null ) {
+				window.interval= window.setInterval(window.sendError, 3000);
+			}
+		
+			window.newError=true;
+		}
+		
+		window.sendError = function() {
+			if ( !window.newError ) return; 
+			window.newError=false;
+
+			window.clearInterval(window.interval);
+			if ( confirm("Es ist ein Fehler aufgetreten!\nWollen Sie den Fehlerreport versenden?") ) {
+				var req = new air.URLRequest("http://sag-akademie.localhost/form2mail/report_error.php");
+				var variables = new air.URLVariables();
+				variables.body= window.message;
+				req.method=air.URLRequestMethod.POST;
+				req.data = variables;
+				
+				air.navigateToURL(req, "_reportError");
+			}
+			
+			
+		}
+
+		window.isReady = dojo.hitch ( document, function() {
+			if (this.iface) {
+				console.log("child ready");
+				window.publish("ready", {"mod": "ready"});
+			} else {
+				console.log("cant reach client window");
+			}
+			dojo.byId("sandbox").width="100%";
+			dojo.byId("sandbox").height="100%";
+		});
+		
+		window.bridgeIsReady = dojo.hitch ( document, function () {
+			console.log("bridge ready");
+			this.iface = document.getElementById('sandbox').contentWindow.childSandboxBridge;
+			//this.iface.injectScript("/app/shared/dojo/dojo/dojo.js");
+			
+			if ( dojo.indexOf( app.windows,window ) == -1) {
+				app.windows.push ( window );
+			}
+
+			window.htmlLoader.addEventListener(air.HTMLUncaughtScriptExceptionEvent.UNCAUGHT_SCRIPT_EXCEPTION, function (e) {
+				console.error("Exception");
+				var message = "";
+				message += e.exceptionValue + "\n";
+
+				message += e.toString() + "\n\nStackTrace:\n";
+				for( var i =0; i<e.stackTrace.length; i++ ) {
+					message += e.stackTrace[i].sourceURL + ":" +e.stackTrace[i].line + " " + e.stackTrace[i].functionName + "\n"; 
+				}
+				console.error(message);				
+				window.reportError(window.loadedModule, message);
+				e.preventDefault();
+				
+			});
+		});
+		
+		window.setTitle =  dojo.hitch ( document,function (t) {
+			this.title = app.config.windowTitle + " " + t;
+		});
+
+		function engageBridge() {
+			console.log ("ENGAGING BRIDGE");
+
+			clientWindow = document.getElementById("sandbox").contentWindow;
+			clientWindow.parentSandboxBridge = bridgeInterface;		
+			//clientWindow.htmlLoader.addEventListener("uncaughtScriptException", onModuleException);
+			//clientWindow.addEventListener("uncaughtScriptException", onModuleException);
+		}
+		
+		function onModuleException (e  ) {
+			e.preventDefault();
+				alert("exception");
+				console.log("module exception");
+			}
+
+		function addIframe(root, module) {
+			window.nativeWindow.title = app.config.windowTitle + " " + module;
+			window.loadedModule = module;
+			console.log("Iframe-DBRoot: " + root );
+			console.log("Loading: " +root+'/app/modules/'+module+'/index.html');
+			var iframe = '<iframe id="sandbox" \
+					documentRoot="app:" \
+					src="'+root+'/app/modules/'+module+'/index.html" \
+					 sandboxRoot="'+root+'/app/" ondominitialize="engageBridge()" frameborder="0" allowcrossDomainxhr="true" width="100%" height="100%" style="position: absolute; left: 0; top: 0; bottom:0; right:0;" \n\
+					uncaughtScriptException="onModuleException()">\
+				</iframe>';
+			dojo.body().innerHTML=iframe;
+			//console.dir(dojo.byId("sandbox"));
+			clientWindow = document.getElementById("sandbox").contentWindow;
+			clientWindow.parentSandboxBridge = bridgeInterface;
+			//this.iface = document.getElementById('sandbox').childSandboxBridge;
+			//this.iface.injectScript("/app/shared/dojo/dojo/dojo.js");
+		}
+
+		window.app.windowCount ++;
+		console.log("WINDOW COUNT: " + window.app.windowCount);
+
+		window.nativeWindow.addEventListener( air.Event.CLOSING, function () {
+			// when the close window button is pressed
+			console.log("CLOSING");
+			console.log("WINDOW COUNT: " + window.app.windowCount);
+
+			window.app.windowCount --;
+			if ( window.app.windowCount == 0 ) {
+				window.app.exit();
+			}
+		});
+		
+		
+	</script>
+
+	</body>
+</html>

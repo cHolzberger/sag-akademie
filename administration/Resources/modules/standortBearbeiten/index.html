@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Standort bearbeiten</title>
+		<link rel="stylesheet" href="standortBearbeiten.css" />
+	</head>
+	<body class="tundra">
+		<!-- dialogs -->
+		<div dojoType="dijit.Dialog" id="chooserFrame"  title="Neuen Standort anlegen" style="display: none; ">
+			<div dojoType="dijit.layout.StackContainer" id="chooserStack" style="height: 150; width: 450px; ">
+				<div dojoType="dijit.layout.ContentPane" id="todoPane">
+					<div style="width: 300px;">
+						<label class="formLabel"> <span>Name</span>
+							<input dojoType="dijit.form.TextBox" id="newName" />
+						</label>
+						<label class="formLabel"> <span>Art</span>
+							<input dojoType="dijit.form.TextBox" id="newArt" />
+						</label>
+						<label class="formLabel"> <span>Strasse</span>
+							<input dojoType="dijit.form.TextBox" id="newStrasse" />
+						</label>
+						<label class="formLabel"> <span>Nummer</span>
+							<input dojoType="dijit.form.TextBox" id="newNummer" />
+						</label>
+						<label class="formLabel"> <span>PLZ</span>
+							<input dojoType="dijit.form.TextBox" id="newPLZ" />
+						</label>
+						<label class="formLabel"> <span>Ort</span>
+							<input dojoType="dijit.form.TextBox" id="newOrt" />
+						</label>
+						<label class="formLabel"> <span>K&uuml;rzel</span>
+							<input dojoType="dijit.form.TextBox" id="newKuerzel" />
+						</label>
+					</div>
+				</div>
+			</div>
+			<!-- navbar -->
+			<div style="height: 20px; text-align: right; padding:5px;" class="gradient1">
+				<div dojoType="dijit.form.Button" style="display: none; float: left;" id="prevButton">
+					&lt; Zur&uuml;ck
+				</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="nextButton">
+					Weiter &gt;
+				</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="createButton">
+					Standort anlegen
+				</div>
+			</div>
+		</div>
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left">
+				<span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('administration',{});">Administration</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Standorte</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Standort bearbeiten</span></span>
+				<div id="dnav" dojoType="mosaik.ui.DatasetNavigator" ></div>
+			</div>
+			<div class="-right">
+				<button dojoType="dijit.form.Button" id="speichernBtn">
+					Speichern
+				</button>
+			</div>
+		</div>
+		<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="true" liveSplitters="false" persist="true">
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="true" region="top" style="overflow: auto;">
+				<div class="box -mediumSmall" style="float: left; margin-right: 10px;">
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Adresse
+						</legend>
+						<label class="formLabel"> <span>Name</span>
+							<input type="text" id="Standort:name" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Art</span>
+							<input type="text" id="Standort:art" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Stra&szlig;e</span>
+							<input type="text" id="Standort:strasse" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Nummer</span>
+							<input type="text" id="Standort:nr" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>PLZ</span>
+							<input type="text" id="Standort:plz" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Ort</span>
+							<input type="text" id="Standort:ort" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>K&uuml;rzel</span>
+							<input type="text" id="Standort:kuerzel" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Planung
+						</legend>
+						<label class="formLabel"> <span>Telefon</span>
+							<input type="text" id="Standort:tel" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Fax</span>
+							<input type="text" id="Standort:fax" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+				</div>
+				<div class="box -mediumSmall" style="float: left; margin-right: 10px;">
+					<fieldset class="box -mediumSmall outer">
+						<legend>
+							Kontakt
+						</legend>
+						<label class="formLabel"> <span>In der Planungskomponente anzeigen</span>
+							<input type="text" id="Standort:planung" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel"> <span>Sofort in der Planungskomponente anzeigen</span>
+							<input type="text" id="Standort:planung_aktiv" dojoType="dijit.form.CheckBox" />
+						</label>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

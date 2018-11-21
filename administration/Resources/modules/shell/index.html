@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta/>
+    <title>SAG-Akademie GmbH - Verwaltung</title>
+
+    <script type="text/javascript">
+        var frames = [];
+        var _locked = false;
+
+        var currentId = "";
+
+        window.moduleChanged = false;
+        function setModuleChanged() {
+            console.log("======================> setModuleChanged");
+            window.moduleChanged = true;
+        }
+        window.setModuleChanged = setModuleChanged;
+
+        function unsetModuleChanged() {
+            console.log("======================> unsetModuleChanged");
+            window.moduleChanged = false;
+        }
+        window.unsetModuleChanged = unsetModuleChanged;
+
+        function isModuleChanged() {
+            return window.moduleChanged;
+        }
+
+        function onShellModuleReady() {
+            _locked = false;
+        }
+
+        function onShellBridgeReady() {
+            console.log("bridge ready");
+            currentModule.activeChildModule.api = document.getElementById(currentModule.activeChildModule.id).contentWindow.childSandboxBridge;
+            currentModule.activeChildModule.initialized = true;
+            //currentModule.activeChildModule.api.injectScript("/app/shared/dojo/dojo/dojo.js");
+        }
+        ;
+
+
+        function addIFrame(newShellModule, includeInHistory) {
+
+            if (_locked) {
+                console.log("=====> !!!!! CONTAINER IS LOCKED");
+                return;
+            }
+            ;
+            _locked = true;
+
+            console.log("creating iframe for: " + newShellModule.name);
+            newShellModule.includeInHistory = typeof(includeInHistory) === "undefined" ? true : includeInHistory;
+
+            // increment frame counter
+            currentModule.framecounter++;
+            currentId = "frame" + currentModule.framecounter.toString();
+
+            var zindex = currentModule.framecounter + 100; // create a bigger zindex
+            //create the hosting iframe
+            var frame = document.createElement("iframe");
+
+            frame.setAttribute("id", currentId);
+            frame.setAttribute("class", "iframeContent");
+            frame.setAttribute("frameborder", "0");
+            frame.setAttribute("width", "100%");
+            frame.setAttribute("height", "100%");
+            frame.setAttribute("style", "position: absolute; left: 0; top: 0; right: 0; bottom: 0; z-index: " + zindex + ";");
+            frame.setAttribute("ondominitialize", "initFrame()");
+            frame.setAttribute("uncaughtScriptException", "onModuleException()");
+            frame.setAttribute("src", newShellModule.url);
+            // inject it to the dom
+            document.getElementById("contentArea").appendChild(frame);
+
+            // sync data to module
+            newShellModule.frame = frame;
+            newShellModule.id = currentId;
+            // hmm...
+            frames.push(newShellModule);
+            // update the current child
+            currentModule.setActiveChild(newShellModule);
+        }
+
+
+        function initFrame() {
+            // Summary:
+            // initalizes the iframe for a sub module
+            //var moduleName = dojo.attr("modFrame","moduleName");
+            //var shellId = dojo.body().getAttribute("shellId");
+
+            //sandbox.spawnSandbox( moduleName, dojo.byId("modFrame").contentWindow, shellId);
+            //var frame=document.getElementById( currentId );
+            var frame = currentModule.activeChildModule.frame;
+            frame.contentWindow.djConfig = djConfig;
+            frame.contentWindow.parentSandboxBridge = window.parentSandboxBridge;
+            frame.contentWindow.shell = window.currentModule;
+            frame.contentWindow.options = currentModule.activeChildModule.options;
+            frame.contentWindow.moduleName = currentModule.activeChildModule.name;
+            frame.contentWindow.onReady = onShellModuleReady;
+            frame.contentWindow.moduleClass = currentModule.activeChildModule.classname;
+            frame.contentWindow.bridgeReady = onShellBridgeReady;
+            frame.contentWindow.setModuleChanged = dojo.hitch(window, "setModuleChanged");
+            frame.contentWindow.unsetModuleChanged = dojo.hitch(window, "unsetModuleChanged");
+
+            frame.contentWindow.ft_singleton = dojo.hitch(window, function () {
+                return dijit.byId("flexTable")
+            });
+        }
+    </script>
+
+    <link rel="stylesheet" href="shell.css"/>
+</head>
+<body moduleName="shell" class="tundra" moduleClass="module.shell.Shell" moduleName="shell">
+<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="true" liveSplitters="false" persist="true">
+    <div id="navigationArea" dojoType="dijit.layout.ContentPane" splitter="false" region="top">
+
+        <img src="/app/shared/images/logo.jpg" id="logo"/>
+
+        <div id="buttonContainer">
+            <div id="tlContainer">
+                <button class="appButton" id="back" dojoType="dijit.form.Button" disabled="true"
+                        onClick="currentModule.goBackward();" iconClass="dijitEditorIconUndo">&lt; Zur&uuml;ck
+                </button>
+                <button class="appButton" id="forward" dojoType="dijit.form.Button" disabled="true"
+                        onClick="currentModule.goForward();" iconClass="dijitEditorIconRedo">Vor &gt;</button>
+
+
+                <!--<strong>SAG-Akademie Verwaltung</strong>-->
+                <button class="appButton" id="neu" dojoType="dijit.form.Button"
+                        onClick="sandbox.toggleContextMenu( module.shell.NeuMenu, 'neu');"
+                        iconClass="dijitIconNewTask">
+                    <span>Neu</span>
+
+                    <div dojoType="dijit.Menu" onOpen="sandbox.showContextMenu( module.shell.NeuMenu, 'neu');"
+                         onClose="sandbox.hideContextMenu();"></div>
+                </button>
+                <button class="appButton modLink" id="kalender" dojoType="dijit.form.Button">Kalender</button>
+                <!--<button class="appButton" id="termineHeute" dojoType="dijit.form.ComboButton">
+                    <span>Termine heute</span>
+                    <div dojoType="dijit.Menu"></div>
+                </button>-->
+                <button class="appButton" id="aufgaben" dojoType="dijit.form.Button"
+                        onclick="currentModule.loadShellModule('aufgaben', {})">Unerledigte Aufgaben
+                </button>
+
+
+            </div>
+            <div id="loadIndicator"
+                 style="position: absolute; right: 60px; top: 10px; display: none; height: 24px; line-height: 24px; vertical-align: middle; padding: 5px;">
+                <img src="/app/shared/icons/ajax-loader.gif" width="24" height="24"
+                     alt="Daten werden Synchronisiert..."
+                     style="vertical-align: middle; float: left; padding-right: 7px;"/>
+					<span>
+					Daten synchronisieren...
+					</span>
+            </div>
+            <div id="trContainer">
+                <div id="heuteContainer">
+                    Termine heute:<br/>
+
+                    <div id="termineHeuteListe">
+                        Keine Termine
+                        <br/><br/>
+                    </div>
+                </div>
+                <div id="usernameContainer">
+                    <span id="userName">#USER#</span>
+                </div>
+                <div id="iconContainer">
+                    <img src="/app/shared/icons/reload.png" class="icon16" id="forceReload" style="cursor: pointer;"
+                         onClick="currentModule.forceReload();"/>
+
+                    <img src="/app/shared/icons/plus.jpg" class="icon16" id="openNewWindow"/>
+                    <img src="/app/shared/icons/logout.jpg" class="icon16" id="closeWindow"/>
+                </div>
+            </div>
+            <div id="secondRow" oncontextmenu="alert ('right click disabled')">
+                <button class="appButton modLink" id="startseite" dojoType="dijit.form.Button">Startseite</button>
+                <button class="appButton modLink" id="termineSeminare" dojoType="dijit.form.Button">Termine +
+                    Seminare
+                </button>
+                <button class="appButton modLink" id="inhouse" dojoType="dijit.form.Button">Inhouse</button>
+                <button class="appButton modLink" id="kontakt" dojoType="dijit.form.Button">Kontakte</button>
+                <button class="appButton modLink" id="referenten" dojoType="dijit.form.Button">Referenten</button>
+                <button class="appButton modLink" id="mailing" dojoType="dijit.form.Button">Mailing</button>
+                <button class="appButton modLink" id="suche" dojoType="dijit.form.Button">Suche</button>
+                <button class="appButton modLink" id="homepage" dojoType="dijit.form.Button">Homepage</button>
+                <button class="appButton modLink" id="statistik" dojoType="dijit.form.Button">Statistik</button>
+                <button class="appButton modLink" id="administration" dojoType="dijit.form.Button">Administration
+                </button>
+            </div>
+        </div>
+    </div>
+    <div dojoType="dijit.layout.ContentPane" region="center" layoutPriorit="1">
+        <div id="contentArea" style="width: 100%; height: 100%;">
+            &nbsp;
+        </div>
+    </div>
+    <div dojoType="dijit.layout.BorderContainer" gutters="true" splitter="true" region="bottom" minSize="50"
+         id="flexTableContainer" persist="true" layoutPriorit="2">
+        <div dojoType="dijit.layout.ContentPane" region="top" class="flexTableToolbar">
+            <div class="-left">
+                <label style="float: left;">
+                    <span id="ftBarHeadline">Buchungen:</span>
+                </label>
+
+                <div style="float: left" id="flexTableToolItems">
+                    <label style="float: left;">
+                        <input value="1" class="ftOption" id="siebenTageRueckblick" dojoType="dijit.form.CheckBox"
+                               type="checkbox" checked="checked" />
+                        <span>7-Tage Rückblick</span>
+                    </label>
+                    <label style="float: left;">
+                        <input value="1" class="ftOption" id="neueBuchungen" dojoType="dijit.form.CheckBox"/>
+                        <span>Buchungen seit der letzten Anmeldung</span>
+                    </label>
+                    <label style="float: left;">
+                        <input value="1" class="ftOption" id="buchungenDarmstadt" dojoType="dijit.form.CheckBox"/>
+                        <span>Darmstadt</span>
+                    </label>
+                    <label style="float: left;">
+                        <input value="1" class="ftOption" id="buchungenLuenen" dojoType="dijit.form.CheckBox"/>
+                        <span>Lünen</span>
+                    </label>
+
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+
+            </div>
+            <div class="-right">
+                <button dojoType="dijit.form.Button" id="editTable">Tabelle bearbeiten</button>
+                <button dojoType="dijit.form.Button" id="editColumns">Spalten</button>
+                <button dojoType="dijit.form.Button" id="editExport">Export (.csv)</button>
+            </div>
+        </div>
+        <div dojoType="dijit.layout.ContentPane" region="center">
+            <div id="flexTable" dojoType="mosaik.ui.FlexTable"></div>
+        </div>
+    </div>
+</div>
+</div>
+<!--<div id="flexOverlay" style="position: fixed; bottom: 10px; left: 10px; width: 200px; height: 200px;">
+
+
+</div>-->
+<!-- module boilerplate -->
+<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+<!-- end boilerplate -->
+</body>
+</html>

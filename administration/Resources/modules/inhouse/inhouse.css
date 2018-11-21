@@ -1,0 +1,111 @@
+@import url(/app/shared/css-core/iframe-main.css);
+@import url(/app/shared/css-lib/all.css);
+
+#borderContainer {
+	padding-top: 28px;
+	width: 100%;
+	height: 100%;
+}
+
+#contentContainer {
+    padding-right: 10px;
+    overflow: hidden;
+}
+
+.seminarBtn:active,
+.seminarBtnActive,
+.seminarBtn:hover,
+.seminarBtn {
+   cursor: pointer;
+   padding: 2px 4px 2px;
+   margin: 3px;
+   display: block;
+   font-weight: bold;
+   text-decoration: underline;
+   	list-style-type: none;
+}
+
+.seminarBtn:hover {
+   color: blue;
+   margin: 1px;
+   border: 1px solid gray;
+   background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+   border-radius: 3px;
+   -webkit-border-radius: 3px;
+}
+
+.seminarBtnActive,
+.seminarBtn:active {
+   color: blue;
+   margin: 1px;
+   margin-left: 2px;
+
+   border: 1px solid black;
+   background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+   border-radius:           3px;
+   -webkit-border-radius:           3px;
+   -webkit-box-shadow: 0 0 5px rgba(0,0,0, .7);
+   box-shadow: 0 0 5px rgba(0,0,0, .7);
+}
+
+
+#seminarRubrikenViewport {
+    position: relative;
+    margin-top: 20px;
+    overflow-x: auto;
+    overflow-y: auto;
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 5px;
+    right: 5px;
+    background-color: #8e8e8e;
+
+}
+
+#seminarRubriken {
+    height: 100%;
+    box-orient: horizontal;
+    overflow: visible;
+    display: -webkit-box;
+
+}
+
+#seminarRubrikenContainer {
+    height: 290px;
+}
+
+#seminarRubrikenContainer .inner {
+    width: 125px;
+    height: 240px;
+    border: 1px solid black;
+    box-flex: 1;
+    display: block;
+    z-index: 999;
+    float: none;
+    background-color: #efefef;
+
+}
+
+
+#seminarRubrikenContainer .inner .viewport {
+    /*position: absolute;*/
+    height: 200px;
+    z-index: 999;
+    width: 125px;
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.seminarBtn:active,
+.seminarBtnActive,
+.seminarBtn:hover,
+.seminarBtn {
+    cursor: pointer;
+    padding: 2px 4px 2px;
+    margin: 3px;
+    display: block;
+    font-weight: bold;
+    text-decoration: underline;
+    list-style-type: none;
+}

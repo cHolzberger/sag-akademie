@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Mailing Starteite</title>
+
+		<!-- end boilerplate -->
+		<link rel="stylesheet" href="mailing.css" type="text/css" />
+	</head>
+	<body class="tundra">
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left">
+			<span class="breadcrumb-container"><span class="breadcrumb">Mailing</span></span>
+					</div>
+			
+		</div>
+		<div  id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="false" liveSplitters="false">
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="false" region="center" >
+				<div class="contentPane -left">
+					<fieldset class="box -verySmall outer formReset">
+							<legend>Aktionen</legend>
+							<div dojoType="dijit.form.Button" onClick="sandbox.loadShellModule('vorlagenEditor',{});">Vorlagen-Editor</div>
+					</fieldset>
+				</div>
+				<div class="contentPane -expand">
+					<div dojoType="module.kontakt.Umkreissuche" id="umkreissuche"></div>
+				</div>
+				
+					<div style="clear: both;">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

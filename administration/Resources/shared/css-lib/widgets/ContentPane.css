@@ -1,0 +1,49 @@
+/** here are the panes **/
+.contentPane {
+	/** css reset **/
+	margin:0;
+	border:0;
+	padding:0;
+	line-height:normal;
+	font: inherit;
+	color: inherit;
+	/** cxx reset ende **/
+	max-width: 100%;
+   min-width: 5px;
+   overflow: visible;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+   
+
+   word-wrap: break-word;
+}
+
+/* hier den gap einstellen */
+.contentPane.-left + .-left,
+.contentPane.-left + .-expand,
+.contentPane.-expand + .-right,
+.contentPane.-right + .-right {
+	padding-left: 10px;
+}
+
+.contentPane.-left {
+   float: left;
+   
+}
+
+.contentPane.-right {
+   float: right;
+}
+
+
+.contentPane.-expand {
+	display: block;
+   float: none;
+}
+
+.contentPane.-bottom,
+.contentPane.-top {
+	float: none;
+	width: 100%;
+	
+}

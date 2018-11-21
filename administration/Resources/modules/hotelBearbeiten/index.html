@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Hotel bearbeiten</title>
+		<link rel="stylesheet" href="hotelBearbeiten.css" />
+	</head>
+	<body class="tundra">
+		<!-- dialogs -->
+		<div dojoType="dijit.Dialog" id="chooserFrame"  title="Neues Hotel anlegen" style="display: none; ">
+			<div dojoType="dijit.layout.StackContainer" id="chooserStack" style="height: 150; width: 450px; ">
+				<div dojoType="dijit.layout.ContentPane" id="todoPane">
+					<div style="width: 300px;">
+						<label class="formLabel"> <span>Name</span>
+							<input dojoType="dijit.form.TextBox" id="newName" />
+						</label>
+						<label class="formLabel"> <span>Strasse</span>
+							<input dojoType="dijit.form.TextBox" id="newStrasse" />
+						</label>
+						<label class="formLabel"> <span>Nummer</span>
+							<input dojoType="dijit.form.TextBox" id="newNr" />
+						</label>
+						<label class="formLabel"> <span>PLZ</span>
+							<input dojoType="dijit.form.TextBox" id="newPLZ" />
+						</label>
+						<label class="formLabel"> <span>Ort</span>
+							<input dojoType="dijit.form.TextBox" id="newOrt" />
+						</label>
+						<label class="formLabel"> <span>Standort</span>
+							<input dojoType="dijit.form.Select" id="newStandort" />
+						</label>
+					</div>
+				</div>
+			</div>
+			<!-- navbar -->
+			<div style="height: 20px; text-align: right; padding:5px;" class="gradient1">
+				<div dojoType="dijit.form.Button" style="display: none; float: left;" id="prevButton">
+					&lt; Zur&uuml;ck
+				</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="nextButton">
+					Weiter &gt;
+				</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="createButton">
+					Hotel anlegen
+				</div>
+			</div>
+		</div>
+
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left">
+				<span class="breadcrumb-container"> <span class="breadcrumb link" onClick="sandbox.loadShellModule('administration',{});">Administration</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Hotels</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Hotel bearbeiten</span> </span>
+				<div id="dnav" dojoType="mosaik.ui.DatasetNavigator" ></div>
+			</div>
+			<div class="-right">
+				<button dojoType="dijit.form.Button" id="speichernBtn">
+					Speichern
+				</button>
+			</div>
+		</div>
+		<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="true" liveSplitters="false" persist="true">
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="true" region="top" style="overflow: auto;">
+				<div class="box -medium" style="float: left; margin-right: 10px;">
+					<!-- mform:group -->
+					<fieldset class="box -medium outer">
+						<!-- label der group -->
+						<legend>
+							Hotel-Daten
+						</legend>
+						<label class="formLabel"> <span>Aktiv</span>
+							<input id="Hotel:aktiv" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel"> <span>PLZ</span>
+							<input id="Hotel:plz" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Ort</span>
+							<input id="Hotel:ort" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Standort</span>
+							<input id="Hotel:standort_id" dojoType="dijit.form.Select" />
+						</label>
+						<label class="formLabel"> <span>Name</span>
+							<input id="Hotel:name" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Straße</span>
+							<input id="Hotel:strasse" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Nr</span>
+							<input id="Hotel:nr" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Telefon</span>
+							<input id="Hotel:tel" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Fax</span>
+							<input id="Hotel:fax" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>E-Mail</span>
+							<input id="Hotel:email" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>URL</span>
+							<input id="Hotel:url" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Ansprechpartner</span>
+							<input id="Hotel:ansprechpartner" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+				</div>
+				<div class="box -medium" style="float: left; margin-right: 10px;">
+					<fieldset class="box -medium outer">
+						<legend>
+							Informationen
+						</legend>
+						<label class="formLabel"> <span>Kategorie</span>
+							<input id="Hotel:kategorie" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Entfernung</span>
+							<input id="Hotel:entfernung" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel"> <span>Beschreibung</span> <div id="Hotel:beschreibung"  class="textView"></div>
+							<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('Hotel:beschreibung')">
+								Bearbeiten
+							</button> </label>
+						<label class="formLabel"> <span>Notiz</span> <div id="Hotel:notiz"  class="textView"></div>
+							<button dojoType="dijit.form.Button" onclick="currentModule.rtEdit('Hotel:notiz')">
+								Bearbeiten
+							</button> </label>
+					</fieldset>
+				</div>
+			</div>
+			<div dojoType="dijit.layout.BorderContainer" gutters="false" splitter="false" region="center" minSize="50" id="flexTableContainer" persist="true">
+				<div dojoType="dijit.layout.ContentPane" region="top" class="flexTableToolbar">
+					<div class="-left">
+						<label style="float: left;"> <span>Hotelpreise:</span> </label>
+					</div>
+					<div class="-right">
+						<button dojoType="dijit.form.Button" onClick="currentModule.createPreis();">
+							Neuen Preisbereich erstellen
+						</button>
+					</div>
+				</div>
+				<div dojoType="dijit.layout.ContentPane" region="center">
+					<table class="formTable">
+						<thead>
+							<tr>
+								<td style="width: 100px;">Von</td>
+								<td style="width: 100px;">Bis</td>
+								<td>EZ</td>
+								<td>DZ</td>
+								<td>MZ(4-6)</td>
+								<td>Frühstück</td>
+								<td>Marge</td>
+								<td>Info</td>
+								<td style="width: 100%;"></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr style="border-bottom: 2px solid gray;">
+								<td colspan="2" style="width: 200px; text-align:center;"></td>
+								<td>
+								<input id="ezGrundpreis" dojoType="dijit.form.CurrencyTextBox" currency="€" style="width: 65px;" value="0"/>
+								</td>
+								<td>
+								<input id="dzGrundpreis" dojoType="dijit.form.CurrencyTextBox" currency="€" style="width: 65px;" value="0"/>
+								</td>
+								<td>
+								<input id="mzGrundpreis" dojoType="dijit.form.CurrencyTextBox" currency="€" style="width: 65px;" value="0"/>
+								</td>
+								<td>
+								<input id="fruehstueckGrundpreis" dojoType="dijit.form.CurrencyTextBox" currency="€" style="width: 65px;" value="0"/>
+								</td>
+								<td>
+								<input id="margeGrundpreis" dojoType="dijit.form.CurrencyTextBox" currency="€" style="width: 65px;" value="0"/>
+								</td>
+								<td><b>Grundpreis</b></td>
+								<td></td>
+							</tr>
+						</tbody>
+						<tbody id="preisbereich"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		</div> <!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

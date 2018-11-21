@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>SAG Akademie GmbH - Runtime</title>
+		<link rel="stylesheet" href="/shared/css-core/app-iframe.css" />
+		<link rel="stylesheet" href="/shared/css-lib/all.css" />
+		<script src="shared/js-core/AIRAliases.js" type="text/javascript"></script>
+		<script src="shared/swf-lib/applicationupdater_ui.swf" type="application/x-shockwave-flash"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var firstRun = true;
+		
+			// and setup the app
+			var appConfig = {
+				"firstModule" : "shell",
+				"loginModule" : "login",
+				"modulePrefix" : "app:/modules/",
+				"windowTitle" : "SAG-Akademie Verwaltung: ",
+
+				"appWindows" : {
+					"login" : {
+						"size" : {
+							"w" : 380,
+							"h" : 250
+						},
+						"resizeable" : false,
+						"usingChrome" : true,
+						"maximizable" : false,
+						"minimizable" : true,
+						"visible" : true,
+						"closable" : true,
+						"title" : "Anmeldung",
+						"href" : "app:/_empty.html",
+						"hasStorage" : false
+					},
+
+					"pdf" : {
+						"size" : {
+							w : 800,
+							h : 600
+						},
+
+						"resizeable" : true,
+						"maximizable" : true,
+						"minimizable" : true,
+						"visible" : true,
+						"closable" : true,
+						"title" : "PDF Ansicht",
+						"href" : "app:/_pdf.html",
+						"hasStorage" : false
+					},
+
+					"menu" : {
+						"size" : {
+							w : 1,
+							h : 1
+						},
+						"type" : "lightweight",
+						"resizeable" : false,
+						"maximizable" : false,
+						"minimizable" : false,
+						"visible" : true,
+						"closable" : false,
+						"title" : "",
+						"href" : "app:/_menu.html",
+						"hasStorage" : false
+					},
+
+					"shell" : {
+						size : {
+							"w" : 380,
+							"h" : 250
+						},
+						"resizeable" : true,
+						"usingChrome" : true,
+						"maximizable" : true,
+						"minimizable" : true,
+						"visible" : true,
+						"closable" : true,
+						"title" : "SAG-Akademie - Verwaltung",
+						"href" : "app:/_empty.html",
+						"hasStorage" : false
+					},
+
+					"appWindow" : {
+						"size" : {
+							"w" : 1,
+							"h" : 1
+						},
+						"resizable" : false,
+						"usingChrome" : false,
+						"maximizable" : false,
+						"minimizable" : false,
+						"visible" : false,
+						"closable" : true,
+						"title" : "SAG-Akadmeie Verwaltung",
+						"href" : "",
+						"hasStorage" : false
+					}
+				},
+				// service descriptors for RPC
+				"smd" : {
+					"startseite" : "/_rpc/?s=JsonRpc&m=smd&t=Pages.Startseite",
+					"page/termineSeminare" : "/_rpc/?s=JsonRpc&m=smd&t=Pages.TermineSeminare",
+					"database/table" : "/_rpc/?s=JsonRpc&m=smd&t=Database.XTable",
+					"database/kontakt" : "/_rpc/JsonRpc/Database/Kontakt/smd?x=x",
+					"database/kontaktStatus" : "/_rpc/?s=JsonRpc&m=smd&t=Database.KontaktStatus",
+					"database/akquiseKontakt" : "/_rpc/?s=JsonRpc&m=smd&t=Database.AkquiseKontakt",
+					"database/person" : "/_rpc/?s=JsonRpc&m=smd&t=Database.Person",
+					"database/termin" : "/_rpc/?s=JsonRpc&m=smd&t=Database.Termin",
+					"database/seminar" : "/_rpc/?s=JsonRpc&m=smd&t=Database.Seminar",
+					"database/inhouseSeminar" : "/_rpc/?s=JsonRpc&m=smd&t=Database.InhouseSeminar",
+					"database/buchung" : "/_rpc/?s=JsonRpc&m=smd&t=Database.Buchung",
+					"database/hotel" : "/_rpc/JsonRpc/Database/Hotel/smd?x=x",
+					"database/hotelBuchung" : "/_rpc/JsonRpc/Database/HotelBuchung/smd?x=x",
+					"database/referent" : "/_rpc/?s=JsonRpc&m=smd&t=Database.Referent",
+					"database/todo" : "/_rpc/?s=JsonRpc&m=smd&t=Database.Todo",
+					"database/stats" : "/_rpc/JsonRpc/Database/Stats/smd?x=x",
+					"database/aktuelles" : "/_rpc/JsonRpc/Database/Aktuelles/smd?x=x",
+					"database/kooperationspartner" : "/_rpc/JsonRpc/Database/Kooperationspartner/smd?x=x",
+					"database/stellenangebot" : "/_rpc/JsonRpc/Database/Stellenangebot/smd?x=x",
+					"database/download" : "/_rpc/JsonRpc/Database/Download/smd?x=x",
+					"database/user" : "/_rpc/JsonRpc/Database/User/smd?x=x",
+					"database/standort" : "/_rpc/JsonRpc/Database/Standort/smd?x=x",
+					"database/hotel" : "/_rpc/JsonRpc/Database/Hotel/smd?x=x",
+					"database/kategorie" : "/_rpc/JsonRpc/Database/Kategorie/smd?x=x",
+					"database/feiertag" : "/_rpc/JsonRpc/Database/Feiertag/smd?x=x",
+
+					"web/text" : "/_rpc/JsonRpc/Web/Text/smd?x=x",
+					"web/template" : "/_rpc/JsonRpc/Web/Template/smd?x=x",
+					"user/settings" : "/_rpc/JsonRpc/User/Settings/smd?x=x"
+				},
+				// service map for JSON lists
+				// primarly used for flex table and login
+				"serviceMap" : {
+					"serviceBase" : "http://sag-akademie.localhost",
+
+					"startseite" : "/admin/json;json/startseite/",
+					"startseite/buchungen" : "/admin/json;json/buchung",
+					"authentication" : "/admin/json;json/",
+					"hotelInfo" : "/admin/json/hotel;json/",
+					"terminVorschau" : "/admin/json;json/terminVorschau/",
+					"kontaktSuchen" : "/admin/json;json/kontakt",
+					"akquisekontaktSuchen" : "/admin/json;json/akquise",
+					"kontaktUndAkquiseSuchen" : "/admin/json;json/kontaktfull",
+					"personSuchen" : "/admin/json;json/person",
+					"termin/buchungen" : "/admin/json;json/terminBuchungen/",
+					"seminar/termine" : "/admin/json;json/termin/",
+					"seminar/seminare" : "/admin/json;json/seminar/",
+					"seminar/inhouseTermine" : "/admin/json;json/inhouseTermin/",
+					"seminar/kalender" : "/admin/json;json/jahresplanung",
+					"kontakt/umkreissuche" : "/admin/json;json/umkreissuche",
+					"referenten" : "/admin/json;json/referent",
+					"referent/termine" : "/admin/json;json/referentTermine",
+					"person/buchungen" : "/admin/json;json/buchung",
+					"homepage/aktuelles" : "/admin/json;json/neuigkeit",
+					"homepage/kooperationspartner" : "/admin/json;json/kooperationspartner",
+					"homepage/stellenangebot" : "/admin/json;json/stellenangebot",
+					"homepage/download" : "/admin/json;json/download",
+					"homepage/referent" : "/admin/json;json/referent",
+					"admin/benutzer" : "/admin/json;json/user",
+					"admin/standorte" : "/admin/json;json/standort",
+					"admin/hotels" : "/admin/json;json/hotel",
+
+					"advSearch/ViewPerson" : "/admin/json;json/person",
+					"advSearch/ViewKontakt" : "/admin/json;json/kontakt",
+					"advSearch/ViewAkquise" : "/admin/json;json/akquise",
+					"advSearch/ViewAkquiseKontaktR" : "/admin/json;json/kontaktfull",
+					"advSearch/ViewSeminarPreis" : "/admin/json;json/termin",
+					"advSearch/ViewBuchungPreis" : "/admin/json;json/buchung",
+
+					"kalender/ferien" : "/admin/json;json/feiertag",
+					"print/termin" : "/admin/pdf/termin;pdf/",
+					"print/seminar" : "/admin/pdf/seminar;pdf/",
+					"print/buchung" : "/admin/pdf/buchung;pdf/",
+					"print/person" : "/admin/pdf/person;pdf/",
+					"print/kontakt" : "/admin/pdf/kontakt;pdf/",
+					"print/kalender" : "/admin/pdf/kalender;pdf/",
+
+				},
+				// set some defaults
+				// hompage ist the link to the homepage where PDF documents and such stuff are found
+				// used for internal links
+				"defaults" : {
+					"infomail" : "info@sag-akademie.de",
+					"homepage" : "http://sag-akademie.de"
+				}
+
+			};
+
+		</script>
+		<script type="text/javascript">
+			var d = new Date(), sp = "", sp2 = ".";
+			var dstr = function(type) {
+				var n = d["get"+type]();
+				n = type == "Month" ? n + 1 : n;
+				return type == "FullYear" ? n.toString().substring(2, 4) : n.toString().length == 1 ? "0" + n : n + "";
+			}
+			moduleDjConfig = {
+				// Summary: configure this windows dojo
+                async: "sync",
+				afterOnLoad : true,
+				isDebug : true,
+				parseOnLoad : false,
+				locale : "de-de",
+				extraLocale : ["en-us"],
+				require : ["dojo.custom_sag", "mosaik.core.Sandbox", "mosaik.core.Module"],
+				airConfig : {
+					hasStorage : false,
+					terminal : false,
+					showTimestamp : false,
+					showSender : false
+				},
+				modulePaths : {
+					dojo : "/app/shared/dojo/dojo",
+					dijit : "/app/shared/dojo/dijit",
+					dojox : "/app/shared/dojo/dojox",
+					mosaik : "/app/shared/js-lib/mosaik",
+					dair : "/app/shared/dojo/dair",
+					module : "/app/modules",
+					templates : "/app/widgets",
+					appcore : "/app/shared/js-core"
+				},
+				addOnLoad : function() {
+					air.trace("Module Starting up");
+				}
+			};
+
+			// lets setup dojo
+			dojoConfig = djConfig = {
+                async: "sync",
+				isDebug : true,
+				afterOnLoad : true,
+				parseOnLoad : true,
+				//useXDomain: false,
+				//xdWaitSeconds: 1,
+				airConfig : {
+					hasStorage : false,
+					terminal : false,
+					xfile : false, // logs to a file. Use options for settings. Does not open Consol
+					xoptions : {
+						path : "applicationStorage", // location of log file. See dair.Log
+						folder : "sag-adm-ui-log", // folder within user resource. See dair.Log
+						name : "run[" + dstr("FullYear") + sp + dstr("Month") + sp + dstr("Date") + sp2 + dstr("Hours") + sp2 + dstr("Minutes") + sp2 + dstr("Seconds") + "]", // name of file
+						timeStamp : false, // whether to timeStamp the name of each file
+						append : true				// whether to append to one file
+						//		if timeStamp:true, creates new file
+						//		if timeStamp:false, overwrites files
+					},
+					showTimestamp : false,
+					showSender : false
+				},
+
+				locale : "de-de",
+				extraLocale : ["de-de", "en-us"],
+				baseUrl : "app:/shared/dojo/dojo",
+
+				modulePaths : {
+					dojo : "app:/shared/dojo/dojo",
+					dijit : "app:/shared/dojo/dijit",
+					dojox : "app:/shared/dojo/dojox",
+					mosaik : "app:/shared/js-lib/mosaik",
+					dair : "app:/shared/dojo/dair",
+					module : "app:/modules",
+					templates : "app:/widgets",
+					appcore : "app:/shared/js-core"
+				},
+				"require" : ["dojo.custom_sag_air", "mosaik.core.helpers", "mosaik.core.TitaniumApp", "dair.Aliases"],
+				"addOnLoad" : function() {
+					//console.log(dojo.object("window"));
+
+					console.log("addOnLoad called...");
+					start();
+				}
+			};
+
+		</script>
+		<script>
+			function start() {
+				console.log("Bootstrap start called!");
+				console.log(firstRun);
+
+				if(!firstRun)
+					return;
+				firstRun = false;
+				// bootstrap dojo,
+				// create an app
+				// and run the whole thing
+				// be careful here
+				console.debug("===> STAGE0: Loading Dojo");
+
+				//dojo.require("mosaik.core.helpers");
+				//dojo.require("dair.Log");
+				//dojo.require("dair.AIR");
+				//dojo.require("dair.Introspector");
+				//dojo.require("dair.Console");
+				//dojo.require("mosaik.core.TitaniumApp");
+
+				dojo.provide("Titanium.MSSandbox");
+				console.log("===> STAGE0: Application Level");
+				//dojo.require("dojo.parser");
+
+				//air.Introspector.toggleWindow();
+				var app;
+				var mosaikApp = app = new mosaik.core.TitaniumApp(appConfig);
+
+				var xmlString = air.NativeApplication.nativeApplication.applicationDescriptor;
+				air.trace(xmlString);
+				
+				var appXml = new DOMParser();
+				var root = appXml.parseFromString(xmlString, "text/xml");
+				
+				
+				var appVersion = root.getElementsByTagName("versionLabel")[0].firstChild.data;
+				var airVersion = air.NativeApplication.nativeApplication.runtimeVersion;
+				
+				moduleDjConfig.appVersion = appVersion;
+				moduleDjConfig.airVersion = airVersion;
+				
+				air.trace("version:", appVersion);
+				air.trace("airversion:", airVersion);
+
+				// main entry point do housekeeping here
+				// init the stuff
+				// and start a window in the same context
+				console.log("===> STAGE0: running App");
+
+				mosaikApp.run();
+			};
+		</script>
+		<script src="app:/shared/dojo/dojo/dojo.js" type="text/javascript"></script>
+		<!--<script src="app:/shared/dojo/dojo/custom_sag_air.js" type="text/javascript"></script>-->
+	</body>
+</html>

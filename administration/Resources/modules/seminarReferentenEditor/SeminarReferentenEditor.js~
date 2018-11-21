@@ -1,0 +1,30 @@
+dojo.provide("module.seminarReferentenEditor.SeminarReferentenEditor");
+dojo.require("mosaik.core.Module");
+dojo.require("dijit.form.Button");
+dojo.require("mosaik.ui.FlexSeminarReferentenEditor");
+
+dojo.declare("module.seminarReferentenEditor.SeminarReferentenEditor", [mosaik.core.Module], {
+	_options: null,
+	
+	constructor: function ( sandbox ) {
+		console.log ("setting sandbox");
+		this.sandbox = sandbox;
+	},
+	
+	run: function (options) {
+		this._options = options;
+		console.dir(options);
+
+		this.container = dijit.byId("borderContainer");
+		// workaround 
+
+		this.flexTableContainer = dijit.byId("flexTableContainer");
+		this.flexTable = dijit.byId("flexTable")
+		// flex table init
+		this.flexTable.queryService(options);
+	},
+
+	save: function() {
+		this.flexTable
+	}
+});

@@ -1,0 +1,69 @@
+@import url(forms.css);
+@import url(icons.css);
+@import url(container.css);
+
+body, h1, h2, h3, td, tr, table {
+	font-family: Verdana, Arial, Helvetica;
+	font-size: 10px;
+	-moz-user-select: -moz-none;
+	-webkit-user-select: none;
+}
+
+#logo {
+	float: left;
+	margin-right: 10px;
+	margin-top: 5px;
+	width: 146px;
+	height: 56px;
+}
+
+#buttonContainer {
+	float: left;
+	overflow: hidden;
+	position: absolute;
+	left: 151px;
+	right: 0px;
+
+}
+
+#navigationArea {
+	border: 0px solid black;
+	border-bottom: 1px solid gray;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: auto;
+	padding-top: 5px;
+	padding-left: 5px;
+
+	height: 70px;
+	position: absolute;
+	overflow: hidden;
+}
+
+#contentArea {
+	border: 1px solid black;
+	position: fixed;
+	top: 75px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: block;
+	width: auto;
+	height: auto;
+}
+
+#firstRow {
+	padding-bottom: 10px;
+	overflow: hidden;
+	height: 25px;
+}
+
+#secondRow {
+	overflow: hidden;
+	height: 25px;
+}
+
+
+
+

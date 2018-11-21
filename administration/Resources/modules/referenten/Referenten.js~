@@ -1,0 +1,102 @@
+dojo.provide("module.referenten.Referenten");
+dojo.require("mosaik.core.Module");
+dojo.require("dijit.form.Button");
+dojo.require("mosaik.ui.FlexTable");
+dojo.require("mosaik.util.Mailto");
+
+dojo.declare("module.referenten.Referenten", [mosaik.core.Module], {
+
+	constructor: function ( sandbox ) {
+		console.log ("setting sandbox");
+		this.sandbox = sandbox;
+	},
+	run: function () {
+		this.container = dijit.byId("borderContainer");
+			// flex table init
+		this.flexTable = dijit.byId("flexTable");
+		this.flexTableContainer = dijit.byId("flexTableContainer");
+		
+		this.showAllReferenten();
+		dojo.subscribe("flextable/editReferent", this, "ftEditReferent");
+		dojo.subscribe("flextable/mailReferent", this, "ftMailReferent");
+
+		dojo.connect(this.flexTable, "onReady", this, "flexTableReady");
+		
+		this.referentSucheButton = dijit.byId("referentSucheButton");
+		dojo.connect(this.referentSucheButton, "onClick", this, "_ftSearchReferent");
+
+
+		// FLEX TABLE BUTTONS VERLINKEN
+		var editBtn = dijit.byId("editTable");
+		var columnBtn = dijit.byId("editColumns");
+		var exportBtn = dijit.byId("editExport");
+		
+		dojo.connect(  editBtn, "onClick", this.flexTable, "toggleEdit"  );
+		dojo.connect(  columnBtn, "onClick", this.flexTable, "toggleColumnChooser"  );
+		dojo.connect(  exportBtn, "onClick", this, function() {
+			var csvData = this.flexTable.exportCsv();
+			sandbox.exportToFile("Referenten CSV Export", csvData);
+		} );
+	},
+	
+	_ftSearchReferent: function () {
+		var text = dijit.byId("referentSucheText").get("Value");
+		dijit.byId("referentShowAll").domNode.style.display = "block";
+		var service = sandbox.getServiceUrl("referenten") + "?q=" + text ;
+		
+		this.flexTable.queryService(service, {q: text});	
+	},
+	
+	
+	showAllReferenten: function () {
+		var service = sandbox.getServiceUrl("referenten");
+		dijit.byId("referentShowAll").domNode.style.display = "none";
+		this.flexTable.queryService(service, {});	
+	},
+	
+	mailToAll: function () {
+		var referentenService = sandbox.getRpcService("database/referent");
+		referentenService.getAllMail().addCallback(this, "_sendMailToAll");
+	},
+	
+	_sendMailToAll: function (data) {
+		console.dir(data);
+		var mail  = new mosaik.util.Mailto();
+		mail.addTo(sandbox.getAppVari("infomail"));
+		mail.setSubject("Infomail");
+		dojo.forEach( data, function ( item) {
+			mail.addBcc(item.email);
+		});
+		sandbox.navigateToUrl(mail.toString());
+	},
+	
+	
+	flexTableReady: function () {
+		
+		
+		this.flexTable.clearContextMenu();
+		this.flexTable.addContextMenuItem("Referent bearbeiten", "flextable/editReferent");
+		this.flexTable.addContextMenuItem("E-Mail an Referent senden", "flextable/mailReferent");
+		
+		this.container.layout();
+
+	},
+	
+	ftEditReferent: function () {
+		var id=this.flexTable.getCurrentId();
+
+		console.log("edit referent: " + id);
+		sandbox.loadShellModule("referentBearbeiten", {"referentId": id,
+			results: this.flexTable.getAllRows(['id']);
+		});
+	}, 
+	
+	ftMailReferent: function () {
+		var mail  = new mosaik.util.Mailto();
+		var email = this.flexTable.getCurrentRow().email;
+
+		mail.addTo( email );
+		sandbox.navigateToUrl( mail.toString());
+	}
+	
+});

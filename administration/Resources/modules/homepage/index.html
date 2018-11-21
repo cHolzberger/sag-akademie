@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Homepage</title>
+		<link rel="stylesheet" href="homepage.css" type="text/css" />
+	</head>
+	<body class="tundra"  moduleName="homepage" moduleClass="module.homepage.Homepage">
+		<!-- toolbar -->
+		<div id="toolbar" style="display: none;">
+			<div class="-left">
+				<button dojoType="dijit.form.Button" id="aktuellesBtn" onClick="currentModule.select('aktuelles');">
+					Aktuelles
+				</button>
+				<button dojoType="dijit.form.Button" id="referentenBtn" onClick="currentModule.select('referent');">
+					Referenten
+				</button>
+				<button dojoType="dijit.form.Button" id="kooperationspartnerBtn" onClick="currentModule.select('kooperationspartner');">
+					Kooperationspartner
+				</button>
+				<button dojoType="dijit.form.Button" id="stellenangeboteBtn" onClick="currentModule.select('stellenangebot');">
+					Stellenangebote
+				</button>
+				<button dojoType="dijit.form.Button" id="downloadBtn" onClick="currentModule.select('download');">
+					Downloads
+				</button>
+				<!-- cut von hier an CMS -->
+				<button dojoType="dijit.form.Button" id="allgemeineInfosBtn" onClick="currentModule.selectAllgemeineInfos();">
+					Allgemeine Infos
+				</button>
+				<button dojoType="dijit.form.Button" id="fruehbucherBtn" onClick="currentModule.selectFruehbucher();">
+					Fr&uuml;hbucher
+				</button>
+			</div>
+			<div class="-right">
+				<button dojoType="dijit.form.Button" class="kooperationspartner dyn" iconClass="dijitIconNewTask" onClick="sandbox.loadShellModule('kooperationspartnerBearbeiten', {create: true});">
+					Neuer Kooperationspartner
+				</button>
+				<button dojoType="dijit.form.Button" class="stellenangebot dyn" iconClass="dijitIconNewTask" onClick="sandbox.loadShellModule('stellenangebotBearbeiten', {create: true});">
+					Neues Stellenangebot
+				</button>
+				<button dojoType="dijit.form.Button" class="download dyn" iconClass="dijitIconNewTask" onClick="sandbox.loadShellModule('downloadBearbeiten', {create: true});">
+					Neuer Download
+				</button>
+				<button dojoType="dijit.form.Button" class="referent dyn" iconClass="dijitIconNewTask" onClick="sandbox.loadShellModule('referentBearbeiten', {create: true});">
+					Neuer Referent
+				</button>
+				<button dojoType="dijit.form.Button" class="aktuelles dyn" iconClass="dijitIconNewTask" onClick="sandbox.loadShellModule('aktuellesBearbeiten', {create: true});">
+					Neuer Eintrag
+				</button>
+				<button dojoType="dijit.form.Button" class="allgmeineInfos dyn" iconClass="dijitIconNewTask" onClick="dijit.byId('allgemeineInfosEditor').save();">
+					Speichern
+				</button>
+				<button dojoType="dijit.form.Button" class="fruehbucher dyn" iconClass="dijitIconNewTask" onClick="dijit.byId('fruehbucherEditor').save();">
+					Speichern
+				</button>
+			</div>
+		</div>
+		<div dojoType="dijit.layout.StackContainer" id="switchContainer">
+			<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="false" liveSplitters="false" persist="true">
+				<div dojoType="dijit.layout.StackContainer" id="stackContainer" region="center"  splitter="false" >
+					<div dojoType="dijit.layout.ContentPane" region="center" id="aktuellesPane" style="display: none;">
+						<span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('homepage',{});">Homepage</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Aktuelles</span></span>
+					</div>
+					<div dojoType="dijit.layout.ContentPane" region="center" id="referentPane" style="display: none;">
+						<span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('homepage',{});">Homepage</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Referenten</span></span>
+					</div>
+					<div dojoType="dijit.layout.ContentPane" region="center" id="kooperationspartnerPane" style="display: none;">
+						<div style="float:left;">
+							<span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('homepage',{});">Homepage</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Kooperationspartner</span></span>
+						</div>
+						<div class="box -mediumSmall" style="float: left; margin-right: 10px;">
+							<fieldset class="box -medium outer">
+								<legend>
+									Kategorien
+								</legend>
+								<div id="kooperationspartnerKategorien"></div>
+							</fieldset>
+						</div>
+					</div>
+					<div dojoType="dijit.layout.ContentPane" region="center" id="stellenangebotPane" style="display: none; height: 100%;">
+					<div style="float:left;"><span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('homepage',{});">Homepage</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Stellenangebote</span></span></div>
+					<div class="box -mediumSmall" style="float: left; margin-right: 10px;">
+					<fieldset class="box -medium outer">
+					<legend>Kategorien</legend>
+					<div id="stellenangebotKategorien">
+					</div>
+					</fieldset>
+					</div>
+					</div>
+					<div dojoType="dijit.layout.ContentPane" region="center" id="downloadPane" style="display: none; height: 100%">
+						
+						<div style="float:none;">
+							<span class="breadcrumb-container">
+							<span class="breadcrumb link" onClick="sandbox.loadShellModule('homepage',{});">Homepage</span>
+							 <span class="breadcrumb">&gt;</span></span> 
+							<span class="breadcrumb">Downloads</span>
+						</div>
+						<div class="box" style="float: left; margin-right: 10px; width: 99%;">
+							<fieldset class="box -medium outer" style="width: 100%;">
+								<legend>Downloads</legend>
+								<div id="downloadKategorien">
+								</div>
+							</fieldset>
+						</div>
+					</div>
+
+					</div>
+
+			</div>
+					
+					<!--<div dojoType="dijit.layout.ContentPane" region="center" gutters="false" splitter="true" >
+					<div id="flexTable" dojoType="mosaik.ui.FlexTable"></div>
+					</div>-->
+					</div>
+					<div dojoType="dijit.layout.ContentPane" region="center" id="allgemeineInfosPane" style="display: none;" doLayout="true">
+					<div dojoType="mosaik.ui.PageEditor" pageKey="allgemeineInfos"  id="allgemeineInfosEditor" ></div>
+					</div>
+					<div dojoType="dijit.layout.ContentPane" region="center" id="fruehbucherPane" style="display: none;">
+					<div dojoType="mosaik.ui.PageEditor" pageKey="fruehbucher" id="fruehbucherEditor"></div>
+					</div>
+					</div>
+					<!-- module boilerplate -->
+					<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+					<!-- end boilerplate -->
+					</body>
+					</html>

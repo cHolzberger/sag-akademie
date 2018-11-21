@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="SampleStyles.css">
+		<script src="AIRAliases.js" />
+		<script src="applicationupdater_ui.swf" type="application/x-shockwave-flash" />
+		<script>
+
+			var appUpdater;
+			
+			/**
+			 * Initialization routine. The setApplicationNameAndVersion() function displays 
+			 * the current application version in the UI. The rest of the code gets configuration
+			 * details for the updater object, sets up an error event handler, and initializes
+			 * the updater object. 
+			 * 
+			 * IMPORTANT: In your application, be sure to set the configuration settings in the 
+			 * update.xml file. 
+			 */
+			function init()
+			{			
+				setApplicationNameAndVersion();
+				
+				appUpdater = new air.ApplicationUpdaterUI();
+				appUpdater.configurationFile = new air.File("app:/config/update-config.xml");
+				appUpdater.addEventListener(air.ErrorEvent.ERROR, onError);
+				appUpdater.initialize();
+			}
+			/**
+			 * Click event handler for the Check for Update button. Checks for an update
+			 * version of the application posted on the update server. If there is 
+			 * and update version, the updater proceeds with the update, based on 
+			 * the settings in the update configuration file.
+			 */
+			function checkForUpdate()
+			{
+				appUpdater.checkNow();  
+			}
+			/**
+			 * Displays the current application version in the UI. 
+			 */
+			function setApplicationNameAndVersion() 
+			{
+				var xmlString = air.NativeApplication.nativeApplication.applicationDescriptor;
+				var appXml = new DOMParser();
+				var xmlObject = appXml.parseFromString(xmlString, "text/xml");
+				var root = xmlObject.getElementsByTagName('application')[0];
+
+				var lblAppVersion = document.getElementById("lblAppVersion");
+				var lblAppName = document.getElementById("lblAppName");
+
+				lblAppVersion.value = root.getElementsByTagName("version")[0].firstChild.data;
+				lblAppName.value = root.getElementsByTagName("name")[0].firstChild.data;
+			}
+			/**
+			 * Displays an error message when the updater dispatches an error event.
+			 */
+			function onError(event)
+			{
+            			alert(event.toString());
+			}
+		</script>
+	</head>
+	<body onload="init()">
+		<table cellpadding="0" cellspacing="0">
+			<tr>
+				<td><b>Application version:</b></td>
+				<td><textarea id="lblAppVersion"></textarea></td>
+			</tr>
+			<tr>
+				<td><b>Application name:</b></td>
+				<td><textarea id="lblAppName"></textarea></td>
+			</tr>
+		</table>
+		
+		<input type="button" value="Check for Update" onclick="checkForUpdate()" />
+	</body>
+</html>

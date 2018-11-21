@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>SAG Akademie GmbH - Login</title>
+		<link rel="stylesheet" href="todoBearbeiten.css" />
+	</head>
+	<body class="tundra" moduleClass="module.todoBearbeiten.TodoBearbeiten" moduleName="todoBearbeiten">
+		<!-- dialogs -->
+		<div dojoType="dijit.Dialog" id="chooserFrame"  title="Neue Aufgabe anlegen" style="display: none; ">
+			<div dojoType="dijit.layout.StackContainer" id="chooserStack" style="height: 150; width: 650px; ">
+				<div dojoType="dijit.layout.ContentPane" id="todoPane" style="width: 650px;">
+					<div style="width: 650px;">
+						<label class="formLabel">
+							<span>Betreff</span>
+							<input dojoType="dijit.form.TextBox" id="newTitel" class="neueAufgabeInput" style="height:16px;width:449px;" />
+						</label>
+						<label class="formLabel">
+							<span>Kategorie</span>
+							<input dojoType="dijit.form.Select" id="newKategorie" class="neueAufgabeInput" />
+						</label>
+						
+						<label class="formLabel">
+							<span>Rubrik</span>
+							<input dojoType="dijit.form.Select" id="newRubrik" class="neueAufgabeInput" />
+						</label>
+						
+						<label class="formLabel">
+							<span>Zugewiesen</span>
+							<input dojoType="dijit.form.Select" id="newUser" class="neueAufgabeInput" />
+						</label>
+					</div>
+				</div>
+			</div>
+			<!-- navbar -->
+			<div style="height: 20px; text-align: right; padding:5px;" class="gradient1">
+				<div dojoType="dijit.form.Button" style="display: none; float: left;" id="prevButton">&lt; Zur&uuml;ck</div>
+			
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="nextButton">Weiter &gt;</div>
+				<div dojoType="dijit.form.Button" style="display: none; float: right;" id="createButton">Aufgabe anlegen</div>
+			</div>
+		</div>
+
+		
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left">
+			<span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('aufgaben',{});">unerledigte Aufgaben</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Aufgabe bearbeiten</span></span>
+				<div id="dnav" dojoType="mosaik.ui.DatasetNavigator" ></div>
+			</div>
+			<div class="-right">
+				<button dojoType="dijit.form.Button" id="speichernBtn"  iconClass="dijitIconSave">Speichern</button>
+			</div>
+		</div>
+
+<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="false" liveSplitters="false" persist="true">
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="false" region="center">
+                <div class="contentPane" style="float: none; -webkit-box-flex: 2.5;">
+
+                    <fieldset class="box -expand outer msForm" >
+                        <legend>Betreff</legend>
+                        <label class="formLabel">
+                            <input type="text" id="Todo:betreff" dojoType="dijit.form.TextBox" style="width: 100%;"/>
+                        </label>
+                    </fieldset>
+
+                    <fieldset class="box -expand outer msForm">
+                        <legend>Notiz</legend>
+                        <label class="formLabel">
+                            <div type="text" id="Todo:notiz" dojoType="dijit.Editor" style="width: 100%; height: 300px;" >
+                            </div>
+                        </label>
+                    </fieldset>
+
+
+
+                </div>
+
+		<div class="contentPane" style="float: none; -webkit-box-flex: 0;" >
+
+			<fieldset class="box -small outer msForm">
+				<legend>Status</legend>
+				<label class="formLabel">
+					<span>Status</span>
+					<input type="text" id="Todo:status_id" dojoType="dijit.form.Select" />
+				</label>
+
+				<label class="formLabel">
+					<span>Kategorie</span>
+					<input type="text" id="Todo:kategorie_id" dojoType="dijit.form.Select" />
+				</label>
+
+				<label class="formLabel">
+					<span>Rubrik</span>
+					<input type="text" id="Todo:rubrik_id" dojoType="dijit.form.Select" />
+				</label>
+			</fieldset>
+
+			<fieldset class="box -small outer msForm">
+				<legend>Organisation</legend>
+				<label class="formLabel">
+					<span>Zugewiesen</span>
+					<input type="text" id="Todo:zugeordnet_id" dojoType="dijit.form.Select" />
+				</label>
+			</fieldset>
+
+
+			<!--<label class="formLabel">
+
+					<span>Erstellt von</span>
+					<input type="text" id="Todo:ErstelltUser:name" dojoType="dijit.form.TextBox" />
+				</label>
+
+				<label class="formLabel">
+					<span>Erstellt am</span>
+					<input type="text" id="Todo:erstellt" dojoType="dijit.form.TextBox" />
+				</label>
+
+				<label class="formLabel">
+					<span>Erledigt am</span>
+					<input type="text" id="Todo:erledigt" dojoType="dijit.form.TextBox" />
+				</label>
+
+				-->
+			
+		</div>
+
+
+			</div></div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

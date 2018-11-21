@@ -1,0 +1,188 @@
+/** require dependencies **/
+dojo.require("mosaik.ui.FlexTable");
+dojo.require("mosaik.core.Module");
+dojo.require("dijit.form.CheckBox")
+dojo.require("module.startseite.Termine");
+dojo.require("module.startseite.Statistiken");
+dojo.require("module.startseite.Todo");
+
+dojo.provide("module.startseite.Startseite");
+
+var d = dojo;
+var _$ = dojo.byId;
+
+dojo.declare("module.startseite.Startseite", [mosaik.core.Module], {
+	userInfo : null,
+	startseiteInfo : null,
+	mainLayout : null,
+	flexTable : null,
+	flexTableServiceURL : "",
+	startseiteService : null,
+	moduleName : "Startseite",
+	moduleVersion : "4",
+	models : null,
+	_ftOptions : null,
+	_ftInitDone : false,
+
+	boxes : {
+		"statistiken" : null
+	},
+
+	run : function(/* Object[] */options) {
+		// Summary:
+		// module execution starts here
+
+		// nodes holen
+		this.flexTable = dijit.byId("flexTable");
+		// container finden
+		// get componetns
+		this.container = dijit.byId('borderContainer');
+		this.flexTableContainer = dijit.byId('flexTableContainer');
+		this.flexTableServiceURL = this.sandbox.getServiceUrl("startseite/buchungen");
+
+		// info setzen und cache aktualisieren
+		this.setInfo();
+
+		// globale topics
+		dojo.subscribe("startseite/update", this, this.updateLayout);
+		dojo.connect(this.flexTable, "onReady", this, "initFlexTable");
+		// load user settings
+		//	sandbox.initUserVars();
+	},
+	setUserInfo : function() {
+		this.userInfo.dump();
+	},
+	updateLayout : function() {
+		// Summary:
+		// updates the container layout
+
+		this.container.layout();
+	},
+	setInfo : function() {
+		this.flexTableContainer.layout();
+		this.container.layout();
+	},
+	updateFlexTable : function() {
+		// Summary:
+		// sets flex table options
+		// and relayouts if necessary
+
+		console.log("====> UPDATE FLEX TABLE");
+		var _it = sandbox.getUserinfo();
+
+		this._ftOptions = {
+			version : "2",
+			lastLogin : _it.vorletzte_anmeldung
+		};
+
+		// find buttons that are options to the flex table
+		// and link their id and value to flex table parameter
+		dojo.query(".ftOption").forEach(dojo.hitch(this, function(node, index, arr) {
+			var _w = dijit.byNode(node);
+			this._ftOptions[_w.id] = _w.get("value");
+		}));
+
+		console.log("options:");
+		console.dir(this._ftOptions);
+
+		this.flexTable.queryService(this.flexTableServiceURL, this._ftOptions);
+		this.flexTableContainer.layout();
+	},
+	initFlexTable : function() {
+		// Summary:
+		// connects buttons and flex table events
+
+		if(this._ftInitDone)
+			return;
+
+		var editBtn = dijit.byId("editTable");
+		var columnBtn = dijit.byId("editColumns");
+		var exportBtn = dijit.byId("editExport");
+
+		dojo.connect(editBtn, "onClick", this.flexTable, "toggleEdit");
+		dojo.connect(columnBtn, "onClick", this.flexTable, "toggleColumnChooser");
+		dojo.connect(exportBtn, "onClick", this.flexTable, "exportToFile");
+
+		dojo.query(".ftOption").onclick(dojo.hitch(this, function(evt) {
+			this.updateFlexTable();
+			sandbox.setUserVar("test", "value");
+		}));
+
+		dojo.connect(this.flexTable, "onReady", this, "updateFlexTable");
+
+		this.flexTable.addContextMenuItem("Buchung bearbeiten", "flextable/editBuchung");
+		dojo.subscribe("flextable/editBuchung", this, this.editBuchung);
+
+		this.flexTable.addContextMenuItem("Zum Termin", "flextable/editTermin");
+		dojo.subscribe("flextable/editTermin", this, this.editTermin);
+
+		this.flexTable.addContextMenuItem("Zur Person", "flextable/editPerson");
+		dojo.subscribe("flextable/editPerson", this, this.editPerson);
+
+		this.flexTable.addContextMenuItem("Zur Firma", "flextable/editFirma");
+		dojo.subscribe("flextable/editFirma", this, this.editFirma);
+
+		this.updateFlexTable();
+		this._ftInitDone = true;
+	},
+	editBuchung : function(data) {
+		console.log("Edit Buchung: " + data.id);
+		sandbox.loadShellModule("buchungBearbeiten", {
+			buchungId : data.id,
+			results : this.flexTable.getAllRows()
+		});
+	},
+	editTermin : function(data) {
+		console.log("Edit Termin: " + data.seminar_id);
+		sandbox.loadShellModule("terminBearbeiten", {
+			terminId : data.seminar_id
+		});
+	},
+	editPerson : function(data) {
+		console.log("Edit Person: " + data.person_id);
+		sandbox.loadShellModule("personBearbeiten", {
+			personId : data.person_id
+		});
+	},
+	editFirma : function(data) {
+		console.log("Edit Firma: " + data.kontakt_id);
+		sandbox.loadShellModule("kontaktBearbeiten", {
+			kontaktId : data.kontakt_id
+		});
+	},
+	ftOpenTermin : function() {
+		var row = this.flexTable.getCurrentRow();
+		var id = row.seminar_id;
+
+		sandbox.loadShellModule("terminBearbeiten", {
+			terminId : id
+		});
+	},
+	ftOpenBuchung : function() {
+		var row = this.flexTable.getCurrentRow();
+		var id = row.id;
+
+		console.dir(row=
+		
+		sandbox.loadShellModule("buchungBearbeiten", {
+			buchungId : id,
+			results : this.flexTable.getAllRows()
+		});
+	},
+	ftOpenPerson : function() {
+		var row = this.flexTable.getCurrentRow();
+		var id = row.person_id;
+
+		sandbox.loadShellModule("personBearbeiten", {
+			personId : id
+		});
+	},
+	ftOpenFirma : function() {
+		var row = this.flexTable.getCurrentRow();
+		var id = row.kontakt_id;
+
+		sandbox.loadShellModule("kontaktBearbeiten", {
+			kontaktId : id
+		});
+	},
+});

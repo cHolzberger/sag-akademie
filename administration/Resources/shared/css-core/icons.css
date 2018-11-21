@@ -1,0 +1,14 @@
+.editIcon16
+.icon16 {
+	width: 16px;
+	height: 16px;
+	cursor: pointer;
+}
+
+.editIcon16 {
+	background: url ( app:/shared/icons/edit16.png );
+}
+
+.deleteIcon16 {
+	background: url ( app:/shared/icons/delete16.png );
+}

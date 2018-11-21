@@ -1,0 +1,62 @@
+@import url(/app/shared/css-core/iframe-main.css);
+@import url(/app/shared/css-lib/all.css);
+
+#topPane {
+	display: -webkit-box;
+	overflow-y: auto !important;
+	overflow-x: auto !important;
+	-webkit-box-pack: start;
+	 -webkit-box-orient: horizontal;
+  	min-height: 10px;
+  	padding-top: 15px;
+}
+
+
+#borderContainer {
+	padding-top: 28px;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+.singleChar:active,
+.singleCharActive,
+.singleChar:hover,
+.singleChar {
+   cursor: pointer;
+   padding: 2px 4px 2px;
+   margin: 2px;
+   float: left;
+   display: block;
+   font-weight: bold;
+   text-decoration: underline;
+   width: 10px;
+}
+
+.singleChar:hover {
+   color: blue;
+   margin: 1px;
+   border: 1px solid gray;
+   background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+   border-radius: 3px;
+   -webkit-border-radius: 3px;
+}
+
+.singleCharActive,
+.singleChar:active {
+   color: blue;
+   margin: 1px;
+   margin-left: 2px;
+   
+   border: 1px solid black;
+   background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+   border-radius:           3px;
+   -webkit-border-radius:           3px;
+   -webkit-box-shadow: 0 0 5px rgba(0,0,0, .7);  
+   box-shadow: 0 0 5px rgba(0,0,0, .7);  
+   
+}
+
+
+

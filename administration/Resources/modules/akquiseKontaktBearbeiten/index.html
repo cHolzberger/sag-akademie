@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>Akquise-Kontakt bearbeiten</title>
+		<link rel="stylesheet" href="akquiseKontaktBearbeiten.css" />
+	</head>
+	<body class="tundra">
+		<div dojoType="dijit.Dialog" id="chooserFrame"  title="Firma ausw&auml;hlen" style="display: none;">
+			<!--stack-->
+			<div dojoType="dijit.layout.StackContainer" id="chooserStack" style="width: 450px; height: 80%; ">
+				<div dojoType="dijit.layout.ContentPane" id="kontaktDetailPane">
+					<span>
+						Geben Sie hier die grundlegenden Daten zur Firma ein.<br/>Detail-Daten k&ouml;nnen Sie eingeben sobald die Firma angelegt iist.
+					</span>
+					<br/>
+					<div style="width: 250px;">
+						<label class="formLabel">
+							<span>Firma</span>
+							<input dojoType="dijit.form.TextBox" id="newKontaktName" />
+						</label>
+					</div>
+				</div>
+			</div>
+				<!-- navbar -->
+			<div style="height: 20px; text-align: right; padding:5px; " class="gradient1">
+					<div dojoType="dijit.form.Button" style="display: none; float: left;" id="prevButton">&lt; Zur&uuml;ck</div>
+
+					<div dojoType="dijit.form.Button" style="display: none; float: right;" id="nextButton">Weiter &gt;</div>
+					<div dojoType="dijit.form.Button" style="display: none;" id="createButton">Firma anlegen</div>
+				</div>
+
+		</div>
+
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left">
+			<span class="breadcrumb-container"><span class="breadcrumb link" onClick="sandbox.loadShellModule('kontakt',{});">Kontakte</span> <span class="breadcrumb">&gt;</span> <span class="breadcrumb">Akquise-Kontakt bearbeiten</span></span>
+				<div id="dnav" dojoType="mosaik.ui.DatasetNavigator" ></div>
+			</div>
+			<div class="-right">
+				<button dojoType="dijit.form.Button" id="speichernBtn">Speichern</button>
+			</div>
+		</div>
+		<!-- main border container -->
+
+		<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="true" liveSplitters="false" persist="true">
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="false" region="center" style="overflow: auto;">
+
+				<div class="box -medium" style="float: left; margin-right: 10px; ">
+					<fieldset class="box -medium outer">
+						<legend>Angaben zum Unternehmen</legend>
+						<label class="formLabel">
+							<span>Firma</span>
+							<input type="text" id="AkquiseKontakt:firma" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel">
+							<span>Zusatz</span>
+							<input type="text" id="AkquiseKontakt:zusatz" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel">
+							<span>Niederlassung</span>
+							<input type="text" id="AkquiseKontakt:hauptverwaltung" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel">
+							<span>Kontaktkategorie</span>
+							<input type="text" id="AkquiseKontakt:kontaktkategorie" dojoType="dijit.form.Select" />
+						</label>
+						<label class="formLabel">
+							<span>Branche</span>
+							<input type="text" id="AkquiseKontakt:branche_id" dojoType="dijit.form.Select" />
+						</label>
+						<label class="formLabel">
+							<span>T&auml;tigkeitsbereich</span>
+							<input type="text" id="AkquiseKontakt:taetigkeitsbereich_id" dojoType="dijit.form.Select" />
+						</label>
+					</fieldset>
+
+					<fieldset class="box -medium outer">
+						<legend>Mitgliedschaften</legend>
+						<label class="formLabel">
+							<span>VDRK Mitglied</span>
+							<input type="text" id="AkquiseKontakt:vdrk_mitglied" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel">
+							<span>VDRK Mitglied Nr</span>
+							<input type="text" id="AkquiseKontakt:vdrk_mitglied_nr" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel">
+							<span>DWA Mitglied</span>
+							<input type="text" id="AkquiseKontakt:dwa_mitglied" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel">
+							<span>DWA Mitglied Nr</span>
+							<input type="text" id="AkquiseKontakt:dwa_mitglied_nr" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel">
+							<span>RSV Mitglied</span>
+							<input type="text" id="AkquiseKontakt:rsv_mitglied" dojoType="dijit.form.CheckBox" />
+						</label>
+						<label class="formLabel">
+							<span>RSV Mitglied Nr</span>
+							<input type="text" id="AkquiseKontakt:rsv_mitglied_nr" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+
+					<fieldset class="box -medium outer">
+						<legend>sonstige Informationen</legend>
+						<label class="formLabel">
+							<span>Alias</span>
+							<input type="text" id="AkquiseKontakt:alias" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel">
+							<span>Kunden-Nr.</span>
+							<input type="text" id="AkquiseKontakt:kundennr" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel">
+							<span>Kundenstatus</span>
+							<input type="text" id="AkquiseKontakt:kundenstatus" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel">
+							<span>Kontaktquelle</span>
+							<input type="text" id="AkquiseKontakt:kontaktQuelle" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel">
+							<span>Kontaktquellestand</span>
+							<input type="text" id="AkquiseKontakt:kontaktQuelleStand" dojoType="dijit.form.DateTextBox" />
+						</label>
+						<label class="formLabel">
+							<span>Wiedervorlage</span>
+							<input type="text" id="AkquiseKontakt:wiedervorlage" dojoType="dijit.form.CheckBox" />
+						</label>
+					</fieldset>
+				</div>
+
+				<div class="box -medium" style="float: left;">
+					<fieldset class="box -medium outer">
+						<legend>Adressinformationen</legend>
+
+						<label class="formLabel">
+							<span>Straße, Nr.</span>
+							<input type="text" id="AkquiseKontakt:strasse" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>PLZ</span>
+							<input type="text" id="AkquiseKontakt:plz" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Ort</span>
+							<input type="text" id="AkquiseKontakt:ort" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Bundesland</span>
+							<input type="text" id="AkquiseKontakt:bundesland_id" dojoType="dijit.form.Select" />
+						</label>
+
+						<label class="formLabel">
+							<span>Kreis</span>
+							<input type="text" id="AkquiseKontakt:kreis" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Regierungsbezirk</span>
+							<input type="text" id="AkquiseKontakt:regierungsbezirk" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+
+					<fieldset class="box -medium outer">
+						<legend>Kontaktinformationen</legend>
+
+						<label class="formLabel">
+							<span>Telefon</span>
+							<input type="text" id="AkquiseKontakt:tel" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Fax</span>
+							<input type="text" id="AkquiseKontakt:fax" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>URL</span>
+							<input type="text" id="AkquiseKontakt:url" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>E-Mail (Mailing)</span>
+							<input type="text" id="AkquiseKontakt:email" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>E-Mail 2</span>
+							<input type="text" id="AkquiseKontakt:email2" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Newsletter</span>
+							<input type="text" id="AkquiseKontakt:newsletter" dojoType="dijit.form.CheckBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Anmeldedatum</span>
+							<input type="text" id="AkquiseKontakt:newsletter_anmeldedatum" dojoType="dijit.form.DateTextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Abmeldedatum</span>
+							<input type="text" id="AkquiseKontakt:newsletter_abmeldedatum" dojoType="dijit.form.DateTextBox" />
+						</label>
+					</fieldset>
+
+					<fieldset class="box -medium outer">
+						<legend>Notizen</legend>
+						<label class="formLabel">
+							<span>Notiz</span><br/>
+							<input type="text" id="AkquiseKontakt:notiz" dojoType="dijit.form.SimpleTextarea"  style="width: 95%; height: 100px;" />
+						</label>
+					</fieldset>
+				</div>
+
+				<div class="box -medium" style="float: left; margin-right: 10px;">
+					<fieldset class="box -medium outer">
+						<legend>Angaben zum Ansprechpartner</legend>
+
+						<label class="formLabel">
+							<span>Anrede</span>
+							<input type="text" id="AkquiseKontakt:anrede" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Titel</span>
+							<input type="text" id="AkquiseKontakt:titel" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Vorname</span>
+							<input type="text" id="AkquiseKontakt:vorname" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Name</span>
+							<input type="text" id="AkquiseKontakt:name" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Abteilung</span>
+							<input type="text" id="AkquiseKontakt:abteilung" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Telefon Durchwahl</span>
+							<input type="text" id="AkquiseKontakt:tel_durchwahl" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Mobil</span>
+							<input type="text" id="AkquiseKontakt:mobil" dojoType="dijit.form.TextBox" />
+						</label>
+						<label class="formLabel">
+							<span>E-Mail</span>
+							<input type="text" id="AkquiseKontakt:ansprechpartner_email" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+
+					<fieldset class="box -medium outer">
+						<legend>Adress-Qualifizierung</legend>
+
+						<label class="formLabel">
+							<span>Qualifiziert</span>
+							<input type="text" id="AkquiseKontakt:qualifiziert" dojoType="dijit.form.CheckBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Qualifiziert Datum</span>
+							<input type="text" id="AkquiseKontakt:qualifiziert_datum" dojoType="dijit.form.DateTextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Qualifiziert Notiz</span><br/>
+							<input type="text" id="AkquiseKontakt:qualifiziert_notiz" dojoType="dijit.form.SimpleTextarea"  style="width: 95%; height: 100px;"  />
+						</label>
+					</fieldset>
+
+					<fieldset class="box -medium outer">
+						<legend>Weitere Informationen</legend>
+
+						<label class="formLabel">
+							<span>Geändert von</span>
+							<input type="text" id="AkquiseKontakt:GeaendertVon:name" dojoType="dijit.form.TextBox" />
+						</label>
+
+						<label class="formLabel">
+							<span>Geändert</span>
+							<input type="text" id="AkquiseKontakt:geaendert" dojoType="dijit.form.TextBox" />
+						</label>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

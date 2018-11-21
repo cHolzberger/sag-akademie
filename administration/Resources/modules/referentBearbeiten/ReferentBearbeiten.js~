@@ -1,0 +1,225 @@
+/* 
+ * Use without written License forbidden
+ * Copyright 2010 by MOSAIK Software - Christian Holzberger <ch@mosaik-software.de>
+ */
+
+
+/** require dependencies **/
+dojo.require("dojo.number");
+
+dojo.require("mosaik.core.Module");
+dojo.require("mosaik.db.DataDriven");
+
+dojo.require('dijit.form.Select');
+dojo.require('dijit.form.DropDownButton');
+dojo.require('dijit.form.TextBox');
+dojo.require('dijit.form.Button');
+dojo.require('dijit.form.Form');
+dojo.require('dijit.form.Textarea');
+dojo.require('dijit.form.DateTextBox');
+dojo.require('dijit.form.CurrencyTextBox');
+dojo.require("dojox.widget.Standby");
+dojo.require("dijit.form.CheckBox");
+
+dojo.require('dijit.Editor');
+dojo.require("dijit._editor.plugins.AlwaysShowToolbar");
+
+dojo.require('mosaik.ui.FlexTable');
+dojo.require('mosaik.ui.FileUpload');
+dojo.require("mosaik.util.Mailto");
+
+dojo.require('mosaik.ui.DatasetNavigator');
+dojo.require('mosaik.fieldset.WeitereInformationen');
+dojo.require("mosaik.ui.FlexSeminarReferentenEditor");
+dojo.require("mosaik.ui.FlexTerminReferentenEditor");
+
+dojo.provide("module.referentBearbeiten.ReferentBearbeiten");
+
+var d=dojo;
+var _$=dojo.byId;
+
+dojo.declare("module.referentBearbeiten.ReferentBearbeiten", [mosaik.core.Module], {
+	moduleName: "ReferentBearbeiten",
+	moduleVersion: "1",
+	service: null,
+
+	_options: null,
+	formPrefix: "Referent",
+	_currentPerson: null,
+	container: null, // container node -> border container
+
+	constructor: function () {
+
+	},
+	
+	run: function( options ) {
+		console.debug("ReferentBearbeiten::run >>>");
+		this._options = options;
+		this.service = sandbox.getRpcService('database/referent');
+		this.container = dijit.byId('borderContainer');
+		this.flexTable = dijit.byId("flexTable");
+	
+		this.initForm();
+		
+		if ( typeof(options.create) !== "undefined") {
+			this.onCreate();
+		} else {
+			this.fetchData();
+		}
+		
+		console.debug ("<<< ReferentBearbeiten::run");
+		dojo.connect(this.flexTable, "onReady", this, function () {
+			this.flexTable.clearContextMenu();
+			this.flexTable.addContextMenuItem("Referenten für den Termin bearbeiten", "flextable/editTerminReferenten");
+			this.flexTable.addContextMenuItem("Referenten für das Seminar bearbeiten", "flextable/editSeminarReferenten");	
+		});
+		this.widgets.dnav.update( options, "referentId", "referentBearbeiten");
+		
+	},
+	
+	initForm: function () {
+		var saveBtn = dijit.byId("speichernBtn");
+		dojo.connect ( saveBtn, "onClick", this, "onSave");
+		
+		// set values
+		dijit.byId("Referent:anrede_id").set("options", sandbox.getSelectArray("XAnrede"));
+		dijit.byId("Referent:status").set("options", sandbox.getSelectArray("XStatus"));
+		
+		dojo.connect(this, "onValuesSet", this, "valuesSet");
+		
+		this.createButton = dijit.byId("createButton");
+		this.nextButton = dijit.byId("nextButton");
+		this.prevButton = dijit.byId("prevButton");
+		
+		dojo.connect( dojo.byId("sendMail"), "onclick", this, function () {sandbox.navigateToUrl ( "mailto:" + this._currentData.email )});
+		
+		dojo.subscribe("flextable/editTerminReferenten", this, "ftEditTerminReferenten" );
+		dojo.subscribe("flextable/editSeminarReferenten", this, "ftEditSeminarReferenten" );
+		
+	},
+	
+	valuesSet: function () {
+		// relayout the container
+		this.container.layout();
+		
+		// flex table aktualisiern
+		this.flexTable.resetParameters();
+		var serviceURL = this.sandbox.getServiceUrl ( "seminar/termine" ) ;
+		this.flexTable.queryService(serviceURL , {referentId: this._currentData.id});
+		
+		var _u = this.widgets["Referent:image"];
+		_u.set("fileId", this._currentData.id);
+		_u.set("uploadTitle", "Referenten-Foto aktualisieren");
+		_u.set("uploadType", "Foto");
+		_u.set("uploadFilter", "*.jpg;*.jpeg;*.png;");
+		
+		dijit.byId("weitereInformationen").setInformation( this._currentData);
+		sandbox.hideLoadingScreen();
+		this.flexTable.show();
+	},
+
+	fetchData: function () {
+		this.service.find(this._options.referentId).addCallback ( dojo.hitch ( this,  "setValue") )
+		.addErrback (dojo.hitch ( this, function (data) {
+			console.log ("==!!> KontaktBearbeiten::run Error: "+data);
+		}));
+	},
+
+	onSave: function () {
+		console.log("Save");
+		this.service.save( this._currentData.id, this._changedData ).addCallback( dojo.hitch ( this, "setValue"))
+		.addErrback(function (data) {
+			console.log ("Seminar-Save Error: " + data);
+		});
+	},
+	
+	rtEdit: function ( node ) {
+		var htmlNode = dojo.byId(node);
+		var rteNode = dijit.byId("rte");
+		var dialog = dijit.byId("editorDialog");
+
+		dialog.show();
+
+		rteNode.set("value", htmlNode.innerHTML);
+		if ( this._rteEvtHandle) {
+			dojo.disconnect( this._rteEvtHandle );
+		}
+
+		this._rteEvtHandle = dojo.connect(dialog, "onHide", htmlNode, function ( ) {
+				var context = {
+					module: currentModule,
+					element: this
+				};
+			var vchandler = dojo.hitch ( context, currentModule._valueUpdate);
+			this.innerHTML = rteNode.get("value");
+			vchandler(this.innerHTML);
+			
+		});
+		
+	},
+	
+	onCreate: function() {
+		(this._nextButtonHandle != null) ? dojo.disconnect(this._nextButtonHandle) : true;
+		(this._prevButtonHandle != null) ? dojo.disconnect(this._prevButtonHandle) : true;
+		(this._createButtonHandle != null) ? dojo.disconnect(this._createButtonHandle) : true;
+
+		this.chooserFrame = dijit.byId("chooserFrame");
+		this.chooserStack = dijit.byId("chooserStack");
+
+		this.chooserFrame.show();
+		this.chooserFrame.closeButtonNode.style.display="none";
+		this.flexTable.hide();
+
+
+		//this.nextButton = dijit.byId("nextButton");
+		//this.prevButton = dijit.byId("prevButton");
+		
+		this.createButton.style.display = "block";
+
+		this._createButtonHandle = dojo.connect( this.createButton, "onClick", this, "createDone");
+
+		this.createKontaktDetail();
+	},
+
+	createKontaktDetail: function () {
+		this.chooserFrame.set("title","Referent anlegen");
+		this.chooserStack.selectChild( dijit.byId("referentDetailPane"));
+
+		this.nextButton.domNode.style.display="none";
+		this.prevButton.domNode.style.display="none";
+		this.createButton.domNode.style.display="block";
+	},
+
+	createDone: function () {
+		sandbox.showLoadingScreen("Daten speichern...");
+
+		var referentName = dijit.byId("newReferentName").get("value");
+		var referentVorname = dijit.byId("newReferentVorname").get("value");
+		var referentFirma = dijit.byId("newReferentFirma").get("value");
+
+		this.service.create( referentName, referentVorname, referentFirma ).addCallback ( dojo.hitch ( this, "setValue"))
+		.addErrback (dojo.hitch ( this, function (data) {
+			this.chooserFrame.show();
+			console.log ("==!!> KontaktBearbeiten::run Error: "+data);
+		}));
+		this.chooserFrame.hide();
+	},
+	
+	downloadTermine: function ( year ) {
+		var token = sandbox.getUserinfo().auth_token;
+		var url =this.sandbox.getAppVar("serverurl") + "/admin/csv/seminarreferent;csv?referent_id="+ this._currentData.id +"&year=" + year + "&token=" + token;
+		sandbox.navigateToUrl(url);
+	},
+	_seminarEditor: null,
+	ftEditSeminarReferenten: function (data) {
+		console.log("ftEditSeminarReferenten: " + data.id);
+		sandbox.loadShellModule("seminarReferentenEditor", {seminarId: data.seminar_art_id, standortId: data.standort_id});	
+	}, 
+	_terminEditor: null,
+	ftEditTerminReferenten: function (data) {
+		console.log("ftEditTerminReferenten: " + data.id);
+		sandbox.loadShellModule("terminReferentenEditor", {terminId: data.id, standortId: data.standort_id});
+	}
+
+
+});

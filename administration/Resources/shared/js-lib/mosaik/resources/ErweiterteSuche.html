@@ -1,0 +1,36 @@
+<div style="display: none;">
+	<fieldset class="box -expand outer msForm" >
+		<legend>erweiterete Suche</legend>
+		<div style="float: left;">
+			<select dojoAttachPoint="tableSelectNode" dojoType="dijit.form.Select"  style="float: left;">
+				<option value="ViewPerson">Personen</option>
+				<option value="ViewKontakt">Kunden</option>
+				<option value="ViewAkquise">Akquise-Kontakte</option>
+				<option value="ViewAkquiseKontaktR">Kunden & Akquise-Kontakte</option>
+				<option value="ViewSeminarPreis">Termine</option>
+				<option value="ViewBuchungPreis">Buchungen</option>
+			</select>
+		
+			<select dojoAttachPoint="fieldSelectNode" dojoType="dijit.form.Select" style="float: left; width: 150px;">
+			</select>
+			<select dojoAttachPoint="operatorSelectNode" dojoType="dijit.form.Select" style="float: left; width: 75px;">
+				<option value="LIKE">Enthält</option>
+				<option value="=">=</option>
+				<option value="!=">!=</option>
+				<option value="<="><=</option>
+				<option value=">=">>=</option>
+			</select>
+			<input type="text" dojoAttachPoint="valueSelectNode" dojoType="dijit.form.TextBox" style="width: 400px;" placeHolder="Zeichenkette..."/>
+			<button dojoType="dijit.form.Button" dojoAttachPoint="andBtn" dojoAttachEvent="onClick: addAndRule">Und</button><button dojoType="dijit.form.Button" dojoAttachPoint="orBtn" dojoAttachEvent="onClick: addOrRule">Oder</button>
+		</div>
+	
+	</fieldset>
+	<fieldset class="box -expand outer msForm" >
+		<legend>Regeln</legend>
+		<div dojoAttachPoint="rulesNode"></div>
+	</fieldset>
+	<fieldset class="box -expand outer msForm">
+			<button dojoType="dijit.form.Button" id="searchBtn" dojoAttachEvent="onClick: search">Jetzt suchen</button>
+			<button dojoType="dijit.form.Button" id="resetBtn" dojoAttachEvent="onClick: reset">zur&uuml;cksetzen</button>
+	</fieldset>
+</div>

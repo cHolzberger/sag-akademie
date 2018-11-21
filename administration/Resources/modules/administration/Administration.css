@@ -1,0 +1,23 @@
+/* 
+    Document   : homepage
+    Created on : Apr 28, 2011, 4:38:02 PM
+    Author     : cholzberger
+    Description:
+        Purpose of the stylesheet follows.
+*/
+@import url(/app/shared/css-core/iframe-main.css);
+@import url(/app/shared/css-lib/all.css);
+
+#borderContainer {
+	width: 100%;
+	height: 100%;
+	padding-top: 28px;
+}
+
+#stackContainer .dijitContentPane {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	height: 20px;
+}
+

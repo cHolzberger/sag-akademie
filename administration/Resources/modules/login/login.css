@@ -1,0 +1,88 @@
+@import url(/app/shared/css-core/iframe-main.css);
+@import url(/app/shared/css-lib/all.css);
+
+#logo {
+	float: left;
+	clear: none;
+	display: block;
+}
+
+#versionString {
+	display: block;
+	position: absolute;
+	right: 15px;
+	top: 0px;
+	color: #8e8e8e;
+}
+
+label {
+	width: 300px !important;
+}
+
+.dijitTextBox {
+	width: 170px;
+}
+
+#headline {
+		position: absolute;
+		right: 15px;
+		top: 0px;
+	float: left;
+	clear: none;
+	display: block;
+	font-size: 26px;
+}
+
+#separator {
+	position: absolute;
+	color: red;
+	background: -webkit-gradient(linear, left top, right bottom, from(#ccc), to(#000));
+	display: block;
+	height: 5px;
+	left: 0;
+	right: 0;
+	top: 61px;
+}
+
+#logoContainer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 60px;
+	padding-left: 10px;
+
+}
+
+#stackContainer,
+#logonRunning,
+#logonOk,
+#loginContainer {
+	background: #efefef;
+	position: absolute;
+	top: 65px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+#logonOk {
+	text-align: center;
+}
+
+#logonRunning {
+	text-align: center;
+}
+
+
+#loginNowContainer {
+	
+}
+
+input,
+select {
+	margin-bottom: 5px;
+}
+

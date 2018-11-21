@@ -1,0 +1,27 @@
+@import url(/app/shared/css-core/iframe-main.css);
+@import url(/app/shared/css-lib/all.css);
+#centerPane,
+#topPane {
+	display: -webkit-box;
+	overflow-y: auto !important;
+	overflow-x: auto !important;
+	-webkit-box-pack: start;
+	 -webkit-box-orient: horizontal;
+  	min-height: 10px;
+  	padding-top: 15px;
+}
+
+
+#borderContainer {
+	padding-top: 28px;
+	width: 100%;
+	height: 100%;
+}
+
+#contentContainer {
+	padding-right: 10px;
+	overflow: hidden;
+}
+
+
+

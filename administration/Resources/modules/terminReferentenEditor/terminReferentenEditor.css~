@@ -1,0 +1,8 @@
+@import url(/app/shared/css-core/iframe-main.css);
+@import url(/app/shared/css-lib/all.css);
+
+#borderContainer {
+	width: 100%;
+	height: 100%;
+}
+

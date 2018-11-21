@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+		<link rel="stylesheet" href="startseite.css" />
+		<title>Startseite</title>
+	</head>
+	<body class="tundra" moduleName="startseite" moduleClass="module.startseite.Startseite">
+	<div id="toolbar">
+			<div class="-left">
+			<span class="breadcrumb-container"><span class="breadcrumb">Startseite</span></span>
+							</div>
+		</div>
+		<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="true" liveSplitters="false" persist="true">
+			<div id="topPane" dojoType="dijit.layout.ContentPane" splitter="true" region="top">
+				<div class="contentPane -left">
+					<fieldset class="box -medium outer" id="nextTermine">
+						<legend>nächste Termine</legend>
+
+						<div dojoType="module.startseite.Termine" standort="Darmstadt">
+						</div>
+
+						<div dojoType="module.startseite.Termine" standort="Lünen">
+						</div>
+
+					</fieldset>
+					<fieldset class="box -medium outer" id="statistiken">
+						<legend>Statistiken</legend>
+						<div dojoType="module.startseite.Statistiken" headline="dieser Monat" infoKey="currentMonth"></div>
+						<div dojoType="module.startseite.Statistiken" headline="letzter Monat" infoKey="lastMonth"></div>
+						<div dojoType="module.startseite.Statistiken" headline="dieses Jahr" infoKey="currentYear"></div>
+						<div dojoType="module.startseite.Statistiken" headline="letztes Jahr" infoKey="lastYear"></div>
+					</fieldset>
+				</div>
+				<div class="contentPane -expand">
+					<div dojoType="module.startseite.Todo"></div>
+				</div>
+			</div>
+			<div dojoType="dijit.layout.BorderContainer" gutters="false" splitter="false" region="center" minSize="50" id="flexTableContainer" persist="true">
+				<div dojoType="dijit.layout.ContentPane" region="top" class="flexTableToolbar">
+					<div class="-left">
+						<label style="float: left;">
+							<span>Buchungen:</span>
+						</label>
+
+						<label style="float: left;">
+							<input value="1" class="ftOption" id="siebenTageRueckblick" dojoType="dijit.form.CheckBox" type="checkbox" checked="checked"/>
+							<span>7-Tage Rückblick</span>
+						</label>
+						<label style="float: left;">
+							<input value="1" class="ftOption" id="neueBuchungen" dojoType="dijit.form.CheckBox" />
+							<span>Buchungen seit der letzten Anmeldung</span>
+						</label>
+						<label style="float: left;">
+							<input value="1" class="ftOption" id="buchungenDarmstadt" dojoType="dijit.form.CheckBox" />
+							<span>Darmstadt</span>
+						</label>
+						<label style="float: left;">
+							<input value="1" class="ftOption" id="buchungenLuenen" dojoType="dijit.form.CheckBox" />
+							<span>Lünen</span>
+						</label>
+					</div>
+					<div class="-right">
+						<button dojoType="dijit.form.Button" id="editTable" >Tabelle bearbeiten</button>
+						<button dojoType="dijit.form.Button" id="editColumns">Spalten</button>
+						<button dojoType="dijit.form.Button" id="editExport">Export (.csv)</button>
+					</div>
+				</div>
+				<div dojoType="dijit.layout.ContentPane" region="center">
+					<div id="flexTable" dojoType="mosaik.ui.FlexTable"></div>
+				</div>
+			</div>
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

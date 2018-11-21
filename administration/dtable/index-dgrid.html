@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+        
+    <meta charset="utf-8">
+        <title>Tutorial: Hello dgrid!</title>
+        <!-- this configuration assumes that the dgrid package is located
+         on the filesystem as a sibling to the dojo package -->
+    <link rel="stylesheet" href="lib/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="lib/dgrid/css/skins/tundra.css">
+
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+
+            font-size: 75%;
+        }
+
+        #grid .dojoDndHorizontal .dojoDndItem {
+            /* fix display*/
+            display: table-cell !important; /* override any spurious dojoDndItem settings elsewhere */
+
+        }
+
+        #grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .dgrid-cell {
+            width: 75px;
+            min-width: 75px;
+        }
+
+        .dgrid-row-odd {
+            background-color: #efefef;
+        }
+
+        .dgrid-row-even {
+            background-color: white;
+        }
+
+    </style>
+        
+    <script src="lib/dojo/dojo.js" data-dojo-config="async: true"></script>
+        
+    <script>
+
+
+        function doAlert() {
+            alert("MeepMeep");
+        }
+
+        window.doAlert = doAlert;
+
+        var url = "http://sag-akademie.localhost/admin/json/buchung/DI-SK;json?version=2&buchungenDarmstadt=1&token=28df385b4dbee98030daeb64b327811e";
+
+        require(["dojo/request", "dojo/_base/declare", "dojo/store/Memory", "cellformat", "dgrid/Grid", "dgrid/Keyboard", "dgrid/Selection", "dgrid/OnDemandGrid", "dgrid/extensions/ColumnResizer", "dgrid/extensions/ColumnReorder", "dgrid/editor", "dojox/widget/Standby","dojo/domReady!"],
+
+                function (request, declare, Memory, formatters, Grid, Keyboard, Selection, StoreMixin, ColumnResizer, ColumnReorder, Editor,Standby) {
+
+                    var standby = new Standby({target: "grid"});
+                    document.body.appendChild(standby.domNode);
+                    standby.startup();
+                    standby.show();
+
+
+                    var DTable = declare([ Grid, Keyboard, Selection, StoreMixin , ColumnResizer, ColumnReorder]);
+                    var store = new Memory({data:[
+                        {content:"dummy"}
+                    ]});
+                    var grid = new DTable({ columns: [{field: "dummy", label: "dummy"}],
+                        selectionMode:"single", // for Selection; only select a single row at a time
+                        cellNavigation:false, // for Keyboard; allow only row-level keyboard navigation
+                        store:store
+                    }, "grid");
+
+                    grid.on("dgrid-select", function (event) {
+                        // Report the item from the selected row to the console.
+
+                        console.log("Row selected: ", event.rows[0].data);
+                    });
+
+
+                    //		grid.renderArray(data);
+                    function loadData(url) {
+                        standby.show();
+
+                        request.get(url, {
+                                handleAs:"json"
+                            }).then(function (response) {
+                                        console.dir(response);
+                                        var columnHeaders = [];
+                                        var columns = response.headers;
+                                        dojo.forEach(columns, function (item) {
+                                            if (!item.hide) {
+                                                if (item.format != "default") {
+                                                    switch (item.format) {
+                                                        case "date":
+                                                            item.formatter = formatters.mysqlDateToLocal;
+                                                            break;
+                                                        case "datetime":
+                                                            item.formatter = formatters.mysqlDatetimeToLocal;
+                                                            break;
+                                                        case "bool":
+                                                            item.formatter = formatters.boolToLocal;
+                                                            break;
+                                                        case "combo":
+                                                            item.formatter = function (value) {
+                                                                return formatters.comboToLocal(item.values, value);
+
+                                                            }
+                                                            break;
+                                                        case "status":
+                                                            item.renderCell = formatters.statusRenderCell;
+                                                            break;
+
+                                                    }
+                                                }
+
+                                                if (!item.editable) {
+                                                    columnHeaders.push(item);
+                                                } else {
+                                                    //fixme: setup different editors here
+                                                    columnHeaders.push(Editor(item, "text", "click"));
+                                                }
+                                            }
+                                        });
+
+                                        grid.set("columns", columnHeaders);
+                                        store = new Memory({data: response.data});
+                                        grid.set("store", store);
+                                        standby.hide();
+                                    }, function (error) {
+                                    });
+
+                    }
+                    loadData(url);
+                });
+
+
+    </script>
+</head>
+<body class="tundra">
+    
+<div id="grid"></div>
+</body>
+</html>

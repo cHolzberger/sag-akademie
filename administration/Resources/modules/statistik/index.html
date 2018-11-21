@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+		<title>SAG Akademie GmbH - Statistik</title>
+		<link rel="stylesheet" href="statistik.css" type="text/css" />
+	</head>
+	<body class="tundra" >
+		<!-- toolbar -->
+		<div id="toolbar">
+			<div class="-left">
+			<span class="breadcrumb-container"><span class="breadcrumb">Statistiken</span></span>
+				<button dojoType="dijit.form.Button" id="buchungenBtn" onClick="currentModule.selectBuchungenStats();">Buchungen</button>
+				<button dojoType="dijit.form.Button" id="webBtn" onClick="currentModule.selectWebStats();">Web-Zugriffe</button>
+				<button dojoType="dijit.form.Button" id="sagBtn" onClick="currentModule.selectSagStats();">SAG-Statistiken</button>
+				<button dojoType="dijit.form.Button" id="angelegtBtn" onClick="currentModule.selectAngelegtStats();">Angelegt-Statistiken</button>
+			</div>
+			<div class="-right">
+				<select dojoType="dijit.form.Select" id="yearSelect" style="display: none;">
+					
+				</select>
+			</div>
+		</div>
+
+		<!-- awstats url: http://sag-akademie.localhost/resources/stats/awstats.www.sag-akademie.de.xml -->
+		<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="true" liveSplitters="false" persist="true">	
+			<div dojoType="dijit.layout.StackContainer" id="stackContainer" region="center">
+
+				<div dojoType="dijit.layout.ContentPane" region="center" id="buchungenStatsPane" style="display: none;">
+					<!-- Buchungen Stats -->
+					<div style="padding-left: 5px; padding-top: 5px;">
+					Übersicht der <strong>Buchungen die im jeweiligen Monat</strong> vorgenommen wurden. Wenn Sie die <strong>Buchugen  f&uuml;r Seminare im jeweiligen Monat</strong> einsehen wollen öffnen Sie die Seite 
+					<a href="#" onclick="currentModule.selectSagStats();">SAG-Statistiken</a>
+					</div>
+					<div dojoType="module.statistik.BuchungenIndex" id="buchungenIndex"></div>
+				</div>
+				
+				<div dojoType="dijit.layout.ContentPane" region="center" id="sagStatsPane" style="display: none; overflow: auto;">
+
+					<!-- SAG Stats -->
+					<div style="width: 300px; float: left; padding-left: 5px;">
+						<div dojoType="module.statistik.Buchungen" id="buchungenStats"></div>
+						<div class="legend" style="padding-top: 20px; font-size: 10px; padding-left: 5px;">
+							<p>
+								<b >Tabelle: Buchungen</b>
+							</p>
+							<p style="padding-top: 10px;">
+								<b>Monat:</b><br/> Buchungen für Seminare dieses Monats.
+							</p>
+							<p>
+								<b>n. teig.:</b><br/>Anzahl der Buchungen der Teilnehmer, die nicht storniert und nicht am Seminar teilgenommen haben.
+							</p>
+							<p>
+								<b>teilg.:</b><br/> Anzahl der Buchungen der Teilnehmer, die am Seminar teilgenommen haben.</p>
+							<p>
+								<b>umgeb.:</b><br/> Anzahl der Umbuchungen.</p>
+
+							<p><b>abgesagt:</b><br/> Anzahl der Buchungen für Seminare, die durch die SAG-Akademie abgesagt wurden.</p>
+							<p><b>storn.:</b><br/>  Anzahl der stornierten Buchungen.</p>
+							<p><b>gesamt:</b><br/> Gesamtanzahl der Buchungen dieses Monats unabhängig vom Buchungsstatus.</p>
+
+							<p style="padding-top: 20px;">
+								<b>Tabelle: Anzahl Seminare pro Bereich</b>
+							</p>
+							<p style="padding-top: 10px;">Anzahl der Seminare eines Montas pro Fachbereich. (ohne durch die SAG-Akademie abgesagte Seminare)</p>
+
+							<p style="padding-top: 20px;">
+								<b>Tabelle: Anzahl Seminarebelegung pro Bereich</b>
+							</p>
+							<p style="padding-top: 10px;">Anzahl der Buchungen eines Montas pro Fachbereich. (ohne stornierte, umgebuchte Buchungen und Buchungen für durch die SAG-Akademie abgesagte Seminare)</p>
+
+						</div>
+					</div>
+					<div style="position: absolute; float: left; left: 390px; right: 0;">
+						<div dojoType="module.statistik.SeminareProBereich" id="seminareProBereichStats"></div>
+						<div dojoType="module.statistik.BelegungProBereich" id="belegungProBereichStats"></div>
+					</div>
+				</div>
+
+				<div dojoType="dijit.layout.ContentPane" region="center" id="webStatsPane" style="overflow: hidden; display: none;">
+					<!-- WebStats -->
+					<iframe src="https://sag-akademie.de/plesk-stat/webstat/" width="100%" height="100%" frameborder="0"></iframe>
+				</div>
+				
+				<div dojoType="dijit.layout.ContentPane" region="center" id="angelegtStatsPane" style="overflow: hidden; display: none;">
+					<!-- WebStats -->
+					<div style="padding-left: 15px; padding-top: 15px;">
+					<b>Akquise</b> <span id="year1"></span>
+					<table class="sag_stats" border="1">
+						<thead>
+							<tr>
+							<td nowrap class='statHeader'>Benutzer / Monat</td>
+							<td nowrap class='statHeader'>Januar</td>
+							<td nowrap class='statHeader'>Februar</td>
+							<td nowrap class='statHeader'>März</td>
+							<td nowrap class='statHeader'>April</td>
+							<td nowrap class='statHeader'>Mai</td>
+							<td nowrap class='statHeader'>Juni</td>
+							<td nowrap class='statHeader'>Juli</td>
+							<td nowrap class='statHeader'>August</td>
+							<td nowrap class='statHeader'>September</td>
+							<td nowrap class='statHeader'>Oktober</td>
+							<td nowrap class='statHeader'>November</td>
+							<td nowrap class='statHeader'>Dezember</td>
+							</tr>
+							</thead>
+							<tbody id="akquiseTbody">
+							</tbody>
+						</table>
+						<br/><br/>
+						<b>Kunden</b> <span id="year2"></span>
+						<table class="sag_stats" border="1">
+						<thead>
+						<tr>
+						<td nowrap class='statHeader'>Benutzer / Monat</td>
+						<td nowrap class='statHeader'>Januar</td>
+						<td nowrap class='statHeader'>Februar</td>
+						<td nowrap class='statHeader'>März</td>
+						<td nowrap class='statHeader'>April</td>
+						<td nowrap class='statHeader'>Mai</td>
+						<td nowrap class='statHeader'>Juni</td>
+						<td nowrap class='statHeader'>Juli</td>
+						<td nowrap class='statHeader'>August</td>
+						<td nowrap class='statHeader'>September</td>
+						<td nowrap class='statHeader'>Oktober</td>
+						<td nowrap class='statHeader'>November</td>
+						<td nowrap class='statHeader'>Dezember</td>
+						</tr>
+						</thead>
+						<tbody id="kundeTbody">
+						</tbody>
+						</table>
+				</div>
+			</div>
+			</div>
+		</div>
+		<!-- module boilerplate -->
+		<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript"></script>
+		<!-- end boilerplate -->
+	</body>
+</html>

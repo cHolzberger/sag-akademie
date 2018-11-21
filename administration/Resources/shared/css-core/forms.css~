@@ -1,0 +1,281 @@
+.msForm *,
+.msForm {
+	margin:0;
+	border:0;
+	padding:0;
+	line-height:normal;
+	font: inherit;
+	color: inherit;
+}
+
+
+.clear {
+	clear: both;
+	background: transparent;
+}
+
+.nofloat {
+	float: none !important;
+}
+
+/**************
+	LABELS UND FORMS
+*******************/
+.formLabel {
+	color: #4e4e4e;
+	position: relative;
+	display: block;
+	float: none;
+	clear: both;
+	width: auto;
+	margin-bottom: 7px;
+}
+
+.x-formLabel + span {
+	width: 60px;
+	display: block;
+}
+
+
+.formLabel > .dijit,
+.formLabel > .formData,
+.formLabel > input[type=text] {
+	float: right !important;
+}
+
+.formLabel > input[type=text] {
+	border: 1px solid #8e8e8e;
+	padding-left: 3px;
+	padding-right: 3px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	position: relative;
+	display: block;
+	margin: 0;
+	width: 100%;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+/** FIELDSET spezifisch **/
+
+.outer,
+.inner {
+
+}
+
+.outer {
+	background: #f4f2ee;
+	border: 1px solid #afb3b2;
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	position: relative;
+	margin-top: 1.9em;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	/** insets **/
+	padding: 3px;
+
+}
+
+/** direkte kind elemente
+brauchen abstand und duerfen nicht ueber den rand hinauslaufen**/
+.inner > *,
+.outer > * {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	max-width: 100%;
+	min-width: 1px;
+	margin-top: 2px;
+}
+
+.outer header,
+.outer footer {
+	width: 100%;
+	display: block;
+	text-align: right;
+}
+
+.outer header {
+	text-align: left;
+}
+
+.inner {
+	background: transparent;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	float: left;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+}
+
+.inner.-normal-margin {
+	margin-right: 5px;
+}
+
+.inner.-normal-padding {
+	padding: 5px;
+}
+
+.inner legend {
+
+}
+
+.outer > legend {
+	background-color: #f4f2ee;
+	border: 1px solid #afb3b2;
+	border-radius: 3px;
+	top: -0.5em;
+	left: -1px;
+	margin-top: -1em;
+	position: absolute;
+	border-bottom: 0px;
+	border-top: 3px solid #e99231;
+	padding: 0 5px;
+}
+
+.outer .expand {
+	width: 100%;
+}
+
+label {
+	margin: 2px;
+	padding: 2px;
+}
+
+/** special labels **/
+.hoverButton:hover,
+.hoverButton:active,
+.hoverButton:focus,
+.hoverButton {
+	float: none;
+	display: block;
+	margin: 2px;
+	width: 90%;
+	cursor: pointer;
+}
+
+.hoverButton:hover {
+	color: blue;
+	margin: 1px;
+	border: 1px solid gray;
+	background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+	text-shadow:             1px 1px 0 white; 
+	cursor: pointer;
+}
+.hoverButton:active {
+	position: relative;
+	top: 1px;
+	cursor: pointer;
+}
+
+.hoverButton:active,
+.hoverButton:focus {
+	color:                 #1a1a1a;
+	background:           -webkit-gradient(linear, 0% 0%, 0% 170%, from(#dedede), to(white));
+	text-shadow:           1px -1px 0 rgba(255, 255, 255, 0.5); 
+	cursor: pointer;
+}
+
+/*** HOVER BUTTON */
+
+.hoverBtn {
+	opacity: 90;
+	text-decoration: none;
+	color: LightSlateGray;
+}
+
+.hoverBtn:active,
+.hoverBtn:hover,
+.hoverBtn {
+	opacity: 100;
+	cursor: pointer;
+	padding: 2px 4px 2px;
+	margin: 3px;
+   	list-style-type: none;
+	
+}
+.hoverBtnActive,
+.hoverBtn:hover {
+	opacity: 100;
+	color: DarkSlateGray  ;
+	margin: 1px;
+	border: 1px solid gray;
+	background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.hoverBtn:active {
+	opacity: 100;
+	color: DarkSlateGray  ;
+	margin: 1px;
+	margin-left: 2px;
+
+	border: 1px solid black;
+	background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+	border-radius:           3px;
+	-webkit-border-radius:           3px;
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0, .7);
+	box-shadow: 0 0 5px rgba(0,0,0, .7);
+}
+
+/** seminar button */
+.seminarBtn:active,
+.seminarBtnActive,
+.seminarBtn:hover,
+.seminarBtn {
+	cursor: pointer;
+	padding: 2px 4px 2px;
+	margin: 3px;
+	display: block;
+	font-weight: bold;
+	text-decoration: underline;
+	list-style-type: none;
+}
+
+.seminarBtn:hover {
+	color: blue;
+	margin: 1px;
+	border: 1px solid gray;
+	background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+	border-radius: 3px;
+	-webkit-border-radius: 3px;
+}
+
+.seminarBtnActive,
+.seminarBtn:active {
+	color: blue;
+	margin: 1px;
+	margin-left: 2px;
+	
+	border: 1px solid black;
+	background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+	border-radius:           3px;
+	-webkit-border-radius:           3px;
+	-webkit-box-shadow: 0 0 5px rgba(0,0,0, .7);
+	box-shadow: 0 0 5px rgba(0,0,0, .7);
+}
+
+/** different form styles **/
+.dateInput {
+	width: 65px;
+}
+
+/** tables in forms **/
+.formTable {
+	border-collapse: collapse;
+}
+
+.formTable thead td {
+	border: 1px solid gray;
+	font-weight: bold;
+	background-color: #efefef;
+}
+
+.formTable td {
+	padding-left: 4px;
+	padding-right: 4px;
+}

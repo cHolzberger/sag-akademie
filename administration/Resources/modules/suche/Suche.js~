@@ -1,0 +1,210 @@
+/************************
+ * require dependencies *
+ ************************/
+dojo.require("mosaik.ui.FlexTable");
+dojo.provide("module.suche.Suche");
+dojo.require("mosaik.core.Module");
+dojo.require("module.kontakt.Umkreissuche");
+dojo.require("module.suche.ErweiterteSuche");
+dojo.require("dijit.form.Button");
+
+dojo.declare("module.suche.Suche", [mosaik.core.Module], {
+	constructor: function ( sandbox ) {
+		console.log ("setting sandbox");
+		this.sandbox = sandbox;
+	},
+	
+	run: function () {
+		this.layout = dijit.byId("borderContainer");
+			// flex table init
+		this.flexTable = dijit.byId("flexTable");
+		
+		
+		this.umkreissuche = dijit.byId("umkreissuche");
+		dojo.connect ( this.umkreissuche, "onSearchButtonClick", this, "onUmkreissuche");
+		this.showUmkreissuche();
+
+		dojo.connect(this.flexTable,"onReady", this, this.initFlexTable);
+	},
+	
+	onUmkreissuche: function( ) {
+		this.searchTargetLabel = dojo.byId ("searchTarget");
+
+		this.searchTargetLabel.innerHTML = "Umkreissuche:";
+		var options = this.umkreissuche.options;
+		
+		var serviceURL = this.sandbox.getServiceUrl ( "kontakt/umkreissuche" );
+		this.flexTable.queryService(serviceURL, options);
+		this.flexTable.clearContextMenu();
+	},
+
+	showUmkreissuche: function () {
+		dojo.style(this.widgets.erweiterteSuche.domNode, "display", "none");
+		dojo.style(this.widgets.umkreissuche.domNode, "display", "block");
+		this.widgets.borderContainer.layout();
+	},
+	
+	showErweiterteSuche: function () {
+		dojo.style(this.widgets.erweiterteSuche.domNode, "display", "block");
+		dojo.style(this.widgets.umkreissuche.domNode, "display", "none");
+		this.widgets.borderContainer.layout();
+	},
+
+	setContextMenu: function (table) {
+		currentModule.flexTable.clearContextMenu();
+		
+		switch ( table ) {
+			case "ViewSeminarPreis":
+				this.flexTable.addContextMenuItem("Termin bearbeiten", "flextable/editTermin");
+				break;
+			case "ViewBuchungPreis":
+				this.flexTable.addContextMenuItem("Buchung bearbeiten", "flextable/editBuchung");
+				this.flexTable.addContextMenuItem("Zum Termin", "flextable/editBuchungTermin");
+				this.flexTable.addContextMenuItem("Zur Person", "flextable/editBuchungPerson");
+				this.flexTable.addContextMenuItem("Zur Firma", "flextable/editBuchungFirma");
+				break;
+			case "ViewKontakt":
+			case "Kontakt":
+				this.flexTable.addContextMenuItem("Zur Firma", "flextable/editKontakt");
+				break;
+			case "ViewAkquise":
+			case "AkquiseKontakt":
+				this.flexTable.addContextMenuItem("Zum Akquise-Kontakt", "flextable/editAkquiseKontakt");
+				break;
+			case "ViewPerson":
+			case "Person":
+				this.flexTable.addContextMenuItem("Zur Person", "flextable/editPerson");
+				break;
+			case "ViewAkquiseKontaktR":
+			case "AkquiseKontaktOrKontakt":
+				this.flexTable.addContextMenuItem("Zum Kontakt / Akquise-Kontakt", "flextable/editKontaktOrAkquise");
+				break;
+			default:
+				currentModule.flexTable.clearContextMenu();
+		}
+	},
+
+	initFlexTable: function ( ) {
+		// Summary:
+		// connects buttons and flex table events
+		console.log("onReady");
+		
+		if ( this._ftInitDone ) return;
+			 
+			 this._ftInitDone = true;
+		
+		console.log("onReady2");
+		
+		var editBtn = dijit.byId("editTable");
+		var columnBtn = dijit.byId("editColumns");
+		var exportBtn = dijit.byId("editExport");
+		
+		dojo.connect(  editBtn, "onClick", this, "ftEdit"  );
+		dojo.connect(  columnBtn, "onClick", this, "ftColumnChooser"  );
+		dojo.connect(  exportBtn, "onClick", this, "ftExport"  );
+
+		this.subscribeTo("flextable/editKontakt", "ftEditKontakt");
+		this.subscribeTo("flextable/editAkquiseKontakt",  "ftEditAkquiseKontakt");
+		this.subscribeTo("flextable/editPerson", "ftEditPerson");
+		this.subscribeTo("flextable/editKontaktOrAkquise", "ftEditKontaktOrAkquise");
+		this.subscribeTo("flextable/editTermin", "ftEditTermin");
+		this.subscribeTo("flextable/editBuchung", "ftEditBuchung");
+		this.subscribeTo("flextable/editBuchungPerson", "ftEditBuchungPerson");
+		this.subscribeTo("flextable/editBuchungTermin", "ftEditBuchungTermin");
+		this.subscribeTo("flextable/editBuchungFirma", "ftEditBuchungFirma");
+	},
+
+	ftEdit: function () {
+		this.flexTable.toggleEdit();
+	},
+	
+	ftColumnChooser: function () {
+		this.flexTable.toggleColumnChooser();
+	},
+	
+	ftExport: function () {
+		sandbox.exportToFile("Suche CSV Export", this.flexTable.exportCsv());
+	},
+
+	ftEditKontaktOrAkquise: function (data) {
+		//var id=this.flexTable.getCurrentId();
+		console.log("fn Called ==============================")
+		console.dir(data);
+		
+		var prefix = data.id.substr(0,2);
+		var id = data.id.substr(2,data.id.length -1);
+		
+		console.log("Found prefix: " + prefix + " " +id);
+		
+		if ( prefix == "ak") {
+			sandbox.loadShellModule("akquiseKontaktBearbeiten", {akquiseKontaktId: id,
+									results: this.flexTable.getAllRows()
+			});
+			
+		} else {
+			sandbox.loadShellModule("kontaktBearbeiten", {kontaktId: id,
+									results: this.flexTable.getAllRows()
+			});
+		}
+	},
+	
+	ftEditKontakt: function () {
+		var id=this.flexTable.getCurrentId();
+		
+		sandbox.loadShellModule("kontaktBearbeiten", {kontaktId: id,
+								results: this.flexTable.getAllRows()
+		});
+	},
+	
+	ftEditAkquiseKontakt: function () {
+		var id=this.flexTable.getCurrentId();
+		
+		sandbox.loadShellModule("akquiseKontaktBearbeiten", {akquiseKontaktId: id,
+								results: this.flexTable.getAllRows()
+		});
+	},
+	
+	ftEditPerson: function () {
+		var id=this.flexTable.getCurrentId();
+		
+		sandbox.loadShellModule("personBearbeiten", {personId: id,
+								results: this.flexTable.getAllRows()
+		});
+	},
+	ftEditTermin: function (data) {
+		console.log("Edti Termin: " + data.id);
+		sandbox.loadShellModule("terminBearbeiten", {
+			terminId: data.id,
+			results: this.flexTable.getAllRows()
+		});
+	},
+
+	ftEditBuchung: function (data) {
+		console.log("Edit Buchung: " + data.id);
+		sandbox.loadShellModule("buchungBearbeiten", {
+			buchungId: data.id,
+			results: this.flexTable.getAllRows()
+		});
+	},
+	
+	ftEditBuchungTermin: function (data) {
+		console.log("Edit Termin: " + data.seminar_id);
+		sandbox.loadShellModule("terminBearbeiten", {
+			terminId: data.seminar_id
+		});
+	},
+	
+	ftEditBuchungPerson: function (data) {
+		console.log("Edit Person: " + data.person_id);
+		sandbox.loadShellModule("personBearbeiten", {
+			personId: data.person_id
+		});
+	},
+	
+	ftEditBuchungFirma: function (data) {
+		console.log("Edit Firma: " + data.kontakt_id);
+		sandbox.loadShellModule("kontaktBearbeiten", {
+			kontaktId: data.kontakt_id
+		});
+	}
+});

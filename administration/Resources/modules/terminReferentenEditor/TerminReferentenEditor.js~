@@ -1,0 +1,21 @@
+dojo.provide("module.terminReferentenEditor.TerminReferentenEditor");
+dojo.require("mosaik.core.Module");
+dojo.require("mosaik.ui.FlexTerminReferentenEditor");
+
+dojo.declare("module.terminReferentenEditor.TerminReferentenEditor", [mosaik.core.Module], {
+	_options: null,
+	constructor: function ( sandbox ) {
+		console.log ("setting sandbox");
+		this.sandbox = sandbox;
+	},
+	run: function (options) {
+		this._options = options;
+		console.dir(options);
+		this.container = dijit.byId("borderContainer");
+		this.flexTableContainer = dijit.byId("flexTableContainer");
+		// workaround 
+		this.flexTable = dijit.byId("flexTable")
+		// flex table init
+		this.flexTable.queryService(options);
+	}
+});

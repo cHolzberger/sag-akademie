@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" href="startseite.css"/>
+    <title>Startseite</title>
+</head>
+<body class="tundra" moduleName="startseite" moduleClass="module.startseite.Startseite">
+<div id="borderContainer" dojoType="dijit.layout.BorderContainer" gutters="false" liveSplitters="false" persist="true">
+
+
+    <div id="toolbar">
+        <div class="-left">
+            <span class="breadcrumb-container"><span class="breadcrumb">Startseite</span></span>
+        </div>
+    </div>
+    <div id="topPane" dojoType="dijit.layout.ContentPane" splitter="false" region="center">
+        <div class="contentPane" style="float: none; -webkit-box-flex: 0;">
+            <fieldset class="box -medium outer" id="nextTermine">
+                <legend>nächste Termine</legend>
+
+                <div dojoType="module.startseite.Termine" standort="Darmstadt">
+                </div>
+
+                <div dojoType="module.startseite.Termine" standort="Lünen">
+                </div>
+
+            </fieldset>
+            <fieldset class="box -medium outer" id="statistiken">
+                <legend>Statistiken</legend>
+                <div dojoType="module.startseite.Statistiken" headline="dieser Monat" infoKey="currentMonth"></div>
+                <div dojoType="module.startseite.Statistiken" headline="letzter Monat" infoKey="lastMonth"></div>
+                <div dojoType="module.startseite.Statistiken" headline="dieses Jahr" infoKey="currentYear"></div>
+                <div dojoType="module.startseite.Statistiken" headline="letztes Jahr" infoKey="lastYear"></div>
+            </fieldset>
+            <div style="clear: both;">&nbsp;</div>
+
+        </div>
+        <div class="contentPane" style="min-width: 200px; width: auto; -webkit-box-flex: 2.5;">
+            <div dojoType="module.startseite.Todo"></div>
+        </div>
+        <div style="clear: both;">&nbsp;</div>
+
+    </div>
+</div>
+<!-- module boilerplate -->
+<script src="/app/shared/js-core/windowBootstrap.js" type="text/javascript" async="true"></script>
+<!-- end boilerplate -->
+</body>
+</html>

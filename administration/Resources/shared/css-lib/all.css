@@ -1,0 +1,14 @@
+@import url(../dojo/dijit/themes/tundra/tundra.css);
+@import url(widgets/FlexTable.css);
+@import url(widgets/ContentPane.css);
+@import url(widgets/DatasetNavigator.css);
+
+.dijitCheckBox,
+.dijitCheckBox * {
+	cursor: pointer !important;
+}
+
+.waiting,
+.waiting * {
+	cursor: progress !important;
+}
