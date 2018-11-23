@@ -3,12 +3,10 @@
 position:relative;
 width:198mm;
 font-size:8pt; 
-padding-top:5mm; 
 padding-left:0mm;
-padding-bottom:10mm;
 }
 .screen .important {
-	width:585px;
+	width:850px;
 }
 .screen .content .important {
 	padding-bottom: 15px;
@@ -20,6 +18,11 @@ padding:8px;border-style:solid;border-width:1px;border-color:darkgray;border-top
 .screen .important .title {
 	padding:4px;padding-left:8px;background:url('/img/newheadlinebg.jpg');border-style:solid;border-width:1px;border-color:darkgray;
 }
+
+.pdf .important p {
+	margin-block-start: 0.7em;
+    margin-block-end: .7em;
+}
 </style>
 	<table border="0" cellspacing="0" cellpadding="0" class="important">				
 				<tr>
@@ -30,9 +33,10 @@ padding:8px;border-style:solid;border-width:1px;border-color:darkgray;border-top
 						</td>
 					</tr>
 					<tr>
-						<td colspan="3" class="hinweis-content">Sehr geehrte Kunden, Kollegen und Besucher,
+						<td colspan="3" class="hinweis-content">
 					<p>
 Sehr verehrte Kundinnen und Kunden, liebe Seminarteilnehmerinnen und Seminarteilnehmer!
+</p><p>
 Als Bildungsträger verwenden wir im Rahmen von Weiterbildungen eine unglaubliche Menge an Papier und belasten somit die <strong>Umwelt!</strong>  - 
 Das wollen wir nun ändern und gehen ab 01.01.2019 einen neuen, zukunftsweisenden Weg!
 </p>
