@@ -2,6 +2,7 @@ version: "3"
 
 services:
   proxy:
+    container_name: sag_${RELEASE_BRANCH}_proxy
     image: mitmproxy/mitmproxy
     command: "mitmweb --mode reverse:http://web:80 --set web_debug=true --set web_iface='' --set keep_host_header=true"
     ports: 
