@@ -3,24 +3,21 @@ version: "3"
 services: 
   web:
     volumes: 
-      - img:/static/img
-      - webroot:/var/www
+      - ${PROJECT_HOME}/_state/img:/static/img
+      - ${PROJECT_HOME}/sag-akademie.de:/var/www
+      - ${PROJECT_HOME}/_state/img:/var/www/img
+      - ${PROJECT_HOME}/_state/pdf:/var/www/pdf
+      - resources_pdf:/var/www/resources/pdf
+      - logs:/var/log/apache2
+      - logs:/var/www/resources/log
   mysqldb:
     volumes: 
       - mysql:/var/lib/mysql
-volumes:
-    img: 
-      driver: local
-      driver_opts: 
-        type: nfs
-        o: addr=192.168.254.10,rw,nolock,hard,nointr,nfsvers=3
-        device: ":/mnt/op/home/MSDOM/cholzberger/Projekte/SAG-Akademie-GmbH/sag-new/_state/img"
 
-    webroot: 
-      driver: local
-      driver_opts: 
-        type: nfs
-        o: addr=192.168.254.10,rw,nolock,hard,nointr,nfsvers=3
-        device: ":/mnt/op/home/MSDOM/cholzberger/Projekte/SAG-Akademie-GmbH/sag-new/sag-akademie.de"
+volumes:
     mysql: 
+      driver: local
+    resources_pdf:
+      driver: local
+    logs: 
       driver: local

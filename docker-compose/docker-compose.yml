@@ -52,6 +52,7 @@ services:
         - memcache
   sftp:
     image: mosaiksoftware/debian-rssh
+    container_name: sag_${RELEASE_BRANCH}_sftp
     ports:
       - "4001:4001"
     environment:
