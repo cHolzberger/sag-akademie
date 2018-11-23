@@ -1,87 +1,7 @@
 <?
-if ( function_exists("xdebug_enable") && function_exists("xdebug_call_class") ) {
-	xdebug_start_error_collection();
-}
-
-function log_trace() {
-	if ( function_exists("xdebug_enable") && function_exists("xdebug_call_class") ) {
-		
-		
-		ob_start();
-		xdebug_print_function_stack();
-		qlog(ob_get_contents());
-		ob_end_clean();
-	}
-}
-
-function errorHandler($errno, $errstr, $errfile, $errline)
-{   $err = "";
-	if ( function_exists("xdebug_call_class")) {	
-		$err = "\nSource: ".xdebug_call_class()."::".xdebug_call_function() ." in $errfile:$errline";
-	}
-            
-	global $serverCtrl;
-	$err = $err . "\n$errstr";
-	
-    switch ($errno) {
-    case E_USER_ERROR:
-		$serverCtrl->fault($err);
-		qlog($err);
-		log_trace();
-        exit(1);
-        break;
-
-    case E_USER_WARNING:
-			//$serverCtrl->fault("WARNING:" . $err);
-			qlog("WARNING: ". $err);
-        break;
-
-    case E_USER_NOTICE:
-        	//$serverCtrl->fault("NOTICE:" . $err);
-			qlog("NOTICE: ". $err);
-        break;
-
-    default:
-		if ( isset($serverCtrl)) {
-   //  		$serverCtrl->fault("UNKNOWN ERROR:" . $err);
-		}
-		qlog("UNKNOWN: ". $err);
-		log_trace();
-        break;
-    }
-
-    /* Don't execute PHP internal error handler */
-    return true;
-}
-
-function begin() {
-	if (! function_exists("xdebug_enable") ) return; 
-	
-	qlog("======== NEW RPC REQUEST =========\nDate: ".date("Y.m.d H:m:s") ."\nTime Index: " . xdebug_time_index()
-	. "\nFormat: ". $_SERVER['HTTP_ACCEPT']);
-	
-}
-
-function memreport($msg=null) {
-	if (! function_exists("xdebug_enable") ) return;
-	if ( $msg ) qlog ( $msg);
-	
-	qlog("Time Index: " . xdebug_time_index());
-	qlog("\nMemory Usage: " . xdebug_memory_usage() /(1024*1024). " MBytes");
-	qlog("\nPeak Memory Usage: " . xdebug_peak_memory_usage() / (1024*1024) . " MBytes");
-}
-function report() {
-	if (! function_exists("xdebug_enable") ) return; 
-	
-	qlog("-- Done --");
-	memreport();
-	
-}
-
-error_reporting(E_ALL);
-ini_set('display_errors','Off');
+ini_set('display_errors','on');
 ini_set("html_errors", "Off");
-$old_error_handler = set_error_handler("errorHandler");
+ini_set('log_errors', 1);
 
 session_name("SAGAkademieWebsession");
 // path for cookies
@@ -98,7 +18,6 @@ session_start();
 // this is the bootstrap file for the rpc server
 // set the default mode to deliver the html content
 //************* BOOTSTRAP *******************/
-error_reporting(E_ERROR | E_WARNING | E_PARSE & ~E_NOTICE & ~E_DEPRECATED );
 
 // Define path to application directory
 defined('APPLICATION_PATH')
@@ -118,6 +37,8 @@ if ( !class_exists("Zend_Loader_Autoloader")) {
 	require_once("Zend/Loader/Autoloader.php");
 	
 }
+
+include_once ("../lib/debug.php");
 include_once ("lib/config.php");
 
 begin();
@@ -149,7 +70,8 @@ include_once ("MSUtil.php");
 //memreport("Before Doctrine");
 // DBPool - Database bootstraping and utils
 include ( "DBPool.php" );
-DBPool::init(new MSUtil_Mixin ( $runtimeConfig, $config ) );
+$cfg = new MSUtil_Mixin ( $runtimeConfig, $config );
+DBPool::init( $cfg );
 
 
 // use either Get vars (if $_GET['s'] is present
@@ -241,12 +163,12 @@ AnyRpc::init(new MSUtil_Mixin ( $runtimeConfig, $config) );
 //memreport("After AnyRpc");
 //************ END BOOTSTRAP *********/
 //
+header("Content-Type: application/json");
 
 //******** DO LOGIN ******
 
 
 include("_lib/Identity.php");
-qdir($_SESSION);
 global $identity;
 $identity = Identity::create();
 $session = (object) $_SESSION;
@@ -320,10 +242,18 @@ if ( $targetService === null ) {
 
 try {
 	$serverCtrl->handle ();
-	
+	$r = $serverCtrl->getResponse();
+	if ( $r->isError()) {
+		qlog("  ===>>> RPC-ERROR: <<<===");
+		qlog ( $r->getError()->getMessage() );
+		qlog ( $r->getError()->getData() );
+		qdir ( $r->getError());
+
+
+	}
 } catch ( Exception $e ) {
-	qerror("RPC-EXCEPTION:");
-	qerror ( $e->getMessage() );
+	qlog("RPC-EXCEPTION:");
+	qlog ( $e->getMessage() );
 }
 
 

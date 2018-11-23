@@ -172,7 +172,7 @@ function mysqlDatetimeFromLocal($date) {
 	global $shortDatetimeFormat;
 	global $shortDatetimeFormat;
 	if (empty($date))
-		return "0000-00-00 00:00:00";
+		return null;
 	$aResult = parseLocalDate($date);
 
 	$nParsedDateTimestamp = mktime($aResult['tm_hour'], $aResult['tm_min'], $aResult['tm_sec'], $aResult['tm_mon'] + 1, $aResult['tm_mday'], intval($aResult['tm_year']) + 1900);
@@ -191,7 +191,7 @@ function mysqlDateFromLocal($date) {
 	global $dateFormat;
 	global $mysqlDateFormat;
 	if (empty($date))
-		return "0000-00-00";
+		return null;
 	$aResult = parseLocalDate($date);
 	$nParsedDateTimestamp = mktime($aResult['tm_hour'], $aResult['tm_min'], $aResult['tm_sec'], $aResult['tm_mon'] + 1, $aResult['tm_mday'], intval($aResult['tm_year']) + 1900);
 	return strftime($mysqlDateFormat, $nParsedDateTimestamp);
@@ -413,7 +413,15 @@ function mergeFilter($table, $data) {
 	$newData = array();
 	foreach ($columns as $col => $colInfo) {
 		if (array_key_exists($col, $data)) {
+			qlog("------------------->");
+			qlog($colInfo['type']);
 			switch ( $colInfo['type']) {
+				case "date":
+					$newData[$col] = $data[$col] == "0000-00-00" ? null : $data[$col];
+					break;
+				case "datetime":
+					$newData[$col] = $data[$col] == "0000-00-00 00:00:00" ? null : $data[$col];
+					break;
 				case "float" :
 					$newData[$col] = floatval($data[$col]);
 					break;
@@ -425,45 +433,7 @@ function mergeFilter($table, $data) {
 	return $newData;
 }
 
-// quick logging
-// usefull when doing rpc debug
-function qlog($msg) {
-	$logfile = MosaikConfig::getVar("qlog/file");
-	if (!empty($logfile)) {
-        $msg = date("m.d.y-H:i:s") .":". $msg;
-		file_put_contents($logfile, $msg . "\n", FILE_APPEND);
-	} else {
-		error_log($msg);
-	}
-}
 
-function qerror ($msg) {
-	$logfile = MosaikConfig::getVar("qlog/errorfile");
-	if (!empty($logfile)) {
-        $msg = date("m.d.y-H:i:s") .":". $msg;
-
-        file_put_contents($logfile, $msg . "\n", FILE_APPEND);
-	} else {
-		error_log($msg);
-	}
-}
-
-function qerror_dir ( $obj) {
-	qdir($obj, "qerror");
-}
-// quick logging
-// usefull when doing rpc debug
-function qdir($obj,$fn = "qlog") {
-
-	$logfile = MosaikConfig::getVar("qlog/file");
-
-	ob_start();
-	var_dump($obj);
-	$cnt = ob_get_contents();
-	ob_end_clean();
-
-    $fn($cnt);
-}
 
 // usefull for decoiding _POST with some json info
 function solveJson(&$arr) {
@@ -661,10 +631,18 @@ function clearCache ($table, $data, $id) {
 
 	if ( $table == "Seminar") {
 		clearCacheSeminar($id);
+		$standort_id = $data['standort_id'];
+		$status = $data['status'];
+		$cache->delete("seminar_next_{$standort_id}_{$status}");
+		$cache->delete("seminar_next_{$standort_id}");
 	} else if ( $table == "Buchung") {
 		clearCacheBuchung($id);
 	} else if ( $table == "SeminarArt") {
 		clearCacheSeminarArt($id);
+	} else if ( $table == "XSettings" ) {
+		$u = Identity::get();
+		$ns = $data['namespace'];
+		$cache->delete("rpc_{$table}_{$u->getId()}_{$ns}");
 	}
 
 	if (array_key_exists("seminar_id", $data)) {
@@ -698,14 +676,20 @@ function clearCacheSeminarArt($id) {
 		qlog("Exception: ". $e);
 	} 
 }
-function clearCacheSeminar($id) {
+function clearCacheSeminar($id, $seminar=null) {
 	$cache = DBPool::$cacheDriver;
-
+	if ( $seminar ) {
+		$date = strtotime($seminar->datum_begin);
+		$year = date("Y",$date);
+		$cache->delete("seminar_year_{$year}");
+		qlog("Deleting cache for year {$year}");
+	}
 	qlog("Clearing extra for Seminar");
 			try {
 				$cache->delete("rpc_Seminar_". $id);
 				$cache->delete("rpc_ViewInhouseSeminar_". $id);
 				$cache->delete("kalender_seminar_" . $id);
+				$cache->delete("_kalender_seminar_" . $id);
 				$cache->delete("rpc_ViewSeminarPreis_". $id);
 			} catch (Exception $e) { 
 				qlog("Exception: ". $e);
@@ -722,7 +706,37 @@ function clearCacheBuchung($id) {
 		qlog("Exception: ". $e);
 	} 
 }
+/*
+function arrayCollect(&$ret, &$value, $idx, ...$fields) {
+	if ( !array_key_exists($idx, $value) && $idx != ":MERGE_ARRAY:") {
+		throw new Exception("Array incompatible.. missing $idx got " . join(',', array_keys($value)));
+	}
 
+	if ( count( $fields ) > 0 ) {
+		if ( !array_key_exists($value[$idx],$ret)) {
+			$ret[$value[$idx]] = [];
+		} 
+		return arrayCollect($ret[$value[$idx]], $value, ...$fields);
+	}
+	if ( $idx == ":MERGE_ARRAY:") {
+		if ( !is_array ( $ret )) {
+			$ret = [];
+		}
+		return array_push( $ret, $value );
+	} else {
+		return $ret[$value[$idx]] = &$value;
+	}
+}
+
+	function arrayUnpack($arr, ...$fields) {
+		for ( $i=0; $i<count($fields); $i++) {
+			$arr = array_merge(...$arr);
+		}
+		qlog("merged");
+		qdir($arr);
+		return $arr;
+	}
+*/
 Resolver::addMap('land_id', "XLand");
 Resolver::addMap('bundesland_id', "XBundesland");
 Resolver::addMap('kontaktkategorie', "KontaktKategorie");

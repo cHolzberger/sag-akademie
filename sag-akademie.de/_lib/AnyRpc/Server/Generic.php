@@ -50,6 +50,10 @@ class AnyRpc_Server_Generic {
 		return $this;
 	}
 
+	function getResponse() {
+		return $this->_rpcServer->getResponse();
+	}
+
 	/**
 	 * proxy for Zend_SERVER_Server->setClass with the difference that $arguments is an array to
 	 * pass data to your classes (eg. array("myvar1"=>"value", "myvar2"=>"value2" .. )
@@ -117,6 +121,8 @@ class AnyRpc_Server_Generic {
 	}
 
 	function fault($error, $code=404) {
+		qlog("RPC Error {$code}: ");
+		qdir($code);
 		$this->_rpcServer->fault($error, $code);
 	}
 }
