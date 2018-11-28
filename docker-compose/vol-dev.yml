@@ -13,8 +13,12 @@ services:
   mysqldb:
     volumes: 
       - mysql:/var/lib/mysql
-
+  matomo:
+    volumes: 
+      - matomo:/bitnami
 volumes:
+    matomo: 
+      driver: local
     mysql: 
       driver: local
     resources_pdf:

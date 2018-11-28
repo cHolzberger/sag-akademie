@@ -11,6 +11,9 @@ services:
       sag:
         aliases:
           - proxy
+  matomo:
+    ports:
+      - "8084:80"
   web:
     hostname: bremse.mosaiksoftware.local
     image: www7

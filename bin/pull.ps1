@@ -1,4 +1,6 @@
+#!/usr/bin/env powershell
+
 . .\vars.ps1
 
-&"docker-compose.exe" $dc_args "config"
-&"docker-compose.exe" $dc_args "pull"
+&"docker-compose" $dc_args "config"
+&"docker-compose" $dc_args "pull"

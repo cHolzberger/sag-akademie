@@ -7,3 +7,5 @@ RewriteCond %{REQUEST_FILENAME}  -f
 RewriteRule  ^.*$  -  [L]
 
 RewriteRule ^.*$	index.php [L]
+
+Redirect 301 /plesk/webstat    http://matomo.sag-akademie.de

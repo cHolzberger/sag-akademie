@@ -148,6 +148,34 @@ display:none;
 					<case value="1">Tag</case>
 					<case value="*">Tage</case>
 				</switch>
+				<switch key="qualifikationsart">
+					<case value="#empty"></case>
+					<case value="*">
+						<b>
+							<span style="color:#666666 !important;">Qualifikationsart:</span>
+						</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<dbfield name="qualifikationsart" notable="true" />
+					</case>
+				</switch>
+				<br/>
+
+				<switch key="rezertifizierungszeit">
+					<case value="#empty"></case>
+					<case value="1">
+						<b>
+							<span style="color:#666666 !important;">Rezertifizierungszeit:</span>
+						</b>&nbsp;
+						<dbfield name="rezertifizierungszeit" notable="true" />&nbsp;Jahr
+					</case>
+					<case value="*">
+						<b>
+							<span style="color:#666666 !important;">Rezertifizierungszeit:</span>
+						</b>&nbsp;
+						<dbfield name="rezertifizierungszeit" notable="true" />&nbsp;Jahre
+					</case>
+				</switch>
+				<br/>
+				<br/>
 				<br/>
 				<br/>
 				<div>

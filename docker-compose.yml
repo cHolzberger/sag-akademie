@@ -3,9 +3,9 @@ version: "3"
 services: 
   web:
     container_name: sag_${RELEASE_BRANCH}_www
+    image: hub.ad.mosaiksoftware.de/sag/www:${BUILD_BRANCH}${BUILD_VERSION_WEB}
     hostname: www.sag-akademie.de
     build: ./sag-akademie.de/
-    image: hub.ad.mosaiksoftware.de/sag/www:${BUILD_BRANCH}${BUILD_VERSION}
     ports: 
       - "8081:80"
     environment:
@@ -14,9 +14,31 @@ services:
       sag:
         aliases: 
           - web
+  matomo:
+    image: "bitnami/matomo:3.7.0"
+    container_name: sag_${RELEASE_BRANCH}_matomo
+
+    environment:
+      - MARIADB_HOST=mysqldb
+      - MARIADB_PORT_NUMBER=3306
+      - MATOMO_DATABASE_USER=matomo
+      - MATOMO_DATABASE_PASSWORD=matomo1234
+      - MATOMO_DATABASE_NAME=matomo
+      - ALLOW_EMPTY_PASSWORD=no
+      - MATOMO_USERNAME=admin
+      - MATOMO_PASSWORD=admin1234
+      - MATOMO_EMAIL=info@sag-akademie.de
+      - MATOMO_WEBSITE_NAME=SAG-Akademie
+      - MATOMO_WEBSITE_HOST="https://sag-akademie.de"
+    ports:
+      - '8084:80'
+    networks:
+      sag:
+        aliases: 
+          - matomo
   mysqldb:
     container_name: sag_${RELEASE_BRANCH}_mysql
-    image: hub.ad.mosaiksoftware.de/sag/mysql:${BUILD_BRANCH}${BUILD_VERSION}
+    image: hub.ad.mosaiksoftware.de/sag/mysql:${BUILD_BRANCH}${BUILD_VERSION_MYSQL}
     build: ./mysql/
     environment:
       MYSQL_ROOT_PASSWORD: sag1234

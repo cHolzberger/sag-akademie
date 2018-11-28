@@ -2,14 +2,11 @@ services:
   haproxy:
     container_name: system_haproxy
     environment:
-      HAPROXY_USESSL: '"yes"'
-
-      HAPROXY_VHOST_HTTP_PROD: '{"name": "prod", "domain": "^www.sag-akademie.de$$",
-      "port":"80","sslport": "443","backend": "127.0.0.1:8081","forcessl": true}'
-      HAPROXY_VHOST_HTTP_PROD2: '{"name": "prod2", "domain": "^sag-akademie.de$$",
-      "port":"80","sslport": "443","backend": "127.0.0.1:8081","forcessl": false}'
-      HAPROXY_VHOST_HTTP_BETA: '{"name": "beta", "domain": "^beta.sag-akademie.de$$",
-      "port":"80","sslport": "443", "backend": "127.0.0.1:8082", "forcessl": true}'
+      HAPROXY_USESSL: "yes"
+      HAPROXY_VHOST_HTTP_PROD: '{"name": "prod", "domain": "^www.sag-akademie.de$$", "port":"80","sslport": "443","backend": "127.0.0.1:8081","forcessl": true}'
+      HAPROXY_VHOST_HTTP_PROD2: '{"name": "prod2", "domain": "^sag-akademie.de$$", "port":"80","sslport": "443","backend": "127.0.0.1:8081","forcessl": false}'
+      HAPROXY_VHOST_HTTP_BETA: '{"name": "beta", "domain": "^beta.sag-akademie.de$$", "port":"80","sslport": "443", "backend": "127.0.0.1:8082", "forcessl": true}'
+      HAPROXY_VHOST_HTTP_MATOMO: '{"name": "matomo", "domain": "^matomo.sag-akademie.de$$", "port":"80","sslport": "443", "backend": "127.0.0.1:8084", "forcessl": true}'
     image: mosaiksoftware/debian-haproxy
     network_mode: host
     ports:
@@ -21,6 +18,9 @@ services:
   mysqldb:
     ports:
       - "3306:3306"
+  matomo:
+    ports:
+      - "8084:80"
   web:
     hostname: www.sag-akademie.de
     ports: 

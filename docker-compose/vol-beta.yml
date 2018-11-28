@@ -11,6 +11,9 @@ services:
       - apache_logs:/var/log/apache2
       - templates:/var/www/templates
       - img:/static/img
+  matomo:
+    volumes: 
+      - matomo:/bitnami
   mysqldb:
     volumes: 
       - mysql:/var/lib/mysql
@@ -24,6 +27,10 @@ volumes:
       driver: local-persist
       driver_opts:
         mountpoint: /srv/datastore/$RELEASE_BRANCH/mysql
+    matomo:
+      driver: local-persist
+      driver_opts:
+        mountpoint: /srv/datastore/sag_prod/matomo
     files:
       driver: local-persist
       driver_opts:

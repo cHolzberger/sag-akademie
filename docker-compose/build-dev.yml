@@ -12,6 +12,9 @@ services:
       sag:
         aliases:
           - proxy
+  matomo:
+    ports:
+      - "8084:80"
   mysqldb:
     ports:
       - "3309:3306"

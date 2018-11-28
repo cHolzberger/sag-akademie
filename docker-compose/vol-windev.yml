@@ -39,6 +39,9 @@ services:
      sag:
       aliases: 
         - memcache
+  matomo:
+    volumes: 
+      - matomo:/bitnami
 volumes:
     webroot: 
       driver: local
@@ -47,6 +50,8 @@ volumes:
         o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
         device: ":/Users/cholzberger/Projekte/SAG-Akademie-GmbH/SAG-Akademie.de"
     mysql: 
+      driver: local
+    matomo:
       driver: local
 networks:
   sag:
