@@ -44,6 +44,8 @@
  * @property integer $kundenbetreuung_durch
  * @property float $kosten_uebernachtung
  * @property integer $aktualisierung_gesperrt
+ * @property string $qualifikationsart
+ * @property integer $rezertifizierungszeit
  * @property integer $dauer
  * @property integer $referent_id
  * 
@@ -398,6 +400,24 @@ abstract class BaseViewSeminarOhneReferent extends Doctrine_Record
              'unsigned' => false,
              'primary' => false,
              'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('qualifikationsart', 'string', 45, array(
+             'type' => 'string',
+             'length' => 45,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('rezertifizierungszeit', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => 4,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
              'autoincrement' => false,
              ));
         $this->hasColumn('dauer', 'integer', 4, array(

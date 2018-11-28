@@ -44,6 +44,8 @@
  * @property integer $kundenbetreuung_durch
  * @property float $kosten_uebernachtung
  * @property integer $aktualisierung_gesperrt
+ * @property string $qualifikationsart
+ * @property integer $rezertifizierungszeit
  * @property integer $ausgebucht
  * @property string $bezeichnung
  * @property integer $sichtbar_planung
@@ -419,6 +421,24 @@ abstract class BaseViewSeminarPreis extends Doctrine_Record
              'unsigned' => false,
              'primary' => false,
              'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('qualifikationsart', 'string', 45, array(
+             'type' => 'string',
+             'length' => 45,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('rezertifizierungszeit', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => 4,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
              'autoincrement' => false,
              ));
         $this->hasColumn('ausgebucht', 'integer', 4, array(

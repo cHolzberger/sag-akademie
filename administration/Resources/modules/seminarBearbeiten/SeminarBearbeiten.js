@@ -137,6 +137,27 @@ dojo.declare("module.seminarBearbeiten.SeminarBearbeiten", [mosaik.core.Module],
 		dijit.byId("SeminarArt:rubrik4").addOption( dojo.clone(rubriken));
 		dijit.byId("SeminarArt:rubrik5").addOption( dojo.clone(rubriken));
 
+
+		var qualifikationsart = [
+			{value:"", label:""},
+			{value:"Sachkunde", label:"Sachkunde"},
+			{value:"Fachkunde", label:"Fachkunde"},
+			{value:"Unterweisung",label:"Unterweisung"},
+			{value:"Fortbildung",label:"Fortbildung"},
+			{value:"Weiterbildung",label:"Weiterbildung"}
+		]
+		dijit.byId("SeminarArt:qualifikationsart").addOption(qualifikationsart);
+
+		
+		var rezertifizierungszeit = [
+			{value:"", label:"ohne"},
+			{value:"1", label:"1 Jahr"},
+			{value:"2", label:"2 Jahre"},
+			{value:"3", label:"3 Jahre"},
+			{value:"4", label:"4 Jahre"},
+			{value:"5", label:"5 Jahre"}
+		]
+		dijit.byId("SeminarArt:rezertifizierungszeit").addOption(rezertifizierungszeit);
 	},
 
 	onCreate: function () {

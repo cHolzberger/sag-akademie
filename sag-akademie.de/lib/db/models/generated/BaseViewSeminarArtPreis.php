@@ -54,6 +54,8 @@
  * @property timestamp $angelegt_datum
  * @property timestamp $deaktiviert_datum
  * @property string $info
+ * @property string $qualifikationsart
+ * @property integer $rezertifizierungszeit
  * @property float $preis
  * @property string $status_name
  * 
@@ -480,6 +482,24 @@ abstract class BaseViewSeminarArtPreis extends Doctrine_Record
              ));
         $this->hasColumn('info', 'string', null, array(
              'type' => 'string',
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('qualifikationsart', 'string', 45, array(
+             'type' => 'string',
+             'length' => 45,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'notnull' => false,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('rezertifizierungszeit', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => 4,
              'fixed' => false,
              'unsigned' => false,
              'primary' => false,

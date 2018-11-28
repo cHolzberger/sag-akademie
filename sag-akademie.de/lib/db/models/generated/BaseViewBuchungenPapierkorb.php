@@ -73,6 +73,7 @@
  * @property integer $alte_buchung
  * @property integer $version
  * @property timestamp $angelegt_datum
+ * @property integer $seminar_unterlagen
  * @property string $kursnr
  * @property string $firma
  * @property string $vorname
@@ -734,6 +735,16 @@ abstract class BaseViewBuchungenPapierkorb extends Doctrine_Record
              'unsigned' => false,
              'primary' => false,
              'notnull' => true,
+             'autoincrement' => false,
+             ));
+        $this->hasColumn('seminar_unterlagen', 'integer', 4, array(
+             'type' => 'integer',
+             'length' => 4,
+             'fixed' => false,
+             'unsigned' => false,
+             'primary' => false,
+             'default' => '0',
+             'notnull' => false,
              'autoincrement' => false,
              ));
         $this->hasColumn('kursnr', 'string', 255, array(
