@@ -26,3 +26,7 @@ mysql/*.tar.gz
 /sag-akademie.de/templates/emails/buchung_bestandskunde.xml
 /administration/.hgtags
 /administration/.project
+
+/sag-akademie.de/_pkg/._wkhtmltox_0.12.5-1.jessie_amd64.deb
+/sag-akademie.de/_pkg/._wkhtmltox_0.12.5-1.stretch_amd64.deb
+/sag-akademie.de/env
