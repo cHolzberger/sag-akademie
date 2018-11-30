@@ -4,21 +4,21 @@
   <output>
     <movie outputType="Application" />
     <movie input="" />
-    <movie path="C:\Projekte\SAG-Akademie-GmbH\SAG-Adm-UI\Resources\widgets\flexTable\FlexTable2.swf" />
+    <movie path="..\..\administration\Resources\widgets\flexTable\FlexTable2.swf" />
     <movie fps="30" />
     <movie width="800" />
     <movie height="600" />
-    <movie version="10" />
+    <movie version="18" />
     <movie minorVersion="0" />
     <movie platform="Flash Player" />
     <movie background="#FFFFFF" />
+    <movie preferredSDK="Apache Flex 4.16.1 FP31.0 AIR31.0 en_US;4.16.1;" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="C:\Projekte\sagakademie-flex\lib\src" />
-    <class path="C:\Projekte\sagakademie-flex\lib\assets" />
-    <class path="..\lib" />
+    <class path="..\lib\src" />
+    <class path="..\lib\assets" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -30,17 +30,17 @@
     <option inline="False" />
     <option locale="" />
     <option loadConfig="" />
-    <option optimize="False" />
+    <option optimize="True" />
     <option omitTraces="True" />
     <option showActionScriptWarnings="True" />
-    <option showBindingWarnings="True" />
+    <option showBindingWarnings="False" />
     <option showInvalidCSS="True" />
     <option showDeprecationWarnings="True" />
     <option showUnusedTypeSelectorWarnings="True" />
-    <option strict="True" />
+    <option strict="False" />
     <option useNetwork="True" />
     <option useResourceBundleMetadata="True" />
-    <option warnings="True" />
+    <option warnings="False" />
     <option verboseStackTraces="False" />
     <option linkReport="" />
     <option loadExterns="" />
@@ -58,6 +58,7 @@
     <element path="..\lib" />
     <element path="..\lib\swc\actionjson.swc" />
     <element path="..\lib\bin\AIRLib.swc" />
+    <element path="..\lib\src" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -75,6 +76,7 @@
   <library>
     <asset path="..\lib\lib.swf" />
     <asset path="..\lib\bin\AIRLib.swf" />
+    <asset path="loading.png" update="..\lib\assets\loading.png" />
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>

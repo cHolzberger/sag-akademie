@@ -974,7 +974,7 @@
 			if ( _sortByField == "" ) return;
 			
 			_sortByField = XSettings.getVar(TableParameters.nspace,"sortBy",{value: null}).value;
-			_sortDesc = XSettings.getBool(TableParameters.nspace, "sortDesc",null);
+			_sortDesc = XSettings.getBool(TableParameters.nspace, "sortDesc",false);
 
 			if ( _sortByField != null && _sortByField != "" ) {
 				var _s:Sort=new Sort();

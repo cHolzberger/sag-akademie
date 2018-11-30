@@ -6,6 +6,7 @@ package com.mosaiksoftware
 	 */
 	public final class AssetCollection 
 	{
+		[Bindable]
 		[Embed(source='/loading.png')]
 		public static var loading:Class;
 		

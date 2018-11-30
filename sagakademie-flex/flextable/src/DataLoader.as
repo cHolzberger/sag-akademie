@@ -9,7 +9,9 @@ package
 		private var _ds:JsonProxy = null;
 		public var onResult:Function;
 		public function set onFault(f:Function):void {
-			_ds.faultCb = f;
+			if ( _ds != null ) {
+				_ds.setFaultCb( f );
+			}
 		}
 		
 		public function DataLoader(url:String)

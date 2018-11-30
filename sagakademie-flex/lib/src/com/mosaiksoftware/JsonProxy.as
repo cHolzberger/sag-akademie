@@ -29,7 +29,7 @@
 		private var saveCallback:Function = null
 		private var _requestRunning:Boolean = false;
 		private var _timer:Timer;
-		public var faultCb:Function = null;
+		public var _faultCb:Function = null;
 		// the current arguments for the httprequest
 		private var _args:Object = null;
 		
@@ -46,6 +46,10 @@
 			var urlBase:String = MosaikConfig.getVar ("datahost");
 		
 			currentUrl = urlBase + url + appendToUrl;
+		}
+		
+		public function setFaultCb(f:Function):void {
+			this._faultCb = f;
 		}
 		
 		public function request(cb:Function, obj:Object = null, method:String = "POST"):void {

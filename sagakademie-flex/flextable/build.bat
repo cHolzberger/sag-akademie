@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\FlashDevelop\Tools\fdbuild\fdbuild.exe" "P:\SAG-Akademie-GmbH\sag-new\sagakademie-flex\flextable\flextable.as3proj" -ipc e52ab5bc-828d-419b-b7a0-53785dae65e0 -version "4.16.1" -compiler "H:\Projekte\_shared\sdk\air-31-flex-4.16.1x2" -library "C:\Program Files (x86)\FlashDevelop\Library"

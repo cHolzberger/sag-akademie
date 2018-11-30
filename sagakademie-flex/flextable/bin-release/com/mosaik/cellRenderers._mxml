@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<mx:Container xmlns:mx="http://www.adobe.com/2006/mxml">
-<mx:Component className="ImageCellRenderer" >
-		<mx:Image height="45" source="{listData.label}" />
-</mx:Component>
-</mx:Container>
