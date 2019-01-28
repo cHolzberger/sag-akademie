@@ -1,0 +1,111 @@
+@import url(/app/shared/css-core/iframe-main.css);
+@import url(/app/shared/css-lib/all.css);
+
+#topPane {
+	display: -webkit-box;
+	overflow-y: auto !important;
+	overflow-x: auto !important;
+	-webkit-box-pack: start;
+	 -webkit-box-orient: horizontal;
+  	min-height: 10px;
+  	padding-top: 15px;
+}
+
+#borderContainer .box {
+}
+
+#formGrid {
+	-webkit-column-width: 300px 100px 300px;
+	-webkit-column-rule: 1px dashed gray;
+	-webkit-column-gap: 5px;
+	height: 100%;
+	width: 100%;
+	border:1px solid red;
+}
+
+#formGrid header {
+	-webkit-column-span: all;
+}
+
+#formGrid footer {
+	-webkit-column-span: all;
+}
+
+.gridBox1 {
+	-webkit-column-span: 1;
+	-webkit-column-count: 1;
+	height: 100%;
+	-webkit-column-break-after: right;
+	-webkit-column-break-before: column;
+
+	background-color: yellow;
+	-webkit-column-width: auto;
+	-webkit-column-fill: balance;
+		display: block;
+
+}
+
+.gridBox2 {
+	-webkit-column-span: 1;
+	-webkit-column-count: 1;
+	-webkit-column-break-after: column;
+	-webkit-column-break-before: column;
+	-webkit-column-webkit-column-width: auto;
+	-webkit-column-fill: balance;
+	height: 100%;
+	background-color: red;
+	display: block;
+}
+
+#borderContainer {
+	padding-top: 28px;
+	min-width: 10px;
+	min-height: 10px;
+	width: 100%;
+	height: 100%;
+}
+
+.tagLabel {
+  color: #888888;
+  font-weight: bold;
+  padding: 0;
+  vertical-align: top;
+  width: 30px;
+}
+
+
+.seminarBtn:active,
+.seminarBtnActive,
+.seminarBtn:hover,
+.seminarBtn {
+   cursor: pointer;
+   padding: 2px 4px 2px;
+   margin: 3px;
+   display: block;
+   font-weight: normal;
+   text-decoration: none;
+   	list-style-type: none;
+}
+
+.seminarBtn:hover {
+   color: blue;
+   margin: 1px;
+   border: 1px solid gray;
+   background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+   border-radius: 3px;
+   -webkit-border-radius: 3px;
+}
+
+.seminarBtnActive,
+.seminarBtn:active {
+   color: blue;
+   margin: 1px;
+   margin-left: 2px;
+
+   border: 1px solid black;
+   background: -webkit-gradient(linear, 0% 0%, 0% 170%, from(white), to(#c4c4c4));
+   border-radius:           3px;
+   -webkit-border-radius:           3px;
+   -webkit-box-shadow: 0 0 5px rgba(0,0,0, .7);
+   box-shadow: 0 0 5px rgba(0,0,0, .7);
+}
